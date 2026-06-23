@@ -37,12 +37,12 @@ const demos: Demo[] = [
   {
     id: 'hard',
     label: 'Hard',
-    title: 'Hide And Seek Io',
-    source: 'GameMonetize',
+    title: 'Hide N Seek',
+    source: 'CrazyGames',
     ratio: 'aspect-[9/16]',
-    src: 'https://html5.gamemonetize.games/q32ot8nkjpu9ldvsos4ki1b7k6q2y5b6/',
-    note: 'Red-vs-blue seekers, the most visually faithful third-party Hide N Seek we can embed. The same title lives on CrazyGames but that site locks its game-zip endpoint to a crazygames.com referrer, so an iframe hosted on mecchachameleon.art cannot reach it. The GameMonetize mirror serves the same gameplay over a CDN with no referrer requirement.',
-    openInNewTab: 'https://html5.gamemonetize.games/q32ot8nkjpu9ldvsos4ki1b7k6q2y5b6/',
+    src: 'https://games.crazygames.com/en_US/hide-n-seek/index.html',
+    note: 'Same browser demo that mechachameleon.org ships in its hero slot. CrazyGames bundles the 15 MB Unity WebGL bundle in a gameframe that is ad-funded; if you run an ad blocker or the ad network is slow, click "Continue offline" inside the iframe to start the game from the browser cache.',
+    openInNewTab: 'https://www.crazygames.com/game/hide-n-seek',
   },
   {
     id: 'social',
@@ -121,11 +121,11 @@ export function DemoFrame() {
             src={activeDemo.src}
             className="absolute inset-0 h-full w-full"
             loading="lazy"
-            allow="autoplay; fullscreen; gamepad; pointer-lock"
+            allow="autoplay; fullscreen; gamepad; pointer-lock; encrypted-media; web-share"
             allowFullScreen
             scrolling="no"
-            referrerPolicy="no-referrer-when-downgrade"
-            sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-pointer-lock allow-top-navigation"
+            referrerPolicy="origin"
+            sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-pointer-lock allow-top-navigation allow-presentation"
           />
           {showHint && (
             <div className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center bg-gradient-to-t from-black/80 to-transparent p-4">
@@ -133,10 +133,11 @@ export function DemoFrame() {
                 <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" />
                 <div>
                   <div className="font-semibold">
-                    Click <span className="rounded bg-amber-200 px-1.5 py-0.5 text-amber-900">Continue</span> inside the game to start playing.
+                    If the splash sticks, click <span className="rounded bg-amber-200 px-1.5 py-0.5 text-amber-900">Continue offline</span> inside the game.
                   </div>
                   <div className="mt-1 text-xs text-amber-900/80">
-                    Third-party splash screen, not the official Meccha Chameleon.
+                    Third-party ad-funded demo. Disable ad blockers for the first load, then the
+                    15 MB Unity WebGL bundle caches locally.
                   </div>
                 </div>
                 <button
