@@ -1,5 +1,6 @@
 import {
   BadgeInfo,
+  BookOpen,
   Brush,
   ExternalLink,
   Gamepad2,
@@ -13,24 +14,28 @@ import {
 } from 'lucide-react';
 import { setRequestLocale } from 'next-intl/server';
 
+import { getLocalizedPath } from '@/shared/blocks/meccha/atlas-data';
+
 import { AtlasPreview } from '@/shared/blocks/meccha/atlas-preview';
 import { DemoFrame } from '@/shared/blocks/meccha/demo-frame';
+import { HowToPlaySection } from '@/shared/blocks/meccha/how-to-play-section';
 import { UpdatesSection } from '@/shared/blocks/meccha/updates-section';
 
 const steamUrl = 'https://store.steampowered.com/app/4704690/MECCHA_CHAMELEON/';
 
-const paths = [
-  {
-    icon: BadgeInfo,
-    title: 'New to the game',
-    copy: 'Understand the Steam game, platforms, price, and the basic hide-and-seek loop before you download.',
-    href: '#new-player',
-  },
-  {
-    icon: Brush,
-    title: 'Help me hide better',
-    copy: 'Use camo ideas, color cues, pose notes, and map spots once you already know the rules.',
-    href: '#camo-lab',
+function getPaths(locale: string) {
+  return [
+    {
+      icon: BadgeInfo,
+      title: 'New to the game',
+      copy: 'Understand the Steam game, platforms, price, and the basic hide-and-seek loop before you download.',
+      href: getLocalizedPath(locale, '/new-player'),
+    },
+    {
+      icon: Brush,
+      title: 'Help me hide better',
+      copy: 'Use camo ideas, color cues, pose notes, and map spots once you already know the rules.',
+      href: '#atlas',
   },
   {
     icon: MonitorSmartphone,
@@ -38,7 +43,8 @@ const paths = [
     copy: 'Keep this page open on your phone as a fast second-screen guide during real matches.',
     href: '#second-screen',
   },
-];
+  ];
+}
 
 const faqs = [
   {
@@ -112,6 +118,13 @@ export default async function LandingPage({
                 Play the demo
               </a>
               <a
+                href={getLocalizedPath(locale, '/new-player')}
+                className="inline-flex min-h-11 items-center gap-2 rounded-md border border-[#b9af9e] bg-white px-5 py-3 font-semibold text-[#151512] transition hover:bg-[#ece5d8]"
+              >
+                <BookOpen className="h-5 w-5" />
+                New player guide
+              </a>
+              <a
                 href={steamUrl}
                 target="_blank"
                 rel="noreferrer"
@@ -124,7 +137,7 @@ export default async function LandingPage({
             </div>
 
             <div className="grid gap-3 sm:grid-cols-3">
-              {paths.map((item) => (
+              {getPaths(locale).map((item) => (
                 <a
                   key={item.title}
                   href={item.href}
@@ -226,6 +239,8 @@ export default async function LandingPage({
           <AtlasPreview locale={locale} />
         </div>
       </section>
+
+      <HowToPlaySection locale={locale} />
 
       <UpdatesSection />
 

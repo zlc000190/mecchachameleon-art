@@ -41,7 +41,7 @@ const demos: Demo[] = [
     source: 'GameMonetize',
     ratio: 'aspect-[9/16]',
     src: 'https://html5.gamemonetize.games/q32ot8nkjpu9ldvsos4ki1b7k6q2y5b6/',
-    note: 'Red-vs-blue seekers, the most visually faithful third-party Hide N Seek. CrazyGames has the same game but their iframe is locked to the crazygames.com referrer and our domain cannot reach its game zip endpoint, so we ship the GameMonetize mirror here.',
+    note: 'Red-vs-blue seekers, the most visually faithful third-party Hide N Seek we can embed. The same title lives on CrazyGames but that site locks its game-zip endpoint to a crazygames.com referrer, so an iframe hosted on mecchachameleon.art cannot reach it. The GameMonetize mirror serves the same gameplay over a CDN with no referrer requirement.',
     openInNewTab: 'https://html5.gamemonetize.games/q32ot8nkjpu9ldvsos4ki1b7k6q2y5b6/',
   },
   {
