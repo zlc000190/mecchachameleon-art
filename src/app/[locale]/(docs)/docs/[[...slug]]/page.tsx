@@ -60,5 +60,9 @@ export async function generateMetadata(props: {
   return {
     title: page.data.title,
     description: page.data.description,
+    robots: {
+      index: false,
+      follow: false,
+    },
   };
 }

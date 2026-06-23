@@ -38,6 +38,10 @@ export async function generateMetadata({
     alternates: {
       canonical: canonicalUrl,
     },
+    robots: {
+      index: false,
+      follow: false,
+    },
   };
 }
 

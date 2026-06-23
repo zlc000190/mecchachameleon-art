@@ -26,6 +26,10 @@ export async function generateMetadata({
       alternates: {
         canonical: canonicalUrl,
       },
+      robots: {
+        index: false,
+        follow: false,
+      },
     };
   }
 
@@ -34,6 +38,10 @@ export async function generateMetadata({
     description: post.description,
     alternates: {
       canonical: canonicalUrl,
+    },
+    robots: {
+      index: false,
+      follow: false,
     },
   };
 }

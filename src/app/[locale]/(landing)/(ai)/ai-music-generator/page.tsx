@@ -10,6 +10,7 @@ export const revalidate = 3600;
 export const generateMetadata = getMetadata({
   metadataKey: 'ai.music.metadata',
   canonicalUrl: '/ai-music-generator',
+  noIndex: true,
 });
 
 export default async function AiMusicGeneratorPage({

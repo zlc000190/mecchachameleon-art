@@ -10,6 +10,7 @@ export const revalidate = 3600;
 export const generateMetadata = getMetadata({
   metadataKey: 'ai.image.metadata',
   canonicalUrl: '/ai-image-generator',
+  noIndex: true,
 });
 
 export default async function AiImageGeneratorPage({

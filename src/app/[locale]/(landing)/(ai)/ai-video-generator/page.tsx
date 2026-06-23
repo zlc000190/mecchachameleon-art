@@ -10,6 +10,7 @@ export const revalidate = 3600;
 export const generateMetadata = getMetadata({
   metadataKey: 'ai.video.metadata',
   canonicalUrl: '/ai-video-generator',
+  noIndex: true,
 });
 
 export default async function AiVideoGeneratorPage({
