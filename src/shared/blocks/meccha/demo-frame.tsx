@@ -37,12 +37,12 @@ const demos: Demo[] = [
   {
     id: 'hard',
     label: 'Hard',
-    title: 'Hide N Seek',
-    source: 'CrazyGames',
+    title: 'Hide And Seek Io',
+    source: 'GameMonetize',
     ratio: 'aspect-[9/16]',
-    src: 'https://games.crazygames.com/en_US/hide-n-seek/index.html',
-    note: 'Same browser demo that mechachameleon.org ships in its hero slot. Best visual match for the Steam game — players paint the chameleon and the seeker is a sharp-eyed human-style hunter.',
-    openInNewTab: 'https://www.crazygames.com/game/hide-n-seek',
+    src: 'https://html5.gamemonetize.games/q32ot8nkjpu9ldvsos4ki1b7k6q2y5b6/',
+    note: 'Red-vs-blue seekers, the most visually faithful third-party Hide N Seek. CrazyGames has the same game but their iframe is locked to the crazygames.com referrer and our domain cannot reach its game zip endpoint, so we ship the GameMonetize mirror here.',
+    openInNewTab: 'https://html5.gamemonetize.games/q32ot8nkjpu9ldvsos4ki1b7k6q2y5b6/',
   },
   {
     id: 'social',
