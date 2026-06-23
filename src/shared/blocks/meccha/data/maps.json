@@ -1,0 +1,47 @@
+[
+  {
+    "id": "vintage-room",
+    "name": "The Vintage Drawing Room",
+    "slug": "vintage-room",
+    "thumb": "maps/vintage-room/vintage-01.jpg",
+    "palette": ["#1F4A2A", "#C9A332", "#F0E8D0"],
+    "difficulty": "medium",
+    "desc": "Baroque green damask wallpaper, black-and-white checkered floor, gilded picture frames, and chandelier lighting. Best for paint-matching greens and golds."
+  },
+  {
+    "id": "cow-farm",
+    "name": "The Pastoral Cow Farm",
+    "slug": "cow-farm",
+    "thumb": "maps/cow-farm/farm-01.jpg",
+    "palette": ["#4A7C2C", "#C9A36B", "#8B2222"],
+    "difficulty": "easy",
+    "desc": "Open pasture with cows, haystacks, a red barn, and cartoon sky murals. Beginner-friendly: contrast between bright greens, hay yellows, and barn red."
+  },
+  {
+    "id": "brick-tavern",
+    "name": "The Brick Tavern Hall",
+    "slug": "brick-tavern",
+    "thumb": "maps/brick-tavern/brick-01.jpg",
+    "palette": ["#6F5449", "#3D2817", "#C9A332"],
+    "difficulty": "medium",
+    "desc": "Red brick walls, exposed wooden beams, golden horse statues. Classical tavern feel; great for brick reds and wood browns."
+  },
+  {
+    "id": "grand-ballroom",
+    "name": "The Grand Ballroom",
+    "slug": "grand-ballroom",
+    "thumb": "maps/grand-ballroom/ballroom-01.jpg",
+    "palette": ["#FFE4B5", "#8B0000", "#0A0A0A"],
+    "difficulty": "hard",
+    "desc": "Crystal chandeliers, grand piano, banquet tables, curved staircase. Many warm yellows and deep reds; hardest because every surface is decorated."
+  },
+  {
+    "id": "blue-parlor",
+    "name": "The Blue Floral Parlor",
+    "slug": "blue-parlor",
+    "thumb": "maps/blue-parlor/parlor-01.jpg",
+    "palette": ["#2C5F8C", "#8B1A1A", "#FFFEF0"],
+    "difficulty": "hard",
+    "desc": "Blue floral wallpaper, red velvet chaise, round ceiling lamp, coat rack. Hardest for color match: dominant cool blues vs. accent reds force precise paint mixing."
+  }
+]

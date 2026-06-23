@@ -45,6 +45,9 @@ yarn-error.log*
 next-env.d.ts
 
 data*
+!src/shared/blocks/meccha/data/
+!src/shared/blocks/meccha/data/maps.json
+!src/shared/blocks/meccha/data/spots.json
 *debug*
 
 *.db
