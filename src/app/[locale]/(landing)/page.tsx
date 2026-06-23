@@ -19,6 +19,7 @@ import { getLocalizedPath } from '@/shared/blocks/meccha/atlas-data';
 import { AtlasPreview } from '@/shared/blocks/meccha/atlas-preview';
 import { DemoFrame } from '@/shared/blocks/meccha/demo-frame';
 import { HowToPlaySection } from '@/shared/blocks/meccha/how-to-play-section';
+import { KeywordSection } from '@/shared/blocks/meccha/keyword-section';
 import { UpdatesSection } from '@/shared/blocks/meccha/updates-section';
 
 const steamUrl = 'https://store.steampowered.com/app/4704690/MECCHA_CHAMELEON/';
@@ -88,7 +89,7 @@ export default async function LandingPage({
           <div className="flex flex-col gap-6">
             <div className="inline-flex w-fit items-center gap-2 rounded-full border border-[#ccc1aa] bg-white/70 px-3 py-1 text-sm text-[#5d584b]">
               <ShieldCheck className="h-4 w-4 text-[#287c63]" />
-              Unofficial companion for the Steam game
+              Fan-made companion for the Steam game
             </div>
 
             <div className="space-y-4">
@@ -239,6 +240,8 @@ export default async function LandingPage({
           <AtlasPreview locale={locale} />
         </div>
       </section>
+
+      <KeywordSection />
 
       <HowToPlaySection locale={locale} />
 

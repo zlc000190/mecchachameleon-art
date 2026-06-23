@@ -11,15 +11,21 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
+  const title = 'Meccha Chameleon New Player Guide — 10-min Walkthrough';
+  const description =
+    'Meccha Chameleon beginner walkthrough in 10 minutes: controls, paint tool, role guide, first-match checklist, and 8 rookie mistakes to avoid in round one.';
   return {
     metadataBase: new URL('https://mecchachameleon.art'),
-    title: 'New Player Guide | Meccha Chameleon Art Lab',
-    description:
-      'Full beginner walkthrough for Meccha Chameleon: controls, paint tool, role guide, first-match checklist, and the 8 rookie mistakes that get you caught in 30 seconds.',
+    title,
+    description,
     openGraph: {
-      title: 'Meccha Chameleon New Player Guide',
-      description:
-        'From Steam install to your first perfect paint job. Step-by-step, written for a player who has never touched the game.',
+      title,
+      description,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
     },
   };
 }

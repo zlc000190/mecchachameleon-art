@@ -38,13 +38,22 @@ export async function generateMetadata({
     return {};
   }
 
+  const title = `${map.name} Hiding Spots — Meccha Chameleon`;
+  const description = `${map.name} Meccha Chameleon hiding spot atlas (10 spots): screenshots, paint RGB, difficulty, hider tips. Fan-made; free browser demo.`;
+
   return {
     metadataBase: new URL('https://mecchachameleon.art'),
-    title: `${map.name} Hiding Spots | Meccha Chameleon Art Lab`,
-    description: `${map.name} Meccha Chameleon hiding spot atlas with screenshots, paint colors, difficulty ratings, and hider tips.`,
+    title,
+    description,
     openGraph: {
-      title: `${map.name} Hiding Spots`,
-      description: map.desc,
+      title,
+      description,
+      images: [getAtlasImagePath(map.thumb)],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
       images: [getAtlasImagePath(map.thumb)],
     },
   };
