@@ -129,7 +129,7 @@ async function getTranslatedMetadata(metadataKey: string, locale: string) {
   };
 }
 
-async function getCanonicalUrl(canonicalUrl: string, locale: string) {
+export async function getCanonicalUrl(canonicalUrl: string, locale: string) {
   if (!canonicalUrl) {
     canonicalUrl = '/';
   }
@@ -146,10 +146,10 @@ async function getCanonicalUrl(canonicalUrl: string, locale: string) {
     canonicalUrl = `${envConfigs.app_url}${
       !locale || locale === defaultLocale ? '' : `/${locale}`
     }${canonicalUrl}`;
+  }
 
-    if (locale !== defaultLocale && canonicalUrl.endsWith('/')) {
-      canonicalUrl = canonicalUrl.slice(0, -1);
-    }
+  if (!canonicalUrl.endsWith('/')) {
+    canonicalUrl = `${canonicalUrl}/`;
   }
 
   return canonicalUrl;

@@ -2,8 +2,8 @@ import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 import { getThemePage } from '@/core/theme';
-import { envConfigs } from '@/config';
 import { getLocalPage } from '@/shared/models/post';
+import { getCanonicalUrl } from '@/shared/lib/seo';
 
 export const revalidate = 3600;
 
@@ -33,10 +33,7 @@ export async function generateMetadata({
   }
 
   // build canonical url
-  canonicalUrl =
-    locale !== envConfigs.locale
-      ? `${envConfigs.app_url}/${locale}/${staticPageSlug}`
-      : `${envConfigs.app_url}/${staticPageSlug}`;
+  canonicalUrl = await getCanonicalUrl(`/${staticPageSlug}`, locale);
 
   // get static page content
   const staticPage = await getLocalPage({ slug: staticPageSlug, locale });

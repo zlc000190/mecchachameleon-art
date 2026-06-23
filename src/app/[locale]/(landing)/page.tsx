@@ -83,56 +83,62 @@ export default async function LandingPage({
   setRequestLocale(locale);
 
   return (
-    <main className="min-h-screen bg-[#f6f3ea] text-[#151512]">
-      <section className="border-b border-[#ded6c4] bg-[#f6f3ea]">
-        <div className="container grid min-h-[calc(100vh-72px)] gap-8 py-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(430px,1.1fr)] lg:items-center lg:py-10">
-          <div className="flex flex-col gap-6">
-            <div className="inline-flex w-fit items-center gap-2 rounded-full border border-[#ccc1aa] bg-white/70 px-3 py-1 text-sm text-[#5d584b]">
-              <ShieldCheck className="h-4 w-4 text-[#287c63]" />
+    <main className="min-h-screen bg-[#F6F0EA] text-[#29211D]">
+      <section className="border-b border-[#D8CFC6] bg-[#F6F0EA]">
+        <div className="container grid gap-6 py-10 text-left lg:grid-cols-[minmax(0,0.9fr)_minmax(440px,1.1fr)] lg:gap-8 lg:py-12 lg:items-start">
+          <div className="flex flex-col items-start gap-5">
+            <div className="inline-flex w-fit items-center gap-2 rounded-full border border-[#ccc1aa] bg-white/70 px-3 py-1 text-sm text-[#4C3B35]">
+              <ShieldCheck className="h-4 w-4 text-[#7D6D69]" />
               Fan-made companion for the Steam game
             </div>
 
             <div className="space-y-4">
-              <h1 className="max-w-3xl text-4xl font-bold leading-tight tracking-normal text-[#151512] md:text-6xl">
+              <h1 className="max-w-3xl text-4xl font-bold leading-tight tracking-normal text-[#29211D] md:text-6xl">
                 Meccha Chameleon Art Lab
               </h1>
               <p className="max-w-2xl text-lg leading-8 text-[#4f4b42] md:text-xl">
-                Try a tiny hide-and-seek browser demo, then jump into the
-                real Steam guide: platforms, first-match basics, camo tips,
-                and map hiding spots.
+                Try the browser demo first if you want to know whether the camo
+                gameplay clicks for you. If it does, the Steam game is the next
+                step. If not, you have only spent a minute.
               </p>
             </div>
 
-            <div className="rounded-md border border-[#d8cfbd] bg-white/80 p-4 text-sm leading-6 text-[#4f4b42]">
-              <strong className="text-[#151512]">Clear note:</strong> the
-              playable demo on this page is not the official Meccha Chameleon
-              game. It is here to explain the hide-and-seek idea before you
-              decide whether to play the real Steam PC game.
+            <div className="max-w-2xl rounded-md border border-[#d8cfbd] bg-white/80 p-4 text-sm leading-6 text-[#4f4b42]">
+              <strong className="text-[#29211D]">Already own it?</strong>
+              {' '}Go straight to the{' '}
+              <a href="#new-player" className="font-semibold text-[#7D6D69] underline">
+                beginner walkthrough
+              </a>{' '}
+              or the{' '}
+              <a href="#atlas" className="font-semibold text-[#7D6D69] underline">
+                50 hiding spots atlas
+              </a>
+              . If not, hit play below first. No signup, no install.
             </div>
 
             <div className="flex flex-wrap gap-3">
               <a
-                href="#demo"
-                className="inline-flex min-h-11 items-center gap-2 rounded-md bg-[#287c63] px-5 py-3 font-semibold text-white transition hover:bg-[#1f664f]"
+                href="#play"
+                className="inline-flex min-h-11 items-center gap-2 rounded-md bg-[#7D6D69] px-5 py-3 font-semibold text-white transition hover:bg-[#5C4F4C]"
               >
                 <Gamepad2 className="h-5 w-5" />
                 Play the demo
               </a>
               <a
                 href={getLocalizedPath(locale, '/new-player')}
-                className="inline-flex min-h-11 items-center gap-2 rounded-md border border-[#b9af9e] bg-white px-5 py-3 font-semibold text-[#151512] transition hover:bg-[#ece5d8]"
+                className="inline-flex min-h-11 items-center gap-2 rounded-md border border-[#b9af9e] bg-white px-5 py-3 font-semibold text-[#29211D] transition hover:bg-[#ece5d8]"
               >
                 <BookOpen className="h-5 w-5" />
-                New player guide
+                I already own it, teach me
               </a>
               <a
                 href={steamUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex min-h-11 items-center gap-2 rounded-md border border-[#b9af9e] bg-white px-5 py-3 font-semibold text-[#151512] transition hover:bg-[#ece5d8]"
+                className="inline-flex min-h-11 items-center gap-2 rounded-md border border-[#b9af9e] bg-white px-5 py-3 font-semibold text-[#29211D] transition hover:bg-[#ece5d8]"
               >
                 <Store className="h-5 w-5" />
-                Official Steam page
+                Buy on Steam · $5.99
                 <ExternalLink className="h-4 w-4" />
               </a>
             </div>
@@ -142,11 +148,11 @@ export default async function LandingPage({
                 <a
                   key={item.title}
                   href={item.href}
-                  className="min-h-[148px] rounded-md border border-[#d8cfbd] bg-white/75 p-4 transition hover:-translate-y-0.5 hover:border-[#287c63]"
+                  className="min-h-[148px] rounded-md border border-[#d8cfbd] bg-white/75 p-4 transition hover:-translate-y-0.5 hover:border-[#7D6D69]"
                 >
-                  <item.icon className="mb-3 h-5 w-5 text-[#287c63]" />
+                  <item.icon className="mb-3 h-5 w-5 text-[#7D6D69]" />
                   <div className="font-semibold">{item.title}</div>
-                  <p className="mt-2 text-sm leading-6 text-[#5d584b]">
+                  <p className="mt-2 text-sm leading-6 text-[#4C3B35]">
                     {item.copy}
                   </p>
                 </a>
@@ -154,14 +160,16 @@ export default async function LandingPage({
             </div>
           </div>
 
-          <DemoFrame />
+          <div id="play" className="lg:self-start">
+            <DemoFrame />
+          </div>
         </div>
       </section>
 
-      <section id="new-player" className="border-b border-[#ded6c4] bg-white">
+      <section id="new-player" className="border-b border-[#D8CFC6] bg-white">
         <div className="container grid gap-8 py-14 lg:grid-cols-[0.85fr_1.15fr]">
           <div>
-            <p className="mb-3 text-sm font-semibold uppercase tracking-normal text-[#287c63]">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-normal text-[#7D6D69]">
               New player filter
             </p>
             <h2 className="text-3xl font-bold tracking-normal md:text-4xl">
@@ -177,18 +185,18 @@ export default async function LandingPage({
             ].map(([title, copy]) => (
               <div key={title} className="rounded-md border border-[#e0d8c8] p-5">
                 <h3 className="font-semibold">{title}</h3>
-                <p className="mt-2 text-sm leading-6 text-[#5d584b]">{copy}</p>
+                <p className="mt-2 text-sm leading-6 text-[#4C3B35]">{copy}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="camo-lab" className="border-b border-[#ded6c4] bg-[#eef4f1]">
+      <section id="camo-lab" className="border-b border-[#D8CFC6] bg-[#F4DCD0]">
         <div className="container py-14">
           <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="mb-3 text-sm font-semibold uppercase tracking-normal text-[#287c63]">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-normal text-[#7D6D69]">
                 For real players
               </p>
               <h2 className="max-w-3xl text-3xl font-bold tracking-normal md:text-4xl">
@@ -197,7 +205,7 @@ export default async function LandingPage({
             </div>
             <a
               href="#atlas"
-              className="inline-flex min-h-11 w-fit items-center gap-2 rounded-md bg-[#151512] px-4 py-3 text-sm font-semibold text-white"
+              className="inline-flex min-h-11 w-fit items-center gap-2 rounded-md bg-[#29211D] px-4 py-3 text-sm font-semibold text-white"
             >
               <MapPinned className="h-4 w-4" />
               Preview map atlas
@@ -211,9 +219,9 @@ export default async function LandingPage({
               ['Risk rating', 'Label beginner-safe, high-reward, and obvious bait spots.'],
             ].map(([title, copy]) => (
               <div key={title} className="rounded-md bg-white p-5 shadow-sm">
-                <Sparkles className="mb-4 h-5 w-5 text-[#c45b38]" />
+                <Sparkles className="mb-4 h-5 w-5 text-[#AA776E]" />
                 <h3 className="font-semibold">{title}</h3>
-                <p className="mt-2 text-sm leading-6 text-[#5d584b]">{copy}</p>
+                <p className="mt-2 text-sm leading-6 text-[#4C3B35]">{copy}</p>
               </div>
             ))}
           </div>
@@ -222,17 +230,17 @@ export default async function LandingPage({
 
       <section
         id="atlas"
-        className="scroll-mt-28 border-b border-[#ded6c4] bg-white"
+        className="scroll-mt-28 border-b border-[#D8CFC6] bg-white"
       >
         <div className="container py-14">
           <div className="mb-8 max-w-3xl">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-normal text-[#287c63]">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-normal text-[#7D6D69]">
               Hiding Spot Atlas
             </p>
             <h2 className="text-3xl font-bold tracking-normal md:text-4xl">
               Five real map guides, fifty hiding spots, one fast second screen.
             </h2>
-            <p className="mt-4 max-w-2xl text-sm leading-6 text-[#5d584b]">
+            <p className="mt-4 max-w-2xl text-sm leading-6 text-[#4C3B35]">
               These are the captured Meccha Chameleon map assets Claude already
               prepared: screenshots, paint colors, difficulty, and match tips.
             </p>
@@ -241,16 +249,14 @@ export default async function LandingPage({
         </div>
       </section>
 
-      <KeywordSection />
-
       <HowToPlaySection locale={locale} />
 
       <UpdatesSection />
 
-      <section id="second-screen" className="border-b border-[#ded6c4] bg-[#16211e] text-white">
+      <section id="second-screen" className="border-b border-[#D8CFC6] bg-[#1F1611] text-white">
         <div className="container grid gap-8 py-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
-            <p className="mb-3 text-sm font-semibold uppercase tracking-normal text-[#7ed0b4]">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-normal text-[#C9B2A8]">
               Best form factor
             </p>
             <h2 className="text-3xl font-bold tracking-normal md:text-4xl">
@@ -265,7 +271,7 @@ export default async function LandingPage({
           <div className="grid gap-4 sm:grid-cols-3">
             {secondScreenItems.map(([Icon, title, copy]) => (
               <div key={title} className="rounded-md border border-white/15 bg-white/8 p-5">
-                <Icon className="mb-4 h-5 w-5 text-[#7ed0b4]" />
+                <Icon className="mb-4 h-5 w-5 text-[#C9B2A8]" />
                 <h3 className="font-semibold">{title}</h3>
                 <p className="mt-2 text-sm leading-6 text-white/70">{copy}</p>
               </div>
@@ -274,16 +280,18 @@ export default async function LandingPage({
         </div>
       </section>
 
-      <section className="bg-[#f6f3ea]">
+      <KeywordSection />
+
+      <section className="bg-[#F6F0EA]">
         <div className="container py-14">
           <h2 className="mb-8 text-3xl font-bold tracking-normal md:text-4xl">
             Quick answers
           </h2>
           <div className="grid gap-4 md:grid-cols-2">
             {faqs.map((item) => (
-              <div key={item.q} className="rounded-md border border-[#ded6c4] bg-white p-5">
+              <div key={item.q} className="rounded-md border border-[#D8CFC6] bg-white p-5">
                 <h3 className="font-semibold">{item.q}</h3>
-                <p className="mt-2 text-sm leading-6 text-[#5d584b]">{item.a}</p>
+                <p className="mt-2 text-sm leading-6 text-[#4C3B35]">{item.a}</p>
               </div>
             ))}
           </div>

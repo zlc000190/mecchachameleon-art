@@ -110,28 +110,28 @@ function variantIcon(v: SteamUpdate['variant']) {
 
 function variantClasses(v: SteamUpdate['variant']) {
   if (v === 'fix')
-    return 'border-[#c45b38]/40 bg-[#fde7df] text-[#7c2f1c]';
+    return 'border-[#AA776E]/40 bg-[#F4DCD0] text-[#7c2f1c]';
   if (v === 'milestone')
-    return 'border-[#287c63]/40 bg-[#d8efe5] text-[#0f3d2f]';
-  return 'border-[#287c63]/40 bg-[#d8efe5] text-[#0f3d2f]';
+    return 'border-[#7D6D69]/40 bg-[#EFE2DA] text-[#5C3D33]';
+  return 'border-[#7D6D69]/40 bg-[#EFE2DA] text-[#5C3D33]';
 }
 
 export function UpdatesSection() {
   return (
     <section
       id="updates"
-      className="scroll-mt-28 border-b border-[#ded6c4] bg-[#f6f3ea]"
+      className="scroll-mt-28 border-b border-[#D8CFC6] bg-[#F6F0EA]"
     >
       <div className="container py-14">
         <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-[#287c63]">
+            <p className="text-xs font-semibold uppercase tracking-widest text-[#7D6D69]">
               Latest updates
             </p>
-            <h2 className="mt-1 text-2xl font-bold leading-tight text-[#151512] md:text-3xl">
+            <h2 className="mt-1 text-2xl font-bold leading-tight text-[#29211D] md:text-3xl">
               What changed in the game, and on this site
             </h2>
-            <p className="mt-2 max-w-2xl text-sm leading-6 text-[#5d584b]">
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-[#4C3B35]">
               We watch the Steam community announcements and refresh the home
               page each time LEMORION ships a new version. Below: official
               patches on the left, our own guide and atlas edits on the right.
@@ -141,7 +141,7 @@ export function UpdatesSection() {
             href="https://store.steampowered.com/news/app/4704690"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex min-h-10 w-fit items-center gap-1.5 rounded-md border border-[#ded6c4] bg-white px-3 text-sm font-semibold text-[#151512] transition hover:border-[#287c63]"
+            className="inline-flex min-h-10 w-fit items-center gap-1.5 rounded-md border border-[#D8CFC6] bg-white px-3 text-sm font-semibold text-[#29211D] transition hover:border-[#7D6D69]"
           >
             Full Steam news
             <ExternalLink className="h-3.5 w-3.5" />
@@ -151,19 +151,19 @@ export function UpdatesSection() {
         <div className="grid gap-6 lg:grid-cols-2">
           {/* Official Steam updates */}
           <div>
-            <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold text-[#151512]">
-              <span className="inline-flex h-6 items-center rounded-sm bg-[#151512] px-2 text-[10px] font-bold uppercase tracking-wider text-white">
+            <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold text-[#29211D]">
+              <span className="inline-flex h-6 items-center rounded-sm bg-[#29211D] px-2 text-[10px] font-bold uppercase tracking-wider text-white">
                 Official
               </span>
               Steam patch notes
             </h3>
-            <ol className="relative space-y-4 border-l-2 border-[#ded6c4] pl-5">
+            <ol className="relative space-y-4 border-l-2 border-[#D8CFC6] pl-5">
               {steamUpdates.map((u) => (
                 <li key={u.title} className="relative">
-                  <span className="absolute -left-[27px] top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#287c63] ring-4 ring-[#f6f3ea]"></span>
-                  <div className="rounded-md border border-[#ded6c4] bg-white p-4 shadow-sm">
+                  <span className="absolute -left-[27px] top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#7D6D69] ring-4 ring-[#F6F0EA]"></span>
+                  <div className="rounded-md border border-[#D8CFC6] bg-white p-4 shadow-sm">
                     <div className="mb-2 flex flex-wrap items-center gap-2 text-xs">
-                      <span className="inline-flex items-center gap-1 text-[#5d584b]">
+                      <span className="inline-flex items-center gap-1 text-[#4C3B35]">
                         <Calendar className="h-3 w-3" />
                         {u.date}
                       </span>
@@ -178,11 +178,11 @@ export function UpdatesSection() {
                       href={u.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm font-semibold leading-5 text-[#151512] hover:text-[#287c63]"
+                      className="text-sm font-semibold leading-5 text-[#29211D] hover:text-[#7D6D69]"
                     >
                       {u.title}
                     </a>
-                    <p className="mt-1 text-xs leading-5 text-[#5d584b]">
+                    <p className="mt-1 text-xs leading-5 text-[#4C3B35]">
                       {u.body}
                     </p>
                   </div>
@@ -193,25 +193,25 @@ export function UpdatesSection() {
 
           {/* Our own site updates */}
           <div>
-            <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold text-[#151512]">
-              <span className="inline-flex h-6 items-center rounded-sm bg-[#287c63] px-2 text-[10px] font-bold uppercase tracking-wider text-white">
+            <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold text-[#29211D]">
+              <span className="inline-flex h-6 items-center rounded-sm bg-[#7D6D69] px-2 text-[10px] font-bold uppercase tracking-wider text-white">
                 Fan site
               </span>
               Meccha Chameleon Art Lab changelog
             </h3>
-            <ol className="relative space-y-4 border-l-2 border-[#ded6c4] pl-5">
+            <ol className="relative space-y-4 border-l-2 border-[#D8CFC6] pl-5">
               {siteUpdates.map((u) => (
                 <li key={u.title} className="relative">
-                  <span className="absolute -left-[27px] top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#c45b38] ring-4 ring-[#f6f3ea]"></span>
-                  <div className="rounded-md border border-[#ded6c4] bg-white p-4 shadow-sm">
-                    <div className="mb-2 flex items-center gap-2 text-xs text-[#5d584b]">
+                  <span className="absolute -left-[27px] top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#AA776E] ring-4 ring-[#F6F0EA]"></span>
+                  <div className="rounded-md border border-[#D8CFC6] bg-white p-4 shadow-sm">
+                    <div className="mb-2 flex items-center gap-2 text-xs text-[#4C3B35]">
                       <Calendar className="h-3 w-3" />
                       <span>{u.date}</span>
                     </div>
-                    <p className="text-sm font-semibold leading-5 text-[#151512]">
+                    <p className="text-sm font-semibold leading-5 text-[#29211D]">
                       {u.title}
                     </p>
-                    <p className="mt-1 text-xs leading-5 text-[#5d584b]">
+                    <p className="mt-1 text-xs leading-5 text-[#4C3B35]">
                       {u.body}
                     </p>
                   </div>

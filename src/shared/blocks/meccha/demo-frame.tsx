@@ -71,7 +71,7 @@ export function DemoFrame() {
 
   return (
     <div id="demo" className="scroll-mt-24">
-      <div className="overflow-hidden rounded-lg border border-[#151512] bg-[#151512] shadow-[0_18px_60px_rgba(32,35,30,0.25)]">
+      <div className="overflow-hidden rounded-lg border border-[#29211D] bg-[#29211D] shadow-[0_18px_60px_rgba(32,35,30,0.25)]">
         <div className="border-b border-white/10 px-4 py-3 text-white">
           <div className="flex items-start justify-between gap-4">
             <div>
@@ -98,7 +98,7 @@ export function DemoFrame() {
                 }}
                 className={`min-h-8 rounded-md border px-3 text-xs font-semibold transition ${
                   activeDemo.id === demo.id
-                    ? 'border-[#7ed0b4] bg-[#7ed0b4] text-[#10211b]'
+                    ? 'border-[#C9B2A8] bg-[#C9B2A8] text-[#10211b]'
                     : 'border-white/20 bg-white/5 text-white hover:bg-white/10'
                 }`}
               >
@@ -112,7 +112,7 @@ export function DemoFrame() {
         </div>
 
         <div
-          className={`relative max-h-[76vh] w-full bg-black ${activeDemo.ratio}`}
+          className={`relative max-h-[62vh] sm:max-h-[68vh] w-full overflow-hidden rounded-md bg-black sm:rounded-lg ${activeDemo.ratio}`}
         >
           <iframe
             key={activeDemo.id}

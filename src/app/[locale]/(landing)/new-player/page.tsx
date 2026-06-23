@@ -2,6 +2,8 @@ import { ArrowLeft, CheckCircle2, Clock, Compass, Cpu, Gamepad2, Lightbulb, Pale
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 
+import { getCanonicalUrl } from '@/shared/lib/seo';
+
 const steamUrl = 'https://store.steampowered.com/app/4704690/MECCHA_CHAMELEON/';
 
 export const revalidate = 3600;
@@ -11,16 +13,21 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
+  const { locale } = await params;
   const title = 'Meccha Chameleon New Player Guide — 10-min Walkthrough';
   const description =
     'Meccha Chameleon beginner walkthrough in 10 minutes: controls, paint tool, role guide, first-match checklist, and 8 rookie mistakes to avoid in round one.';
+  const canonicalUrl = await getCanonicalUrl('/new-player', locale);
   return {
-    metadataBase: new URL('https://mecchachameleon.art'),
     title,
     description,
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
       title,
       description,
+      url: canonicalUrl,
     },
     twitter: {
       card: 'summary_large_image',
@@ -77,7 +84,7 @@ const roles = [
   {
     title: 'Hider',
     icon: Palette,
-    color: 'bg-[#287c63] text-white',
+    color: 'bg-[#7D6D69] text-white',
     body:
       'You get 45-90 seconds (depending on map and rule) to paint your character to match a chosen surface. Once the phase ends, you cannot move. Seekers then scan the map for 2-4 minutes.',
     tips: [
@@ -89,7 +96,7 @@ const roles = [
   {
     title: 'Seeker',
     icon: Search,
-    color: 'bg-[#c45b38] text-white',
+    color: 'bg-[#AA776E] text-white',
     body:
       'You run, jump, crouch, and use the flashlight to scan every surface. Each found hider is converted into a point for the seeker team. You can ping a suspect for your teammates with the middle mouse button.',
     tips: [
@@ -99,6 +106,16 @@ const roles = [
     ],
   },
 ];
+
+const beginnerVideoSeries = {
+  title: 'Meccha Chameleon beginner guide series',
+  src: 'https://www.youtube-nocookie.com/embed/videoseries?list=PLRVtp0tj-2nGuUic4vt4Os-Snpt5-ICvE&rel=0&modestbranding=1&playsinline=1',
+  steps: [
+    'Start with the first guide and let the playlist auto-advance.',
+    'Watch for paint, pose, and spot-selection rules before the first match.',
+    'Keep the page open; the next guide plays here without leaving the site.',
+  ],
+};
 
 const firstMatch = [
   { time: '00:00', label: 'Round start', body: 'Lobby assigns roles. You will see either "Hider" or "Seeker" in the top bar.' },
@@ -208,40 +225,40 @@ export default async function NewPlayerPage({
   const atHowToPlay = locale === 'en' ? '/#how-to-play' : `/${locale}/#how-to-play`;
 
   return (
-    <main className="min-h-screen bg-white text-[#151512]">
+    <main className="min-h-screen bg-white text-[#29211D]">
       {/* Hero */}
-      <section className="border-b border-[#ded6c4] bg-[#f6f3ea]">
+      <section className="border-b border-[#D8CFC6] bg-[#F6F0EA]">
         <div className="container py-14">
           <a
             href={backHref}
-            className="mb-6 inline-flex min-h-10 items-center gap-1.5 rounded-md border border-[#ded6c4] bg-white px-3 text-sm font-semibold text-[#151512] transition hover:border-[#287c63]"
+            className="mb-6 inline-flex min-h-10 items-center gap-1.5 rounded-md border border-[#D8CFC6] bg-white px-3 text-sm font-semibold text-[#29211D] transition hover:border-[#7D6D69]"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to home
           </a>
-          <p className="text-xs font-semibold uppercase tracking-widest text-[#287c63]">
+          <p className="text-xs font-semibold uppercase tracking-widest text-[#7D6D69]">
             Beginner walkthrough
           </p>
           <h1 className="mt-1 text-3xl font-bold leading-tight md:text-4xl">
             New to Meccha Chameleon? Read this in 10 minutes.
           </h1>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-[#5d584b]">
+          <p className="mt-4 max-w-2xl text-base leading-7 text-[#4C3B35]">
             A complete first-match walkthrough. Controls, paint tool, role responsibilities, and the
             eight mistakes that get you caught in 30 seconds — all on one page. No fluff, no
             marketing. Written for a player who has never launched the game.
           </p>
-          <div className="mt-6 flex flex-wrap gap-3 text-xs text-[#5d584b]">
-            <span className="inline-flex items-center gap-1.5 rounded-md border border-[#ded6c4] bg-white px-3 py-1.5">
-              <Clock className="h-3.5 w-3.5 text-[#287c63]" /> 10 min read
+          <div className="mt-6 flex flex-wrap gap-3 text-xs text-[#4C3B35]">
+            <span className="inline-flex items-center gap-1.5 rounded-md border border-[#D8CFC6] bg-white px-3 py-1.5">
+              <Clock className="h-3.5 w-3.5 text-[#7D6D69]" /> 10 min read
             </span>
-            <span className="inline-flex items-center gap-1.5 rounded-md border border-[#ded6c4] bg-white px-3 py-1.5">
-              <Gamepad2 className="h-3.5 w-3.5 text-[#287c63]" /> Beginner
+            <span className="inline-flex items-center gap-1.5 rounded-md border border-[#D8CFC6] bg-white px-3 py-1.5">
+              <Gamepad2 className="h-3.5 w-3.5 text-[#7D6D69]" /> Beginner
             </span>
             <a
               href={steamUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-md border border-[#151512] bg-[#151512] px-3 py-1.5 text-white transition hover:bg-[#2a2a26]"
+              className="inline-flex items-center gap-1.5 rounded-md border border-[#29211D] bg-[#29211D] px-3 py-1.5 text-white transition hover:bg-[#2a2a26]"
             >
               Buy on Steam — $5.99
             </a>
@@ -250,10 +267,10 @@ export default async function NewPlayerPage({
       </section>
 
       {/* Quick start */}
-      <section className="border-b border-[#ded6c4] bg-white">
+      <section className="border-b border-[#D8CFC6] bg-white">
         <div className="container py-14">
           <h2 className="text-2xl font-bold leading-tight md:text-3xl">Quick start: from install to first round</h2>
-          <p className="mt-3 max-w-3xl text-sm leading-6 text-[#5d584b]">
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-[#4C3B35]">
             Three steps. Twenty minutes. You will have played a full match and understood every
             mechanic the game shows you in the first session.
           </p>
@@ -261,14 +278,14 @@ export default async function NewPlayerPage({
             {quickStart.map((s) => {
               const Icon = s.icon;
               return (
-                <div key={s.step} className="flex flex-col rounded-md border border-[#ded6c4] bg-[#f6f3ea] p-6">
+                <div key={s.step} className="flex flex-col rounded-md border border-[#D8CFC6] bg-[#F6F0EA] p-6">
                   <div className="mb-3 flex items-center gap-3">
-                    <span className="text-2xl font-bold text-[#287c63]">{s.step}</span>
-                    <Icon className="h-5 w-5 text-[#5d584b]" />
+                    <span className="text-2xl font-bold text-[#7D6D69]">{s.step}</span>
+                    <Icon className="h-5 w-5 text-[#4C3B35]" />
                   </div>
-                  <h3 className="text-base font-semibold text-[#151512]">{s.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-[#5d584b]">{s.body}</p>
-                  <p className="mt-3 text-xs leading-5 text-[#5d584b] opacity-80">{s.detail}</p>
+                  <h3 className="text-base font-semibold text-[#29211D]">{s.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-[#4C3B35]">{s.body}</p>
+                  <p className="mt-3 text-xs leading-5 text-[#4C3B35] opacity-80">{s.detail}</p>
                 </div>
               );
             })}
@@ -277,20 +294,20 @@ export default async function NewPlayerPage({
       </section>
 
       {/* Controls */}
-      <section className="border-b border-[#ded6c4] bg-[#f6f3ea]">
+      <section className="border-b border-[#D8CFC6] bg-[#F6F0EA]">
         <div className="container py-14">
           <h2 className="text-2xl font-bold leading-tight md:text-3xl">Controls cheat sheet</h2>
-          <p className="mt-3 max-w-3xl text-sm leading-6 text-[#5d584b]">
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-[#4C3B35]">
             Print this. Stick it next to your monitor for the first three matches. By the fourth you
             will not need it.
           </p>
           <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
             {controls.map((c) => (
-              <div key={c.key} className="rounded-md border border-[#ded6c4] bg-white p-4">
-                <kbd className="rounded-sm bg-[#151512] px-2 py-1 font-mono text-xs font-bold text-white">
+              <div key={c.key} className="rounded-md border border-[#D8CFC6] bg-white p-4">
+                <kbd className="rounded-sm bg-[#29211D] px-2 py-1 font-mono text-xs font-bold text-white">
                   {c.key}
                 </kbd>
-                <p className="mt-2 text-xs leading-5 text-[#5d584b]">{c.action}</p>
+                <p className="mt-2 text-xs leading-5 text-[#4C3B35]">{c.action}</p>
               </div>
             ))}
           </div>
@@ -298,10 +315,10 @@ export default async function NewPlayerPage({
       </section>
 
       {/* Roles */}
-      <section className="border-b border-[#ded6c4] bg-white">
+      <section className="border-b border-[#D8CFC6] bg-white">
         <div className="container py-14">
           <h2 className="text-2xl font-bold leading-tight md:text-3xl">Roles: what you do as a Hider vs. Seeker</h2>
-          <p className="mt-3 max-w-3xl text-sm leading-6 text-[#5d584b]">
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-[#4C3B35]">
             Each round assigns you one of two roles. Hiders paint and freeze; Seekers scan and find.
             The role balance is 70/30 in Classic — 7 hiders, 3 seekers for an 8-player lobby.
           </p>
@@ -309,18 +326,18 @@ export default async function NewPlayerPage({
             {roles.map((r) => {
               const Icon = r.icon;
               return (
-                <div key={r.title} className="rounded-md border border-[#ded6c4] bg-[#f6f3ea] p-6">
+                <div key={r.title} className="rounded-md border border-[#D8CFC6] bg-[#F6F0EA] p-6">
                   <div className="flex items-center gap-3">
                     <span className={`inline-flex h-10 w-10 items-center justify-center rounded-md ${r.color}`}>
                       <Icon className="h-5 w-5" />
                     </span>
                     <h3 className="text-xl font-bold">{r.title}</h3>
                   </div>
-                  <p className="mt-4 text-sm leading-6 text-[#5d584b]">{r.body}</p>
-                  <ul className="mt-4 space-y-2 text-sm leading-6 text-[#5d584b]">
+                  <p className="mt-4 text-sm leading-6 text-[#4C3B35]">{r.body}</p>
+                  <ul className="mt-4 space-y-2 text-sm leading-6 text-[#4C3B35]">
                     {r.tips.map((t) => (
                       <li key={t} className="flex items-start gap-2">
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#287c63]" />
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#7D6D69]" />
                         {t}
                       </li>
                     ))}
@@ -332,10 +349,56 @@ export default async function NewPlayerPage({
         </div>
       </section>
 
-      {/* First match timeline */}
-      <section className="border-b border-[#ded6c4] bg-[#16211e] text-white">
+      {/* Beginner video series */}
+      <section className="border-b border-[#D8CFC6] bg-[#F6F0EA]">
         <div className="container py-14">
-          <p className="text-xs font-semibold uppercase tracking-widest text-[#7ed0b4]">First match</p>
+          <p className="text-xs font-semibold uppercase tracking-widest text-[#7D6D69]">
+            Beginner video series
+          </p>
+          <h2 className="mt-1 text-2xl font-bold leading-tight md:text-3xl">
+            Watch the guide series here and stay on this page
+          </h2>
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-[#4C3B35]">
+            The player is embedded as a playlist, so it can move to the next
+            guide automatically without sending you away from the site.
+          </p>
+          <div className="mt-8 overflow-hidden rounded-md border border-[#D8CFC6] bg-[#29211D]">
+            <div className="grid gap-0 lg:grid-cols-[minmax(0,1fr)_360px]">
+              <div className="relative aspect-video bg-black">
+                <iframe
+                  src={beginnerVideoSeries.src}
+                  title={beginnerVideoSeries.title}
+                  className="absolute inset-0 h-full w-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                />
+              </div>
+              <aside className="border-t border-[#D8CFC6] bg-[#F6F0EA] p-5 lg:border-l lg:border-t-0">
+                <h3 className="text-base font-semibold text-[#29211D]">{beginnerVideoSeries.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-[#4C3B35]">
+                  Three things to notice while the playlist runs:
+                </p>
+                <ol className="mt-4 space-y-3 text-sm leading-6 text-[#4C3B35]">
+                  {beginnerVideoSeries.steps.map((step, index) => (
+                    <li key={step} className="flex gap-3">
+                      <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#29211D] text-xs font-bold text-white">
+                        {index + 1}
+                      </span>
+                      <span>{step}</span>
+                    </li>
+                  ))}
+                </ol>
+              </aside>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* First match timeline */}
+      <section className="border-b border-[#D8CFC6] bg-[#1F1611] text-white">
+        <div className="container py-14">
+          <p className="text-xs font-semibold uppercase tracking-widest text-[#C9B2A8]">First match</p>
           <h2 className="mt-1 text-2xl font-bold leading-tight md:text-3xl">
             What a single round actually looks like, minute by minute
           </h2>
@@ -346,7 +409,7 @@ export default async function NewPlayerPage({
           <ol className="mt-8 space-y-4">
             {firstMatch.map((m, i) => (
               <li key={m.label} className="flex gap-4 rounded-md border border-white/10 bg-white/5 p-4">
-                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#7ed0b4] text-sm font-bold text-[#16211e]">
+                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#C9B2A8] text-sm font-bold text-[#1F1611]">
                   {i + 1}
                 </span>
                 <div className="flex-1">
@@ -365,9 +428,9 @@ export default async function NewPlayerPage({
       </section>
 
       {/* Pro tips */}
-      <section className="border-b border-[#ded6c4] bg-white">
+      <section className="border-b border-[#D8CFC6] bg-white">
         <div className="container py-14">
-          <p className="text-xs font-semibold uppercase tracking-widest text-[#287c63]">Pro tips</p>
+          <p className="text-xs font-semibold uppercase tracking-widest text-[#7D6D69]">Pro tips</p>
           <h2 className="mt-1 text-2xl font-bold leading-tight md:text-3xl">
             Six tips that instantly improve your game
           </h2>
@@ -375,10 +438,10 @@ export default async function NewPlayerPage({
             {proTips.map((t) => {
               const Icon = t.icon;
               return (
-                <div key={t.title} className="rounded-md border border-[#ded6c4] bg-[#f6f3ea] p-5">
-                  <Icon className="h-5 w-5 text-[#287c63]" />
-                  <h3 className="mt-3 text-base font-semibold text-[#151512]">{t.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-[#5d584b]">{t.body}</p>
+                <div key={t.title} className="rounded-md border border-[#D8CFC6] bg-[#F6F0EA] p-5">
+                  <Icon className="h-5 w-5 text-[#7D6D69]" />
+                  <h3 className="mt-3 text-base font-semibold text-[#29211D]">{t.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-[#4C3B35]">{t.body}</p>
                 </div>
               );
             })}
@@ -387,26 +450,26 @@ export default async function NewPlayerPage({
       </section>
 
       {/* 8 Rookie Mistakes */}
-      <section className="border-b border-[#ded6c4] bg-[#f6f3ea]">
+      <section className="border-b border-[#D8CFC6] bg-[#F6F0EA]">
         <div className="container py-14">
-          <p className="text-xs font-semibold uppercase tracking-widest text-[#c45b38]">Rookie mistakes</p>
+          <p className="text-xs font-semibold uppercase tracking-widest text-[#AA776E]">Rookie mistakes</p>
           <h2 className="mt-1 text-2xl font-bold leading-tight md:text-3xl">
             Don&apos;t make these 8 mistakes — they get you caught in 30 seconds
           </h2>
           <div className="mt-8 grid gap-4 md:grid-cols-2">
             {mistakes.map((m, i) => (
-              <div key={i} className="rounded-md border border-[#ded6c4] bg-white p-5">
-                <div className="mb-3 flex items-center gap-2 text-xs font-semibold text-[#c45b38]">
+              <div key={i} className="rounded-md border border-[#D8CFC6] bg-white p-5">
+                <div className="mb-3 flex items-center gap-2 text-xs font-semibold text-[#AA776E]">
                   <XCircle className="h-4 w-4" />
                   The mistake
                 </div>
-                <p className="text-sm leading-6 text-[#5d584b] line-through opacity-70">{m.bad}</p>
-                <div className="my-3 border-t border-dashed border-[#ded6c4]" />
-                <div className="mb-2 flex items-center gap-2 text-xs font-semibold text-[#287c63]">
+                <p className="text-sm leading-6 text-[#4C3B35] line-through opacity-70">{m.bad}</p>
+                <div className="my-3 border-t border-dashed border-[#D8CFC6]" />
+                <div className="mb-2 flex items-center gap-2 text-xs font-semibold text-[#7D6D69]">
                   <CheckCircle2 className="h-4 w-4" />
                   What to do instead
                 </div>
-                <p className="text-sm leading-6 text-[#151512]">{m.good}</p>
+                <p className="text-sm leading-6 text-[#29211D]">{m.good}</p>
               </div>
             ))}
           </div>
@@ -414,9 +477,9 @@ export default async function NewPlayerPage({
       </section>
 
       {/* FAQ */}
-      <section className="border-b border-[#ded6c4] bg-white">
+      <section className="border-b border-[#D8CFC6] bg-white">
         <div className="container py-14">
-          <p className="text-xs font-semibold uppercase tracking-widest text-[#287c63]">FAQ</p>
+          <p className="text-xs font-semibold uppercase tracking-widest text-[#7D6D69]">FAQ</p>
           <h2 className="mt-1 text-2xl font-bold leading-tight md:text-3xl">
             New player questions, answered
           </h2>
@@ -424,13 +487,13 @@ export default async function NewPlayerPage({
             {faqs.map((f, i) => (
               <details
                 key={i}
-                className="group rounded-md border border-[#ded6c4] bg-[#f6f3ea] p-5 [&_summary::-webkit-details-marker]:hidden"
+                className="group rounded-md border border-[#D8CFC6] bg-[#F6F0EA] p-5 [&_summary::-webkit-details-marker]:hidden"
               >
-                <summary className="flex cursor-pointer items-center justify-between gap-3 text-sm font-semibold text-[#151512]">
+                <summary className="flex cursor-pointer items-center justify-between gap-3 text-sm font-semibold text-[#29211D]">
                   {f.q}
-                  <span className="ml-auto text-[#287c63] transition group-open:rotate-45">+</span>
+                  <span className="ml-auto text-[#7D6D69] transition group-open:rotate-45">+</span>
                 </summary>
-                <p className="mt-3 text-sm leading-6 text-[#5d584b]">{f.a}</p>
+                <p className="mt-3 text-sm leading-6 text-[#4C3B35]">{f.a}</p>
               </details>
             ))}
           </div>
@@ -438,15 +501,15 @@ export default async function NewPlayerPage({
       </section>
 
       {/* Cross-link to multiplayer + CTA */}
-      <section className="bg-[#f6f3ea]">
+      <section className="bg-[#F6F0EA]">
         <div className="container flex flex-col items-start gap-6 py-14 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-start gap-4">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-[#151512] text-white">
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-[#29211D] text-white">
               <PartyPopper className="h-5 w-5" />
             </span>
             <div>
-              <h3 className="text-lg font-semibold text-[#151512]">Ready to actually queue up?</h3>
-              <p className="mt-1 max-w-xl text-sm leading-6 text-[#5d584b]">
+              <h3 className="text-lg font-semibold text-[#29211D]">Ready to actually queue up?</h3>
+              <p className="mt-1 max-w-xl text-sm leading-6 text-[#4C3B35]">
                 Now that you know the controls and the round structure, read the multiplayer playbook
                 for how to get a friend group — local, long-distance, or matchmaking — into the
                 same lobby.
@@ -456,7 +519,7 @@ export default async function NewPlayerPage({
           <div className="flex gap-2">
             <a
               href={atHowToPlay}
-              className="inline-flex min-h-10 items-center gap-1.5 rounded-md bg-[#151512] px-4 text-sm font-semibold text-white transition hover:bg-[#2a2a26]"
+              className="inline-flex min-h-10 items-center gap-1.5 rounded-md bg-[#29211D] px-4 text-sm font-semibold text-white transition hover:bg-[#2a2a26]"
             >
               <Sparkles className="h-4 w-4" />
               Multiplayer playbook
@@ -465,7 +528,7 @@ export default async function NewPlayerPage({
               href={steamUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-10 items-center gap-1.5 rounded-md border border-[#151512] bg-white px-4 text-sm font-semibold text-[#151512] transition hover:border-[#287c63] hover:text-[#287c63]"
+              className="inline-flex min-h-10 items-center gap-1.5 rounded-md border border-[#29211D] bg-white px-4 text-sm font-semibold text-[#29211D] transition hover:border-[#7D6D69] hover:text-[#7D6D69]"
             >
               Buy on Steam
             </a>

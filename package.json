@@ -34,7 +34,9 @@
     "cf:preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "cf:deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
     "cf:upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
-    "cf:typegen": "wrangler types --env-interface CloudflareEnv src/shared/types/cloudflare.d.ts"
+    "cf:typegen": "wrangler types --env-interface CloudflareEnv src/shared/types/cloudflare.d.ts",
+    "sitemap": "node scripts/build-sitemap.mjs",
+    "prebuild": "node scripts/build-sitemap.mjs"
   },
   "dependencies": {
     "@ai-sdk/react": "^2.0.89",

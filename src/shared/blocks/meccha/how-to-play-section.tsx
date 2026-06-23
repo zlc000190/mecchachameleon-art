@@ -215,17 +215,17 @@ export function HowToPlaySection({ locale }: { locale: string }) {
   return (
     <section
       id="how-to-play"
-      className="scroll-mt-28 border-b border-[#ded6c4] bg-white"
+      className="scroll-mt-28 border-b border-[#D8CFC6] bg-white"
     >
       <div className="container py-16">
         <div className="mb-10 max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-widest text-[#287c63]">
+          <p className="text-xs font-semibold uppercase tracking-widest text-[#7D6D69]">
             Multiplayer
           </p>
-          <h2 className="mt-1 text-2xl font-bold leading-tight text-[#151512] md:text-3xl">
+          <h2 className="mt-1 text-2xl font-bold leading-tight text-[#29211D] md:text-3xl">
             How to actually get a group into the same round
           </h2>
-          <p className="mt-3 text-sm leading-6 text-[#5d584b]">
+          <p className="mt-3 text-sm leading-6 text-[#4C3B35]">
             Meccha Chameleon is a party game, not a single-player puzzle — half the fun is hunting
             someone you can actually call on Discord. Below is the playbook we use for friend groups,
             long-distance crews, and the random matchmaking queue. The official beginner guide has the
@@ -240,21 +240,21 @@ export function HowToPlaySection({ locale }: { locale: string }) {
             return (
               <div
                 key={mode.name}
-                className="flex h-full flex-col rounded-md border border-[#ded6c4] bg-[#f6f3ea] p-5"
+                className="flex h-full flex-col rounded-md border border-[#D8CFC6] bg-[#F6F0EA] p-5"
               >
-                <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-md bg-[#151512] text-white">
+                <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-md bg-[#29211D] text-white">
                   <Icon className="h-5 w-5" />
                 </div>
-                <h3 className="text-sm font-semibold text-[#151512]">{mode.name}</h3>
-                <p className="mt-1 text-xs font-semibold text-[#287c63]">{mode.players} players</p>
-                <p className="mt-2 text-xs leading-5 text-[#5d584b]">{mode.body}</p>
+                <h3 className="text-sm font-semibold text-[#29211D]">{mode.name}</h3>
+                <p className="mt-1 text-xs font-semibold text-[#7D6D69]">{mode.players} players</p>
+                <p className="mt-2 text-xs leading-5 text-[#4C3B35]">{mode.body}</p>
               </div>
             );
           })}
         </div>
 
         {/* YouTube embed — "with friends" gameplay video */}
-        <div className="mb-12 overflow-hidden rounded-md border border-[#ded6c4] bg-[#151512]">
+        <div className="mb-12 overflow-hidden rounded-md border border-[#D8CFC6] bg-[#29211D]">
           <div className="grid gap-0 md:grid-cols-[minmax(0,1fr)_320px]">
             <div className="relative aspect-video w-full bg-black">
               <iframe
@@ -269,7 +269,7 @@ export function HowToPlaySection({ locale }: { locale: string }) {
             </div>
             <div className="flex flex-col justify-between gap-4 bg-[#1a1a1a] p-5 text-white">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-[#7ed0b4]">
+                <p className="text-xs font-semibold uppercase tracking-widest text-[#C9B2A8]">
                   Watch before you play
                 </p>
                 <h3 className="mt-2 text-lg font-semibold leading-snug">
@@ -300,14 +300,14 @@ export function HowToPlaySection({ locale }: { locale: string }) {
         {/* Share + crew roster */}
         <div className="mb-12 grid gap-6 lg:grid-cols-2">
           {/* Share block */}
-          <div className="rounded-md border border-[#287c63]/30 bg-[#e6f3ec] p-6">
+          <div className="rounded-md border border-[#7D6D69]/30 bg-[#e6f3ec] p-6">
             <div className="mb-3 flex items-center gap-2">
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-[#287c63] text-white">
+              <span className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-[#7D6D69] text-white">
                 <Share2 className="h-4 w-4" />
               </span>
               <div>
-                <h3 className="text-base font-semibold text-[#151512]">Send this to your crew</h3>
-                <p className="text-xs text-[#5d584b]">
+                <h3 className="text-base font-semibold text-[#29211D]">Send this to your crew</h3>
+                <p className="text-xs text-[#4C3B35]">
                   Pick the platform your friend group already lives on. No login, no signup — one tap
                   and the link is in their DM.
                 </p>
@@ -319,7 +319,7 @@ export function HowToPlaySection({ locale }: { locale: string }) {
                 href={twitterUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-10 items-center justify-center gap-2 rounded-md bg-[#151512] px-3 text-sm font-semibold text-white transition hover:bg-[#2a2a26]"
+                className="inline-flex min-h-10 items-center justify-center gap-2 rounded-md bg-[#29211D] px-3 text-sm font-semibold text-white transition hover:bg-[#2a2a26]"
               >
                 <Twitter className="h-4 w-4" /> X / Twitter
               </a>
@@ -350,7 +350,7 @@ export function HowToPlaySection({ locale }: { locale: string }) {
               <button
                 type="button"
                 onClick={handleNativeShare}
-                className="inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-[#151512] bg-white px-3 text-sm font-semibold text-[#151512] transition hover:bg-[#ece5d8]"
+                className="inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-[#29211D] bg-white px-3 text-sm font-semibold text-[#29211D] transition hover:bg-[#ece5d8]"
               >
                 <Share2 className="h-4 w-4" />
                 {shareState === 'shared' ? 'Shared!' : shareState === 'unavailable' ? 'Not supported' : 'Native share'}
@@ -358,7 +358,7 @@ export function HowToPlaySection({ locale }: { locale: string }) {
               <button
                 type="button"
                 onClick={handleCopy}
-                className="inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-[#287c63] bg-white px-3 text-sm font-semibold text-[#287c63] transition hover:bg-[#d8efe5]"
+                className="inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-[#7D6D69] bg-white px-3 text-sm font-semibold text-[#7D6D69] transition hover:bg-[#EFE2DA]"
               >
                 {copyState === 'copied' ? (
                   <>
@@ -372,8 +372,8 @@ export function HowToPlaySection({ locale }: { locale: string }) {
               </button>
             </div>
 
-            <p className="mt-4 text-xs text-[#5d584b]">
-              <strong className="text-[#151512]">Why a share button?</strong> A Custom Room is only
+            <p className="mt-4 text-xs text-[#4C3B35]">
+              <strong className="text-[#29211D]">Why a share button?</strong> A Custom Room is only
               fun with at least 4 friends. Dropping the link in your group chat with a one-line
               &quot;we should try this tonight&quot; converts 3x better than a Steam store link
               alone — Mechameleon sells itself once one person in the chat has played a round.
@@ -381,14 +381,14 @@ export function HowToPlaySection({ locale }: { locale: string }) {
           </div>
 
           {/* Crew roster */}
-          <div className="rounded-md border border-[#ded6c4] bg-[#f6f3ea] p-6">
+          <div className="rounded-md border border-[#D8CFC6] bg-[#F6F0EA] p-6">
             <div className="mb-3 flex items-center gap-2">
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-[#151512] text-white">
+              <span className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-[#29211D] text-white">
                 <Trophy className="h-4 w-4" />
               </span>
               <div>
-                <h3 className="text-base font-semibold text-[#151512]">Crew roster + invite scoreboard</h3>
-                <p className="text-xs text-[#5d584b]">
+                <h3 className="text-base font-semibold text-[#29211D]">Crew roster + invite scoreboard</h3>
+                <p className="text-xs text-[#4C3B35]">
                   Track who you invited, who actually showed up, and who is carrying the scoreboard.
                   Stored in this browser only — no account, no server.
                 </p>
@@ -402,12 +402,12 @@ export function HowToPlaySection({ locale }: { locale: string }) {
                 onChange={(e) => setNewName(e.target.value)}
                 placeholder="Friend's name or handle"
                 maxLength={32}
-                className="rounded-md border border-[#ded6c4] bg-white px-3 py-2 text-sm text-[#151512] placeholder:text-[#5d584b]/60 focus:border-[#287c63] focus:outline-none"
+                className="rounded-md border border-[#D8CFC6] bg-white px-3 py-2 text-sm text-[#29211D] placeholder:text-[#4C3B35]/60 focus:border-[#7D6D69] focus:outline-none"
               />
               <select
                 value={newPlatform}
                 onChange={(e) => setNewPlatform(e.target.value as CrewMember['platform'])}
-                className="rounded-md border border-[#ded6c4] bg-white px-3 py-2 text-sm text-[#151512] focus:border-[#287c63] focus:outline-none"
+                className="rounded-md border border-[#D8CFC6] bg-white px-3 py-2 text-sm text-[#29211D] focus:border-[#7D6D69] focus:outline-none"
               >
                 <option value="Steam">Steam</option>
                 <option value="Discord">Discord</option>
@@ -416,7 +416,7 @@ export function HowToPlaySection({ locale }: { locale: string }) {
               </select>
               <button
                 type="submit"
-                className="inline-flex items-center justify-center gap-1.5 rounded-md bg-[#287c63] px-3 py-2 text-sm font-semibold text-white transition hover:bg-[#1f664f]"
+                className="inline-flex items-center justify-center gap-1.5 rounded-md bg-[#7D6D69] px-3 py-2 text-sm font-semibold text-white transition hover:bg-[#5C4F4C]"
               >
                 <UserPlus className="h-4 w-4" />
                 Add
@@ -424,7 +424,7 @@ export function HowToPlaySection({ locale }: { locale: string }) {
             </form>
 
             {sortedCrew.length === 0 ? (
-              <p className="rounded-md border border-dashed border-[#ded6c4] bg-white/50 p-4 text-center text-xs text-[#5d584b]">
+              <p className="rounded-md border border-dashed border-[#D8CFC6] bg-white/50 p-4 text-center text-xs text-[#4C3B35]">
                 No crew yet. Add the names of the friends you plan to bring into a Custom Room.
                 Invited people get a +1 when they accept, +5 when they carry a round.
               </p>
@@ -433,17 +433,17 @@ export function HowToPlaySection({ locale }: { locale: string }) {
                 {sortedCrew.map((c, i) => (
                   <li
                     key={c.name}
-                    className="flex items-center justify-between gap-3 rounded-md border border-[#ded6c4] bg-white p-3"
+                    className="flex items-center justify-between gap-3 rounded-md border border-[#D8CFC6] bg-white p-3"
                   >
                     <div className="flex min-w-0 items-center gap-3">
-                      <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#151512] text-xs font-bold text-white">
+                      <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#29211D] text-xs font-bold text-white">
                         {i + 1}
                       </span>
                       <div className="min-w-0">
-                        <div className="truncate text-sm font-semibold text-[#151512]">
+                        <div className="truncate text-sm font-semibold text-[#29211D]">
                           {c.name}
                         </div>
-                        <div className="flex items-center gap-2 text-xs text-[#5d584b]">
+                        <div className="flex items-center gap-2 text-xs text-[#4C3B35]">
                           <span>{c.platform}</span>
                           <span aria-hidden>·</span>
                           <span>
@@ -459,7 +459,7 @@ export function HowToPlaySection({ locale }: { locale: string }) {
                       <select
                         value={c.status}
                         onChange={(e) => setStatus(c.name, e.target.value as CrewMember['status'])}
-                        className="rounded-sm border border-[#ded6c4] bg-white px-1.5 py-1 text-xs"
+                        className="rounded-sm border border-[#D8CFC6] bg-white px-1.5 py-1 text-xs"
                         aria-label={`${c.name} status`}
                       >
                         <option value="invited">Invited</option>
@@ -470,18 +470,18 @@ export function HowToPlaySection({ locale }: { locale: string }) {
                         <button
                           type="button"
                           onClick={() => bumpScore(c.name, -1)}
-                          className="rounded-sm border border-[#ded6c4] bg-white px-2 py-1 text-xs hover:bg-[#f6f3ea]"
+                          className="rounded-sm border border-[#D8CFC6] bg-white px-2 py-1 text-xs hover:bg-[#F6F0EA]"
                           aria-label={`Decrease ${c.name} score`}
                         >
                           −
                         </button>
-                        <span className="min-w-7 text-center text-sm font-bold text-[#287c63]">
+                        <span className="min-w-7 text-center text-sm font-bold text-[#7D6D69]">
                           {c.score}
                         </span>
                         <button
                           type="button"
                           onClick={() => bumpScore(c.name, 1)}
-                          className="rounded-sm border border-[#ded6c4] bg-white px-2 py-1 text-xs hover:bg-[#f6f3ea]"
+                          className="rounded-sm border border-[#D8CFC6] bg-white px-2 py-1 text-xs hover:bg-[#F6F0EA]"
                           aria-label={`Increase ${c.name} score`}
                         >
                           +
@@ -490,7 +490,7 @@ export function HowToPlaySection({ locale }: { locale: string }) {
                       <button
                         type="button"
                         onClick={() => removeCrew(c.name)}
-                        className="rounded-sm p-1 text-[#5d584b] hover:bg-[#f6f3ea] hover:text-[#c45b38]"
+                        className="rounded-sm p-1 text-[#4C3B35] hover:bg-[#F6F0EA] hover:text-[#AA776E]"
                         aria-label={`Remove ${c.name}`}
                       >
                         <X className="h-3.5 w-3.5" />
@@ -500,7 +500,7 @@ export function HowToPlaySection({ locale }: { locale: string }) {
                 ))}
               </ol>
             )}
-            <p className="mt-3 text-xs text-[#5d584b]">
+            <p className="mt-3 text-xs text-[#4C3B35]">
               Tip: keep score honestly. The whole point of the party game is to find who is the
               worst hider in the group and then dunk on them in chat for the rest of the week.
             </p>
@@ -512,19 +512,19 @@ export function HowToPlaySection({ locale }: { locale: string }) {
           {steps.map((step, i) => (
             <div
               key={step.title}
-              className="rounded-md border border-[#ded6c4] bg-[#f6f3ea] p-6"
+              className="rounded-md border border-[#D8CFC6] bg-[#F6F0EA] p-6"
             >
               <div className="mb-3 flex items-center gap-3">
-                <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[#287c63] text-xs font-bold text-white">
+                <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[#7D6D69] text-xs font-bold text-white">
                   {i + 1}
                 </span>
-                <h3 className="text-base font-semibold text-[#151512]">{step.title}</h3>
+                <h3 className="text-base font-semibold text-[#29211D]">{step.title}</h3>
               </div>
-              <p className="text-sm leading-6 text-[#5d584b]">{step.body}</p>
-              <ul className="mt-4 space-y-2 text-xs leading-5 text-[#5d584b]">
+              <p className="text-sm leading-6 text-[#4C3B35]">{step.body}</p>
+              <ul className="mt-4 space-y-2 text-xs leading-5 text-[#4C3B35]">
                 {step.bullets.map((b) => (
                   <li key={b} className="flex items-start gap-2">
-                    <span className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-[#287c63]" />
+                    <span className="mt-1.5 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-[#7D6D69]" />
                     {b}
                   </li>
                 ))}
@@ -534,16 +534,16 @@ export function HowToPlaySection({ locale }: { locale: string }) {
         </div>
 
         {/* CTA */}
-        <div className="mt-12 flex flex-col items-start gap-4 rounded-md border border-[#ded6c4] bg-[#f6f3ea] p-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col items-start gap-4 rounded-md border border-[#D8CFC6] bg-[#F6F0EA] p-6 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-[#151512] text-white">
+            <span className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-[#29211D] text-white">
               <Wifi className="h-4 w-4" />
             </span>
             <div>
-              <p className="text-sm font-semibold text-[#151512]">
+              <p className="text-sm font-semibold text-[#29211D]">
                 Need a full beginner walkthrough before you queue up?
               </p>
-              <p className="text-xs text-[#5d584b]">
+              <p className="text-xs text-[#4C3B35]">
                 Controls, paint tool, role guides, and the first-match checklist — all on one page.
               </p>
             </div>
@@ -551,7 +551,7 @@ export function HowToPlaySection({ locale }: { locale: string }) {
           <div className="flex gap-2">
             <a
               href={getHref('/new-player')}
-              className="inline-flex min-h-10 items-center gap-1.5 rounded-md bg-[#151512] px-4 text-sm font-semibold text-white transition hover:bg-[#2a2a26]"
+              className="inline-flex min-h-10 items-center gap-1.5 rounded-md bg-[#29211D] px-4 text-sm font-semibold text-white transition hover:bg-[#2a2a26]"
             >
               <MessageCircle className="h-4 w-4" />
               New player guide
@@ -560,7 +560,7 @@ export function HowToPlaySection({ locale }: { locale: string }) {
               href="https://store.steampowered.com/app/4704690/MECCHA_CHAMELEON/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-10 items-center gap-1.5 rounded-md border border-[#151512] bg-white px-4 text-sm font-semibold text-[#151512] transition hover:border-[#287c63] hover:text-[#287c63]"
+              className="inline-flex min-h-10 items-center gap-1.5 rounded-md border border-[#29211D] bg-white px-4 text-sm font-semibold text-[#29211D] transition hover:border-[#7D6D69] hover:text-[#7D6D69]"
             >
               Buy on Steam
             </a>

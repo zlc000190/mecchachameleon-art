@@ -165,17 +165,17 @@ export function KeywordSection() {
   return (
     <section
       id="search-answers"
-      className="scroll-mt-28 border-b border-[#ded6c4] bg-white"
+      className="scroll-mt-28 border-b border-[#D8CFC6] bg-white"
     >
       <div className="container py-14">
         <div className="mb-8 max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-widest text-[#287c63]">
+          <p className="text-xs font-semibold uppercase tracking-widest text-[#7D6D69]">
             Search answers
           </p>
-          <h2 className="mt-1 text-2xl font-bold leading-tight text-[#151512] md:text-3xl">
-            Meccha Chameleon — what players actually search for
+          <h2 className="mt-1 text-2xl font-bold leading-tight text-[#29211D] md:text-3xl">
+            Meccha Chameleon — Are you actually search for this
           </h2>
-          <p className="mt-3 text-sm leading-6 text-[#5d584b]">
+          <p className="mt-3 text-sm leading-6 text-[#4C3B35]">
             A quick reference for every way the Meccha Chameleon game shows up in search results.
             If you came here looking for Meccha Chameleon guides, Meccha Chameleon tips, or a
             Meccha Chameleon free demo, the answers below should cover it. The official Meccha
@@ -185,16 +185,16 @@ export function KeywordSection() {
         </div>
 
         {/* Search terms cloud */}
-        <div className="mb-10 rounded-md border border-[#ded6c4] bg-[#f6f3ea] p-6">
+        <div className="mb-10 rounded-md border border-[#D8CFC6] bg-[#F6F0EA] p-6">
           <div className="mb-4 flex items-center gap-2">
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-[#151512] text-white">
+            <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-[#29211D] text-white">
               <Tag className="h-4 w-4" />
             </span>
-            <h3 className="text-base font-semibold text-[#151512]">
+            <h3 className="text-base font-semibold text-[#29211D]">
               Search terms for the Meccha Chameleon game
             </h3>
           </div>
-          <p className="mb-4 text-xs leading-5 text-[#5d584b]">
+          <p className="mb-4 text-xs leading-5 text-[#4C3B35]">
             Every variant players type when looking for the Meccha Chameleon game demo, Meccha
             Chameleon game guides, Meccha Chameleon game multiplayer setup, or Meccha Chameleon
             game patch notes. Use this list to jump straight to the section that matches what
@@ -204,7 +204,7 @@ export function KeywordSection() {
             {searchTerms.map((term) => (
               <li
                 key={term}
-                className="inline-flex items-center rounded-full border border-[#ded6c4] bg-white px-3 py-1 text-xs font-medium text-[#151512]"
+                className="inline-flex items-center rounded-full border border-[#D8CFC6] bg-white px-3 py-1 text-xs font-medium text-[#29211D]"
               >
                 {term}
               </li>
@@ -215,10 +215,10 @@ export function KeywordSection() {
         {/* FAQ */}
         <div>
           <div className="mb-4 flex items-center gap-2">
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-[#287c63] text-white">
+            <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-[#7D6D69] text-white">
               <HelpCircle className="h-4 w-4" />
             </span>
-            <h3 className="text-base font-semibold text-[#151512]">
+            <h3 className="text-base font-semibold text-[#29211D]">
               Quick answers about the Meccha Chameleon game
             </h3>
           </div>
@@ -226,16 +226,16 @@ export function KeywordSection() {
             {faqs.map((f) => (
               <details
                 key={f.q}
-                className="group rounded-md border border-[#ded6c4] bg-[#f6f3ea] p-5 [&_summary::-webkit-details-marker]:hidden"
+                className="group rounded-md border border-[#D8CFC6] bg-[#F6F0EA] p-5 [&_summary::-webkit-details-marker]:hidden"
               >
-                <summary className="flex cursor-pointer items-start justify-between gap-3 text-sm font-semibold text-[#151512]">
+                <summary className="flex cursor-pointer items-start justify-between gap-3 text-sm font-semibold text-[#29211D]">
                   <span className="flex items-start gap-2">
-                    <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-[#287c63]" />
+                    <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-[#7D6D69]" />
                     {f.q}
                   </span>
-                  <span className="ml-auto text-[#287c63] transition group-open:rotate-45">+</span>
+                  <span className="ml-auto text-[#7D6D69] transition group-open:rotate-45">+</span>
                 </summary>
-                <p className="mt-3 text-sm leading-6 text-[#5d584b]">{f.a}</p>
+                <p className="mt-3 text-sm leading-6 text-[#4C3B35]">{f.a}</p>
               </details>
             ))}
           </div>

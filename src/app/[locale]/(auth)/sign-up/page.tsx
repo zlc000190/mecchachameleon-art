@@ -1,9 +1,9 @@
 import { getTranslations } from 'next-intl/server';
 
-import { envConfigs } from '@/config';
 import { defaultLocale } from '@/config/locale';
 import { redirect } from '@/core/i18n/navigation';
 import { SignUp } from '@/shared/blocks/sign/sign-up';
+import { getCanonicalUrl } from '@/shared/lib/seo';
 import { getPublicConfigs } from '@/shared/models/config';
 import { getSignUser } from '@/shared/models/user';
 
@@ -29,14 +29,12 @@ export async function generateMetadata({
   const { locale } = await params;
 
   const t = await getTranslations('common');
+  const canonicalUrl = await getCanonicalUrl('/sign-up', locale);
 
   return {
     title: `${t('sign.sign_up_title')} - ${t('metadata.title')}`,
     alternates: {
-      canonical:
-        locale !== defaultLocale
-          ? `${envConfigs.app_url}/${locale}/sign-up`
-          : `${envConfigs.app_url}/sign-up`,
+      canonical: canonicalUrl,
     },
   };
 }

@@ -12,6 +12,7 @@ import {
   getSpotsByMapId,
 } from '@/shared/blocks/meccha/atlas-data';
 import { MapSpotsExplorer } from '@/shared/blocks/meccha/map-spots-explorer';
+import { getCanonicalUrl } from '@/shared/lib/seo';
 
 const steamUrl = 'https://store.steampowered.com/app/4704690/MECCHA_CHAMELEON/';
 
@@ -29,9 +30,9 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ mapSlug: string }>;
+  params: Promise<{ locale: string; mapSlug: string }>;
 }): Promise<Metadata> {
-  const { mapSlug } = await params;
+  const { locale, mapSlug } = await params;
   const map = getAtlasMapBySlug(mapSlug);
 
   if (!map) {
@@ -40,14 +41,18 @@ export async function generateMetadata({
 
   const title = `${map.name} Hiding Spots — Meccha Chameleon`;
   const description = `${map.name} Meccha Chameleon hiding spot atlas (10 spots): screenshots, paint RGB, difficulty, hider tips. Fan-made; free browser demo.`;
+  const canonicalUrl = await getCanonicalUrl(`/maps/${mapSlug}`, locale);
 
   return {
-    metadataBase: new URL('https://mecchachameleon.art'),
     title,
     description,
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
       title,
       description,
+      url: canonicalUrl,
       images: [getAtlasImagePath(map.thumb)],
     },
     twitter: {
@@ -89,23 +94,23 @@ export default async function MapPage({
   };
 
   return (
-    <main className="min-h-screen bg-[#f6f3ea] text-[#151512]">
+    <main className="min-h-screen bg-[#F6F0EA] text-[#29211D]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <section className="border-b border-[#ded6c4] bg-[#f6f3ea] text-[#151512]">
+      <section className="border-b border-[#D8CFC6] bg-[#F6F0EA] text-[#29211D]">
         <div className="container grid gap-8 pt-16 pb-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(420px,1.08fr)] lg:items-center">
           <div>
             <a
               href={getLocalizedPath(locale, '/#atlas')}
-              className="mb-6 inline-flex min-h-10 items-center gap-2 rounded-md border border-[#b9af9e] bg-white px-3 py-2 text-sm font-semibold text-[#151512] transition hover:bg-[#ece5d8]"
+              className="mb-6 inline-flex min-h-10 items-center gap-2 rounded-md border border-[#b9af9e] bg-white px-3 py-2 text-sm font-semibold text-[#29211D] transition hover:bg-[#ece5d8]"
             >
               <ArrowLeft className="h-4 w-4" />
               Back to atlas
             </a>
-            <p className="mb-3 text-sm font-semibold uppercase tracking-normal text-[#287c63]">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-normal text-[#7D6D69]">
               Meccha Chameleon map guide
             </p>
             <h1 className="max-w-3xl text-4xl font-bold leading-tight tracking-normal md:text-6xl">
@@ -117,11 +122,11 @@ export default async function MapPage({
 
             <div className="mt-6 flex flex-wrap gap-3">
               <div className="inline-flex min-h-10 items-center gap-2 rounded-md border border-[#d8cfbd] bg-white px-3 py-2 text-sm font-semibold">
-                <MapPinned className="h-4 w-4 text-[#287c63]" />
+                <MapPinned className="h-4 w-4 text-[#7D6D69]" />
                 {spots.length} hiding spots
               </div>
               <div className="inline-flex min-h-10 items-center gap-2 rounded-md border border-[#d8cfbd] bg-white px-3 py-2 text-sm font-semibold">
-                <Palette className="h-4 w-4 text-[#c45b38]" />
+                <Palette className="h-4 w-4 text-[#AA776E]" />
                 {map.difficulty} difficulty
               </div>
             </div>
@@ -157,17 +162,17 @@ export default async function MapPage({
         </div>
       </section>
 
-      <section className="border-b border-[#ded6c4] bg-white">
+      <section className="border-b border-[#D8CFC6] bg-white">
         <div className="container py-12">
           <MapSpotsExplorer map={map} spots={spots} />
         </div>
       </section>
 
-      <section className="bg-[#f6f3ea]">
+      <section className="bg-[#F6F0EA]">
         <div className="container flex flex-col gap-4 py-10 md:flex-row md:items-center md:justify-between">
           <div>
             <h2 className="text-2xl font-bold">Ready for the real match?</h2>
-            <p className="mt-2 text-sm leading-6 text-[#5d584b]">
+            <p className="mt-2 text-sm leading-6 text-[#4C3B35]">
               This atlas is an unofficial second-screen guide. The official game
               remains the Steam PC release.
             </p>
@@ -176,7 +181,7 @@ export default async function MapPage({
             href={steamUrl}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex min-h-11 w-fit items-center gap-2 rounded-md bg-[#287c63] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1f664f]"
+            className="inline-flex min-h-11 w-fit items-center gap-2 rounded-md bg-[#7D6D69] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#5C4F4C]"
           >
             Official Steam page
             <ExternalLink className="h-4 w-4" />

@@ -29,7 +29,7 @@ export function MapSpotsExplorer({
 
   return (
     <div className="grid gap-6 lg:grid-cols-[minmax(0,1.25fr)_minmax(320px,0.75fr)]">
-      <div className="overflow-hidden rounded-md border border-[#ded6c4] bg-[#151512]">
+      <div className="overflow-hidden rounded-md border border-[#D8CFC6] bg-[#29211D]">
         <div className="relative aspect-video">
           <Image
             src={getAtlasImagePath(activeSpot.screenshot)}
@@ -45,25 +45,25 @@ export function MapSpotsExplorer({
         </div>
       </div>
 
-      <aside className="rounded-md border border-[#ded6c4] bg-white p-5">
+      <aside className="rounded-md border border-[#D8CFC6] bg-white p-5">
         <div className="mb-5 flex items-start justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-normal text-[#287c63]">
+            <p className="text-xs font-semibold uppercase tracking-normal text-[#7D6D69]">
               Selected spot
             </p>
             <h2 className="mt-2 text-2xl font-bold leading-tight">
               {activeSpot.name}
             </h2>
           </div>
-          <Eye className="h-6 w-6 shrink-0 text-[#287c63]" />
+          <Eye className="h-6 w-6 shrink-0 text-[#7D6D69]" />
         </div>
 
-        <p className="text-sm leading-6 text-[#5d584b]">{activeSpot.tip}</p>
+        <p className="text-sm leading-6 text-[#4C3B35]">{activeSpot.tip}</p>
 
         <div className="mt-6 grid gap-3">
-          <div className="rounded-md border border-[#e0d8c8] bg-[#f6f3ea] p-4">
+          <div className="rounded-md border border-[#e0d8c8] bg-[#F6F0EA] p-4">
             <div className="mb-3 flex items-center gap-2 text-sm font-semibold">
-              <Palette className="h-4 w-4 text-[#c45b38]" />
+              <Palette className="h-4 w-4 text-[#AA776E]" />
               Paint colors
             </div>
             <div className="flex flex-wrap gap-3">
@@ -72,9 +72,9 @@ export function MapSpotsExplorer({
             </div>
           </div>
 
-          <div className="rounded-md border border-[#e0d8c8] bg-[#f6f3ea] p-4">
+          <div className="rounded-md border border-[#e0d8c8] bg-[#F6F0EA] p-4">
             <div className="mb-3 flex items-center gap-2 text-sm font-semibold">
-              <Star className="h-4 w-4 text-[#c45b38]" />
+              <Star className="h-4 w-4 text-[#AA776E]" />
               Difficulty
             </div>
             <div className="flex gap-1">
@@ -83,8 +83,8 @@ export function MapSpotsExplorer({
                   key={index}
                   className={
                     index < activeSpot.difficulty
-                      ? 'h-3 w-8 rounded-full bg-[#c45b38]'
-                      : 'h-3 w-8 rounded-full bg-[#ded6c4]'
+                      ? 'h-3 w-8 rounded-full bg-[#AA776E]'
+                      : 'h-3 w-8 rounded-full bg-[#D8CFC6]'
                   }
                 />
               ))}
@@ -102,11 +102,11 @@ export function MapSpotsExplorer({
               onClick={() => setActiveSpotId(spot.id)}
               className={`overflow-hidden rounded-md border bg-white text-left transition ${
                 activeSpot.id === spot.id
-                  ? 'border-[#287c63] ring-2 ring-[#287c63]/25'
-                  : 'border-[#ded6c4] hover:border-[#287c63]'
+                  ? 'border-[#7D6D69] ring-2 ring-[#7D6D69]/25'
+                  : 'border-[#D8CFC6] hover:border-[#7D6D69]'
               }`}
             >
-              <div className="relative aspect-video bg-[#151512]">
+              <div className="relative aspect-video bg-[#29211D]">
                 <Image
                   src={getAtlasImagePath(spot.screenshot)}
                   alt={`${spot.name} thumbnail`}
@@ -140,7 +140,7 @@ function ColorChip({ label, value }: { label: string; value: string }) {
         style={{ backgroundColor: value }}
       />
       <span className="min-w-0">
-        <span className="block text-xs text-[#5d584b]">{label}</span>
+        <span className="block text-xs text-[#4C3B35]">{label}</span>
         <span className="block text-sm font-semibold">{value}</span>
       </span>
     </div>

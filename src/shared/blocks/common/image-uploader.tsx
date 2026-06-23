@@ -503,7 +503,7 @@ export function ImageUploader({
             <div className="relative overflow-hidden rounded-lg">
               <img
                 src={item.preview}
-                alt="Reference"
+                alt="Uploaded image preview"
                 className="h-32 w-32 rounded-lg object-cover"
               />
               {item.size && (
