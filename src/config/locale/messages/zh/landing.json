@@ -1,0 +1,130 @@
+{
+  "header": {
+    "id": "header",
+    "brand": {
+      "title": "Meccha Chameleon Art Lab",
+      "logo": {
+        "src": "/logo.png",
+        "alt": "Meccha Chameleon Art Lab",
+        "width": 100,
+        "height": 100
+      },
+      "url": "/"
+    },
+    "nav": {
+      "items": [
+        {
+          "title": "Demo",
+          "url": "/#demo",
+          "icon": "Gamepad2"
+        },
+        {
+          "title": "New Player",
+          "url": "/#new-player",
+          "icon": "BadgeInfo"
+        },
+        {
+          "title": "Camo Lab",
+          "url": "/#camo-lab",
+          "icon": "Brush"
+        },
+        {
+          "title": "Map Atlas",
+          "url": "/#atlas",
+          "icon": "MapPinned"
+        }
+      ]
+    },
+    "buttons": [
+      {
+        "title": "Steam",
+        "url": "https://store.steampowered.com/app/4704690/MECCHA_CHAMELEON/",
+        "target": "_blank",
+        "icon": "ExternalLink"
+      }
+    ],
+    "user_nav": {
+      "show_name": false,
+      "show_credits": false,
+      "show_sign_out": false,
+      "items": []
+    },
+    "show_sign": false,
+    "show_theme": true,
+    "show_locale": false,
+    "topbanner": {
+      "text": "非官方玩家工具站。页面里的可玩 demo 不是 Meccha Chameleon 官方游戏。"
+    }
+  },
+  "footer": {
+    "id": "footer",
+    "brand": {
+      "title": "Meccha Chameleon Art Lab",
+      "description": "面向 Meccha Chameleon 玩家的一页式 demo 入口和手机二屏伪装辅助工具。",
+      "logo": {
+        "src": "/logo.png",
+        "alt": "Meccha Chameleon Art Lab",
+        "width": 1024,
+        "height": 1024
+      },
+      "url": "/"
+    },
+    "nav": {
+      "items": [
+        {
+          "title": "Play",
+          "children": [
+            {
+              "title": "Browser Demo",
+              "url": "/#demo",
+              "target": "_self"
+            },
+            {
+              "title": "Official Steam Page",
+              "url": "https://store.steampowered.com/app/4704690/MECCHA_CHAMELEON/",
+              "target": "_blank"
+            }
+          ]
+        },
+        {
+          "title": "Guide",
+          "children": [
+            {
+              "title": "New Player",
+              "url": "/#new-player",
+              "target": "_self"
+            },
+            {
+              "title": "Camo Lab",
+              "url": "/#camo-lab",
+              "target": "_self"
+            },
+            {
+              "title": "Map Atlas",
+              "url": "/#atlas",
+              "target": "_self"
+            }
+          ]
+        }
+      ]
+    },
+    "social": {
+      "items": []
+    },
+    "agreement": {
+      "items": [
+        {
+          "title": "Privacy Policy",
+          "url": "/privacy-policy"
+        },
+        {
+          "title": "Terms of Service",
+          "url": "/terms-of-service"
+        }
+      ]
+    },
+    "show_built_with": false,
+    "show_theme": true,
+    "show_locale": false
+  }
+}

@@ -1,0 +1,17 @@
+node_modules/
+.next/
+out/
+.env
+.env.local
+.env.*.local
+.DS_Store
+*.log
+.DS_Store
+.vercel
+.turbo
+dev-dist/
+.cursor/
+.claude/
+.dev.vars
+.idea/
+.vscode/
