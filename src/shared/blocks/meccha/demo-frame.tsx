@@ -14,10 +14,15 @@ type Demo = {
   openInNewTab: string;
 };
 
-// Three difficulty tiers. Each one is a third-party HTML5 hide-and-seek /
-// camo game explicitly labeled as NOT the official Meccha Chameleon.
-// We always surface "Open in new tab" so the user can fall back to a
-// fullscreen window if the iframe splash blocks them.
+// Three difficulty / flavor tiers. Each one is a third-party HTML5
+// hide-and-seek / camo game explicitly labeled as NOT the official Meccha
+// Chameleon. We always surface "Open in new tab" so the user can fall back
+// to a fullscreen window if the iframe splash blocks them.
+//
+//  - easy:   GameDistribution Hide N Seek!        (most stable, 2D casual)
+//  - hard:   GameMonetize Hide And Seek Io        (closer in spirit to the
+//            Steam game, red/blue seekers, but provider stability is weaker)
+//  - social: GameDistribution Sneaky Friends      (multiplayer hide-and-seek)
 const demos: Demo[] = [
   {
     id: 'easy',
@@ -26,18 +31,8 @@ const demos: Demo[] = [
     source: 'GameDistribution',
     ratio: 'aspect-[440/750] sm:aspect-[16/10] lg:aspect-[440/750]',
     src: 'https://embed.gamedistribution.com/?url=https://html5.gamedistribution.com/7eda2be289604aa89f3b97df59661bfe/&width=440&height=750&language=en&gdpr-tracking=1&gdpr-targeting=1&gd_sdk_referrer_url=https://mecchachameleon.art/',
-    note: 'Casual hide-and-seek. Best first try. Click "Continue" inside the game to start.',
+    note: 'Most stable embed in testing. Good for instant play. Click "Continue" inside the game to start.',
     openInNewTab: 'https://html5.gamedistribution.com/7eda2be289604aa89f3b97df59661bfe/',
-  },
-  {
-    id: 'standard',
-    label: 'Standard',
-    title: 'Sneaky Friends',
-    source: 'GameDistribution',
-    ratio: 'aspect-[480/800] sm:aspect-[16/10] lg:aspect-[480/800]',
-    src: 'https://embed.gamedistribution.com/?url=https://html5.gamedistribution.com/8529938662c2447091414e2cc73983e3/&width=480&height=800&language=en&gdpr-tracking=1&gdpr-targeting=1&gd_sdk_referrer_url=https://mecchachameleon.art/',
-    note: 'Multiplayer hide-and-seek with smarter AI hunters. Click "Continue" inside to start.',
-    openInNewTab: 'https://html5.gamedistribution.com/8529938662c2447091414e2cc73983e3/',
   },
   {
     id: 'hard',
@@ -46,8 +41,18 @@ const demos: Demo[] = [
     source: 'GameMonetize',
     ratio: 'aspect-[9/16]',
     src: 'https://html5.gamemonetize.games/q32ot8nkjpu9ldvsos4ki1b7k6q2y5b6/',
-    note: 'Red-vs-blue seekers. Closest in spirit to the Steam game. Click "Continue" inside to start.',
+    note: 'Red-vs-blue seekers. Visually closest to the Steam game. Provider stability is weaker than the others — try "Open in new tab" if the iframe hangs.',
     openInNewTab: 'https://html5.gamemonetize.games/q32ot8nkjpu9ldvsos4ki1b7k6q2y5b6/',
+  },
+  {
+    id: 'social',
+    label: 'Social',
+    title: 'Sneaky Friends',
+    source: 'GameDistribution',
+    ratio: 'aspect-[480/800] sm:aspect-[16/10] lg:aspect-[480/800]',
+    src: 'https://embed.gamedistribution.com/?url=https://html5.gamedistribution.com/8529938662c2447091414e2cc73983e3/&width=480&height=800&language=en&gdpr-tracking=1&gdpr-targeting=1&gd_sdk_referrer_url=https://mecchachameleon.art/',
+    note: 'Multiplayer hide-and-seek. Best when you want to play with friends in the browser. Click "Continue" inside the game to start.',
+    openInNewTab: 'https://html5.gamedistribution.com/8529938662c2447091414e2cc73983e3/',
   },
 ];
 
