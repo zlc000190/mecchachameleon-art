@@ -253,13 +253,13 @@ export function HowToPlaySection({ locale }: { locale: string }) {
           })}
         </div>
 
-        {/* YouTube embed — "with friends" gameplay video */}
+        {/* YouTube playlist embed — beginner series that auto-advances in place */}
         <div className="mb-12 overflow-hidden rounded-md border border-[#D8CFC6] bg-[#29211D]">
           <div className="grid gap-0 md:grid-cols-[minmax(0,1fr)_320px]">
             <div className="relative aspect-video w-full bg-black">
               <iframe
-                src="https://www.youtube-nocookie.com/embed/8GlZbl7rLjE?rel=0&modestbranding=1"
-                title="Meccha Chameleon with Friends — playtest by VictimofGLaDOS"
+                src="https://www.youtube-nocookie.com/embed/videoseries?list=PLRVtp0tj-2nGuUic4vt4Os-Snpt5-ICvE&rel=0&modestbranding=1&playsinline=1"
+                title="Meccha Chameleon beginner guide series"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 className="absolute inset-0 h-full w-full"
@@ -273,25 +273,21 @@ export function HowToPlaySection({ locale }: { locale: string }) {
                   Watch before you play
                 </p>
                 <h3 className="mt-2 text-lg font-semibold leading-snug">
-                  Meccha Chameleon with Friends — 14 minute playtest
+                  Meccha Chameleon beginner guide series
                 </h3>
                 <p className="mt-2 text-sm leading-5 text-white/70">
-                  VictimofGLaDOS runs a full custom-room night with a Discord crew. The first 3
-                  minutes alone cover every multiplayer rule on this page. We picked this clip
-                  because it is the most realistic representation of what a friend group will
-                  actually see on round one.
+                  Start with the first clip and let the playlist advance on its own.
+                  The videos stay embedded here, so the page keeps the full walkthrough in one place.
                 </p>
+                <ul className="mt-3 space-y-2 text-sm leading-5 text-white/70">
+                  <li>1. Learn the loop and controls.</li>
+                  <li>2. Check hider and seeker basics.</li>
+                  <li>3. Keep the tab open for the next lesson.</li>
+                </ul>
               </div>
               <div className="flex items-center justify-between gap-3 text-xs text-white/60">
-                <span>1.3M views · 4 weeks ago · YouTube</span>
-                <a
-                  href="https://www.youtube.com/watch?v=8GlZbl7rLjE"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 rounded-md border border-white/20 bg-white/5 px-2.5 py-1.5 text-white transition hover:bg-white/10"
-                >
-                  Open on YouTube
-                </a>
+                <span>Playlist auto-advances in place.</span>
+                <span>Embed stays on-site.</span>
               </div>
             </div>
           </div>
