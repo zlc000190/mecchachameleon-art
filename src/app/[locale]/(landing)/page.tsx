@@ -15,6 +15,7 @@ import { setRequestLocale } from 'next-intl/server';
 
 import { AtlasPreview } from '@/shared/blocks/meccha/atlas-preview';
 import { DemoFrame } from '@/shared/blocks/meccha/demo-frame';
+import { UpdatesSection } from '@/shared/blocks/meccha/updates-section';
 
 const steamUrl = 'https://store.steampowered.com/app/4704690/MECCHA_CHAMELEON/';
 
@@ -225,6 +226,8 @@ export default async function LandingPage({
           <AtlasPreview locale={locale} />
         </div>
       </section>
+
+      <UpdatesSection />
 
       <section id="second-screen" className="border-b border-[#ded6c4] bg-[#16211e] text-white">
         <div className="container grid gap-8 py-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
