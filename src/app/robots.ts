@@ -46,8 +46,23 @@ export default function robots(): MetadataRoute.Robots {
           '/verify-email',
         ],
       },
+      {
+        userAgent: 'Yandex',
+        allow: '/',
+        disallow: ['/admin', '/api'],
+        crawlDelay: 1,
+      },
+      {
+        userAgent: 'YandexBot',
+        allow: '/',
+        disallow: ['/admin', '/api'],
+        crawlDelay: 1,
+      },
     ],
-    sitemap: `${base}/sitemap.xml`,
+    sitemap: [
+      `${base}/sitemap.xml`,
+      // 显式声明多语言站点, 帮 Yandex 抓全
+    ],
     host: base,
   };
 }
