@@ -1,0 +1,22 @@
+# Meccha Chameleon Art robots.txt
+# https://mecchachameleon.art
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+# === Sitemaps (多语言) ===
+Sitemap: https://mecchachameleon.art/sitemap.xml
+
+# === IndexNow: Yandex 加速索引 ===
+User-agent: Yandex
+Allow: /
+Crawl-delay: 1
+Sitemap: https://mecchachameleon.art/sitemap.xml
+
+# === IndexNow: 通用提示 ===
+User-agent: *
+# 当你看到这段时, 我们已通过 IndexNow API 推送所有 URL
+# 推送脚本: ~/.hermes/scripts/indexnow-submit.sh
+# 最后推送: 2026-06-24
