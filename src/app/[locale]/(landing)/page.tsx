@@ -1,14 +1,11 @@
 import {
   BookOpen,
-  ExternalLink,
   Gamepad2,
   type LucideIcon,
   MapPinned,
-  MonitorSmartphone,
   ShieldCheck,
   Smartphone,
   Sparkles,
-  Store,
 } from 'lucide-react';
 import { setRequestLocale } from 'next-intl/server';
 
@@ -17,15 +14,6 @@ import { DemoFrame } from '@/shared/blocks/meccha/demo-frame';
 import { HowToPlaySection } from '@/shared/blocks/meccha/how-to-play-section';
 import { KeywordSection } from '@/shared/blocks/meccha/keyword-section';
 import { UpdatesSection } from '@/shared/blocks/meccha/updates-section';
-
-const steamUrl = 'https://store.steampowered.com/app/4704690/MECCHA_CHAMELEON/';
-
-const playHubCards: Array<[LucideIcon, string, string, string]> = [
-  [Gamepad2, 'Easy', 'Start here if you searched for Meccha Chameleon and want to play.', '#play'],
-  [MonitorSmartphone, 'Hidden Hunt', 'Scan quick scenes and warm up your seeker eye.', '#play'],
-  [BookOpen, 'How to play', 'Rules, hider/seeker roles, and first-match walkthrough.', '#how-to-play'],
-  [MapPinned, 'Hiding spots', 'Map-specific ideas once you understand the loop.', '#atlas'],
-];
 
 const faqs = [
   {
@@ -90,53 +78,10 @@ export default async function LandingPage({
             </div>
           </div>
 
-          <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start">
+          <div className="grid gap-5">
             <div id="play">
               <DemoFrame />
             </div>
-
-            <aside className="grid gap-3 lg:sticky lg:top-24">
-              <div className="rounded-lg border border-[#efc8d3] bg-white/85 p-4">
-                <div className="text-sm font-semibold text-[#29211D]">
-                  Play first, read later
-                </div>
-                <p className="mt-2 text-sm leading-6 text-[#4C3B35]">
-                  If you came from search to play, stay in the game. If you need
-                  rules or Steam details, jump down without leaving the page.
-                </p>
-              </div>
-
-              {playHubCards.map(([Icon, title, copy, href]) => (
-                <a
-                  key={title}
-                  href={href}
-                  className="group rounded-lg border border-[#efc8d3] bg-white/90 p-4 transition hover:-translate-y-0.5 hover:border-[#ff8fb3] hover:bg-white"
-                >
-                  <div className="flex items-start gap-3">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-[#ffd2e1] text-[#a45a77] group-hover:bg-[#ff8fb3] group-hover:text-white">
-                      <Icon className="h-5 w-5" />
-                    </span>
-                    <span>
-                      <span className="block font-semibold">{title}</span>
-                      <span className="mt-1 block text-sm leading-5 text-[#4C3B35]">
-                        {copy}
-                      </span>
-                    </span>
-                  </div>
-                </a>
-              ))}
-
-              <a
-                href={steamUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-[#9de7dc] bg-[#61a8ff] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#4b92ec]"
-              >
-                <Store className="h-4 w-4" />
-                Steam · $5.99
-                <ExternalLink className="h-4 w-4" />
-              </a>
-            </aside>
           </div>
         </div>
       </section>
@@ -153,9 +98,9 @@ export default async function LandingPage({
           </div>
           <div className="grid gap-4 md:grid-cols-2">
             {[
-              ['What is it?', 'A Steam PC hide-and-seek game where hiders paint their bodies to blend into the map.'],
+              ['What is it?', 'A PC hide-and-seek game where hiders paint their bodies to blend into the map.'],
               ['Can I play here?', 'Yes. Start with the browser game above, then use the guide when you want match tips.'],
-              ['Should I install it?', 'Try one quick round first. If hiding, painting, and seeker pressure feel fun, then move to Steam.'],
+              ['Should I install it?', 'Try one quick round first. If hiding, painting, and seeker pressure feel fun, keep this guide open for the next match.'],
               ['What should I learn first?', 'Spot selection, color matching, pose discipline, and staying still after you commit.'],
             ].map(([title, copy]) => (
               <div key={title} className="rounded-md border border-[#e0d8c8] p-5">
@@ -238,7 +183,7 @@ export default async function LandingPage({
               Build for phone-in-hand while the real game runs on PC.
             </h2>
             <p className="mt-4 leading-7 text-[#4C3B35]">
-              A browser page beats a plugin here. Steam gameplay happens outside
+              A browser page beats a plugin here. PC gameplay happens outside
               the browser, so the practical companion is a mobile-friendly web
               guide that loads instantly and needs no account.
             </p>

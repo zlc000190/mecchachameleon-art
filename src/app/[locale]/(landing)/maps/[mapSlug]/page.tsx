@@ -1,4 +1,4 @@
-import { ArrowLeft, ExternalLink, MapPinned, Palette } from 'lucide-react';
+import { ArrowLeft, MapPinned, Palette } from 'lucide-react';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
@@ -13,8 +13,6 @@ import {
 } from '@/shared/blocks/meccha/atlas-data';
 import { MapSpotsExplorer } from '@/shared/blocks/meccha/map-spots-explorer';
 import { getCanonicalUrl } from '@/shared/lib/seo';
-
-const steamUrl = 'https://store.steampowered.com/app/4704690/MECCHA_CHAMELEON/';
 
 export const revalidate = 3600;
 
@@ -178,13 +176,10 @@ export default async function MapPage({
             </p>
           </div>
           <a
-            href={steamUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex min-h-11 w-fit items-center gap-2 rounded-md bg-[#7D6D69] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#5C4F4C]"
+            href={locale === 'en' ? '/#play' : `/${locale}/#play`}
+            className="inline-flex min-h-11 w-fit items-center gap-2 rounded-md bg-[#ff6f9a] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#e95a88]"
           >
-            Steam page
-            <ExternalLink className="h-4 w-4" />
+            Play online
           </a>
         </div>
       </section>

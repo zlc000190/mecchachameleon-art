@@ -35,14 +35,7 @@
         }
       ]
     },
-    "buttons": [
-      {
-        "title": "Steam",
-        "url": "https://store.steampowered.com/app/4704690/MECCHA_CHAMELEON/",
-        "target": "_blank",
-        "icon": "ExternalLink"
-      }
-    ],
+    "buttons": [],
     "user_nav": {
       "show_name": false,
       "show_credits": false,
@@ -80,9 +73,9 @@
               "target": "_self"
             },
             {
-              "title": "Steam Page",
-              "url": "https://store.steampowered.com/app/4704690/MECCHA_CHAMELEON/",
-              "target": "_blank"
+              "title": "New Player Guide",
+              "url": "/new-player",
+              "target": "_self"
             }
           ]
         },

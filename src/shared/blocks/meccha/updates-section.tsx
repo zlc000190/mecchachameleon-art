@@ -1,28 +1,26 @@
-import { Calendar, ExternalLink, Sparkles, Wrench, PartyPopper } from 'lucide-react';
+import { Calendar, Sparkles, Wrench, PartyPopper } from 'lucide-react';
 
-// Latest Meccha Chameleon Steam updates + this site's own changelog.
+// Latest Meccha Chameleon updates + this site's own changelog.
 // We render this statically so the landing page stays SSG-friendly
-// (Steam news comes from a build-time fetch that lives in
-// scripts/fetch-steam-news.ts; see docs/maintenance.md).
+// (upstream news can come from a build-time fetch that lives in
+// scripts/fetch-update-news.ts; see docs/maintenance.md).
 
-type SteamUpdate = {
+type GameUpdate = {
   date: string;
   label: string;
   title: string;
   body: string;
-  href: string;
   variant: 'feature' | 'fix' | 'milestone';
 };
 
-// Pinned to recent Steam community posts as of build time.
-const steamUpdates: SteamUpdate[] = [
+// Pinned to recent public update notes as of build time.
+const gameUpdates: GameUpdate[] = [
   {
     date: '2026-06-22',
     label: '1.7.0',
     title: 'New map "Osaka" + report feature',
     body:
       'A Japan-themed map joins the rotation, plus a built-in player report flow. Discord link on the title screen is fixed.',
-    href: 'https://store.steampowered.com/news/app/4704690',
     variant: 'feature',
   },
   {
@@ -31,7 +29,6 @@ const steamUpdates: SteamUpdate[] = [
     title: 'Cloud save and BGM fix',
     body:
       'Fixes the infinite-loading cloud save screen and a BGM regression that affected some players.',
-    href: 'https://store.steampowered.com/news/app/4704690',
     variant: 'fix',
   },
   {
@@ -39,8 +36,7 @@ const steamUpdates: SteamUpdate[] = [
     label: 'Milestone',
     title: '7 million copies sold',
     body:
-      'LEMORION confirmed 7M units shipped on Steam. The Osaka map was teased alongside the announcement.',
-    href: 'https://store.steampowered.com/news/app/4704690',
+      'LEMORION confirmed 7M units shipped. The Osaka map was teased alongside the announcement.',
     variant: 'milestone',
   },
   {
@@ -49,7 +45,6 @@ const steamUpdates: SteamUpdate[] = [
     title: 'Hider size option + cloud save hardening',
     body:
       'Hiders can now be resized client-side, and the dev team added countermeasures for the recurring cloud save error.',
-    href: 'https://store.steampowered.com/news/app/4704690',
     variant: 'feature',
   },
   {
@@ -58,7 +53,6 @@ const steamUpdates: SteamUpdate[] = [
     title: 'Re-spawn and clip fixes',
     body:
       'Already-found hiders no longer reappear mid-round, and seekers can no longer clip through unloaded maps to eliminate players.',
-    href: 'https://store.steampowered.com/news/app/4704690',
     variant: 'fix',
   },
 ];
@@ -78,9 +72,9 @@ const siteUpdates: SiteUpdate[] = [
   },
   {
     date: '2026-06-23',
-    title: 'Browser play: Find It / Hidden Objects / Hard',
+    title: 'Browser play: Meccha Chameleon entry',
     body:
-      'Replaced unstable embedded games with a cleaner selector and a more reliable default game source.',
+      'The home page now opens with one Meccha Chameleon play entry and a simpler click-to-play action.',
   },
   {
     date: '2026-06-23',
@@ -98,17 +92,17 @@ const siteUpdates: SiteUpdate[] = [
     date: '2026-06-22',
     title: 'Initial Atlas import',
     body:
-      'Claude imported 50 hiding-spot screenshots from the Steam game and wired 5 maps x 10 spots into the per-map pages with RGB, difficulty, and tip copy.',
+      'Claude imported 50 hiding-spot screenshots and wired 5 maps x 10 spots into the per-map pages with RGB, difficulty, and tip copy.',
   },
 ];
 
-function variantIcon(v: SteamUpdate['variant']) {
+function variantIcon(v: GameUpdate['variant']) {
   if (v === 'fix') return <Wrench className="h-3.5 w-3.5" />;
   if (v === 'milestone') return <PartyPopper className="h-3.5 w-3.5" />;
   return <Sparkles className="h-3.5 w-3.5" />;
 }
 
-function variantClasses(v: SteamUpdate['variant']) {
+function variantClasses(v: GameUpdate['variant']) {
   if (v === 'fix')
     return 'border-[#AA776E]/40 bg-[#F4DCD0] text-[#7c2f1c]';
   if (v === 'milestone')
@@ -132,33 +126,30 @@ export function UpdatesSection() {
               What changed in the game, and on this site
             </h2>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-[#4C3B35]">
-              We watch the Steam community announcements and refresh the home
-              page each time LEMORION ships a new version. Below: Steam
-              patches on the left, guide and atlas edits on the right.
+              We watch game updates and refresh the home page each time
+              LEMORION ships a new version. Below: patch notes on the left,
+              guide and atlas edits on the right.
             </p>
           </div>
           <a
-            href="https://store.steampowered.com/news/app/4704690"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#search-answers"
             className="inline-flex min-h-10 w-fit items-center gap-1.5 rounded-md border border-[#D8CFC6] bg-white px-3 text-sm font-semibold text-[#29211D] transition hover:border-[#7D6D69]"
           >
-            Full Steam news
-            <ExternalLink className="h-3.5 w-3.5" />
+            View updates
           </a>
         </div>
 
         <div className="grid gap-6 lg:grid-cols-2">
-          {/* Steam updates */}
+          {/* Game updates */}
           <div>
             <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold text-[#29211D]">
               <span className="inline-flex h-6 items-center rounded-sm bg-[#ff8fb3] px-2 text-[10px] font-bold uppercase tracking-wider text-white">
-                Steam
+                Game
               </span>
-              Steam patch notes
+              Patch notes
             </h3>
             <ol className="relative space-y-4 border-l-2 border-[#D8CFC6] pl-5">
-              {steamUpdates.map((u) => (
+              {gameUpdates.map((u) => (
                 <li key={u.title} className="relative">
                   <span className="absolute -left-[27px] top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#7D6D69] ring-4 ring-[#F6F0EA]"></span>
                   <div className="rounded-md border border-[#D8CFC6] bg-white p-4 shadow-sm">
@@ -174,14 +165,9 @@ export function UpdatesSection() {
                         {u.label}
                       </span>
                     </div>
-                    <a
-                      href={u.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm font-semibold leading-5 text-[#29211D] hover:text-[#7D6D69]"
-                    >
+                    <div className="text-sm font-semibold leading-5 text-[#29211D]">
                       {u.title}
-                    </a>
+                    </div>
                     <p className="mt-1 text-xs leading-5 text-[#4C3B35]">
                       {u.body}
                     </p>

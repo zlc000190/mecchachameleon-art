@@ -14,7 +14,7 @@ const searchTerms = [
   'meccha chameleon play free',
   'meccha chameleon multiplayer',
   'meccha chameleon game online',
-  'meccha chameleon steam',
+  'meccha chameleon play online',
   'meccha chameleon walkthrough',
   'meccha chameleon guide',
   'meccha chameleon beginner guide',
@@ -44,7 +44,7 @@ const searchTerms = [
   'meccha chameleon rookie mistakes',
   'meccha chameleon mac',
   'meccha chameleon mac guide',
-  'meccha chameleon steam link',
+  'meccha chameleon phone streaming',
   'meccha chameleon moonlight',
   'meccha chameleon game modes',
   'meccha chameleon 2 to 24 players',
@@ -52,7 +52,7 @@ const searchTerms = [
   'meccha chameleon system requirements',
   'meccha chameleon controls',
   'meccha chameleon first match',
-  'meccha chameleon steam workshop',
+  'meccha chameleon custom maps',
   'meccha chameleon community maps',
   'meccha chameleon reddit',
   'meccha chameleon discord',
@@ -72,27 +72,27 @@ const faqs: Array<{ q: string; a: string }> = [
   {
     q: 'What is Meccha Chameleon?',
     a:
-      'Meccha Chameleon (also written as Meccha Chameleon Game, 超级变色龙 in Chinese) is an asymmetric hide-and-seek party game for PC where players paint their character to match the environment, then seekers try to find them. The Meccha Chameleon game launched on Steam on June 10, 2026 and has since passed 7 million copies sold. This play hub helps players learn the Meccha Chameleon game faster with browser games, a 50-spot hiding-spot atlas, and a multiplayer playbook.',
+      'Meccha Chameleon (also written as Meccha Chameleon Game, 超级变色龙 in Chinese) is an asymmetric hide-and-seek party game for PC where players paint their character to match the environment, then seekers try to find them. The Meccha Chameleon game launched on June 10, 2026 and has since passed 7 million copies sold. This play hub helps players stay on one page with browser play, a 50-spot hiding-spot atlas, and a multiplayer playbook.',
   },
   {
     q: 'Where can I play Meccha Chameleon?',
     a:
-      'The Meccha Chameleon game is currently PC-only on Steam. There is no console or mobile release for Meccha Chameleon. Mac players run the Meccha Chameleon game through Crossover, Whisky / Game Porting Toolkit, or Parallels. For phone-in-hand play, you can stream the Meccha Chameleon game to a mobile device via Steam Link, Moonlight, or Sunshine. The browser game above lets you try the core hide-and-seek idea before installing the Steam client.',
+      'Start with the Meccha Chameleon browser game at the top of this page. The full PC version has no console or native mobile release. Mac players usually use Crossover, Whisky / Game Porting Toolkit, or Parallels. For phone-in-hand play, you can stream from a PC to a mobile device with tools such as Moonlight or Sunshine.',
   },
   {
     q: 'Can I play Meccha Chameleon online for free?',
     a:
-      'Yes — start with the browser game at the top of the home page. It runs without signup and gives players a quick way to test the hide-and-seek loop before moving into the full Steam release.',
+      'Yes — start with the browser game at the top of the home page. It runs without signup and gives players a quick way to test the hide-and-seek loop while staying on this site.',
   },
   {
     q: 'How many players does the Meccha Chameleon game support?',
     a:
-      'The Meccha Chameleon game supports 2 to 24 players per match. The Meccha Chameleon game developer recommends 2 to 10 players for the best experience. The Meccha Chameleon game modes are Classic Hide & Seek (hiders paint, seekers hunt), Infection (found players become seekers), Speed Hunt (all hiders paint in parallel, then a race to scan), and Custom Rooms (private lobby for friend groups). The Meccha Chameleon game matchmaker pairs you with players worldwide; use the language filter in Steam Friends to bias toward English- or Japanese-speaking crews.',
+      'The Meccha Chameleon game supports 2 to 24 players per match. The Meccha Chameleon game developer recommends 2 to 10 players for the best experience. The Meccha Chameleon game modes are Classic Hide & Seek (hiders paint, seekers hunt), Infection (found players become seekers), Speed Hunt (all hiders paint in parallel, then a race to scan), and Custom Rooms (private lobby for friend groups). The Meccha Chameleon game matchmaker pairs you with players worldwide; use language preferences to bias toward English- or Japanese-speaking crews.',
   },
   {
     q: 'How to play Meccha Chameleon with friends?',
     a:
-      'To play the Meccha Chameleon game with friends, one of you opens a Custom Room in the Steam client. The rest of your crew joins through Steam friends — no firewall fiddling required because the Meccha Chameleon game routes over Steam relay servers. For long-distance crews, the Meccha Chameleon game matchmaker picks the closest Steam relay (Hong Kong, Tokyo, Singapore for Asia; Frankfurt, Amsterdam, Virginia for EU/NA). Use Discord or the in-game push-to-talk so seekers can call out hiding-spot coordinates. This site has a full multiplayer playbook and crew roster tool you can use to track your friend group.',
+      'To play the Meccha Chameleon game with friends, use a Custom Room and share the room details in your group chat. For long-distance crews, pick the lowest-latency region and use Discord or in-game push-to-talk so seekers can call out hiding-spot coordinates. This site has a full multiplayer playbook and crew roster tool you can use to track your friend group.',
   },
   {
     q: 'How long does a single Meccha Chameleon game match take?',
@@ -107,17 +107,17 @@ const faqs: Array<{ q: string; a: string }> = [
   {
     q: 'Is there a Mac version of Meccha Chameleon?',
     a:
-      'There is no native Mac client for the Meccha Chameleon game. Mac players can run the Meccha Chameleon game through Crossover 23+, Whisky (Game Porting Toolkit), or Parallels. The Steam community maintains a Crossover install guide that takes about 20 minutes. Once installed, the Meccha Chameleon game runs at near-native speed on M1 / M2 / M3 Macs through the Rosetta-style translation layer.',
+      'There is no native Mac client for the Meccha Chameleon game. Mac players can run the Meccha Chameleon game through Crossover 23+, Whisky (Game Porting Toolkit), or Parallels. Community Mac setup guides usually take about 20 minutes. Once installed, the Meccha Chameleon game runs at near-native speed on M1 / M2 / M3 Macs through the Rosetta-style translation layer.',
   },
   {
     q: 'Is there a mobile version of Meccha Chameleon?',
     a:
-      'You can stream the Meccha Chameleon game to a phone using Steam Link (the easiest), Moonlight (best for low-latency LAN streaming), or Sunshine (open-source, Windows host only). The Meccha Chameleon game UI scales to touch reasonably well, and the in-game push-to-talk works on phone mics. For the best streaming experience, run the Meccha Chameleon game on your PC and use a phone on the same Wi-Fi network.',
+      'You can stream the Meccha Chameleon game to a phone using Moonlight or Sunshine. The Meccha Chameleon game UI scales to touch reasonably well, and the in-game push-to-talk works on phone mics. For the best streaming experience, run the Meccha Chameleon game on your PC and use a phone on the same Wi-Fi network.',
   },
   {
     q: 'Is there crossplay in Meccha Chameleon?',
     a:
-      'The Meccha Chameleon game is PC-only on Steam, so there is no console crossplay. All PC players in the Meccha Chameleon game can match together regardless of which Steam region they are in. Mac players through Crossover are also cross-compatible. There is no Meccha Chameleon game version for PS5, Xbox Series, Nintendo Switch, iOS, or Android announced at the time of writing.',
+      'The full Meccha Chameleon game is PC-only, so there is no console crossplay. PC players can match together across regions, and Mac players using Crossover-style setups are also cross-compatible. There is no Meccha Chameleon game version for PS5, Xbox Series, Nintendo Switch, iOS, or Android announced at the time of writing.',
   },
   {
     q: 'How do I report a bug in Meccha Chameleon?',
@@ -132,12 +132,12 @@ const faqs: Array<{ q: string; a: string }> = [
   {
     q: 'Are there custom maps in Meccha Chameleon?',
     a:
-      'Yes. The Meccha Chameleon game added Steam Workshop support in update 1.2.0. There are 200+ community maps for the Meccha Chameleon game, including a hospital, a cruise ship, an abandoned mall, and a Japan-themed dojo. Key Meccha Chameleon game maps include Mansion, Farm, Sewer, Backrooms, Penguin Hotel, and the new Osaka map from the 1.7.0 update. Each map has 5-12 hiding spots, and this site has screenshots and paint-color tips for all of them.',
+      'Yes. The Meccha Chameleon game added custom map support in update 1.2.0. There are 200+ community maps for the Meccha Chameleon game, including a hospital, a cruise ship, an abandoned mall, and a Japan-themed dojo. Key Meccha Chameleon game maps include Mansion, Farm, Sewer, Backrooms, Penguin Hotel, and the new Osaka map from the 1.7.0 update. Each map has 5-12 hiding spots, and this site has screenshots and paint-color tips for all of them.',
   },
   {
     q: 'How much does the Meccha Chameleon game cost?',
     a:
-      'The Meccha Chameleon game is a one-time $5.99 purchase on Steam. There are no microtransactions, no battle pass, no DLC, and no subscription in the Meccha Chameleon game. The Meccha Chameleon game also supports the Steam family sharing plan, so up to 5 family members in the same household can play the Meccha Chameleon game on a single purchase. Use the browser game above if you want to try the core idea first.',
+      'Use the browser game above if you want to try the core idea first. The full PC version is a one-time paid game with no microtransactions, battle pass, DLC, or subscription. This page keeps the play window, beginner guide, and hiding-spot atlas together so you can decide from one place.',
   },
   {
     q: 'What is the Meccha Chameleon game update 1.7.0?',
@@ -147,12 +147,12 @@ const faqs: Array<{ q: string; a: string }> = [
   {
     q: 'How many copies has Meccha Chameleon sold?',
     a:
-      'As of the latest Meccha Chameleon game announcement (June 22, 2026), the Meccha Chameleon game has sold over 7 million copies on Steam. The Meccha Chameleon game hit 1 million in 4 days, 2 million in 5 days, 3 million in 6 days, and 5 million in 10 days. Peak concurrent players for the Meccha Chameleon game was 132,000 on day 5. The Meccha Chameleon game is one of the fastest-selling indie games of 2026.',
+      'As of the latest Meccha Chameleon game announcement (June 22, 2026), the Meccha Chameleon game has sold over 7 million copies. The Meccha Chameleon game hit 1 million in 4 days, 2 million in 5 days, 3 million in 6 days, and 5 million in 10 days. Peak concurrent players for the Meccha Chameleon game was 132,000 on day 5. The Meccha Chameleon game is one of the fastest-selling indie games of 2026.',
   },
   {
     q: 'What language is Meccha Chameleon available in?',
     a:
-      'The Meccha Chameleon game ships with full localization in English, Japanese (日本語), Simplified Chinese, Traditional Chinese, Korean, German, French, Spanish, Portuguese (BR), Russian, Turkish, and Polish. The Meccha Chameleon game UI, voice chat, and tutorial all follow your Steam language preference. The Meccha Chameleon game matchmaker uses the language preference as a soft tie-breaker when pairing random lobbies.',
+      'The Meccha Chameleon game ships with full localization in English, Japanese (日本語), Simplified Chinese, Traditional Chinese, Korean, German, French, Spanish, Portuguese (BR), Russian, Turkish, and Polish. The Meccha Chameleon game UI, voice chat, and tutorial all follow your language preference. The Meccha Chameleon game matchmaker uses the language preference as a soft tie-breaker when pairing random lobbies.',
   },
   {
     q: 'Is Meccha Chameleon appropriate for kids?',
@@ -178,9 +178,9 @@ export function KeywordSection() {
           <p className="mt-3 text-sm leading-6 text-[#4C3B35]">
             A quick reference for every way the Meccha Chameleon game shows up in search results.
             If you came here looking for Meccha Chameleon guides, Meccha Chameleon tips, or a
-            Meccha Chameleon play online, the answers below should cover it. The Steam page
-            remains the best place for the full PC game; this browser hub helps you try the
-            Meccha Chameleon game idea without installing.
+            Meccha Chameleon play online, the answers below should cover it. This browser hub
+            keeps the play window, guide, and hiding-spot atlas together so you can try the
+            Meccha Chameleon game idea without leaving the page.
           </p>
         </div>
 
@@ -245,7 +245,7 @@ export function KeywordSection() {
         <p className="sr-only">
           The Meccha Chameleon game companion site. Meccha Chameleon game online, Meccha Chameleon
           game multiplayer, Meccha Chameleon game guide, Meccha Chameleon game tips, Meccha
-          Chameleon game new player, Meccha Chameleon game mac, Meccha Chameleon game steam link,
+          Chameleon game new player, Meccha Chameleon game mac, Meccha Chameleon game phone streaming,
           Meccha Chameleon game mobile, Meccha Chameleon game crossplay, Meccha Chameleon game
           2026, Meccha Chameleon game 7 million sales, Meccha Chameleon game osaka map, Meccha
           Chameleon game camo lab, Meccha Chameleon game hiding spots, Meccha Chameleon game

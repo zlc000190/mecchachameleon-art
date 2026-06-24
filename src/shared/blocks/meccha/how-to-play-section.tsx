@@ -13,31 +13,31 @@ const steps: Step[] = [
   {
     title: 'Same room, same Wi-Fi',
     body:
-      'Easiest setup of all: one of you hosts a Custom Room in Steam, the rest join through Steam friends. No firewall fiddling, no port forwarding — Steam handles the relay and latency stays under 30 ms on a normal home network.',
+      'Easiest setup of all: one of you hosts a Custom Room, the rest join through the friend invite flow. No firewall fiddling, no port forwarding; relay networking keeps latency low on a normal home network.',
     bullets: [
-      'Host opens Meccha Chameleon on Steam and picks Custom Room.',
-      'Friends list auto-sync — invite up to 9 friends directly from the Steam overlay (Shift+Tab).',
+      'Host opens Meccha Chameleon and picks Custom Room.',
+      'Friends list auto-sync lets you invite up to 9 friends directly from the in-game flow.',
       'Voice chat through Discord or in-game push-to-talk so seekers can call coordinates.',
     ],
   },
   {
     title: 'Different house, same country',
     body:
-      'Custom Rooms route over Steam relay servers, so your friends across town or across the country can join without you opening any ports. The default relay is fine for casual matches; if anyone is on a corporate network that blocks Steam, ask them to switch to mobile hotspot.',
+      'Custom Rooms route over relay servers, so your friends across town or across the country can join without you opening any ports. The default relay is fine for casual matches; if anyone is on a corporate network that blocks game traffic, ask them to switch to mobile hotspot.',
     bullets: [
       'Host region: closest relay server is auto-picked (Hong Kong, Tokyo, Singapore for Asia; Frankfurt, Amsterdam, Virginia for EU/NA).',
       'Latency budget: under 80 ms feels great, up to 140 ms is still playable.',
-      'Avoid hosting from a VPN exit node — Steam sees the VPN IP and may pick a far relay.',
+      'Avoid hosting from a VPN exit node; the network may pick a far relay.',
     ],
   },
   {
     title: 'Different continent',
     body:
-      'For long-distance crews, set Steam to use a relay in the midpoint between host and friends. Custom Rooms always use Steam relay, never direct IP, so NATs are not a problem. If lag spikes appear mid-round it is almost always ISP routing, not the game itself.',
+      'For long-distance crews, use a relay region near the midpoint between host and friends. Custom Rooms use relay networking instead of direct IP, so NATs are not a problem. If lag spikes appear mid-round it is almost always ISP routing, not the game itself.',
     bullets: [
-      'Have one person in each region check the ping on the Steam server list — the host picks the lowest combined ping.',
+      'Have one person in each region check the ping list; the host picks the lowest combined ping.',
       'Use the in-game ping overlay (Settings → Display → Network Stats) to confirm it is the network and not your local Wi-Fi.',
-      'Discord "Together" / Watch Party works for voice but the match itself runs on Steam, not Discord.',
+      'Discord works for voice, but the match itself runs in the game client.',
     ],
   },
   {
@@ -46,7 +46,7 @@ const steps: Step[] = [
       'Public matchmaking is the lowest-friction way to play — drop in, get matched with 2-9 other players, paint, hide, hunt. Most public lobbies lean casual; veteran paint-hiders usually cluster in Custom Rooms via Discord servers.',
     bullets: [
       'Recommended 2-10 players per match. Up to 24 is supported but the maps get crowded.',
-      'Set your language preference in Steam → Friends → Language. The matchmaker uses it as a soft tie-breaker.',
+      'Set your language preference before matchmaking. The matchmaker uses it as a soft tie-breaker.',
       'For ranked / sweaty lobbies, the r/MechaChameleon Discord has region-specific channels with custom-room codes.',
     ],
   },
@@ -63,11 +63,11 @@ const steps: Step[] = [
   {
     title: 'Cross-platform and family play',
     body:
-      'Meccha Chameleon is PC-only on Steam, so there is no console or mobile port to worry about crossplay with. But you can absolutely include a younger sibling or a less-technical friend — the in-game paint tool is the entire skill floor.',
+      'Meccha Chameleon is PC-only, so there is no console or native mobile port to worry about crossplay with. But you can absolutely include a younger sibling or a less-technical friend; the in-game paint tool is the entire skill floor.',
     bullets: [
-      'No native Mac client. Mac players join through Crossover, Whisky / Game Porting Toolkit, or Parallels. The Steam page links a step-by-step Mac guide.',
-      'No mobile port. For "phone-in-hand while PC plays" use Steam Link, Moonlight, or Sunshine — the in-game UI scales fine on touch.',
-      'Family-friendly: no chat filter required, all lobbies default to push-to-talk, and the Steam family sharing plan works for siblings in the same household.',
+      'No native Mac client. Mac players usually join through Crossover, Whisky / Game Porting Toolkit, or Parallels.',
+      'No mobile port. For "phone-in-hand while PC plays" use Moonlight or Sunshine; the in-game UI scales fine on touch.',
+      'Family-friendly: no chat filter required, and all lobbies default to push-to-talk.',
     ],
   },
 ];
@@ -105,7 +105,7 @@ const modes = [
 
 type CrewMember = {
   name: string;
-  platform: 'Steam' | 'Discord' | 'Mobile' | 'Other';
+  platform: 'PC' | 'Discord' | 'Mobile' | 'Other';
   invitedAt: string; // ISO
   status: 'invited' | 'joined' | 'ghosted';
   score: number; // for the leaderboard
@@ -142,7 +142,7 @@ export function HowToPlaySection({ locale }: { locale: string }) {
   // between SSR markup and JS activation.
   const [crew, setCrew] = useState<CrewMember[]>(() => loadCrew());
   const [newName, setNewName] = useState('');
-  const [newPlatform, setNewPlatform] = useState<CrewMember['platform']>('Steam');
+  const [newPlatform, setNewPlatform] = useState<CrewMember['platform']>('PC');
   const [copyState, setCopyState] = useState<'idle' | 'copied'>('idle');
   const [shareState, setShareState] = useState<'idle' | 'shared' | 'unavailable'>('idle');
 
@@ -151,7 +151,7 @@ export function HowToPlaySection({ locale }: { locale: string }) {
   }, [crew]);
 
   const pageUrl = typeof window !== 'undefined' ? window.location.origin + '/#how-to-play' : 'https://mecchachameleon.art/#how-to-play';
-  const shareText = 'I just found a clean Meccha Chameleon multiplayer walkthrough + browser play hub. Open this in your Steam group chat:';
+  const shareText = 'I just found a clean Meccha Chameleon multiplayer walkthrough + browser play hub. Open this in your group chat:';
 
   async function handleCopy() {
     try {
@@ -258,7 +258,7 @@ export function HowToPlaySection({ locale }: { locale: string }) {
           <div className="grid gap-0 md:grid-cols-[minmax(0,1fr)_320px]">
             <div className="relative aspect-video w-full bg-[#eef8ff]">
               <iframe
-                src="https://www.youtube-nocookie.com/embed/videoseries?list=PLRVtp0tj-2nGuUic4vt4Os-Snpt5-ICvE&rel=0&modestbranding=1&playsinline=1"
+                src="https://www.youtube-nocookie.com/embed/OwrQrvNRHoY?playlist=1_p9HKjNqnk,tiwvQyc2a8k,hGbThwkwU50,eCbimRl-VLw&rel=0&modestbranding=1&playsinline=1"
                 title="Meccha Chameleon beginner guide series"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
@@ -371,8 +371,8 @@ export function HowToPlaySection({ locale }: { locale: string }) {
             <p className="mt-4 text-xs text-[#4C3B35]">
               <strong className="text-[#29211D]">Why a share button?</strong> A Custom Room is only
               fun with at least 4 friends. Dropping the link in your group chat with a one-line
-              &quot;we should try this tonight&quot; converts 3x better than a Steam store link
-              alone — Mechameleon sells itself once one person in the chat has played a round.
+              &quot;we should try this tonight&quot; works better when it points to a page
+              where the group can immediately play, watch, and compare hiding ideas.
             </p>
           </div>
 
@@ -405,7 +405,7 @@ export function HowToPlaySection({ locale }: { locale: string }) {
                 onChange={(e) => setNewPlatform(e.target.value as CrewMember['platform'])}
                 className="rounded-md border border-[#D8CFC6] bg-white px-3 py-2 text-sm text-[#29211D] focus:border-[#7D6D69] focus:outline-none"
               >
-                <option value="Steam">Steam</option>
+                <option value="PC">PC</option>
                 <option value="Discord">Discord</option>
                 <option value="Mobile">Mobile</option>
                 <option value="Other">Other</option>
@@ -553,12 +553,10 @@ export function HowToPlaySection({ locale }: { locale: string }) {
               New player guide
             </a>
             <a
-              href="https://store.steampowered.com/app/4704690/MECCHA_CHAMELEON/"
-              target="_blank"
-              rel="noopener noreferrer"
+              href={getHref('/#play')}
               className="inline-flex min-h-10 items-center gap-1.5 rounded-md border border-[#29211D] bg-white px-4 text-sm font-semibold text-[#29211D] transition hover:border-[#7D6D69] hover:text-[#7D6D69]"
             >
-              Buy on Steam
+              Play online
             </a>
           </div>
         </div>

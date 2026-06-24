@@ -4,8 +4,6 @@ import { setRequestLocale } from 'next-intl/server';
 
 import { getCanonicalUrl } from '@/shared/lib/seo';
 
-const steamUrl = 'https://store.steampowered.com/app/4704690/MECCHA_CHAMELEON/';
-
 export const revalidate = 3600;
 
 export async function generateMetadata({
@@ -41,11 +39,11 @@ const quickStart = [
   {
     step: '01',
     icon: Cpu,
-    title: 'Install in 4 minutes',
+    title: 'Start in the browser',
     body:
-      'Buy on Steam for $5.99 (no microtransactions, no subscription). Steam downloads the client, which is under 1.5 GB. The launcher is your standard Steam overlay.',
+      'Start with the browser play window on this site. It loads quickly, keeps the game flow on one page, and lets you decide whether the hide-and-seek loop clicks for you.',
     detail:
-      'System requirements are modest: any 4-core CPU after 2015 and a GPU with 2 GB VRAM. The game does not use ray tracing or DLSS, so even a 2018 integrated GPU runs it on Medium.',
+      'If you move to the PC version later, the system requirements are modest: any 4-core CPU after 2015 and a GPU with 2 GB VRAM.',
   },
   {
     step: '02',
@@ -109,7 +107,7 @@ const roles = [
 
 const beginnerVideoSeries = {
   title: 'Meccha Chameleon beginner guide series',
-  src: 'https://www.youtube-nocookie.com/embed/videoseries?list=PLRVtp0tj-2nGuUic4vt4Os-Snpt5-ICvE&rel=0&modestbranding=1&playsinline=1',
+  src: 'https://www.youtube-nocookie.com/embed/OwrQrvNRHoY?playlist=1_p9HKjNqnk,tiwvQyc2a8k,hGbThwkwU50,eCbimRl-VLw&rel=0&modestbranding=1&playsinline=1',
   steps: [
     'Start with the first guide and let the playlist auto-advance.',
     'Watch for paint, pose, and spot-selection rules before the first match.',
@@ -180,12 +178,12 @@ const faqs = [
   {
     q: 'Can I play with friends in a different country?',
     a:
-      'Yes. Custom Rooms route over Steam relay servers. Pick the relay closest to the median location of your group and you will get sub-150 ms latency. For example, a Tokyo-Sydney-Sao Paulo group should use the Singapore relay.',
+      'Yes. Custom Rooms route over relay servers. Pick the relay closest to the median location of your group and you will get sub-150 ms latency. For example, a Tokyo-Sydney-Sao Paulo group should use the Singapore relay.',
   },
   {
     q: 'Is there crossplay with console?',
     a:
-      'No. Meccha Chameleon is PC-only on Steam. There is no PlayStation, Xbox, or Switch version announced. If you want to play on a phone, use Steam Link or Moonlight to stream from your PC.',
+      'No. Meccha Chameleon is PC-only. There is no PlayStation, Xbox, or Switch version announced. If you want to play on a phone, use Moonlight or Sunshine to stream from your PC.',
   },
   {
     q: 'How long does a single round take?',
@@ -200,17 +198,17 @@ const faqs = [
   {
     q: 'Can I play on Mac?',
     a:
-      'There is no native Mac client. Mac players join through Crossover, Whisky / Game Porting Toolkit, or Parallels. The Steam community has a maintained Mac guide that walks the Crossover install in about 20 minutes.',
+      'There is no native Mac client. Mac players join through Crossover, Whisky / Game Porting Toolkit, or Parallels. Community Mac guides usually walk the Crossover install in about 20 minutes.',
   },
   {
-    q: 'Is the Steam Workshop worth it?',
+    q: 'Are custom maps worth it?',
     a:
-      'For longevity, yes. After 1.2.0 the Workshop has 200+ custom maps. The top-rated ones add maps beyond the stock rotation: hospital, cruise ship, abandoned mall, etc. Steam integration is one-click install.',
+      'For longevity, yes. After 1.2.0 the game has 200+ custom maps. The top-rated ones add maps beyond the stock rotation: hospital, cruise ship, abandoned mall, etc. Custom maps are the best way to keep friend groups playing.',
   },
   {
     q: 'What is the player count sweet spot?',
     a:
-      '8 players is the most fun. 2-4 is too easy for the seekers. 24 is chaos — fine for streamers, bad for first-timers. The developer recommends 2-10 in the Steam listing and we agree.',
+      '8 players is the most fun. 2-4 is too easy for the seekers. 24 is chaos; fine for streamers, bad for first-timers. The developer recommends 2-10 and we agree.',
   },
 ];
 
@@ -255,12 +253,10 @@ export default async function NewPlayerPage({
               <Gamepad2 className="h-3.5 w-3.5 text-[#7D6D69]" /> Beginner
             </span>
             <a
-              href={steamUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={backHref}
               className="inline-flex items-center gap-1.5 rounded-md border border-[#ff6f9a] bg-[#ff6f9a] px-3 py-1.5 text-white transition hover:bg-[#e95a88]"
             >
-              Buy on Steam — $5.99
+              Play online
             </a>
           </div>
         </div>
@@ -525,12 +521,10 @@ export default async function NewPlayerPage({
               Multiplayer playbook
             </a>
             <a
-              href={steamUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={backHref}
               className="inline-flex min-h-10 items-center gap-1.5 rounded-md border border-[#29211D] bg-white px-4 text-sm font-semibold text-[#29211D] transition hover:border-[#7D6D69] hover:text-[#7D6D69]"
             >
-              Buy on Steam
+              Play online
             </a>
           </div>
         </div>
