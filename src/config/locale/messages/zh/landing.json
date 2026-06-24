@@ -2,10 +2,10 @@
   "header": {
     "id": "header",
     "brand": {
-      "title": "Meccha Chameleon Art Lab",
+      "title": "Meccha Chameleon Online Demo",
       "logo": {
         "src": "/logo.png",
-        "alt": "Meccha Chameleon Art Lab",
+        "alt": "Meccha Chameleon Online Demo",
         "width": 100,
         "height": 100
       },
@@ -53,17 +53,17 @@
     "show_theme": true,
     "show_locale": false,
     "topbanner": {
-      "text": "玩家工具站。页面里的可玩 demo 不是 Meccha Chameleon 官方游戏。"
+      "text": "玩家在线试玩入口。页面里的可玩 demo 不是 Meccha Chameleon 官方游戏。"
     }
   },
   "footer": {
     "id": "footer",
     "brand": {
-      "title": "Meccha Chameleon Art Lab",
-      "description": "面向 Meccha Chameleon 玩家的一页式 demo 入口和手机二屏伪装辅助工具。",
+      "title": "Meccha Chameleon Online Demo",
+      "description": "面向 Meccha Chameleon 玩家的在线试玩入口和手机二屏伪装辅助工具。",
       "logo": {
         "src": "/logo.png",
-        "alt": "Meccha Chameleon Art Lab",
+        "alt": "Meccha Chameleon Online Demo",
         "width": 1024,
         "height": 1024
       },

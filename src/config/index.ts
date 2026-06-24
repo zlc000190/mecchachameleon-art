@@ -7,7 +7,7 @@ export type ConfigMap = Record<string, string>;
 
 export const envConfigs: ConfigMap = {
   app_url: process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000',
-  app_name: process.env.NEXT_PUBLIC_APP_NAME ?? 'Meccha Chameleon Art Lab',
+  app_name: process.env.NEXT_PUBLIC_APP_NAME ?? 'Meccha Chameleon Online Demo',
   app_description:
     process.env.NEXT_PUBLIC_APP_DESCRIPTION ??
     'Meccha Chameleon browser demo gateway and camo companion.',

@@ -2,10 +2,10 @@
   "header": {
     "id": "header",
     "brand": {
-      "title": "Meccha Chameleon Art Lab",
+      "title": "Meccha Chameleon Online Demo",
       "logo": {
         "src": "/logo.png",
-        "alt": "Meccha Chameleon Art Lab",
+        "alt": "Meccha Chameleon Online Demo",
         "width": 100,
         "height": 100
       },
@@ -53,17 +53,17 @@
     "show_theme": true,
     "show_locale": false,
     "topbanner": {
-      "text": "Fan-made companion. The playable demo is not the official Meccha Chameleon game."
+      "text": "Fan-made browser demo gateway. The playable demo is not the official Meccha Chameleon game."
     }
   },
   "footer": {
     "id": "footer",
     "brand": {
-      "title": "Meccha Chameleon Art Lab",
+      "title": "Meccha Chameleon Online Demo",
       "description": "A fan-made browser demo gateway and second-screen camo companion for Meccha Chameleon players.",
       "logo": {
         "src": "/logo.png",
-        "alt": "Meccha Chameleon Art Lab",
+        "alt": "Meccha Chameleon Online Demo",
         "width": 1024,
         "height": 1024
       },

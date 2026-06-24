@@ -28,20 +28,20 @@ function getPaths(locale: string) {
   return [
     {
       icon: BadgeInfo,
-      title: 'New to the game',
-      copy: 'Understand the Steam game, platforms, price, and the basic hide-and-seek loop before you download.',
+      title: 'Never played it',
+      copy: 'Start with the browser demo, then learn what the Steam game adds before you install.',
       href: getLocalizedPath(locale, '/new-player'),
     },
     {
       icon: Brush,
-      title: 'Help me hide better',
-      copy: 'Use camo ideas, color cues, pose notes, and map spots once you already know the rules.',
+      title: 'Already playing',
+      copy: 'Jump into camo ideas, color cues, pose notes, and map spots for real matches.',
       href: '#atlas',
   },
   {
     icon: MonitorSmartphone,
-    title: 'Playing on PC',
-    copy: 'Keep this page open on your phone as a fast second-screen guide during real matches.',
+    title: 'Need quick help',
+    copy: 'Keep this page open on your phone as a second-screen guide while the PC game runs.',
     href: '#second-screen',
   },
   ];
@@ -89,23 +89,24 @@ export default async function LandingPage({
           <div className="flex flex-col items-start gap-5">
             <div className="inline-flex w-fit items-center gap-2 rounded-full border border-[#ccc1aa] bg-white/70 px-3 py-1 text-sm text-[#4C3B35]">
               <ShieldCheck className="h-4 w-4 text-[#7D6D69]" />
-              Fan-made companion for the Steam game
+              Play a hide-and-seek demo in your browser
             </div>
 
             <div className="space-y-4">
               <h1 className="max-w-3xl text-4xl font-bold leading-tight tracking-normal text-[#29211D] md:text-6xl">
-                Meccha Chameleon Art Lab
+                Meccha Chameleon Online Demo
               </h1>
               <p className="max-w-2xl text-lg leading-8 text-[#4f4b42] md:text-xl">
-                Try the browser demo first if you want to know whether the camo
-                gameplay clicks for you. If it does, the Steam game is the next
-                step. If not, you have only spent a minute.
+                Want to know if the paint-and-hide gameplay is for you? Play a
+                quick browser demo first, learn the loop, then decide whether
+                the full Steam game is worth installing.
               </p>
             </div>
 
             <div className="max-w-2xl rounded-md border border-[#d8cfbd] bg-white/80 p-4 text-sm leading-6 text-[#4f4b42]">
-              <strong className="text-[#29211D]">Already own it?</strong>
-              {' '}Go straight to the{' '}
+              <strong className="text-[#29211D]">Not the official game.</strong>
+              {' '}This is a fan-made online demo gateway plus a player guide.
+              New players can test the hide-and-seek idea here; Steam players can jump to the{' '}
               <a href="#new-player" className="font-semibold text-[#7D6D69] underline">
                 beginner walkthrough
               </a>{' '}
@@ -113,7 +114,7 @@ export default async function LandingPage({
               <a href="#atlas" className="font-semibold text-[#7D6D69] underline">
                 50 hiding spots atlas
               </a>
-              . If not, hit play below first. No signup, no install.
+              . No signup, no install for the demo.
             </div>
 
             <div className="flex flex-wrap gap-3">
@@ -122,14 +123,14 @@ export default async function LandingPage({
                 className="inline-flex min-h-11 items-center gap-2 rounded-md bg-[#7D6D69] px-5 py-3 font-semibold text-white transition hover:bg-[#5C4F4C]"
               >
                 <Gamepad2 className="h-5 w-5" />
-                Play the demo
+                Play online now
               </a>
               <a
                 href={getLocalizedPath(locale, '/new-player')}
                 className="inline-flex min-h-11 items-center gap-2 rounded-md border border-[#b9af9e] bg-white px-5 py-3 font-semibold text-[#29211D] transition hover:bg-[#ece5d8]"
               >
                 <BookOpen className="h-5 w-5" />
-                I already own it, teach me
+                Learn the real game
               </a>
               <a
                 href={steamUrl}
@@ -170,17 +171,17 @@ export default async function LandingPage({
         <div className="container grid gap-8 py-14 lg:grid-cols-[0.85fr_1.15fr]">
           <div>
             <p className="mb-3 text-sm font-semibold uppercase tracking-normal text-[#7D6D69]">
-              New player filter
+              New player route
             </p>
             <h2 className="text-3xl font-bold tracking-normal md:text-4xl">
-              If you have not downloaded the game yet, start here.
+              If you searched before downloading, start with the demo.
             </h2>
           </div>
           <div className="grid gap-4 md:grid-cols-2">
             {[
               ['What is it?', 'A Steam PC hide-and-seek game where hiders paint their bodies to blend into the map.'],
-              ['Is it free?', 'The real game is on Steam. This site only provides an unofficial demo and companion guide.'],
-              ['Can I play on mobile?', 'Use this site on mobile as a guide. Treat mobile game-store clones as separate products unless the developer confirms them.'],
+              ['Can I play here?', 'You can play a similar browser demo here. The official Meccha Chameleon game still lives on Steam.'],
+              ['Should I install it?', 'Try one quick round first. If hiding, painting, and seeker pressure feel fun, then move to Steam.'],
               ['What should I learn first?', 'Spot selection, color matching, pose discipline, and staying still after you commit.'],
             ].map(([title, copy]) => (
               <div key={title} className="rounded-md border border-[#e0d8c8] p-5">
