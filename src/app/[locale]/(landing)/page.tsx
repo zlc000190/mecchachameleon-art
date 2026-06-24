@@ -94,7 +94,7 @@ export default async function LandingPage({
 
             <div className="space-y-4">
               <h1 className="max-w-3xl text-4xl font-bold leading-tight tracking-normal text-[#29211D] md:text-6xl">
-                Meccha Chameleon Online Demo
+                Meccha Chameleon Play Online
               </h1>
               <p className="max-w-2xl text-lg leading-8 text-[#4f4b42] md:text-xl">
                 Want to know if the paint-and-hide gameplay is for you? Play a

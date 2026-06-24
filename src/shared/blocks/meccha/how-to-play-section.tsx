@@ -170,7 +170,7 @@ export function HowToPlaySection({ locale }: { locale: string }) {
       return;
     }
     try {
-      await navigator.share({ title: 'Meccha Chameleon Online Demo', text: shareText, url: pageUrl });
+      await navigator.share({ title: 'Meccha Chameleon Play Online', text: shareText, url: pageUrl });
       setShareState('shared');
       setTimeout(() => setShareState('idle'), 2000);
     } catch {

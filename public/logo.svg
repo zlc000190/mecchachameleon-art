@@ -1,101 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Meccha Chameleon Online Demo">
-  <title>Meccha Chameleon Online Demo</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Meccha Chameleon Play Online">
+  <title>Meccha Chameleon Play Online</title>
   <defs>
-    <!-- Slight vertical gradient on the chameleon body for depth -->
-    <linearGradient id="bodyGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#2a8a6b"/>
-      <stop offset="1" stop-color="#1a5a47"/>
+    <linearGradient id="macaronBg" x1="116" y1="124" x2="908" y2="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffe27a"/>
+      <stop offset="0.24" stop-color="#ff8fb3"/>
+      <stop offset="0.5" stop-color="#9de7dc"/>
+      <stop offset="0.76" stop-color="#9fb7ff"/>
+      <stop offset="1" stop-color="#d9b7ff"/>
     </linearGradient>
-    <linearGradient id="bodyShadow" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#1a5a47" stop-opacity="0"/>
-      <stop offset="1" stop-color="#0a2e23" stop-opacity="0.55"/>
+    <linearGradient id="chameleonBody" x1="286" y1="302" x2="764" y2="736" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8ff2b0"/>
+      <stop offset="0.34" stop-color="#4fd8bb"/>
+      <stop offset="0.66" stop-color="#61a8ff"/>
+      <stop offset="1" stop-color="#b88cff"/>
     </linearGradient>
-    <radialGradient id="bgGrad" cx="0.5" cy="0.42" r="0.7">
-      <stop offset="0" stop-color="#2a2a2a"/>
-      <stop offset="1" stop-color="#0e0e0e"/>
-    </radialGradient>
+    <linearGradient id="tailGrad" x1="170" y1="442" x2="570" y2="804" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff9ab7"/>
+      <stop offset="0.45" stop-color="#ffcf64"/>
+      <stop offset="1" stop-color="#64dfc5"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="22" stdDeviation="24" flood-color="#4b2f54" flood-opacity="0.22"/>
+    </filter>
   </defs>
 
-  <!-- Dark rounded square background -->
-  <rect x="0" y="0" width="1024" height="1024" rx="220" ry="220" fill="url(#bgGrad)"/>
+  <rect x="44" y="44" width="936" height="936" rx="224" fill="url(#macaronBg)"/>
+  <circle cx="204" cy="202" r="92" fill="#fff4be" opacity="0.95"/>
+  <circle cx="814" cy="212" r="86" fill="#c8f7ef" opacity="0.92"/>
+  <circle cx="838" cy="812" r="106" fill="#ffd1dc" opacity="0.92"/>
+  <circle cx="188" cy="796" r="84" fill="#d8c7ff" opacity="0.92"/>
 
-  <!-- Branch (chameleon is curled around it) -->
-  <path d="M 200 760 Q 380 720 512 740 T 870 700"
-        stroke="#5d3a23" stroke-width="22" stroke-linecap="round" fill="none"/>
-  <path d="M 200 760 Q 380 720 512 740 T 870 700"
-        stroke="#3a2415" stroke-width="22" stroke-linecap="round" fill="none"
-        stroke-dasharray="0 60 30 0" opacity="0.4"/>
+  <g filter="url(#softShadow)">
+    <path d="M530 752c-142 10-274-42-318-144-42-98 10-205 111-254 96-47 209-26 271 46 27 32 38 68 30 101-9 38-40 66-79 71-42 6-79-16-91-51-9-28 6-58 35-69 23-9 49-2 62 16 12 17 7 39-11 49-11 6-25 6-36-1 8 22 42 33 70 16 34-20 42-67 16-105-45-65-153-78-232-28-81 51-102 143-47 211 62 77 205 99 332 46 45-19 83-45 116-78 31-32 85 4 65 46-46 98-157 171-294 181z" fill="url(#tailGrad)"/>
 
-  <!-- Tiny leaf on the branch -->
-  <path d="M 760 706 Q 800 670 836 686 Q 820 716 776 720 Z" fill="#3d6b3d"/>
-  <path d="M 760 706 Q 800 670 836 686" stroke="#1f3d20" stroke-width="3" fill="none"/>
+    <path d="M288 642c0-134 107-244 255-244h96c101 0 183 82 183 183s-82 183-183 183H410c-67 0-122-55-122-122z" fill="url(#chameleonBody)"/>
+    <path d="M608 397h70c74 0 135 60 135 135 0 18-4 35-10 51-36-77-119-129-214-129H471c-52 0-101 14-143 39 45-59 115-96 215-96h65z" fill="#ffffff" opacity="0.22"/>
 
-  <!-- Curled chameleon tail (wraps under the body) -->
-  <path d="M 268 690
-           C 200 600, 220 460, 320 420
-           C 410 388, 470 470, 430 530
-           C 396 580, 430 614, 488 600"
-        stroke="url(#bodyGrad)" stroke-width="68" stroke-linecap="round" fill="none"/>
-  <path d="M 268 690
-           C 200 600, 220 460, 320 420
-           C 410 388, 470 470, 430 530
-           C 396 580, 430 614, 488 600"
-        stroke="url(#bodyShadow)" stroke-width="68" stroke-linecap="round" fill="none"/>
+    <circle cx="679" cy="520" r="76" fill="#fff7d6"/>
+    <circle cx="706" cy="511" r="35" fill="#302338"/>
+    <circle cx="718" cy="497" r="11" fill="#ffffff"/>
 
-  <!-- Body (oval) -->
-  <ellipse cx="540" cy="555" rx="170" ry="135" fill="url(#bodyGrad)"/>
-  <ellipse cx="540" cy="555" rx="170" ry="135" fill="url(#bodyShadow)"/>
+    <path d="M752 594l102 58-102 58z" fill="#ffffff"/>
+    <path d="M752 594l102 58-102 58z" fill="#ff6f9a" opacity="0.82"/>
 
-  <!-- Belly highlight -->
-  <ellipse cx="540" cy="595" rx="118" ry="62" fill="#3aaa83" opacity="0.55"/>
+    <rect x="389" y="572" width="206" height="92" rx="46" fill="#fff6de"/>
+    <circle cx="458" cy="618" r="18" fill="#68d8c2"/>
+    <circle cx="522" cy="618" r="18" fill="#ff8fab"/>
+    <path d="M593 606h44v24h-44z" fill="#776bff"/>
+    <path d="M603 596h24v44h-24z" fill="#776bff"/>
 
-  <!-- Camouflage splotches on body -->
-  <ellipse cx="478" cy="498" rx="34" ry="26" fill="#c66b3d" opacity="0.85"/>
-  <ellipse cx="588" cy="540" rx="38" ry="30" fill="#f6f3ea" opacity="0.55"/>
-  <ellipse cx="510" cy="600" rx="28" ry="20" fill="#1f4733" opacity="0.7"/>
-  <ellipse cx="600" cy="478" rx="22" ry="18" fill="#f6f3ea" opacity="0.45"/>
-
-  <!-- Head crest (small triangular spikes) -->
-  <path d="M 612 444 L 624 416 L 636 444 Z" fill="#1a5a47"/>
-  <path d="M 636 436 L 652 408 L 660 438 Z" fill="#1a5a47"/>
-  <path d="M 660 434 L 678 410 L 686 440 Z" fill="#1a5a47"/>
-
-  <!-- Head (rounded triangular shape pointing right) -->
-  <path d="M 620 470
-           Q 760 470, 800 510
-           Q 760 570, 620 580
-           Q 600 525, 620 470 Z"
-        fill="url(#bodyGrad)"/>
-  <path d="M 620 470
-           Q 760 470, 800 510
-           Q 760 570, 620 580
-           Q 600 525, 620 470 Z"
-        fill="url(#bodyShadow)" opacity="0.6"/>
-
-  <!-- Eye socket (large dark ring) -->
-  <circle cx="730" cy="500" r="46" fill="#0e0e0e"/>
-  <circle cx="730" cy="500" r="38" fill="#f6f3ea"/>
-  <!-- Pupil (a tiny chameleon-style pinpoint) -->
-  <circle cx="730" cy="500" r="9" fill="#0e0e0e"/>
-  <!-- Eye highlight -->
-  <circle cx="722" cy="492" r="6" fill="#f6f3ea"/>
-
-  <!-- Mouth (curved smile) -->
-  <path d="M 790 532 Q 808 542 798 552" stroke="#0e0e0e" stroke-width="6" stroke-linecap="round" fill="none"/>
-
-  <!-- Front foot gripping branch -->
-  <path d="M 600 670 Q 590 700 612 716 L 624 706 L 624 686 Q 616 670 600 670 Z" fill="#1a5a47"/>
-  <path d="M 600 670 Q 590 700 612 716" stroke="#0a2e23" stroke-width="3" fill="none"/>
-  <!-- Back foot -->
-  <path d="M 430 680 Q 420 710 442 726 L 454 716 L 454 696 Q 446 680 430 680 Z" fill="#1a5a47"/>
-
-  <!-- Monogram "M" in the negative space under the body, terracotta accent -->
-  <text x="512" y="890"
-        font-family="ui-sans-serif, -apple-system, system-ui, 'Helvetica Neue', Arial, sans-serif"
-        font-size="120"
-        font-weight="800"
-        letter-spacing="14"
-        text-anchor="middle"
-        fill="#c66b3d">MECHA</text>
+    <g>
+      <circle cx="294" cy="294" r="42" fill="#ffffff"/>
+      <circle cx="294" cy="277" r="14" fill="#ff6f9a"/>
+      <path d="M264 322c7-23 52-23 60 0z" fill="#ff6f9a"/>
+    </g>
+    <g>
+      <circle cx="744" cy="286" r="42" fill="#ffffff"/>
+      <circle cx="744" cy="269" r="14" fill="#61a8ff"/>
+      <path d="M714 314c7-23 52-23 60 0z" fill="#61a8ff"/>
+    </g>
+    <g>
+      <circle cx="810" cy="742" r="42" fill="#ffffff"/>
+      <circle cx="810" cy="725" r="14" fill="#ffcf64"/>
+      <path d="M780 770c7-23 52-23 60 0z" fill="#ffcf64"/>
+    </g>
+  </g>
 </svg>

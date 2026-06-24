@@ -197,7 +197,7 @@ export function UpdatesSection() {
               <span className="inline-flex h-6 items-center rounded-sm bg-[#7D6D69] px-2 text-[10px] font-bold uppercase tracking-wider text-white">
                 Fan site
               </span>
-              Meccha Chameleon Online Demo changelog
+              Meccha Chameleon Play Online changelog
             </h3>
             <ol className="relative space-y-4 border-l-2 border-[#D8CFC6] pl-5">
               {siteUpdates.map((u) => (
