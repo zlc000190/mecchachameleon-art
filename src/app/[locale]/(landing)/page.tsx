@@ -1,7 +1,5 @@
 import {
-  BadgeInfo,
   BookOpen,
-  Brush,
   ExternalLink,
   Gamepad2,
   type LucideIcon,
@@ -14,8 +12,6 @@ import {
 } from 'lucide-react';
 import { setRequestLocale } from 'next-intl/server';
 
-import { getLocalizedPath } from '@/shared/blocks/meccha/atlas-data';
-
 import { AtlasPreview } from '@/shared/blocks/meccha/atlas-preview';
 import { DemoFrame } from '@/shared/blocks/meccha/demo-frame';
 import { HowToPlaySection } from '@/shared/blocks/meccha/how-to-play-section';
@@ -24,28 +20,12 @@ import { UpdatesSection } from '@/shared/blocks/meccha/updates-section';
 
 const steamUrl = 'https://store.steampowered.com/app/4704690/MECCHA_CHAMELEON/';
 
-function getPaths(locale: string) {
-  return [
-    {
-      icon: BadgeInfo,
-      title: 'Never played it',
-      copy: 'Start with the browser demo, then learn what the Steam game adds before you install.',
-      href: getLocalizedPath(locale, '/new-player'),
-    },
-    {
-      icon: Brush,
-      title: 'Already playing',
-      copy: 'Jump into camo ideas, color cues, pose notes, and map spots for real matches.',
-      href: '#atlas',
-  },
-  {
-    icon: MonitorSmartphone,
-    title: 'Need quick help',
-    copy: 'Keep this page open on your phone as a second-screen guide while the PC game runs.',
-    href: '#second-screen',
-  },
-  ];
-}
+const playHubCards: Array<[LucideIcon, string, string, string]> = [
+  [Gamepad2, 'Hide N Seek!', 'Fastest browser demo. Start here if you just want to play.', '#play'],
+  [MonitorSmartphone, 'Sneaky Friends', 'Multiplayer-style hide-and-seek demo for friend groups.', '#play'],
+  [BookOpen, 'How to play', 'Rules, hider/seeker roles, and first-match walkthrough.', '#how-to-play'],
+  [MapPinned, 'Hiding spots', 'Map-specific ideas once you understand the loop.', '#atlas'],
+];
 
 const faqs = [
   {
@@ -85,84 +65,82 @@ export default async function LandingPage({
   return (
     <main className="min-h-screen bg-[#F6F0EA] text-[#29211D]">
       <section className="border-b border-[#D8CFC6] bg-[#F6F0EA]">
-        <div className="container grid gap-6 py-10 text-left lg:grid-cols-[minmax(0,0.9fr)_minmax(440px,1.1fr)] lg:gap-8 lg:py-12 lg:items-start">
-          <div className="flex flex-col items-start gap-5">
-            <div className="inline-flex w-fit items-center gap-2 rounded-full border border-[#ccc1aa] bg-white/70 px-3 py-1 text-sm text-[#4C3B35]">
-              <ShieldCheck className="h-4 w-4 text-[#7D6D69]" />
-              Play a hide-and-seek demo in your browser
-            </div>
-
-            <div className="space-y-4">
-              <h1 className="max-w-3xl text-4xl font-bold leading-tight tracking-normal text-[#29211D] md:text-6xl">
+        <div className="container pb-8 pt-24 lg:pb-10 lg:pt-32">
+          <div className="mb-5 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <div className="mb-3 inline-flex w-fit items-center gap-2 rounded-full border border-[#ccc1aa] bg-white/70 px-3 py-1 text-sm text-[#4C3B35]">
+                <ShieldCheck className="h-4 w-4 text-[#7D6D69]" />
+                Fan-made play hub. Demo is not the official Steam game.
+              </div>
+              <h1 className="text-4xl font-bold leading-tight tracking-normal text-[#29211D] md:text-6xl">
                 Meccha Chameleon Play Online
               </h1>
-              <p className="max-w-2xl text-lg leading-8 text-[#4f4b42] md:text-xl">
-                Want to know if the paint-and-hide gameplay is for you? Play a
-                quick browser demo first, learn the loop, then decide whether
-                the full Steam game is worth installing.
-              </p>
             </div>
-
-            <div className="max-w-2xl rounded-md border border-[#d8cfbd] bg-white/80 p-4 text-sm leading-6 text-[#4f4b42]">
-              <strong className="text-[#29211D]">Not the official game.</strong>
-              {' '}This is a fan-made online demo gateway plus a player guide.
-              New players can test the hide-and-seek idea here; Steam players can jump to the{' '}
-              <a href="#new-player" className="font-semibold text-[#7D6D69] underline">
-                beginner walkthrough
-              </a>{' '}
-              or the{' '}
-              <a href="#atlas" className="font-semibold text-[#7D6D69] underline">
-                50 hiding spots atlas
-              </a>
-              . No signup, no install for the demo.
-            </div>
-
             <div className="flex flex-wrap gap-3">
               <a
                 href="#play"
                 className="inline-flex min-h-11 items-center gap-2 rounded-md bg-[#7D6D69] px-5 py-3 font-semibold text-white transition hover:bg-[#5C4F4C]"
               >
                 <Gamepad2 className="h-5 w-5" />
-                Play online now
+                Play now
               </a>
               <a
-                href={getLocalizedPath(locale, '/new-player')}
+                href="#how-to-play"
                 className="inline-flex min-h-11 items-center gap-2 rounded-md border border-[#b9af9e] bg-white px-5 py-3 font-semibold text-[#29211D] transition hover:bg-[#ece5d8]"
               >
                 <BookOpen className="h-5 w-5" />
-                Learn the real game
+                How to play
               </a>
+            </div>
+          </div>
+
+          <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start">
+            <div id="play">
+              <DemoFrame />
+            </div>
+
+            <aside className="grid gap-3 lg:sticky lg:top-24">
+              <div className="rounded-lg border border-[#d8cfbd] bg-white/85 p-4">
+                <div className="text-sm font-semibold text-[#29211D]">
+                  Play first, read later
+                </div>
+                <p className="mt-2 text-sm leading-6 text-[#4C3B35]">
+                  If you came from search to play, stay in the demo. If you need
+                  rules or Steam details, jump down without leaving the page.
+                </p>
+              </div>
+
+              {playHubCards.map(([Icon, title, copy, href]) => (
+                <a
+                  key={title}
+                  href={href}
+                  className="group rounded-lg border border-[#d8cfbd] bg-white/90 p-4 transition hover:-translate-y-0.5 hover:border-[#7D6D69] hover:bg-white"
+                >
+                  <div className="flex items-start gap-3">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-[#F4DCD0] text-[#7D6D69] group-hover:bg-[#7D6D69] group-hover:text-white">
+                      <Icon className="h-5 w-5" />
+                    </span>
+                    <span>
+                      <span className="block font-semibold">{title}</span>
+                      <span className="mt-1 block text-sm leading-5 text-[#4C3B35]">
+                        {copy}
+                      </span>
+                    </span>
+                  </div>
+                </a>
+              ))}
+
               <a
                 href={steamUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex min-h-11 items-center gap-2 rounded-md border border-[#b9af9e] bg-white px-5 py-3 font-semibold text-[#29211D] transition hover:bg-[#ece5d8]"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-[#b9af9e] bg-[#29211D] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#4C3B35]"
               >
-                <Store className="h-5 w-5" />
-                Buy on Steam · $5.99
+                <Store className="h-4 w-4" />
+                Official Steam · $5.99
                 <ExternalLink className="h-4 w-4" />
               </a>
-            </div>
-
-            <div className="grid gap-3 sm:grid-cols-3">
-              {getPaths(locale).map((item) => (
-                <a
-                  key={item.title}
-                  href={item.href}
-                  className="min-h-[148px] rounded-md border border-[#d8cfbd] bg-white/75 p-4 transition hover:-translate-y-0.5 hover:border-[#7D6D69]"
-                >
-                  <item.icon className="mb-3 h-5 w-5 text-[#7D6D69]" />
-                  <div className="font-semibold">{item.title}</div>
-                  <p className="mt-2 text-sm leading-6 text-[#4C3B35]">
-                    {item.copy}
-                  </p>
-                </a>
-              ))}
-            </div>
-          </div>
-
-          <div id="play" className="lg:self-start">
-            <DemoFrame />
+            </aside>
           </div>
         </div>
       </section>
