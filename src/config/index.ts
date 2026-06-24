@@ -10,7 +10,7 @@ export const envConfigs: ConfigMap = {
   app_name: process.env.NEXT_PUBLIC_APP_NAME ?? 'Meccha Chameleon Play Online',
   app_description:
     process.env.NEXT_PUBLIC_APP_DESCRIPTION ??
-    'Meccha Chameleon browser demo gateway and camo companion.',
+    'Meccha Chameleon browser game and camo companion.',
   app_logo: process.env.NEXT_PUBLIC_APP_LOGO ?? '/logo.png',
   app_favicon: process.env.NEXT_PUBLIC_APP_FAVICON ?? '/favicon.ico',
   app_preview_image:

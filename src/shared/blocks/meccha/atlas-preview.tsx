@@ -20,9 +20,9 @@ export function AtlasPreview({ locale }: { locale: string }) {
         <a
           key={map.id}
           href={getLocalizedPath(locale, `/maps/${map.slug}`)}
-          className="group overflow-hidden rounded-md border border-[#D8CFC6] bg-[#F6F0EA] transition hover:-translate-y-0.5 hover:border-[#7D6D69]"
+          className="group overflow-hidden rounded-md border border-[#efc8d3] bg-[#fff7f1] transition hover:-translate-y-0.5 hover:border-[#ff8fb3]"
         >
-          <div className="relative aspect-[4/3] overflow-hidden bg-[#29211D]">
+          <div className="relative aspect-[4/3] overflow-hidden bg-[#cdefff]">
             <Image
               src={getAtlasImagePath(map.thumb)}
               alt={`${map.name} Meccha Chameleon hiding spots map preview`}
@@ -31,10 +31,10 @@ export function AtlasPreview({ locale }: { locale: string }) {
               className="object-cover transition duration-300 group-hover:scale-105"
               loading="lazy"
             />
-            <div className="absolute left-3 top-3 flex h-9 w-9 items-center justify-center rounded-md bg-[#7D6D69] text-sm font-bold text-white shadow-sm">
+            <div className="absolute left-3 top-3 flex h-9 w-9 items-center justify-center rounded-md bg-[#ff8fb3] text-sm font-bold text-white shadow-sm">
               {index + 1}
             </div>
-            <div className="absolute right-3 top-3 flex h-9 items-center gap-1 rounded-md bg-black/60 px-2 text-xs font-semibold text-white shadow-sm backdrop-blur">
+            <div className="absolute right-3 top-3 flex h-9 items-center gap-1 rounded-md bg-white/85 px-2 text-xs font-semibold text-[#29211D] shadow-sm backdrop-blur">
               {map.spots.length} spots
             </div>
           </div>
@@ -64,7 +64,7 @@ export function AtlasPreview({ locale }: { locale: string }) {
               {map.spots.map((spot, sIdx) => (
                 <div
                   key={spot.id}
-                  className="relative aspect-square overflow-hidden rounded-sm border border-[#D8CFC6] bg-[#29211D]"
+                  className="relative aspect-square overflow-hidden rounded-sm border border-[#efc8d3] bg-[#cdefff]"
                   title={`${sIdx + 1}. ${spot.name}`}
                 >
                   <Image

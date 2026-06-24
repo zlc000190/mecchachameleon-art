@@ -14,8 +14,8 @@
     "nav": {
       "items": [
         {
-          "title": "Demo",
-          "url": "/#demo",
+          "title": "Play",
+          "url": "/#play",
           "icon": "Gamepad2"
         },
         {
@@ -53,14 +53,14 @@
     "show_theme": true,
     "show_locale": false,
     "topbanner": {
-      "text": "Fan-made browser demo gateway. The playable demo is not the official Meccha Chameleon game."
+      "text": "Play hide-and-seek in your browser. No download needed."
     }
   },
   "footer": {
     "id": "footer",
     "brand": {
       "title": "Meccha Chameleon Play Online",
-      "description": "A fan-made browser demo gateway and second-screen camo companion for Meccha Chameleon players.",
+      "description": "A browser play hub and second-screen camo companion for Meccha Chameleon players.",
       "logo": {
         "src": "/logo.png",
         "alt": "Meccha Chameleon Play Online",
@@ -75,12 +75,12 @@
           "title": "Play",
           "children": [
             {
-              "title": "Browser Demo",
-              "url": "/#demo",
+              "title": "Play Online",
+              "url": "/#play",
               "target": "_self"
             },
             {
-              "title": "Official Steam Page",
+              "title": "Steam Page",
               "url": "https://store.steampowered.com/app/4704690/MECCHA_CHAMELEON/",
               "target": "_blank"
             }

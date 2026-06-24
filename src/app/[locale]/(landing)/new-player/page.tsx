@@ -54,7 +54,7 @@ const quickStart = [
     body:
       'The first launch drops you into a 6-minute interactive tutorial. It walks the paint tool, the pose lock, the seek scan, and one full round. Skip the optional Discord invite — the in-game voice works fine.',
     detail:
-      'Pay attention to the "Parallax" demo at minute 4. It is the single mechanic that separates good hiders from great ones, and the game only shows it once.',
+      'Pay attention to the "Parallax" moment at minute 4. It is the single mechanic that separates good hiders from great ones, and the game only shows it once.',
   },
   {
     step: '03',
@@ -205,7 +205,7 @@ const faqs = [
   {
     q: 'Is the Steam Workshop worth it?',
     a:
-      'For longevity, yes. After 1.2.0 the Workshop has 200+ custom maps. The top-rated ones add maps that the official rotation does not have: hospital, cruise ship, abandoned mall, etc. Steam integration is one-click install.',
+      'For longevity, yes. After 1.2.0 the Workshop has 200+ custom maps. The top-rated ones add maps beyond the stock rotation: hospital, cruise ship, abandoned mall, etc. Steam integration is one-click install.',
   },
   {
     q: 'What is the player count sweet spot?',
@@ -258,7 +258,7 @@ export default async function NewPlayerPage({
               href={steamUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-md border border-[#29211D] bg-[#29211D] px-3 py-1.5 text-white transition hover:bg-[#2a2a26]"
+              className="inline-flex items-center gap-1.5 rounded-md border border-[#ff6f9a] bg-[#ff6f9a] px-3 py-1.5 text-white transition hover:bg-[#e95a88]"
             >
               Buy on Steam — $5.99
             </a>
@@ -304,7 +304,7 @@ export default async function NewPlayerPage({
           <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
             {controls.map((c) => (
               <div key={c.key} className="rounded-md border border-[#D8CFC6] bg-white p-4">
-                <kbd className="rounded-sm bg-[#29211D] px-2 py-1 font-mono text-xs font-bold text-white">
+                <kbd className="rounded-sm bg-[#ff8fb3] px-2 py-1 font-mono text-xs font-bold text-white">
                   {c.key}
                 </kbd>
                 <p className="mt-2 text-xs leading-5 text-[#4C3B35]">{c.action}</p>
@@ -362,9 +362,9 @@ export default async function NewPlayerPage({
             The player is embedded as a playlist, so it can move to the next
             guide automatically without sending you away from the site.
           </p>
-          <div className="mt-8 overflow-hidden rounded-md border border-[#D8CFC6] bg-[#29211D]">
+          <div className="mt-8 overflow-hidden rounded-md border border-[#efc8d3] bg-gradient-to-br from-[#fff7c8] via-[#ffd2e1] to-[#cdefff]">
             <div className="grid gap-0 lg:grid-cols-[minmax(0,1fr)_360px]">
-              <div className="relative aspect-video bg-black">
+              <div className="relative aspect-video bg-[#eef8ff]">
                 <iframe
                   src={beginnerVideoSeries.src}
                   title={beginnerVideoSeries.title}
@@ -382,7 +382,7 @@ export default async function NewPlayerPage({
                 <ol className="mt-4 space-y-3 text-sm leading-6 text-[#4C3B35]">
                   {beginnerVideoSeries.steps.map((step, index) => (
                     <li key={step} className="flex gap-3">
-                      <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#29211D] text-xs font-bold text-white">
+                      <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#ff8fb3] text-xs font-bold text-white">
                         {index + 1}
                       </span>
                       <span>{step}</span>
@@ -396,20 +396,20 @@ export default async function NewPlayerPage({
       </section>
 
       {/* First match timeline */}
-      <section className="border-b border-[#D8CFC6] bg-[#1F1611] text-white">
+      <section className="border-b border-[#D8CFC6] bg-gradient-to-br from-[#9de7dc] via-[#cdefff] to-[#d9b7ff] text-[#29211D]">
         <div className="container py-14">
-          <p className="text-xs font-semibold uppercase tracking-widest text-[#C9B2A8]">First match</p>
+          <p className="text-xs font-semibold uppercase tracking-widest text-[#ff6f9a]">First match</p>
           <h2 className="mt-1 text-2xl font-bold leading-tight md:text-3xl">
             What a single round actually looks like, minute by minute
           </h2>
-          <p className="mt-3 max-w-3xl text-sm leading-6 text-white/75">
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-[#4C3B35]">
             A 5-minute walkthrough of one Classic Hide &amp; Seek round. Use this to set expectations
             before your first public matchmaking queue.
           </p>
           <ol className="mt-8 space-y-4">
             {firstMatch.map((m, i) => (
-              <li key={m.label} className="flex gap-4 rounded-md border border-white/10 bg-white/5 p-4">
-                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#C9B2A8] text-sm font-bold text-[#1F1611]">
+              <li key={m.label} className="flex gap-4 rounded-md border border-white/70 bg-white/70 p-4">
+                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#ff8fb3] text-sm font-bold text-white">
                   {i + 1}
                 </span>
                 <div className="flex-1">
@@ -504,7 +504,7 @@ export default async function NewPlayerPage({
       <section className="bg-[#F6F0EA]">
         <div className="container flex flex-col items-start gap-6 py-14 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-start gap-4">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-[#29211D] text-white">
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-[#ff8fb3] text-white">
               <PartyPopper className="h-5 w-5" />
             </span>
             <div>
@@ -519,7 +519,7 @@ export default async function NewPlayerPage({
           <div className="flex gap-2">
             <a
               href={atHowToPlay}
-              className="inline-flex min-h-10 items-center gap-1.5 rounded-md bg-[#29211D] px-4 text-sm font-semibold text-white transition hover:bg-[#2a2a26]"
+              className="inline-flex min-h-10 items-center gap-1.5 rounded-md bg-[#ff6f9a] px-4 text-sm font-semibold text-white transition hover:bg-[#e95a88]"
             >
               <Sparkles className="h-4 w-4" />
               Multiplayer playbook

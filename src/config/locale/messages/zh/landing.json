@@ -14,8 +14,8 @@
     "nav": {
       "items": [
         {
-          "title": "Demo",
-          "url": "/#demo",
+          "title": "Play",
+          "url": "/#play",
           "icon": "Gamepad2"
         },
         {
@@ -53,7 +53,7 @@
     "show_theme": true,
     "show_locale": false,
     "topbanner": {
-      "text": "玩家在线试玩入口。页面里的可玩 demo 不是 Meccha Chameleon 官方游戏。"
+      "text": "浏览器直接玩 hide-and-seek，无需下载。"
     }
   },
   "footer": {
@@ -75,12 +75,12 @@
           "title": "Play",
           "children": [
             {
-              "title": "Browser Demo",
-              "url": "/#demo",
+              "title": "Play Online",
+              "url": "/#play",
               "target": "_self"
             },
             {
-              "title": "Official Steam Page",
+              "title": "Steam Page",
               "url": "https://store.steampowered.com/app/4704690/MECCHA_CHAMELEON/",
               "target": "_blank"
             }

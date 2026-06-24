@@ -40,7 +40,7 @@ export async function generateMetadata({
   }
 
   const title = `${map.name} Hiding Spots — Meccha Chameleon`;
-  const description = `${map.name} Meccha Chameleon hiding spot atlas (10 spots): screenshots, paint RGB, difficulty, hider tips. Fan-made; free browser demo.`;
+  const description = `${map.name} Meccha Chameleon hiding spot atlas (10 spots): screenshots, paint RGB, difficulty, and hider tips.`;
   const canonicalUrl = await getCanonicalUrl(`/maps/${mapSlug}`, locale);
 
   return {
@@ -147,7 +147,7 @@ export default async function MapPage({
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-md border border-white/15 bg-black shadow-[0_18px_60px_rgba(0,0,0,0.28)]">
+          <div className="overflow-hidden rounded-md border border-[#efc8d3] bg-[#cdefff] shadow-[0_18px_60px_rgba(134,103,124,0.18)]">
             <div className="relative aspect-video">
               <Image
               src={getAtlasImagePath(map.thumb)}
@@ -173,8 +173,8 @@ export default async function MapPage({
           <div>
             <h2 className="text-2xl font-bold">Ready for the real match?</h2>
             <p className="mt-2 text-sm leading-6 text-[#4C3B35]">
-              This atlas is an unofficial second-screen guide. The official game
-              remains the Steam PC release.
+              Keep this atlas open while you queue up, compare map colors, and
+              pick your next hiding route.
             </p>
           </div>
           <a
@@ -183,7 +183,7 @@ export default async function MapPage({
             rel="noreferrer"
             className="inline-flex min-h-11 w-fit items-center gap-2 rounded-md bg-[#7D6D69] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#5C4F4C]"
           >
-            Official Steam page
+            Steam page
             <ExternalLink className="h-4 w-4" />
           </a>
         </div>

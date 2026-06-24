@@ -19,9 +19,9 @@ const steamUpdates: SteamUpdate[] = [
   {
     date: '2026-06-22',
     label: '1.7.0',
-    title: 'New official map "Osaka" + report feature',
+    title: 'New map "Osaka" + report feature',
     body:
-      'A Japan-themed official map joins the rotation, plus a built-in player report flow. Discord link on the title screen is fixed.',
+      'A Japan-themed map joins the rotation, plus a built-in player report flow. Discord link on the title screen is fixed.',
     href: 'https://store.steampowered.com/news/app/4704690',
     variant: 'feature',
   },
@@ -78,15 +78,15 @@ const siteUpdates: SiteUpdate[] = [
   },
   {
     date: '2026-06-23',
-    title: 'Browser demo: Easy / Hard / Social tiers',
+    title: 'Browser play: Find It / Hidden Objects / Hard',
     body:
-      'Replaced the three placeholder demos with a tier selector. Hard uses the same CrazyGames Hide N Seek that mechachameleon.org ships, so it is the closest visual match to the Steam game.',
+      'Replaced unstable embedded games with a cleaner selector and a more reliable default game source.',
   },
   {
     date: '2026-06-23',
     title: 'Logo + branding replaced',
     body:
-      'The ShipAny default logo is gone. New hand-drawn chameleon + MECHA wordmark in forest green / charcoal / terracotta. SVG favicon preferred by modern browsers.',
+      'The ShipAny default logo is gone. New macaron-color chameleon icon, preview image, and favicon are live.',
   },
   {
     date: '2026-06-23',
@@ -133,8 +133,8 @@ export function UpdatesSection() {
             </h2>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-[#4C3B35]">
               We watch the Steam community announcements and refresh the home
-              page each time LEMORION ships a new version. Below: official
-              patches on the left, our own guide and atlas edits on the right.
+              page each time LEMORION ships a new version. Below: Steam
+              patches on the left, guide and atlas edits on the right.
             </p>
           </div>
           <a
@@ -149,11 +149,11 @@ export function UpdatesSection() {
         </div>
 
         <div className="grid gap-6 lg:grid-cols-2">
-          {/* Official Steam updates */}
+          {/* Steam updates */}
           <div>
             <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold text-[#29211D]">
-              <span className="inline-flex h-6 items-center rounded-sm bg-[#29211D] px-2 text-[10px] font-bold uppercase tracking-wider text-white">
-                Official
+              <span className="inline-flex h-6 items-center rounded-sm bg-[#ff8fb3] px-2 text-[10px] font-bold uppercase tracking-wider text-white">
+                Steam
               </span>
               Steam patch notes
             </h3>
@@ -191,11 +191,11 @@ export function UpdatesSection() {
             </ol>
           </div>
 
-          {/* Our own site updates */}
+          {/* Site updates */}
           <div>
             <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold text-[#29211D]">
-              <span className="inline-flex h-6 items-center rounded-sm bg-[#7D6D69] px-2 text-[10px] font-bold uppercase tracking-wider text-white">
-                Fan site
+              <span className="inline-flex h-6 items-center rounded-sm bg-[#61a8ff] px-2 text-[10px] font-bold uppercase tracking-wider text-white">
+                Site
               </span>
               Meccha Chameleon Play Online changelog
             </h3>

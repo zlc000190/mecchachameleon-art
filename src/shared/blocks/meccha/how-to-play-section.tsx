@@ -151,7 +151,7 @@ export function HowToPlaySection({ locale }: { locale: string }) {
   }, [crew]);
 
   const pageUrl = typeof window !== 'undefined' ? window.location.origin + '/#how-to-play' : 'https://mecchachameleon.art/#how-to-play';
-  const shareText = 'I just found a clean Meccha Chameleon multiplayer walkthrough + a working browser demo. Open this in your Steam group chat:';
+  const shareText = 'I just found a clean Meccha Chameleon multiplayer walkthrough + browser play hub. Open this in your Steam group chat:';
 
   async function handleCopy() {
     try {
@@ -206,7 +206,7 @@ export function HowToPlaySection({ locale }: { locale: string }) {
   }
 
   const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(pageUrl)}`;
-  const redditUrl = `https://www.reddit.com/submit?title=${encodeURIComponent('Meccha Chameleon multiplayer walkthrough + browser demo')}&url=${encodeURIComponent(pageUrl)}`;
+  const redditUrl = `https://www.reddit.com/submit?title=${encodeURIComponent('Meccha Chameleon multiplayer walkthrough + browser play hub')}&url=${encodeURIComponent(pageUrl)}`;
   const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + pageUrl)}`;
   const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(shareText)}`;
 
@@ -228,8 +228,8 @@ export function HowToPlaySection({ locale }: { locale: string }) {
           <p className="mt-3 text-sm leading-6 text-[#4C3B35]">
             Meccha Chameleon is a party game, not a single-player puzzle — half the fun is hunting
             someone you can actually call on Discord. Below is the playbook we use for friend groups,
-            long-distance crews, and the random matchmaking queue. The official beginner guide has the
-            full step-by-step on the in-game controls.
+            long-distance crews, and the random matchmaking queue. The beginner guide has the
+            full step-by-step controls.
           </p>
         </div>
 
@@ -242,7 +242,7 @@ export function HowToPlaySection({ locale }: { locale: string }) {
                 key={mode.name}
                 className="flex h-full flex-col rounded-md border border-[#D8CFC6] bg-[#F6F0EA] p-5"
               >
-                <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-md bg-[#29211D] text-white">
+                <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-md bg-[#ff8fb3] text-white">
                   <Icon className="h-5 w-5" />
                 </div>
                 <h3 className="text-sm font-semibold text-[#29211D]">{mode.name}</h3>
@@ -254,9 +254,9 @@ export function HowToPlaySection({ locale }: { locale: string }) {
         </div>
 
         {/* YouTube playlist embed — beginner series that auto-advances in place */}
-        <div className="mb-12 overflow-hidden rounded-md border border-[#D8CFC6] bg-[#29211D]">
+        <div className="mb-12 overflow-hidden rounded-md border border-[#efc8d3] bg-gradient-to-br from-[#fff7c8] via-[#ffd2e1] to-[#cdefff]">
           <div className="grid gap-0 md:grid-cols-[minmax(0,1fr)_320px]">
-            <div className="relative aspect-video w-full bg-black">
+            <div className="relative aspect-video w-full bg-[#eef8ff]">
               <iframe
                 src="https://www.youtube-nocookie.com/embed/videoseries?list=PLRVtp0tj-2nGuUic4vt4Os-Snpt5-ICvE&rel=0&modestbranding=1&playsinline=1"
                 title="Meccha Chameleon beginner guide series"
@@ -267,25 +267,25 @@ export function HowToPlaySection({ locale }: { locale: string }) {
                 referrerPolicy="strict-origin-when-cross-origin"
               />
             </div>
-            <div className="flex flex-col justify-between gap-4 bg-[#1a1a1a] p-5 text-white">
+            <div className="flex flex-col justify-between gap-4 bg-white/80 p-5 text-[#29211D]">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-[#C9B2A8]">
+                <p className="text-xs font-semibold uppercase tracking-widest text-[#ff6f9a]">
                   Watch before you play
                 </p>
                 <h3 className="mt-2 text-lg font-semibold leading-snug">
                   Meccha Chameleon beginner guide series
                 </h3>
-                <p className="mt-2 text-sm leading-5 text-white/70">
+                <p className="mt-2 text-sm leading-5 text-[#4C3B35]">
                   Start with the first clip and let the playlist advance on its own.
                   The videos stay embedded here, so the page keeps the full walkthrough in one place.
                 </p>
-                <ul className="mt-3 space-y-2 text-sm leading-5 text-white/70">
+                <ul className="mt-3 space-y-2 text-sm leading-5 text-[#4C3B35]">
                   <li>1. Learn the loop and controls.</li>
                   <li>2. Check hider and seeker basics.</li>
                   <li>3. Keep the tab open for the next lesson.</li>
                 </ul>
               </div>
-              <div className="flex items-center justify-between gap-3 text-xs text-white/60">
+              <div className="flex items-center justify-between gap-3 text-xs text-[#5f5260]">
                 <span>Playlist auto-advances in place.</span>
                 <span>Embed stays on-site.</span>
               </div>
@@ -315,7 +315,7 @@ export function HowToPlaySection({ locale }: { locale: string }) {
                 href={twitterUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-10 items-center justify-center gap-2 rounded-md bg-[#29211D] px-3 text-sm font-semibold text-white transition hover:bg-[#2a2a26]"
+                className="inline-flex min-h-10 items-center justify-center gap-2 rounded-md bg-[#61a8ff] px-3 text-sm font-semibold text-white transition hover:bg-[#4b92ec]"
               >
                 <Twitter className="h-4 w-4" /> X / Twitter
               </a>
@@ -379,7 +379,7 @@ export function HowToPlaySection({ locale }: { locale: string }) {
           {/* Crew roster */}
           <div className="rounded-md border border-[#D8CFC6] bg-[#F6F0EA] p-6">
             <div className="mb-3 flex items-center gap-2">
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-[#29211D] text-white">
+              <span className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-[#ff8fb3] text-white">
                 <Trophy className="h-4 w-4" />
               </span>
               <div>
@@ -432,7 +432,7 @@ export function HowToPlaySection({ locale }: { locale: string }) {
                     className="flex items-center justify-between gap-3 rounded-md border border-[#D8CFC6] bg-white p-3"
                   >
                     <div className="flex min-w-0 items-center gap-3">
-                      <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#29211D] text-xs font-bold text-white">
+                      <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#ff8fb3] text-xs font-bold text-white">
                         {i + 1}
                       </span>
                       <div className="min-w-0">
@@ -532,7 +532,7 @@ export function HowToPlaySection({ locale }: { locale: string }) {
         {/* CTA */}
         <div className="mt-12 flex flex-col items-start gap-4 rounded-md border border-[#D8CFC6] bg-[#F6F0EA] p-6 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-[#29211D] text-white">
+            <span className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-[#ff8fb3] text-white">
               <Wifi className="h-4 w-4" />
             </span>
             <div>
@@ -547,7 +547,7 @@ export function HowToPlaySection({ locale }: { locale: string }) {
           <div className="flex gap-2">
             <a
               href={getHref('/new-player')}
-              className="inline-flex min-h-10 items-center gap-1.5 rounded-md bg-[#29211D] px-4 text-sm font-semibold text-white transition hover:bg-[#2a2a26]"
+              className="inline-flex min-h-10 items-center gap-1.5 rounded-md bg-[#ff6f9a] px-4 text-sm font-semibold text-white transition hover:bg-[#e95a88]"
             >
               <MessageCircle className="h-4 w-4" />
               New player guide

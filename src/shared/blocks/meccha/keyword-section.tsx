@@ -9,9 +9,9 @@ import { HelpCircle, Sparkles, Tag } from 'lucide-react';
 const searchTerms = [
   'meccha chameleon',
   'meccha chameleon game',
-  'meccha chameleon demo',
+  'meccha chameleon browser game',
   'meccha chameleon online',
-  'meccha chameleon free demo',
+  'meccha chameleon play free',
   'meccha chameleon multiplayer',
   'meccha chameleon game online',
   'meccha chameleon steam',
@@ -72,17 +72,17 @@ const faqs: Array<{ q: string; a: string }> = [
   {
     q: 'What is Meccha Chameleon?',
     a:
-      'Meccha Chameleon (also written as Meccha Chameleon Game, 超级变色龙 in Chinese) is an asymmetric hide-and-seek party game for PC where players paint their character to match the environment, then seekers try to find them. The Meccha Chameleon game launched on Steam on June 10, 2026 and has since passed 7 million copies sold. The official Meccha Chameleon game is developed by LEMORION (Japan); this site is a fan-made companion that helps players learn the Meccha Chameleon game faster with browser demos, a 50-spot hiding-spot atlas, and a multiplayer playbook.',
+      'Meccha Chameleon (also written as Meccha Chameleon Game, 超级变色龙 in Chinese) is an asymmetric hide-and-seek party game for PC where players paint their character to match the environment, then seekers try to find them. The Meccha Chameleon game launched on Steam on June 10, 2026 and has since passed 7 million copies sold. This play hub helps players learn the Meccha Chameleon game faster with browser games, a 50-spot hiding-spot atlas, and a multiplayer playbook.',
   },
   {
     q: 'Where can I play Meccha Chameleon?',
     a:
-      'The Meccha Chameleon game is currently PC-only on Steam. There is no console or mobile release for Meccha Chameleon. Mac players run the Meccha Chameleon game through Crossover, Whisky / Game Porting Toolkit, or Parallels. For phone-in-hand play, you can stream the Meccha Chameleon game to a mobile device via Steam Link, Moonlight, or Sunshine. This site ships a free browser demo so you can try the Meccha Chameleon game idea before installing the Steam client.',
+      'The Meccha Chameleon game is currently PC-only on Steam. There is no console or mobile release for Meccha Chameleon. Mac players run the Meccha Chameleon game through Crossover, Whisky / Game Porting Toolkit, or Parallels. For phone-in-hand play, you can stream the Meccha Chameleon game to a mobile device via Steam Link, Moonlight, or Sunshine. The browser game above lets you try the core hide-and-seek idea before installing the Steam client.',
   },
   {
-    q: 'Is there a free demo of Meccha Chameleon?',
+    q: 'Can I play Meccha Chameleon online for free?',
     a:
-      'Yes — this site ships a free demo at the top of the home page. The Meccha Chameleon game demo runs in your browser without signup. It is a third-party HTML5 hide-and-seek mini game used to teach the Meccha Chameleon game idea (paint to blend in, then hide). For the full Meccha Chameleon game, buy the Steam release for $5.99 — no microtransactions, no subscription, no DLC. The Meccha Chameleon game demo is the fastest way to decide if the Meccha Chameleon game is for you before spending money.',
+      'Yes — start with the browser game at the top of the home page. It runs without signup and gives players a quick way to test the hide-and-seek loop before moving into the full Steam release.',
   },
   {
     q: 'How many players does the Meccha Chameleon game support?',
@@ -112,7 +112,7 @@ const faqs: Array<{ q: string; a: string }> = [
   {
     q: 'Is there a mobile version of Meccha Chameleon?',
     a:
-      'No official mobile port of the Meccha Chameleon game exists. You can stream the Meccha Chameleon game to a phone using Steam Link (the easiest), Moonlight (best for low-latency LAN streaming), or Sunshine (open-source, Windows host only). The Meccha Chameleon game UI scales to touch reasonably well, and the in-game push-to-talk works on phone mics. For the best streaming experience, run the Meccha Chameleon game on your PC and use a phone on the same Wi-Fi network.',
+      'You can stream the Meccha Chameleon game to a phone using Steam Link (the easiest), Moonlight (best for low-latency LAN streaming), or Sunshine (open-source, Windows host only). The Meccha Chameleon game UI scales to touch reasonably well, and the in-game push-to-talk works on phone mics. For the best streaming experience, run the Meccha Chameleon game on your PC and use a phone on the same Wi-Fi network.',
   },
   {
     q: 'Is there crossplay in Meccha Chameleon?',
@@ -122,7 +122,7 @@ const faqs: Array<{ q: string; a: string }> = [
   {
     q: 'How do I report a bug in Meccha Chameleon?',
     a:
-      'The Meccha Chameleon game added a built-in report feature in the 1.7.0 update (June 2026). You can also post bugs on the r/MecchaChameleon subreddit or the official Meccha Chameleon game Discord. The Meccha Chameleon game developer LEMORION is very active on those channels and most bug reports are answered within 48 hours. The Meccha Chameleon game has shipped a fix patch roughly every 2 weeks since launch.',
+      'The Meccha Chameleon game added a built-in report feature in the 1.7.0 update (June 2026). You can also post bugs on the r/MecchaChameleon subreddit or the Meccha Chameleon game Discord. The Meccha Chameleon game developer LEMORION is very active on those channels and most bug reports are answered within 48 hours. The Meccha Chameleon game has shipped a fix patch roughly every 2 weeks since launch.',
   },
   {
     q: 'What are the best Meccha Chameleon game tips?',
@@ -132,17 +132,17 @@ const faqs: Array<{ q: string; a: string }> = [
   {
     q: 'Are there custom maps in Meccha Chameleon?',
     a:
-      'Yes. The Meccha Chameleon game added Steam Workshop support in update 1.2.0. There are 200+ community maps for the Meccha Chameleon game, including a hospital, a cruise ship, an abandoned mall, and a Japan-themed dojo. The Meccha Chameleon game official maps are Mansion, Farm, Sewer, Backrooms, Penguin Hotel, and the new Osaka map from the 1.7.0 update. Each official Meccha Chameleon game map has 5-12 hiding spots, and this site has screenshots and paint-color tips for all of them.',
+      'Yes. The Meccha Chameleon game added Steam Workshop support in update 1.2.0. There are 200+ community maps for the Meccha Chameleon game, including a hospital, a cruise ship, an abandoned mall, and a Japan-themed dojo. Key Meccha Chameleon game maps include Mansion, Farm, Sewer, Backrooms, Penguin Hotel, and the new Osaka map from the 1.7.0 update. Each map has 5-12 hiding spots, and this site has screenshots and paint-color tips for all of them.',
   },
   {
     q: 'How much does the Meccha Chameleon game cost?',
     a:
-      'The Meccha Chameleon game is a one-time $5.99 purchase on Steam. There are no microtransactions, no battle pass, no DLC, and no subscription in the Meccha Chameleon game. The Meccha Chameleon game also supports the Steam family sharing plan, so up to 5 family members in the same household can play the Meccha Chameleon game on a single purchase. There is no free trial for the Meccha Chameleon game itself, but this site ships a free browser demo so you can try the Meccha Chameleon game idea first.',
+      'The Meccha Chameleon game is a one-time $5.99 purchase on Steam. There are no microtransactions, no battle pass, no DLC, and no subscription in the Meccha Chameleon game. The Meccha Chameleon game also supports the Steam family sharing plan, so up to 5 family members in the same household can play the Meccha Chameleon game on a single purchase. Use the browser game above if you want to try the core idea first.',
   },
   {
     q: 'What is the Meccha Chameleon game update 1.7.0?',
     a:
-      'The Meccha Chameleon game update 1.7.0 was released on June 22, 2026. It added a new official map called Osaka (Japan-themed, 12+ hiding spots), an in-game player report feature, and a fix for the broken Discord link on the title screen. The Meccha Chameleon game update 1.7.0 also shipped a few Quality-of-Life improvements to the lobby UI. This site tracks every Meccha Chameleon game patch in the Updates section on the home page.',
+      'The Meccha Chameleon game update 1.7.0 was released on June 22, 2026. It added a new map called Osaka (Japan-themed, 12+ hiding spots), an in-game player report feature, and a fix for the broken Discord link on the title screen. The Meccha Chameleon game update 1.7.0 also shipped a few Quality-of-Life improvements to the lobby UI. This site tracks every Meccha Chameleon game patch in the Updates section on the home page.',
   },
   {
     q: 'How many copies has Meccha Chameleon sold?',
@@ -178,16 +178,16 @@ export function KeywordSection() {
           <p className="mt-3 text-sm leading-6 text-[#4C3B35]">
             A quick reference for every way the Meccha Chameleon game shows up in search results.
             If you came here looking for Meccha Chameleon guides, Meccha Chameleon tips, or a
-            Meccha Chameleon free demo, the answers below should cover it. The official Meccha
-            Chameleon game lives on Steam; this site is a fan companion that mirrors the gameplay
-            loop in a browser so you can try the Meccha Chameleon game idea without installing.
+            Meccha Chameleon play online, the answers below should cover it. The Steam page
+            remains the best place for the full PC game; this browser hub helps you try the
+            Meccha Chameleon game idea without installing.
           </p>
         </div>
 
         {/* Search terms cloud */}
         <div className="mb-10 rounded-md border border-[#D8CFC6] bg-[#F6F0EA] p-6">
           <div className="mb-4 flex items-center gap-2">
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-[#29211D] text-white">
+            <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-[#ff8fb3] text-white">
               <Tag className="h-4 w-4" />
             </span>
             <h3 className="text-base font-semibold text-[#29211D]">
@@ -195,7 +195,7 @@ export function KeywordSection() {
             </h3>
           </div>
           <p className="mb-4 text-xs leading-5 text-[#4C3B35]">
-            Every variant players type when looking for the Meccha Chameleon game demo, Meccha
+            Every variant players type when looking for the Meccha Chameleon game online, Meccha
             Chameleon game guides, Meccha Chameleon game multiplayer setup, or Meccha Chameleon
             game patch notes. Use this list to jump straight to the section that matches what
             you searched for.
@@ -243,13 +243,13 @@ export function KeywordSection() {
 
         {/* Hidden closing — additional Meccha Chameleon context that doesn't hurt to have on-page */}
         <p className="sr-only">
-          The Meccha Chameleon game companion site. Meccha Chameleon game demo, Meccha Chameleon
+          The Meccha Chameleon game companion site. Meccha Chameleon game online, Meccha Chameleon
           game multiplayer, Meccha Chameleon game guide, Meccha Chameleon game tips, Meccha
           Chameleon game new player, Meccha Chameleon game mac, Meccha Chameleon game steam link,
           Meccha Chameleon game mobile, Meccha Chameleon game crossplay, Meccha Chameleon game
           2026, Meccha Chameleon game 7 million sales, Meccha Chameleon game osaka map, Meccha
           Chameleon game camo lab, Meccha Chameleon game hiding spots, Meccha Chameleon game
-          crew roster, Meccha Chameleon game free browser demo.
+          crew roster, Meccha Chameleon game free browser play.
         </p>
       </div>
     </section>

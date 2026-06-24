@@ -29,7 +29,7 @@ export function MapSpotsExplorer({
 
   return (
     <div className="grid gap-6 lg:grid-cols-[minmax(0,1.25fr)_minmax(320px,0.75fr)]">
-      <div className="overflow-hidden rounded-md border border-[#D8CFC6] bg-[#29211D]">
+      <div className="overflow-hidden rounded-md border border-[#efc8d3] bg-[#cdefff]">
         <div className="relative aspect-video">
           <Image
             src={getAtlasImagePath(activeSpot.screenshot)}
@@ -39,7 +39,7 @@ export function MapSpotsExplorer({
             sizes="(min-width: 1024px) 70vw, 100vw"
             className="object-cover"
           />
-          <div className="absolute left-4 top-4 rounded-md bg-black/70 px-3 py-2 text-sm font-semibold text-white backdrop-blur">
+          <div className="absolute left-4 top-4 rounded-md bg-white/85 px-3 py-2 text-sm font-semibold text-[#29211D] backdrop-blur">
             {activeSpot.name}
           </div>
         </div>
@@ -106,7 +106,7 @@ export function MapSpotsExplorer({
                   : 'border-[#D8CFC6] hover:border-[#7D6D69]'
               }`}
             >
-              <div className="relative aspect-video bg-[#29211D]">
+              <div className="relative aspect-video bg-[#cdefff]">
                 <Image
                   src={getAtlasImagePath(spot.screenshot)}
                   alt={`${spot.name} thumbnail`}
@@ -115,7 +115,7 @@ export function MapSpotsExplorer({
                   className="object-cover"
                   loading="lazy"
                 />
-                <span className="absolute left-2 top-2 rounded bg-black/70 px-2 py-1 text-xs font-semibold text-white">
+                <span className="absolute left-2 top-2 rounded bg-white/85 px-2 py-1 text-xs font-semibold text-[#29211D]">
                   {index + 1}
                 </span>
               </div>

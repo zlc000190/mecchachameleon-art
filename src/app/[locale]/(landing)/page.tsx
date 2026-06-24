@@ -21,35 +21,35 @@ import { UpdatesSection } from '@/shared/blocks/meccha/updates-section';
 const steamUrl = 'https://store.steampowered.com/app/4704690/MECCHA_CHAMELEON/';
 
 const playHubCards: Array<[LucideIcon, string, string, string]> = [
-  [Gamepad2, 'Hide N Seek!', 'Fastest browser demo. Start here if you just want to play.', '#play'],
-  [MonitorSmartphone, 'Sneaky Friends', 'Multiplayer-style hide-and-seek demo for friend groups.', '#play'],
+  [Gamepad2, 'Easy', 'Start here if you searched for Meccha Chameleon and want to play.', '#play'],
+  [MonitorSmartphone, 'Hidden Hunt', 'Scan quick scenes and warm up your seeker eye.', '#play'],
   [BookOpen, 'How to play', 'Rules, hider/seeker roles, and first-match walkthrough.', '#how-to-play'],
   [MapPinned, 'Hiding spots', 'Map-specific ideas once you understand the loop.', '#atlas'],
 ];
 
 const faqs = [
   {
-    q: 'Is this the official Meccha Chameleon game?',
-    a: 'No. The browser demo is a third-party hide-and-seek mini game used to explain a similar idea. The official Meccha Chameleon game is sold on Steam.',
+    q: 'Can I play Meccha Chameleon online?',
+    a: 'Yes. Start with the browser game above, then use the play guide and hiding spot atlas when you want deeper match help.',
   },
   {
-    q: 'Why use a simple demo instead of a full clone?',
-    a: 'A clone would be slow to build and easy to mislead players. The demo is only a quick onboarding layer; the real value is the Steam guide, camo lab, and map atlas.',
+    q: 'What should I try first?',
+    a: 'Play one short round, then open the How to play section for role basics, seeker habits, and hider positioning.',
   },
   {
-    q: 'What platform is the real game on?',
-    a: 'The official listing is a Steam PC game. This site is best used as a browser guide on desktop or as a phone second screen while playing on PC.',
+    q: 'Does this work on mobile?',
+    a: 'The browser games load on modern phones, and the guide sections are built to work as a second screen while you play on PC.',
   },
   {
-    q: 'What comes after this first version?',
-    a: 'The next build should connect the 50 captured hiding spots, add color-matching cards, and make map pages indexable for long-tail search.',
+    q: 'Where are the best hiding spots?',
+    a: 'Use the map atlas below for quick spot ideas, paint colors, difficulty labels, and hider notes.',
   },
 ];
 
 const secondScreenItems: Array<[LucideIcon, string, string]> = [
   [Smartphone, 'Phone first', 'Tap map, color, and pose notes without alt-tabbing.'],
-  [Gamepad2, 'PC aware', 'Official game remains the Steam PC game, not a browser clone.'],
-  [ShieldCheck, 'Lower risk', 'Clear labels separate demo, fan guide, and official product.'],
+  [Gamepad2, 'PC aware', 'Keep a quick guide open while the match runs.'],
+  [ShieldCheck, 'Fast queue help', 'Use role notes, spot ideas, and color cues without leaving the round.'],
 ];
 
 export const revalidate = 3600;
@@ -63,15 +63,11 @@ export default async function LandingPage({
   setRequestLocale(locale);
 
   return (
-    <main className="min-h-screen bg-[#F6F0EA] text-[#29211D]">
-      <section className="border-b border-[#D8CFC6] bg-[#F6F0EA]">
-        <div className="container pb-8 pt-24 lg:pb-10 lg:pt-32">
+    <main className="min-h-screen bg-[#fff7f1] text-[#29211D]">
+      <section className="border-b border-[#f2cfd8] bg-gradient-to-br from-[#fff7c8] via-[#ffd2e1] to-[#cdefff]">
+        <div className="container pb-8 pt-32 lg:pb-10 lg:pt-40">
           <div className="mb-5 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <div className="mb-3 inline-flex w-fit items-center gap-2 rounded-full border border-[#ccc1aa] bg-white/70 px-3 py-1 text-sm text-[#4C3B35]">
-                <ShieldCheck className="h-4 w-4 text-[#7D6D69]" />
-                Fan-made play hub. Demo is not the official Steam game.
-              </div>
               <h1 className="text-4xl font-bold leading-tight tracking-normal text-[#29211D] md:text-6xl">
                 Meccha Chameleon Play Online
               </h1>
@@ -79,14 +75,14 @@ export default async function LandingPage({
             <div className="flex flex-wrap gap-3">
               <a
                 href="#play"
-                className="inline-flex min-h-11 items-center gap-2 rounded-md bg-[#7D6D69] px-5 py-3 font-semibold text-white transition hover:bg-[#5C4F4C]"
+                className="inline-flex min-h-11 items-center gap-2 rounded-md bg-[#ff6f9a] px-5 py-3 font-semibold text-white transition hover:bg-[#e95a88]"
               >
                 <Gamepad2 className="h-5 w-5" />
                 Play now
               </a>
               <a
                 href="#how-to-play"
-                className="inline-flex min-h-11 items-center gap-2 rounded-md border border-[#b9af9e] bg-white px-5 py-3 font-semibold text-[#29211D] transition hover:bg-[#ece5d8]"
+                className="inline-flex min-h-11 items-center gap-2 rounded-md border border-[#efc8d3] bg-white px-5 py-3 font-semibold text-[#29211D] transition hover:bg-[#fff7c8]"
               >
                 <BookOpen className="h-5 w-5" />
                 How to play
@@ -100,12 +96,12 @@ export default async function LandingPage({
             </div>
 
             <aside className="grid gap-3 lg:sticky lg:top-24">
-              <div className="rounded-lg border border-[#d8cfbd] bg-white/85 p-4">
+              <div className="rounded-lg border border-[#efc8d3] bg-white/85 p-4">
                 <div className="text-sm font-semibold text-[#29211D]">
                   Play first, read later
                 </div>
                 <p className="mt-2 text-sm leading-6 text-[#4C3B35]">
-                  If you came from search to play, stay in the demo. If you need
+                  If you came from search to play, stay in the game. If you need
                   rules or Steam details, jump down without leaving the page.
                 </p>
               </div>
@@ -114,10 +110,10 @@ export default async function LandingPage({
                 <a
                   key={title}
                   href={href}
-                  className="group rounded-lg border border-[#d8cfbd] bg-white/90 p-4 transition hover:-translate-y-0.5 hover:border-[#7D6D69] hover:bg-white"
+                  className="group rounded-lg border border-[#efc8d3] bg-white/90 p-4 transition hover:-translate-y-0.5 hover:border-[#ff8fb3] hover:bg-white"
                 >
                   <div className="flex items-start gap-3">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-[#F4DCD0] text-[#7D6D69] group-hover:bg-[#7D6D69] group-hover:text-white">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-[#ffd2e1] text-[#a45a77] group-hover:bg-[#ff8fb3] group-hover:text-white">
                       <Icon className="h-5 w-5" />
                     </span>
                     <span>
@@ -134,10 +130,10 @@ export default async function LandingPage({
                 href={steamUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-[#b9af9e] bg-[#29211D] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#4C3B35]"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-[#9de7dc] bg-[#61a8ff] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#4b92ec]"
               >
                 <Store className="h-4 w-4" />
-                Official Steam · $5.99
+                Steam · $5.99
                 <ExternalLink className="h-4 w-4" />
               </a>
             </aside>
@@ -152,13 +148,13 @@ export default async function LandingPage({
               New player route
             </p>
             <h2 className="text-3xl font-bold tracking-normal md:text-4xl">
-              If you searched before downloading, start with the demo.
+              If you searched before downloading, start with the browser game.
             </h2>
           </div>
           <div className="grid gap-4 md:grid-cols-2">
             {[
               ['What is it?', 'A Steam PC hide-and-seek game where hiders paint their bodies to blend into the map.'],
-              ['Can I play here?', 'You can play a similar browser demo here. The official Meccha Chameleon game still lives on Steam.'],
+              ['Can I play here?', 'Yes. Start with the browser game above, then use the guide when you want match tips.'],
               ['Should I install it?', 'Try one quick round first. If hiding, painting, and seeker pressure feel fun, then move to Steam.'],
               ['What should I learn first?', 'Spot selection, color matching, pose discipline, and staying still after you commit.'],
             ].map(([title, copy]) => (
@@ -184,7 +180,7 @@ export default async function LandingPage({
             </div>
             <a
               href="#atlas"
-              className="inline-flex min-h-11 w-fit items-center gap-2 rounded-md bg-[#29211D] px-4 py-3 text-sm font-semibold text-white"
+              className="inline-flex min-h-11 w-fit items-center gap-2 rounded-md bg-[#ff6f9a] px-4 py-3 text-sm font-semibold text-white hover:bg-[#e95a88]"
             >
               <MapPinned className="h-4 w-4" />
               Preview map atlas
@@ -232,7 +228,7 @@ export default async function LandingPage({
 
       <UpdatesSection />
 
-      <section id="second-screen" className="border-b border-[#D8CFC6] bg-[#1F1611] text-white">
+      <section id="second-screen" className="border-b border-[#D8CFC6] bg-gradient-to-br from-[#9de7dc] via-[#cdefff] to-[#d9b7ff] text-[#29211D]">
         <div className="container grid gap-8 py-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
             <p className="mb-3 text-sm font-semibold uppercase tracking-normal text-[#C9B2A8]">
@@ -241,7 +237,7 @@ export default async function LandingPage({
             <h2 className="text-3xl font-bold tracking-normal md:text-4xl">
               Build for phone-in-hand while the real game runs on PC.
             </h2>
-            <p className="mt-4 leading-7 text-white/75">
+            <p className="mt-4 leading-7 text-[#4C3B35]">
               A browser page beats a plugin here. Steam gameplay happens outside
               the browser, so the practical companion is a mobile-friendly web
               guide that loads instantly and needs no account.
@@ -249,10 +245,10 @@ export default async function LandingPage({
           </div>
           <div className="grid gap-4 sm:grid-cols-3">
             {secondScreenItems.map(([Icon, title, copy]) => (
-              <div key={title} className="rounded-md border border-white/15 bg-white/8 p-5">
-                <Icon className="mb-4 h-5 w-5 text-[#C9B2A8]" />
+              <div key={title} className="rounded-md border border-white/70 bg-white/70 p-5">
+                <Icon className="mb-4 h-5 w-5 text-[#ff6f9a]" />
                 <h3 className="font-semibold">{title}</h3>
-                <p className="mt-2 text-sm leading-6 text-white/70">{copy}</p>
+                <p className="mt-2 text-sm leading-6 text-[#4C3B35]">{copy}</p>
               </div>
             ))}
           </div>
