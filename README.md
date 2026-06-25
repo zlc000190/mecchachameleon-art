@@ -137,6 +137,15 @@ embedded from GameDistribution and GameMonetize. They are explicitly
 **not** the official Meccha Chameleon game. The official game is sold
 on Steam: https://store.steampowered.com/app/4704690/MECCHA_CHAMELEON/
 
+## Contributing
+
+We welcome contributions — code, hiding-spot tips, translations, demo
+suggestions, or docs fixes. You can contribute fully anonymously; we
+will not publish your real name or email without your explicit OK.
+
+See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for the full guide and
+[`CONTRIBUTORS.md`](./CONTRIBUTORS.md) for the (opt-in) credit list.
+
 ## License
 
 MIT for the custom meccha/ companion code. The ShipAny template portion

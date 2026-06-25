@@ -1,0 +1,143 @@
+---
+title: How indie devs can publish source code without IP risk — a checklist for fan-made projects
+description: A practical checklist for indie devs who want to publish source code, learning templates, or community tools that reference a commercial game — without stepping on IP.
+created_at: 2026-06-25
+author_name: mecchachameleon.art
+author_image: /logo.png
+image: /imgs/features/admin.png
+---
+
+# How indie devs can publish source code without IP risk — a checklist for fan-made projects
+
+> **Reminder:** Meccha Chameleon Art Lab is an unofficial, fan-made
+> companion site. It is **not** the official Meccha Chameleon game and
+> is **not** affiliated with the game's developers or publishers. The
+> official game is sold on [Steam](https://store.steampowered.com/app/4704690/MECCHA_CHAMELEON/).
+
+When we started [mecchachameleon.art](https://mecchachameleon.art), we
+wanted to publish Godot templates, color-matching scripts, and other
+small code artifacts that **reference** the Meccha Chameleon genre —
+without redistributing the official game's assets, art, or source code.
+This is the checklist we wish someone had handed us on day one.
+
+It is not legal advice. It is a pragmatic list of habits that have
+kept our repo in good standing with the Meccha Chameleon community and
+the wider Godot community for the past year.
+
+## The 7-question pre-publish checklist
+
+Before you push anything that mentions a commercial game, walk through
+this:
+
+### 1. Is the artifact **derived from** the game's code or assets?
+
+If yes, **stop**. You cannot publish derivatives of a commercial game's
+code or art under any license. Reverse-engineering is fine for
+interoperability in many jurisdictions, but redistribution of the
+resulting code is not.
+
+If no, you are publishing **original code inspired by the genre**, not
+a derivative. Continue.
+
+### 2. Does the artifact include any of the game's art, sound, fonts, or trademarks?
+
+If yes, strip them and replace with placeholders. Even one screenshot
+from the official game in your README is a risk — it implies
+endorsement.
+
+If no, continue.
+
+### 3. Does the artifact mention the game by name?
+
+If yes, use the trademark disclaimer pattern:
+
+> "Meccha Chameleon is a trademark of [holder]. This project is
+> unofficial and fan-made. It is **not** affiliated with [holder]."
+
+If no, you can drop the disclaimer, but consider whether the lack of
+mention weakens the educational value.
+
+### 4. Can the artifact run without any of the game's files?
+
+If yes, you are in the clear. If no, you are redistributing a partial
+copy, which is a much harder position to defend.
+
+### 5. Is the artifact licensed?
+
+If no, **add an explicit license**. Unlicensed code on GitHub is
+"all rights reserved" by default in most jurisdictions — that
+contradicts the spirit of a fan-made learning project. We use MIT for
+small templates.
+
+If yes, continue.
+
+### 6. Does the artifact use any third-party assets that are not under a permissive license?
+
+Check the Godot Asset Library terms, the Kenney.nl terms, OpenGameArt
+licenses. If you grabbed a CC-BY-NC asset, you cannot use it in a
+project that also has commercial potential. Strip or replace.
+
+### 7. Does the artifact include telemetry, analytics, or auto-update?
+
+If yes, drop them for a fan-made project. Telemetry in particular
+creates a privacy surface that fans do not expect from a "just my
+learning repo" project.
+
+## What we publish under this checklist
+
+Concretely, here is what lives in our repo today, and how each item
+fares on the checklist:
+
+| Artifact | #1 Derived? | #2 Game assets? | #4 Runs standalone? | License |
+|---|---|---|---|---|
+| Godot 4 coloring game template | No (original) | No (primitives) | Yes | MIT |
+| Atlas data (50 hiding spots) | Original prose + screenshots we made | No | Yes | CC BY 4.0 |
+| Curation script for HTML5 games | No | No | Yes | MIT |
+| This blog post | No | No | Yes | CC BY 4.0 |
+
+Everything passes all 7 questions.
+
+## What we deliberately do **not** publish
+
+- **Decompiled or reverse-engineered Meccha Chameleon code.** We don't
+  have it, and we wouldn't publish it if we did.
+- **Asset rips** (sprites, sound effects, music, fonts) from the
+  official game. We use only screenshots we took ourselves, and only
+  for editorial commentary under fair use.
+- **Trademark squatting.** We do not register domain names that
+  contain "Meccha Chameleon" + a generic suffix (e.g. `.com`,
+  `.net`, `.io`). The only domain we own is `.art`, and it is
+  explicitly framed as a fan-made lab.
+- **Paid courses, paid assets, or merch** that uses the trademark.
+  Free learning materials only.
+
+## What to do if a rights holder asks you to take something down
+
+- Comply quickly. Don't argue in public first.
+- Archive the request (with timestamps) for your own records.
+- If you believe the request is mistaken (e.g. they confused you with
+  someone else), respond once, briefly, with the facts. Do not escalate
+  to social media.
+- After takedown, post a short public note that the artifact has been
+  removed at the rights holder's request. This protects future
+  contributors from replicating the same mistake.
+
+## Why we share this checklist
+
+Most "how to publish source code" guides assume you are working on your
+own original IP. The fan-made case is messier: you want to teach, you
+want to reference a real game to give context, but you do not want to
+step on a trademark. We learned these rules by trial and error and
+figured a public checklist would save the next person a few months.
+
+## How to contribute
+
+If you maintain a similar fan-made project and have additions to the
+checklist (especially jurisdictional notes for non-US contributors),
+open a PR against
+[`CONTRIBUTING.md`](https://github.com/zlc000190/mecchachameleon-art/blob/main/CONTRIBUTING.md).
+Anonymous contributions are welcome.
+
+If you maintain a commercial game and want us to remove a reference to
+your title from our repo, email `support@mecchachameleon.art`. We
+respond within a few days.
