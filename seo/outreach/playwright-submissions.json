@@ -1,0 +1,22 @@
+[
+  {
+    "name": "r/indiegaming 推文",
+    "status": "error",
+    "error": "Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"textarea[name='title']\") to be visible\n"
+  },
+  {
+    "name": "r/WebGames 链接",
+    "status": "error",
+    "error": "Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"textarea[name='title']\") to be visible\n"
+  },
+  {
+    "name": "itch.io Page",
+    "status": "error",
+    "error": "Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"input[name='title']\") to be visible\n"
+  },
+  {
+    "name": "GameJolt 游戏",
+    "status": "error",
+    "error": "Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"input[name='title']\") to be visible\n    - waiting for\" https://gamejolt.com/join\" navigation to finish...\n    - navigated to \"https://gamejolt.com/games/new\"\n    - waiting for\" https://gamejolt.com/join\" navigation to finish...\n    - navigated to \"https://gamejolt.com/join\"\n"
+  }
+]

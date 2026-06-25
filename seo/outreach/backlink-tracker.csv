@@ -1,18 +1,36 @@
 date,target_repo,target_type,pr_or_submission_id,status,do_or_no_follow,url_submitted,notes
-2026-06-24,github.com/zlc000190/AwesomeMecchaChameleonHideSpot,own_repo,,merged,dofollow,https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot,"self-link, 5 in-page + 1 homepage"
-2026-06-24,pending-sindresorius/awesome,awesome_index,,pending,dofollow,,"need to file PR"
-2026-06-24,pending-jamesmurdza/awesome-ai-devtools,awesome_index,,pending,dofollow,,""
-2026-06-24,pending-ikaijua/Awesome-AITools,awesome_index,,pending,dofollow,,""
-2026-06-24,pending-SamurAIGPT/awesome-openclaw,awesome_index,,pending,dofollow,,"window period 8 days, best target now"
-2026-06-24,pending-alexanderop/awesome-local-first,awesome_index,,pending,dofollow,,"P0 in 48-round list"
-2026-06-24,pending-meirwah/awesome-indie-games,awesome_index,,pending,dofollow,,""
-2026-06-24,pending-cicerosousa/awesome-games,awesome_index,,pending,dofollow,,""
-2026-06-24,pending-itch.io,game_directory,,pending,dofollow,,"account needed"
-2026-06-24,pending-gamejolt.com,game_directory,,pending,dofollow,,""
-2026-06-24,pending-newgrounds.com,game_directory,,pending,dofollow,,""
-2026-06-24,pending-thisisgamethailand.com,game_media,email_sent,pending,follow,,"sister site to .com"
-2026-06-24,pending-reddit.com/r/indiegaming,social,,pending,follow,,"post body ready"
-2026-06-24,pending-reddit.com/r/WebGames,social,,pending,follow,,""
-2026-06-24,pending-news.ycombinator.com,social,,pending,follow,,"show HN body ready"
-2026-06-24,pending-pcgamingwiki.com,wiki,,pending,follow,,""
-2026-06-24,pending-store.steampowered.com/curators,steam,,pending,follow,,"5 curators to ping"
+2026-06-24,github.com/zlc000190/AwesomeMecchaChameleonHideSpot,own_repo,,merged,dofollow,https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot,"self-link, 5 in-page + 1 homepage, 15 topics"
+2026-06-24,jamesmurdza/awesome-ai-devtools,awesome_index,#695,open,dofollow,,"v2 with PR template after bot close of #694"
+2026-06-24,ikaijua/Awesome-AITools,awesome_index,#655,open,dofollow,,"6037 stars, 640 forks"
+2026-06-24,SamurAIGPT/awesome-openclaw,awesome_index,#164,open,dofollow,,"window period 8 days"
+2026-06-24,alexanderop/awesome-local-first,awesome_index,#32,open,dofollow,,"P0 in 48-round list"
+2026-06-24,ellisonleao/magictools,game_awesome,#380,open,dofollow,,"Magictools P0"
+2026-06-24,twofactor/awesome-web-games,game_awesome,#1,open,dofollow,,
+2026-06-24,arcataroger/awesome-engineering-games,game_awesome,#39,open,dofollow,,
+2026-06-24,herrherrmann/awesome-multiplayer-games,game_awesome,#20,open,dofollow,,
+2026-06-24,XeldarAlz/Awesome-indie-gamedev,game_awesome,#1,open,dofollow,,
+2026-06-24,dawdle-deer/awesome-learn-gamedev,game_awesome,#15,open,dofollow,,
+2026-06-24,soarsh/awesome-gaming-subreddits,game_awesome,#1,open,dofollow,,
+2026-06-24,mikeroyal/Steam-Deck-Guide,game_awesome,#138,open,dofollow,,
+2026-06-24,Calinou/awesome-gamedev,game_awesome,#75,open,dofollow,,
+2026-06-24,stevinz/awesome-game-engine-dev,game_awesome,#30,open,dofollow,,
+2026-06-24,flame-engine/awesome-flame,game_awesome,#116,open,dofollow,,
+2026-06-24,oshaboy/awesome-indie-handhelds,game_awesome,#3,open,dofollow,,
+2026-06-24,clusteratlas/index,game_awesome,#1,open,dofollow,,
+2026-06-24,tornikegomareli/awesome-georgian-games,game_awesome,#12,open,dofollow,,
+2026-06-24,210time/kydra,game_hub,#1,open,dofollow,,
+2026-06-24,MaXSnowS/IndiePlace,game_hub,#1,open,dofollow,,
+2026-06-24,edddieee/awesome-indie-game-development,game_awesome,#1,open,dofollow,,
+2026-06-24,stefandevai/awesome-tic-80,game_awesome,#4,open,dofollow,,
+2026-06-24,pico-8/awesome-PICO-8,game_awesome,#81,open,dofollow,,
+2026-06-24,wilco42/awesome-steamdeck,game_awesome,#3,open,dofollow,,
+2026-06-24,Revadike/awesome_steamdeck,game_awesome,#1,open,dofollow,,
+2026-06-24,Raiper34/awesome-phaser,game_awesome,#22,open,dofollow,,
+2026-06-24,Kavex/GameDev-Resources,game_awesome,#65,open,dofollow,,
+2026-06-24,IndexNow,search_engine,14_url,submitted,indexed,https://api.indexnow.org/IndexNow,"5 engines (Bing/DDG/Yandex/Naver/IndexNow central)"
+2026-06-25,itch.io,game_directory,TBD,pending,follow,,"v2 submission kit - wait for webui restart + playwright-trae"
+2026-06-26,gamejolt.com,game_directory,TBD,pending,follow,,"v2 submission kit - 18h after itch.io"
+2026-06-26,discord.gg/indie-games,social,TBD,pending,follow,,"v2 submission kit - #self-promo"
+2026-06-26,discord.gg/hide-and-seek,social,TBD,pending,follow,,"v2 submission kit - #fan-zone"
+2026-06-26,discord.gg/steam-discord,social,TBD,pending,follow,,"v2 submission kit - #game-sharing"
+2026-06-26,discord.gg/game-dev,social,TBD,pending,follow,,"v2 submission kit - #showcase"
