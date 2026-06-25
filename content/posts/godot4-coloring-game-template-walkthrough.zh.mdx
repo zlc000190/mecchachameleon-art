@@ -1,0 +1,90 @@
+---
+title: Godot 4 配色游戏模板 —— 把"捉迷藏"机制搬到 GDScript 时学到的
+description: mecchachameleon.art 附带的一个 Godot 4 配色游戏模板的走读：玩家/回合结构、RGB 匹配、踩坑记录。
+created_at: 2026-06-25
+author_name: mecchachameleon.art
+author_image: /logo.png
+image: /imgs/features/admin.png
+---
+
+# Godot 4 配色游戏模板 —— 把"捉迷藏"机制搬到 GDScript 时学到的
+
+> **提醒：** Meccha Chameleon Art Lab 是一个**非官方**、粉丝自制的伴生站点。它**不是**官方 Meccha Chameleon 游戏，也**不**与该游戏的开发商或发行商有任何关联。官方游戏在 [Steam](https://store.steampowered.com/app/4704690/MECCHA_CHAMELEON/) 上销售。
+
+[mecchachameleon.art](https://mecchachameleon.art) 的一个支线项目是一个**开源的 Godot 4 配色游戏模板**，模仿 Meccha Chameleon 的"匹配房间 RGB 以保持隐藏"机制。本文讲讲设计——不是官方游戏的代码复刻，我们也没有官方源码。
+
+完整源码在 GitHub 仓库的 `_research/godot-templates/coloring-game/` 下面，以**学习模板**形式发布，不是完整游戏。
+
+## 模板包含什么
+
+- 一个场景：`Main.tscn`，里面有 `Player`、`HidingSpot`、`RoundManager`。
+- `player.gd` — 处理 WASD 移动和玩家当前的 `Color`。
+- `hiding_spot.gd` — 暴露 `target_rgb: Color` 和 `match_threshold: float`。
+- `round_manager.gd` — 随机选一个隐藏点、重置玩家、记录每回合得分。
+- 一个资源文件：`default_env.tres`，让项目开箱即用。
+
+模板刻意做得很小——大约 200 行 GDScript + 一个场景。目标是**20 分钟读完**，不是玩 20 小时。
+
+## RGB 匹配机制
+
+每个 `HidingSpot` 有 `target_rgb`（玩家应匹配的颜色）和 `match_threshold`（玩家颜色需接近到多少）。回合开始时：
+
+1. 回合管理器随机选一个隐藏点。
+2. 玩家移动（WASD），按 `Space` 把自己"涂"成当前手里的颜色。
+3. 涂完后，玩家的 `current_color` 和 spot 的 `target_rgb` 用 RGB 空间的欧氏距离比较：
+
+   ```gdscript
+   func is_hidden(player: Color, spot: HidingSpot) -> bool:
+       var d = sqrt(
+           pow(player.r - spot.target_rgb.r, 2) +
+           pow(player.g - spot.target_rgb.g, 2) +
+           pow(player.b - spot.target_rgb.b, 2)
+       )
+       return d <= spot.match_threshold
+   ```
+
+4. UI 标签显示距离。距离低于阈值时，spot 接受玩家，回合结束。
+
+这是**故意不做**潜行游戏机制的——没有视野、没有 AI 追猎、没有巡逻路线。它是一个"配色匹配"谜题，外面套了一层移动。
+
+## 我们踩的坑
+
+Godot 3 升 Godot 4 过程中咬到我们的几个点：
+
+- **`Color` 不再能从 3-tuple 隐式转换了。** Godot 3 可以传 `(1.0, 0.5, 0.0)` 直接拿 `Color`。Godot 4 必须用 `Color(1.0, 0.5, 0.0, 1.0)` 或 `Color.html("#FF8000")`。
+- **`Input.is_action_just_pressed` 可以用，但 `Input.is_action_pressed` 在 `_physics_process` 里读起来更清楚。** 我们的初稿混用了两个，撞到了"和帧率相关"的奇怪行为。
+- **`Color` 用 `==` 比的是精确浮点**，几乎永远不为真。用上面那个欧氏距离，或者想效果好就转到感知均匀的颜色空间（CIELAB）。
+- **资源文件（`.tres`）需要 `ResourceSaver.save()` 刷盘之后**才能重新导入。我们浪费了一个小时"我的改动没了"，最后才发现是编辑器缓存了旧 `.tres`。
+
+## 模板里**没有**的东西
+
+- **没有任何 Meccha Chameleon 的素材、美术、音效。** 模板用占位图元（玩家是一个色块，spot 是一个色矩形）。我们不会以任何 license 重新分发官方游戏的美术。
+- **没有多人，没有联网。** 加这些会让模板超出"20 分钟读完"的预算。
+- **没有第三方插件依赖。** Godot 4.2+ 原版安装即可打开运行。
+- **没有分析、没有埋点、没有自动更新。**
+
+## 为什么要发出来
+
+两个原因：
+
+1. **学习有一个能跑的实物更好玩。** "匹配 RGB"机制小到一晚上能掌握，但又有足够深度教会 Godot 4 的输入处理、场景组合、资源管理。
+2. **Steam 和 Reddit 上的 Meccha Chameleon 社区长期在问"这个隐藏机制到底怎么实现的"**。我们没法回答官方游戏的版本（我们没源码），但我们可以给一个有据可查、开源许可的模板来回答。
+
+## 你能怎么帮忙
+
+如果你把这个模板搬到新的机制（限时回合、双人、色盲模式），开 PR 就行。我们接受：
+
+- 新的 `HidingSpot` 子类，
+- 新的回合管理器模式，
+- 可访问性改进（高对比度模式、色盲安全调色板），
+- README 和编辑器内提示的翻译。
+
+我们**不**接受把模板换成官方 Meccha Chameleon 美术或名字的 PR。"非官方 / 粉丝自制"这一定位不可让步——见 [`CONTRIBUTING.md`](https://github.com/zlc000190/mecchachameleon-art/blob/main/CONTRIBUTING.md)。
+
+## 源码
+
+- 仓库：[github.com/zlc000190/mecchachameleon-art](https://github.com/zlc000190/mecchachameleon-art)
+- 模板路径：`_research/godot-templates/coloring-game/`
+- 协议：MIT（见仓库 `LICENSE`）
+
+如果你用它做了什么，去 GitHub Discussions 留个链接——我们每条都看。

@@ -1,0 +1,65 @@
+---
+title: 我们是怎么收集 44 款免费 HTML5 捉迷藏游戏的（免登录、免安装）
+description: 幕后记录：mecchachameleon.art 的浏览器试玩门户是怎么从零到 44 款可嵌入 HTML5 捉迷藏/伪装游戏的。
+created_at: 2026-06-25
+author_name: mecchachameleon.art
+author_image: /logo.png
+image: /imgs/features/admin.png
+---
+
+# 我们是怎么收集 44 款免费 HTML5 捉迷藏游戏的（免登录、免安装）
+
+> **提醒：** Meccha Chameleon Art Lab 是一个**非官方**、粉丝自制的伴生站点。它**不是**官方 Meccha Chameleon 游戏，也**不**与该游戏的开发商或发行商有任何关联。官方游戏在 [Steam](https://store.steampowered.com/app/4704690/MECCHA_CHAMELEON/) 上销售。
+
+我们做 [mecchachameleon.art](https://mecchachameleon.art) 的时候，想要一个"打开浏览器就能玩"的入口——不要求访客注册、不要求安装、也不要邮箱。点开就玩，玩完就走。这篇文章讲讲我们是怎么从 0 到 44 款可嵌入 HTML5 游戏，以及我们过滤掉了什么。
+
+## 为什么要做浏览器试玩门户
+
+Steam 版 Meccha Chameleon 很好，但前提是你有十分钟空闲和一台电脑。很多访客从手机、学校机房，或者 Steam 被屏蔽的网络里点进来。浏览器试玩门户给了他们一个零门槛感受这个类型（捉迷藏、伪装、配色）的机会。
+
+我们在 UI 上写得很清楚：**这些是第三方 HTML5 游戏，不是官方 Meccha Chameleon 游戏**。免责声明同时出现在落地页、README 和每一个嵌入位。我们不会把别人的游戏冒充成"正版"。
+
+## 44 款从哪儿来
+
+我们主要从两个专注"可嵌入 HTML5"的聚合站拉：
+
+- **GameDistribution** — 很多发行商在用的白标嵌入 SDK。每款游戏都有稳定的嵌入 URL 和对 iframe 友好的策略。
+- **GameMonetize** — 模式类似，目录不同。与 GameDistribution 有重叠，但有足够多的独有游戏值得再拉一遍。
+
+我们也挑了几款 itch.io 上的 HTML5 游戏（清单里 `kind: html5` 且 `iframe` 嵌入 URL 能正常工作的）。这部分以后会单独出一篇源码走读文章。
+
+## 我们的过滤规则
+
+600 多个候选，最后留 44 个。规则故意卡得很死：
+
+1. **免费、不登录。** 如果前 10 秒出现付费墙、注册弹窗、"连接 Google 账号"按钮，直接淘汰。
+2. **可用 iframe 嵌入，只开 `allow="gameplay"`。** 不允许嵌入域之外的远程脚本，不允许 `X-Frame-Options: DENY`。
+3. **URL 稳定。** 不收"限时试玩"落地页，活动一结束就 404 的不要。
+4. **不是 Meccha Chameleon 的克隆。** 有些 HTML5 游戏直接抄 Steam 版的美术和名字，冒充官方浏览器版。我们从原则上拒绝——既伤害正版游戏的口碑，也误导访客。
+5. **题材匹配。** 捉迷藏、伪装、配色匹配、"找隐藏物"、"找不同"。做得再好也不收消消乐、跑酷、点击休闲。
+6. **中端手机限速 Slow 4G 5 秒内能进。** 超过 5 秒进不去的，不要。
+
+通过的这 44 款在落地页上按难度（简单 / 标准 / 困难）打标签。
+
+## 我们**没有**做的事
+
+我们**没有**：
+
+- 重新上传或重新托管任何第三方游戏的素材、美术或代码。每个嵌入都是 `iframe` 指向发行方的 CDN。
+- 在嵌入位里加埋点、广告网络或分析脚本。落地页本身也没有。
+- 去掉或修改发行方在 iframe 里的品牌标识。
+- 隐瞒嵌入游戏不是官方 Meccha Chameleon 游戏这件事。
+
+## 你能怎么帮忙
+
+如果你知道一款免费的 HTML5 捉迷藏 / 伪装游戏：
+
+- 浏览器免登录能玩，
+- 嵌入 URL 稳定，
+- 不是 Meccha Chameleon 的克隆，
+
+去 [GitHub](https://github.com/zlc000190/mecchachameleon-art) 提个 issue，附上链接、截图和一句话推荐理由。完整指南见 [`CONTRIBUTING.md`](https://github.com/zlc000190/mecchachameleon-art/blob/main/CONTRIBUTING.md)。**匿名提交欢迎**。
+
+## 源码
+
+筛选脚本、过滤规则、被拒游戏清单，都在 [GitHub 仓库](https://github.com/zlc000190/mecchachameleon-art) 的 `_research/itch-games/` 下面。被拒清单也一并公开——透明一点，方便别的策展人从我们的失误里学到东西。

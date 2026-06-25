@@ -29,9 +29,24 @@
 - **Mitigation:** Use game-project devlog instead (requires owning a game project — user has none). Use comments on others' games instead (comments can include links but require clicking through to load — see next).
 
 ### 4. IndieDB
-- **Attempted:** Sign in via Google OAuth (zlc000194@gmail.com).
-- **Stuck at:** Google's OAuth consent screen — Chrome extension doesn't auto-fill the OAuth reauth flow; requires user password / 2FA input which I should NOT do per safety gate.
-- **Mitigation:** Need user to manually complete Google reauth (2 minutes), OR sign up via direct IndieDB email.
+- **Status:** ✅ Completed after user manually finished login.
+- **Profile:** https://www.indiedb.com/members/zlc000194
+  - Homepage set to `https://mecchachameleon.art`.
+  - Bio updated with clear `fan-made / unofficial` disclaimer and anonymous contributor positioning.
+  - Gender remains `Anonymous`, matching the "hidden identity" requirement.
+- **Game entry created:** https://www.indiedb.com/games/meccha-chameleon-art-lab-unofficial-fan-made
+  - Title: `Meccha Chameleon Art Lab (Unofficial Fan-Made)`
+  - Genre/theme: Educational / Education
+  - Platform: Web
+  - Homepage: `https://mecchachameleon.art`
+  - Summary explicitly says this is not the official game and does not redistribute official art/sound/source.
+- **Blog post published:** https://www.indiedb.com/members/zlc000194/blogs/building-mecchachameleonart-a-fan-made-learning-portal
+  - Includes site link + GitHub repo link + contribution invitation.
+- **Forum reply 1:** https://www.indiedb.com/forum/thread/publishing-to-multiple-platforms-is-a-headache-anyone-else-have-similar-experiences/#1128204
+  - Substantive reply on web-first publishing, iframe-based HTML5 demo gateway, and avoiding platform compliance fragmentation.
+- **Forum reply 2:** https://www.indiedb.com/forum/thread/general-projects-feedback-and-suggestions-thread/page/5#1128205
+  - Posted in project feedback thread with source repo link and asked for positioning feedback.
+- **Article attempts:** Global/game article form repeatedly returned 200 with no explicit error, but did not persist articles; likely IndieDB article workflow requires moderation/area state not exposed in form. We pivoted to blog + forum, which persisted and produced public URLs.
 
 ### 5. Reddit r/gamedev or r/IndieGameDevs
 - **Stuck at:** Reddit's JS challenge (Cloudflare-style "Checking your browser before accessing www.reddit.com").
@@ -53,20 +68,23 @@
 | HN Show HN | ✅ Live (flagged but visible) | High (DR 90+) |
 | Dev.to article | ✅ Published | Medium-High (DR 80+, profile bio link) |
 | itch.io devlog | ❌ Account-restricted | — |
-| IndieDB | ⚠️ Stuck at Google reauth | — |
+| IndieDB | ✅ Profile + game page + blog + 2 forum replies | Medium (profile/game/blog/forum public links) |
 | Reddit | ⚠️ JS challenge | — |
 | Substack | ⏭️ Not attempted (signup flow) | — |
 
 **Net new backlinks pending in 24-48h:**
 - HN item 48660126 (if not killed by mods)
 - Dev.to post `building-a-fan-made-source-code-portal-for-indie-games-3eee` (stable, dofollow from author's profile)
+- IndieDB game page `meccha-chameleon-art-lab-unofficial-fan-made`
+- IndieDB user blog `building-mecchachameleonart-a-fan-made-learning-portal`
+- IndieDB forum replies `#1128204` and `#1128205`
 
 ## Recommended next actions (for user)
 
 1. **HN engagement (next 6 hours)** — check the item every 1-2h; if asked technical questions about the stack (Next.js shipany template / Dokploy / curation pipeline), reply from this account. Active engagement = demotes flag.
 2. **Dev.to cross-link** — once HN item is settled, reply on the Dev.to post with the HN item URL to seed internal cross-link.
 3. **Reddit r/IndieGameDevs** — open reddit.com in user's normal Chrome (bypass JS challenge), post the same content with appropriate tag (e.g. `[Devlog]` or `[Tool Release]`).
-4. **IndieDB** — manually complete Google reauth or sign up directly with email.
+4. **IndieDB follow-up** — wait 24-48h for indexing; then check whether game page/blog/forum links are crawlable. Article form did not persist posts, so use blog/forum for now.
 5. **Substack** — publish a "Indie Game Source Code Digest" newsletter after a few weeks of collecting notable open-source games.
 
 ## Files
