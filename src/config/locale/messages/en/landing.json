@@ -32,6 +32,11 @@
           "title": "Map Atlas",
           "url": "/#atlas",
           "icon": "MapPinned"
+        },
+        {
+          "title": "Tools",
+          "url": "/tools",
+          "icon": "Wrench"
         }
       ]
     },
@@ -43,8 +48,8 @@
       "items": []
     },
     "show_sign": false,
-    "show_theme": true,
-    "show_locale": false,
+    "show_theme": false,
+    "show_locale": true,
     "topbanner": {
       "text": "Play hide-and-seek in your browser. No download needed."
     }
@@ -98,6 +103,16 @@
               "target": "_self"
             }
           ]
+        },
+        {
+          "title": "Tools",
+          "children": [
+            {
+              "title": "Assistant Tools",
+              "url": "/tools",
+              "target": "_self"
+            }
+          ]
         }
       ]
     },
@@ -117,7 +132,7 @@
       ]
     },
     "show_built_with": false,
-    "show_theme": true,
-    "show_locale": false
+    "show_theme": false,
+    "show_locale": true
   }
 }

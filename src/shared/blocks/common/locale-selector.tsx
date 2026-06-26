@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Check, Globe, Languages } from 'lucide-react';
+import { Check, ChevronDown, Languages } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 
@@ -16,10 +16,28 @@ import {
 } from '@/shared/components/ui/dropdown-menu';
 import { cacheSet } from '@/shared/lib/cache';
 
+const localeFlags: Record<string, string> = {
+  en: '🇬🇧',
+  zh: '🇨🇳',
+  ru: '🇷🇺',
+  it: '🇮🇹',
+  fr: '🇫🇷',
+  de: '🇩🇪',
+  es: '🇪🇸',
+  pt: '🇵🇹',
+  ja: '🇯🇵',
+  ko: '🇰🇷',
+  ar: '🇸🇦',
+  th: '🇹🇭',
+  vi: '🇻🇳',
+  'zh-TW': '⚐',
+  nl: '🇳🇱',
+};
+
 export function LocaleSelector({
   type = 'icon',
 }: {
-  type?: 'icon' | 'button';
+  type?: 'icon' | 'button' | 'flag' | 'footer-select';
 }) {
   const currentLocale = useLocale();
   const router = useRouter();
@@ -31,36 +49,46 @@ export function LocaleSelector({
     setMounted(true);
   }, []);
 
+  const currentFlag = localeFlags[currentLocale] ?? '🌐';
+
   const handleSwitchLanguage = (value: string) => {
     if (value !== currentLocale) {
-      // Update localStorage to sync with locale detector
       cacheSet('locale', value);
       const query = searchParams?.toString?.() ?? '';
       const href = query ? `${pathname}?${query}` : pathname;
-      router.push(href, {
-        locale: value,
-      });
+      router.push(href, { locale: value });
     }
   };
 
-  // Return a placeholder during SSR to avoid hydration mismatch
+  const buttonClass =
+    type === 'footer-select'
+      ? 'min-w-[220px] justify-between border-[#D8CFC6] bg-white text-[#29211D] hover:bg-[#fff7c8]'
+      : type === 'flag'
+        ? 'h-9 gap-1.5 rounded-full border border-[#e0b44d]/50 bg-white/85 px-2.5 text-base shadow-sm hover:bg-[#fff7c8]'
+        : type === 'icon'
+          ? 'h-auto w-auto p-0'
+          : 'hover:bg-primary/10';
+
   if (!mounted) {
     return (
       <Button
         variant={type === 'icon' ? 'ghost' : 'outline'}
         size={type === 'icon' ? 'icon' : 'sm'}
-        className={
-          type === 'icon' ? 'h-auto w-auto p-0' : 'hover:bg-primary/10'
-        }
+        className={buttonClass}
         disabled
+        aria-label="Switch language"
       >
-        {type === 'icon' ? (
+        {type === 'flag' ? (
+          <span aria-hidden>{currentFlag}</span>
+        ) : type === 'footer-select' ? (
+          <>
+            <span>{currentFlag} {localeNames[currentLocale]}</span>
+            <ChevronDown size={16} />
+          </>
+        ) : type === 'icon' ? (
           <Languages size={18} />
         ) : (
-          <>
-            <Globe size={16} />
-            {localeNames[currentLocale]}
-          </>
+          <span>{currentFlag} {localeNames[currentLocale]}</span>
         )}
       </Button>
     );
@@ -69,27 +97,41 @@ export function LocaleSelector({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        {type === 'icon' ? (
-          <Button variant="ghost" size="icon" className="h-auto w-auto p-0">
+        <Button
+          variant={type === 'icon' ? 'ghost' : 'outline'}
+          size={type === 'icon' ? 'icon' : 'sm'}
+          className={buttonClass}
+          aria-label="Switch language"
+        >
+          {type === 'flag' ? (
+            <>
+              <span aria-hidden className="text-lg leading-none">{currentFlag}</span>
+              <ChevronDown size={13} />
+            </>
+          ) : type === 'footer-select' ? (
+            <>
+              <span>{currentFlag} {localeNames[currentLocale]}</span>
+              <ChevronDown size={16} />
+            </>
+          ) : type === 'icon' ? (
             <Languages size={18} />
-          </Button>
-        ) : (
-          <Button variant="outline" size="sm" className="hover:bg-primary/10">
-            <Globe size={16} />
-            {localeNames[currentLocale]}
-          </Button>
-        )}
+          ) : (
+            <span>{currentFlag} {localeNames[currentLocale]}</span>
+          )}
+        </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent align="end" className="max-h-[360px] min-w-[220px] overflow-y-auto">
         {Object.keys(localeNames).map((locale) => (
           <DropdownMenuItem
             key={locale}
             onClick={() => handleSwitchLanguage(locale)}
+            className="flex cursor-pointer items-center justify-between gap-3"
           >
-            <span>{localeNames[locale]}</span>
-            {locale === currentLocale && (
-              <Check size={16} className="text-primary" />
-            )}
+            <span className="flex items-center gap-2">
+              <span aria-hidden>{localeFlags[locale] ?? '🌐'}</span>
+              <span>{localeNames[locale]}</span>
+            </span>
+            {locale === currentLocale && <Check size={16} className="text-primary" />}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>

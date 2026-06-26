@@ -110,7 +110,8 @@ function variantClasses(v: GameUpdate['variant']) {
   return 'border-[#7D6D69]/40 bg-[#EFE2DA] text-[#5C3D33]';
 }
 
-export function UpdatesSection() {
+export function UpdatesSection({ locale = 'en' }: { locale?: string }) {
+  const zh = locale === 'zh';
   return (
     <section
       id="updates"
@@ -120,22 +121,20 @@ export function UpdatesSection() {
         <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest text-[#7D6D69]">
-              Latest updates
+              {zh ? '最新更新' : 'Latest updates'}
             </p>
             <h2 className="mt-1 text-2xl font-bold leading-tight text-[#29211D] md:text-3xl">
-              What changed in the game, and on this site
+              {zh ? '游戏和本站最近更新了什么' : 'What changed in the game, and on this site'}
             </h2>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-[#4C3B35]">
-              We watch game updates and refresh the home page each time
-              LEMORION ships a new version. Below: patch notes on the left,
-              guide and atlas edits on the right.
+              {zh ? '我们会跟进 LEMORION 的游戏更新，并同步整理本站攻略和地图图鉴。左侧是游戏补丁，右侧是本站改动。' : 'We watch game updates and refresh the home page each time LEMORION ships a new version. Below: patch notes on the left, guide and atlas edits on the right.'}
             </p>
           </div>
           <a
             href="#search-answers"
             className="inline-flex min-h-10 w-fit items-center gap-1.5 rounded-md border border-[#D8CFC6] bg-white px-3 text-sm font-semibold text-[#29211D] transition hover:border-[#7D6D69]"
           >
-            View updates
+            {zh ? '查看更新' : 'View updates'}
           </a>
         </div>
 
@@ -144,9 +143,9 @@ export function UpdatesSection() {
           <div>
             <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold text-[#29211D]">
               <span className="inline-flex h-6 items-center rounded-sm bg-[#ff8fb3] px-2 text-[10px] font-bold uppercase tracking-wider text-white">
-                Game
+                {zh ? '游戏' : 'Game'}
               </span>
-              Patch notes
+              {zh ? '补丁记录' : 'Patch notes'}
             </h3>
             <ol className="relative space-y-4 border-l-2 border-[#D8CFC6] pl-5">
               {gameUpdates.map((u) => (
@@ -181,9 +180,9 @@ export function UpdatesSection() {
           <div>
             <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold text-[#29211D]">
               <span className="inline-flex h-6 items-center rounded-sm bg-[#61a8ff] px-2 text-[10px] font-bold uppercase tracking-wider text-white">
-                Site
+                {zh ? '本站' : 'Site'}
               </span>
-              Meccha Chameleon Play Online changelog
+              {zh ? '超级变色龙在线玩更新记录' : 'Meccha Chameleon Play Online changelog'}
             </h3>
             <ol className="relative space-y-4 border-l-2 border-[#D8CFC6] pl-5">
               {siteUpdates.map((u) => (

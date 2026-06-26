@@ -2,10 +2,10 @@
   "header": {
     "id": "header",
     "brand": {
-      "title": "Meccha Chameleon Play Online",
+      "title": "Meccha Chameleon Jouer en Ligne",
       "logo": {
         "src": "/logo.png",
-        "alt": "Meccha Chameleon Play Online",
+        "alt": "Meccha Chameleon Jouer en Ligne",
         "width": 100,
         "height": 100
       },
@@ -14,12 +14,12 @@
     "nav": {
       "items": [
         {
-          "title": "Play",
+          "title": "Jouer",
           "url": "/#play",
           "icon": "Gamepad2"
         },
         {
-          "title": "New Player",
+          "title": "Nouveau joueur",
           "url": "/#new-player",
           "icon": "BadgeInfo"
         },
@@ -29,12 +29,12 @@
           "icon": "Brush"
         },
         {
-          "title": "Map Atlas",
+          "title": "Atlas des cartes",
           "url": "/#atlas",
           "icon": "MapPinned"
         },
         {
-          "title": "工具",
+          "title": "Outils",
           "url": "/tools",
           "icon": "Wrench"
         }
@@ -51,17 +51,17 @@
     "show_theme": false,
     "show_locale": true,
     "topbanner": {
-      "text": "浏览器直接玩 hide-and-seek，无需下载。"
+      "text": "Jouez à cache-cache dans le navigateur. Aucun téléchargement."
     }
   },
   "footer": {
     "id": "footer",
     "brand": {
-      "title": "Meccha Chameleon Play Online",
-      "description": "面向 Meccha Chameleon 玩家的在线试玩入口和手机二屏伪装辅助工具。",
+      "title": "Meccha Chameleon Jouer en Ligne",
+      "description": "Hub de jeu navigateur et second écran de camouflage pour les joueurs de Meccha Chameleon.",
       "logo": {
         "src": "/logo.png",
-        "alt": "Meccha Chameleon Play Online",
+        "alt": "Meccha Chameleon Jouer en Ligne",
         "width": 1024,
         "height": 1024
       },
@@ -70,15 +70,15 @@
     "nav": {
       "items": [
         {
-          "title": "Play",
+          "title": "Jouer",
           "children": [
             {
-              "title": "Play Online",
+              "title": "Jouer en ligne",
               "url": "/#play",
               "target": "_self"
             },
             {
-              "title": "New Player Guide",
+              "title": "Guide nouveau joueur",
               "url": "/new-player",
               "target": "_self"
             }
@@ -88,7 +88,7 @@
           "title": "Guide",
           "children": [
             {
-              "title": "New Player",
+              "title": "Nouveau joueur",
               "url": "/#new-player",
               "target": "_self"
             },
@@ -98,17 +98,17 @@
               "target": "_self"
             },
             {
-              "title": "Map Atlas",
+              "title": "Atlas des cartes",
               "url": "/#atlas",
               "target": "_self"
             }
           ]
         },
         {
-          "title": "工具",
+          "title": "Outils",
           "children": [
             {
-              "title": "辅助工具",
+              "title": "Outils assistants",
               "url": "/tools",
               "target": "_self"
             }
@@ -122,11 +122,11 @@
     "agreement": {
       "items": [
         {
-          "title": "Privacy Policy",
+          "title": "Confidentialité",
           "url": "/privacy-policy"
         },
         {
-          "title": "Terms of Service",
+          "title": "Conditions",
           "url": "/terms-of-service"
         }
       ]

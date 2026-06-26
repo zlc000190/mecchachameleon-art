@@ -1,5 +1,6 @@
 import mapsJson from './data/maps.json';
 import spotsJson from './data/spots.json';
+import { localizeMap, localizeSpot } from './meccha-i18n';
 
 export type AtlasMap = {
   id: string;
@@ -34,24 +35,26 @@ export function getAtlasImagePath(path: string) {
   return `/meccha/atlas/${path}`;
 }
 
-export function getAtlasMapsWithSpots(): AtlasMapWithSpots[] {
+export function getAtlasMapsWithSpots(locale = 'en'): AtlasMapWithSpots[] {
   return atlasMaps.map((map) => {
-    const spots = getSpotsByMapId(map.id);
+    const localizedMap = localizeMap(map, locale);
+    const spots = getSpotsByMapId(map.id, locale);
 
     return {
-      ...map,
+      ...localizedMap,
       spotCount: spots.length,
       spots,
     };
   });
 }
 
-export function getAtlasMapBySlug(slug: string) {
-  return atlasMaps.find((map) => map.slug === slug);
+export function getAtlasMapBySlug(slug: string, locale = 'en') {
+  const map = atlasMaps.find((map) => map.slug === slug);
+  return map ? localizeMap(map, locale) : map;
 }
 
-export function getSpotsByMapId(mapId: string) {
-  return atlasSpots.filter((spot) => spot.map_id === mapId);
+export function getSpotsByMapId(mapId: string, locale = 'en') {
+  return atlasSpots.filter((spot) => spot.map_id === mapId).map((spot) => localizeSpot(spot, locale));
 }
 
 export function getLocalizedPath(locale: string, path: string) {

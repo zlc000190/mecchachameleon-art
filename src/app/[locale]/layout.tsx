@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 
+import { isRtl, localeNames } from '@/config/locale';
 import { routing } from '@/core/i18n/config';
 import { ThemeProvider } from '@/core/theme/provider';
 import { Toaster } from '@/shared/components/ui/sonner';
@@ -25,13 +26,17 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   return (
-    <NextIntlClientProvider>
-      <ThemeProvider>
-        <AppContextProvider>
-          {children}
-          <Toaster position="top-center" richColors />
-        </AppContextProvider>
-      </ThemeProvider>
-    </NextIntlClientProvider>
+    <html lang={locale} dir={isRtl(locale) ? 'rtl' : 'ltr'} suppressHydrationWarning>
+      <body>
+        <NextIntlClientProvider>
+          <ThemeProvider>
+            <AppContextProvider>
+              {children}
+              <Toaster position="top-center" richColors />
+            </AppContextProvider>
+          </ThemeProvider>
+        </NextIntlClientProvider>
+      </body>
+    </html>
   );
 }

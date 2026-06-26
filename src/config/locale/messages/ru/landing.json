@@ -32,6 +32,11 @@
           "title": "Атлас Карт",
           "url": "/#atlas",
           "icon": "MapPinned"
+        },
+        {
+          "title": "Инструменты",
+          "url": "/tools",
+          "icon": "Wrench"
         }
       ]
     },
@@ -43,17 +48,17 @@
       "items": []
     },
     "show_sign": false,
-    "show_theme": true,
-    "show_locale": false,
+    "show_theme": false,
+    "show_locale": true,
     "topbanner": {
-      "text": "Играйте в прятки прямо в браузере. Скачивать ничего не нужно."
+      "text": "Играйте в прятки в браузере. Без скачивания."
     }
   },
   "footer": {
     "id": "footer",
     "brand": {
       "title": "Meccha Chameleon Играть Онлайн",
-      "description": "Браузерный игровой хаб и компаньон для камуфляжа на втором экране для игроков в Meccha Chameleon.",
+      "description": "Браузерная игровая страница и второй экран с подсказками по камуфляжу для игроков Meccha Chameleon.",
       "logo": {
         "src": "/logo.png",
         "alt": "Meccha Chameleon Играть Онлайн",
@@ -68,54 +73,44 @@
           "title": "Играть",
           "children": [
             {
-              "title": "Играть Онлайн",
+              "title": "Играть онлайн",
               "url": "/#play",
               "target": "_self"
             },
             {
-              "title": "Руководство для новичков",
+              "title": "Гайд новичка",
               "url": "/new-player",
               "target": "_self"
             }
           ]
         },
         {
-          "title": "Карты",
+          "title": "Гайд",
           "children": [
             {
-              "title": "Винтажная Комната",
-              "url": "/maps/vintage-room/",
+              "title": "Новичкам",
+              "url": "/#new-player",
               "target": "_self"
             },
             {
-              "title": "Коровья Ферма",
-              "url": "/maps/cow-farm/",
+              "title": "Лаборатория Камуфляжа",
+              "url": "/#camo-lab",
               "target": "_self"
             },
             {
-              "title": "Кирпичная Таверна",
-              "url": "/maps/brick-tavern/",
-              "target": "_self"
-            },
-            {
-              "title": "Большой Бальный Зал",
-              "url": "/maps/grand-ballroom/",
-              "target": "_self"
-            },
-            {
-              "title": "Синяя Гостиная",
-              "url": "/maps/blue-parlor/",
+              "title": "Атлас Карт",
+              "url": "/#atlas",
               "target": "_self"
             }
           ]
         },
         {
-          "title": "Ресурсы",
+          "title": "Инструменты",
           "children": [
             {
-              "title": "GitHub",
-              "url": "https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot",
-              "target": "_blank"
+              "title": "Инструменты помощника",
+              "url": "/tools",
+              "target": "_self"
             }
           ]
         }
@@ -124,7 +119,20 @@
     "social": {
       "items": []
     },
-    "copyright": "© 2026 Meccha Chameleon Art. Фан-сайт, не аффилирован с LEMORION.",
-    "icp": ""
+    "agreement": {
+      "items": [
+        {
+          "title": "Политика конфиденциальности",
+          "url": "/privacy-policy"
+        },
+        {
+          "title": "Условия использования",
+          "url": "/terms-of-service"
+        }
+      ]
+    },
+    "show_built_with": false,
+    "show_theme": false,
+    "show_locale": true
   }
 }

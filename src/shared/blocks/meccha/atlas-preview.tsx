@@ -6,13 +6,15 @@ import {
   getAtlasMapsWithSpots,
   getLocalizedPath,
 } from './atlas-data';
+import { mapLabels } from './meccha-i18n';
 
 // Renders the home-page Map Atlas section. Each map card shows the
 // map thumbnail plus all 10 spot thumbnails as a 5x2 grid, so the page
 // surfaces 50+ hiding spots at a glance instead of hiding them behind
 // per-map pages.
 export function AtlasPreview({ locale }: { locale: string }) {
-  const maps = getAtlasMapsWithSpots();
+  const maps = getAtlasMapsWithSpots(locale);
+  const labels = locale === 'zh' ? mapLabels.zh : mapLabels.en;
 
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
@@ -25,7 +27,7 @@ export function AtlasPreview({ locale }: { locale: string }) {
           <div className="relative aspect-[4/3] overflow-hidden bg-[#cdefff]">
             <Image
               src={getAtlasImagePath(map.thumb)}
-              alt={`${map.name} Meccha Chameleon hiding spots map preview`}
+              alt={`${map.name} ${locale === 'zh' ? '超级变色龙隐藏点地图预览' : 'Meccha Chameleon hiding spots map preview'}`}
               fill
               sizes="(min-width: 1280px) 20vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
               className="object-cover transition duration-300 group-hover:scale-105"
@@ -35,7 +37,7 @@ export function AtlasPreview({ locale }: { locale: string }) {
               {index + 1}
             </div>
             <div className="absolute right-3 top-3 flex h-9 items-center gap-1 rounded-md bg-white/85 px-2 text-xs font-semibold text-[#29211D] shadow-sm backdrop-blur">
-              {map.spots.length} spots
+              {map.spots.length}{locale === 'zh' ? labels.spots : ` ${labels.spots}`}
             </div>
           </div>
 
@@ -51,7 +53,7 @@ export function AtlasPreview({ locale }: { locale: string }) {
             <div className="mt-3 flex items-center justify-between gap-3 text-xs text-[#4C3B35]">
               <span className="inline-flex items-center gap-1.5">
                 <MapPinned className="h-3.5 w-3.5 text-[#7D6D69]" />
-                {map.spotCount} spots
+                {map.spotCount}{locale === 'zh' ? labels.spots : ` ${labels.spots}`}
               </span>
               <span className="inline-flex items-center gap-1.5">
                 <Palette className="h-3.5 w-3.5 text-[#AA776E]" />

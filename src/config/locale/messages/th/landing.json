@@ -2,10 +2,10 @@
   "header": {
     "id": "header",
     "brand": {
-      "title": "Meccha Chameleon Play Online",
+      "title": "Meccha Chameleon เล่นออนไลน์",
       "logo": {
         "src": "/logo.png",
-        "alt": "Meccha Chameleon Play Online",
+        "alt": "Meccha Chameleon เล่นออนไลน์",
         "width": 100,
         "height": 100
       },
@@ -14,12 +14,12 @@
     "nav": {
       "items": [
         {
-          "title": "Play",
+          "title": "เล่น",
           "url": "/#play",
           "icon": "Gamepad2"
         },
         {
-          "title": "New Player",
+          "title": "ผู้เล่นใหม่",
           "url": "/#new-player",
           "icon": "BadgeInfo"
         },
@@ -29,12 +29,12 @@
           "icon": "Brush"
         },
         {
-          "title": "Map Atlas",
+          "title": "แผนที่",
           "url": "/#atlas",
           "icon": "MapPinned"
         },
         {
-          "title": "工具",
+          "title": "เครื่องมือ",
           "url": "/tools",
           "icon": "Wrench"
         }
@@ -51,17 +51,17 @@
     "show_theme": false,
     "show_locale": true,
     "topbanner": {
-      "text": "浏览器直接玩 hide-and-seek，无需下载。"
+      "text": "เล่นซ่อนหาในเบราว์เซอร์ ไม่ต้องดาวน์โหลด"
     }
   },
   "footer": {
     "id": "footer",
     "brand": {
-      "title": "Meccha Chameleon Play Online",
-      "description": "面向 Meccha Chameleon 玩家的在线试玩入口和手机二屏伪装辅助工具。",
+      "title": "Meccha Chameleon เล่นออนไลน์",
+      "description": "ศูนย์เล่นบนเบราว์เซอร์และหน้าจอที่สองสำหรับคำแนะนำการพรางตัวของ Meccha Chameleon",
       "logo": {
         "src": "/logo.png",
-        "alt": "Meccha Chameleon Play Online",
+        "alt": "Meccha Chameleon เล่นออนไลน์",
         "width": 1024,
         "height": 1024
       },
@@ -70,25 +70,25 @@
     "nav": {
       "items": [
         {
-          "title": "Play",
+          "title": "เล่น",
           "children": [
             {
-              "title": "Play Online",
+              "title": "เล่นออนไลน์",
               "url": "/#play",
               "target": "_self"
             },
             {
-              "title": "New Player Guide",
+              "title": "คู่มือผู้เล่นใหม่",
               "url": "/new-player",
               "target": "_self"
             }
           ]
         },
         {
-          "title": "Guide",
+          "title": "คู่มือ",
           "children": [
             {
-              "title": "New Player",
+              "title": "ผู้เล่นใหม่",
               "url": "/#new-player",
               "target": "_self"
             },
@@ -98,17 +98,17 @@
               "target": "_self"
             },
             {
-              "title": "Map Atlas",
+              "title": "แผนที่",
               "url": "/#atlas",
               "target": "_self"
             }
           ]
         },
         {
-          "title": "工具",
+          "title": "เครื่องมือ",
           "children": [
             {
-              "title": "辅助工具",
+              "title": "เครื่องมือช่วย",
               "url": "/tools",
               "target": "_self"
             }
@@ -122,11 +122,11 @@
     "agreement": {
       "items": [
         {
-          "title": "Privacy Policy",
+          "title": "ความเป็นส่วนตัว",
           "url": "/privacy-policy"
         },
         {
-          "title": "Terms of Service",
+          "title": "ข้อกำหนด",
           "url": "/terms-of-service"
         }
       ]

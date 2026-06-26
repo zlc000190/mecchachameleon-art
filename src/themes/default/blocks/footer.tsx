@@ -58,7 +58,7 @@ export function Footer({ footer }: { footer: FooterType }) {
           {footer.show_built_with !== false ? <BuiltWith /> : null}
           <div className="min-w-0 flex-1" />
           {footer.show_locale !== false ? (
-            <LocaleSelector type="button" />
+            <LocaleSelector type="footer-select" />
           ) : null}
         </div>
 

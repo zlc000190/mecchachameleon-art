@@ -2,6 +2,7 @@ import { ArrowLeft, CheckCircle2, Clock, Compass, Cpu, Gamepad2, Lightbulb, Pale
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 
+import { BreadcrumbJsonLd } from '@/shared/components/seo/breadcrumb-json-ld';
 import { getCanonicalUrl } from '@/shared/lib/seo';
 
 export const revalidate = 3600;
@@ -219,11 +220,19 @@ export default async function NewPlayerPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const homeUrl = await getCanonicalUrl('/', locale);
+  const newPlayerUrl = await getCanonicalUrl('/new-player', locale);
   const backHref = locale === 'en' ? '/#new-player' : `/${locale}/#new-player`;
   const atHowToPlay = locale === 'en' ? '/#how-to-play' : `/${locale}/#how-to-play`;
 
   return (
     <main className="min-h-screen bg-white text-[#29211D]">
+      <BreadcrumbJsonLd
+        items={[
+          { name: locale === 'zh' ? '首页' : 'Home', item: homeUrl },
+          { name: locale === 'zh' ? '新手指南' : 'New Player Guide', item: newPlayerUrl },
+        ]}
+      />
       {/* Hero */}
       <section className="border-b border-[#D8CFC6] bg-[#F6F0EA]">
         <div className="container py-14">

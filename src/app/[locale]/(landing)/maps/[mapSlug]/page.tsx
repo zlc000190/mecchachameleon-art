@@ -12,6 +12,8 @@ import {
   getSpotsByMapId,
 } from '@/shared/blocks/meccha/atlas-data';
 import { MapSpotsExplorer } from '@/shared/blocks/meccha/map-spots-explorer';
+import { mapLabels } from '@/shared/blocks/meccha/meccha-i18n';
+import { BreadcrumbJsonLd } from '@/shared/components/seo/breadcrumb-json-ld';
 import { getCanonicalUrl } from '@/shared/lib/seo';
 
 export const revalidate = 3600;
@@ -31,14 +33,15 @@ export async function generateMetadata({
   params: Promise<{ locale: string; mapSlug: string }>;
 }): Promise<Metadata> {
   const { locale, mapSlug } = await params;
-  const map = getAtlasMapBySlug(mapSlug);
+  const map = getAtlasMapBySlug(mapSlug, locale);
 
   if (!map) {
     return {};
   }
 
-  const title = `${map.name} Hiding Spots — Meccha Chameleon`;
-  const description = `${map.name} Meccha Chameleon hiding spot atlas (10 spots): screenshots, paint RGB, difficulty, and hider tips.`;
+  const labels = locale === 'zh' ? mapLabels.zh : mapLabels.en;
+  const title = `${map.name} ${labels.titleSuffix}`;
+  const description = `${map.name} ${labels.descriptionSuffix}`;
   const canonicalUrl = await getCanonicalUrl(`/maps/${mapSlug}`, locale);
 
   return {
@@ -70,16 +73,20 @@ export default async function MapPage({
   const { locale, mapSlug } = await params;
   setRequestLocale(locale);
 
-  const map = getAtlasMapBySlug(mapSlug);
+  const map = getAtlasMapBySlug(mapSlug, locale);
   if (!map) {
     notFound();
   }
 
-  const spots = getSpotsByMapId(map.id);
+  const spots = getSpotsByMapId(map.id, locale);
+  const labels = locale === 'zh' ? mapLabels.zh : mapLabels.en;
+  const homeUrl = await getCanonicalUrl('/', locale);
+  const mapsUrl = await getCanonicalUrl('/maps', locale);
+  const mapUrl = await getCanonicalUrl(`/maps/${mapSlug}`, locale);
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: `${map.name} Meccha Chameleon hiding spots`,
+    name: `${map.name} ${locale === 'zh' ? '超级变色龙隐藏点' : 'Meccha Chameleon hiding spots'}`,
     description: map.desc,
     numberOfItems: spots.length,
     itemListElement: spots.map((spot, index) => ({
@@ -97,6 +104,13 @@ export default async function MapPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <BreadcrumbJsonLd
+        items={[
+          { name: locale === 'zh' ? '首页' : 'Home', item: homeUrl },
+          { name: locale === 'zh' ? '地图攻略' : 'Maps', item: mapsUrl },
+          { name: map.name, item: mapUrl },
+        ]}
+      />
 
       <section className="border-b border-[#D8CFC6] bg-[#F6F0EA] text-[#29211D]">
         <div className="container grid gap-8 pt-16 pb-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(420px,1.08fr)] lg:items-center">
@@ -106,13 +120,13 @@ export default async function MapPage({
               className="mb-6 inline-flex min-h-10 items-center gap-2 rounded-md border border-[#b9af9e] bg-white px-3 py-2 text-sm font-semibold text-[#29211D] transition hover:bg-[#ece5d8]"
             >
               <ArrowLeft className="h-4 w-4" />
-              Back to atlas
+              {labels.back}
             </a>
             <p className="mb-3 text-sm font-semibold uppercase tracking-normal text-[#7D6D69]">
-              Meccha Chameleon map guide
+              {labels.guide}
             </p>
             <h1 className="max-w-3xl text-4xl font-bold leading-tight tracking-normal md:text-6xl">
-              {map.name} Hiding Spots
+              {map.name} {labels.hidingSpots}
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-[#4f4b42]">
               {map.desc}
@@ -121,11 +135,11 @@ export default async function MapPage({
             <div className="mt-6 flex flex-wrap gap-3">
               <div className="inline-flex min-h-10 items-center gap-2 rounded-md border border-[#d8cfbd] bg-white px-3 py-2 text-sm font-semibold">
                 <MapPinned className="h-4 w-4 text-[#7D6D69]" />
-                {spots.length} hiding spots
+                {spots.length} {locale === 'zh' ? labels.spots : 'hiding spots'}
               </div>
               <div className="inline-flex min-h-10 items-center gap-2 rounded-md border border-[#d8cfbd] bg-white px-3 py-2 text-sm font-semibold">
                 <Palette className="h-4 w-4 text-[#AA776E]" />
-                {map.difficulty} difficulty
+                {map.difficulty} {labels.difficulty}
               </div>
             </div>
 
@@ -149,7 +163,7 @@ export default async function MapPage({
             <div className="relative aspect-video">
               <Image
               src={getAtlasImagePath(map.thumb)}
-              alt={`${map.name} Meccha Chameleon map preview`}
+              alt={`${map.name} ${labels.altPreview}`}
                 fill
                 priority
                 sizes="(min-width: 1024px) 48vw, 100vw"
@@ -162,24 +176,23 @@ export default async function MapPage({
 
       <section className="border-b border-[#D8CFC6] bg-white">
         <div className="container py-12">
-          <MapSpotsExplorer map={map} spots={spots} />
+          <MapSpotsExplorer map={map} spots={spots} locale={locale} />
         </div>
       </section>
 
       <section className="bg-[#F6F0EA]">
         <div className="container flex flex-col gap-4 py-10 md:flex-row md:items-center md:justify-between">
           <div>
-            <h2 className="text-2xl font-bold">Ready for the real match?</h2>
+            <h2 className="text-2xl font-bold">{labels.ready}</h2>
             <p className="mt-2 text-sm leading-6 text-[#4C3B35]">
-              Keep this atlas open while you queue up, compare map colors, and
-              pick your next hiding route.
+              {labels.readyBody}
             </p>
           </div>
           <a
             href={locale === 'en' ? '/#play' : `/${locale}/#play`}
             className="inline-flex min-h-11 w-fit items-center gap-2 rounded-md bg-[#ff6f9a] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#e95a88]"
           >
-            Play online
+            {labels.play}
           </a>
         </div>
       </section>

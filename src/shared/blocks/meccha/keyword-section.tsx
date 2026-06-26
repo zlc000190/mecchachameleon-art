@@ -161,7 +161,26 @@ const faqs: Array<{ q: string; a: string }> = [
   },
 ];
 
-export function KeywordSection() {
+const searchTermsZh = [
+  '超级变色龙', '超级变色龙在线玩', 'Meccha Chameleon 中文攻略', '超级变色龙游戏',
+  '超级变色龙新手指南', '超级变色龙地图', '超级变色龙隐藏点', '超级变色龙伪装技巧',
+  'Meccha Chameleon 地图攻略', 'Meccha Chameleon hiding spots', 'Meccha Chameleon game online',
+  '超级变色龙多人联机', '超级变色龙自定义房间', '超级变色龙颜色匹配', '超级变色龙涂装工具',
+];
+
+const faqsZh: Array<{ q: string; a: string }> = [
+  { q: '超级变色龙是什么？', a: '超级变色龙（Meccha Chameleon）是一款 PC 非对称躲猫猫派对游戏。隐藏者把角色涂成环境颜色，搜寻者在地图里找出伪装失败的人。本站把在线试玩、50 个隐藏点图鉴和多人玩法说明放在同一页。' },
+  { q: 'Meccha Chameleon 应该翻译成什么？', a: '这里统一翻译为「超级变色龙」。页面会保留英文 Meccha Chameleon，方便同时覆盖中文玩家和英文搜索词。' },
+  { q: '在哪里可以在线玩超级变色龙？', a: '先用页面顶部的浏览器游戏入口试玩。完整版是 PC 游戏，没有原生手机或主机版本；如果想在手机上玩，可以从 PC 串流到手机。' },
+  { q: '超级变色龙支持多少人？', a: '游戏支持 2 到 24 名玩家。新手和朋友局推荐 2 到 10 人，自定义房间最适合固定队伍练习地图点位。' },
+  { q: '新手最重要的技巧是什么？', a: '不要只涂一种颜色。先从隐藏表面采样 3 到 5 个颜色，再匹配材质亮度；锁定姿势后保持完全静止。' },
+  { q: '这个网站是官网吗？', a: '不是。本站是粉丝制作的社区辅助站，提供在线试玩入口、地图图鉴和攻略整理，不代表 LEMORION 官方。' },
+];
+
+export function KeywordSection({ locale = 'en' }: { locale?: string }) {
+  const zh = locale === 'zh';
+  const terms = zh ? searchTermsZh : searchTerms;
+  const activeFaqs = zh ? faqsZh : faqs;
   return (
     <section
       id="search-answers"
@@ -170,17 +189,15 @@ export function KeywordSection() {
       <div className="container py-14">
         <div className="mb-8 max-w-3xl">
           <p className="text-xs font-semibold uppercase tracking-widest text-[#7D6D69]">
-            Search answers
+            {zh ? '搜索解答' : 'Search answers'}
           </p>
           <h2 className="mt-1 text-2xl font-bold leading-tight text-[#29211D] md:text-3xl">
-            Meccha Chameleon — Are you actually search for this
+            {zh ? '超级变色龙 Meccha Chameleon — 你搜索的是这个游戏吗？' : 'Meccha Chameleon — Are you actually search for this'}
           </h2>
           <p className="mt-3 text-sm leading-6 text-[#4C3B35]">
-            A quick reference for every way the Meccha Chameleon game shows up in search results.
-            If you came here looking for Meccha Chameleon guides, Meccha Chameleon tips, or a
-            Meccha Chameleon play online, the answers below should cover it. This browser hub
-            keeps the play window, guide, and hiding-spot atlas together so you can try the
-            Meccha Chameleon game idea without leaving the page.
+            {zh
+              ? '这里整理超级变色龙在搜索结果里常见的叫法：中文名、英文名、在线玩、地图攻略、隐藏点和新手技巧。你可以在同一页完成试玩、看攻略和查地图。'
+              : 'A quick reference for every way the Meccha Chameleon game shows up in search results. If you came here looking for Meccha Chameleon guides, Meccha Chameleon tips, or a Meccha Chameleon play online, the answers below should cover it. This browser hub keeps the play window, guide, and hiding-spot atlas together so you can try the Meccha Chameleon game idea without leaving the page.'}
           </p>
         </div>
 
@@ -191,17 +208,16 @@ export function KeywordSection() {
               <Tag className="h-4 w-4" />
             </span>
             <h3 className="text-base font-semibold text-[#29211D]">
-              Search terms for the Meccha Chameleon game
+              {zh ? '超级变色龙相关搜索词' : 'Search terms for the Meccha Chameleon game'}
             </h3>
           </div>
           <p className="mb-4 text-xs leading-5 text-[#4C3B35]">
-            Every variant players type when looking for the Meccha Chameleon game online, Meccha
-            Chameleon game guides, Meccha Chameleon game multiplayer setup, or Meccha Chameleon
-            game patch notes. Use this list to jump straight to the section that matches what
-            you searched for.
+            {zh
+              ? '玩家搜索超级变色龙在线玩、中文攻略、地图隐藏点、多人联机和更新日志时会用到这些词。'
+              : 'Every variant players type when looking for the Meccha Chameleon game online, Meccha Chameleon game guides, Meccha Chameleon game multiplayer setup, or Meccha Chameleon game patch notes. Use this list to jump straight to the section that matches what you searched for.'}
           </p>
           <ul className="flex flex-wrap gap-2">
-            {searchTerms.map((term) => (
+            {terms.map((term) => (
               <li
                 key={term}
                 className="inline-flex items-center rounded-full border border-[#D8CFC6] bg-white px-3 py-1 text-xs font-medium text-[#29211D]"
@@ -219,11 +235,11 @@ export function KeywordSection() {
               <HelpCircle className="h-4 w-4" />
             </span>
             <h3 className="text-base font-semibold text-[#29211D]">
-              Quick answers about the Meccha Chameleon game
+              {zh ? '关于超级变色龙的快速解答' : 'Quick answers about the Meccha Chameleon game'}
             </h3>
           </div>
           <div className="grid gap-3 md:grid-cols-2">
-            {faqs.map((f) => (
+            {activeFaqs.map((f) => (
               <details
                 key={f.q}
                 className="group rounded-md border border-[#D8CFC6] bg-[#F6F0EA] p-5 [&_summary::-webkit-details-marker]:hidden"
@@ -243,13 +259,7 @@ export function KeywordSection() {
 
         {/* Hidden closing — additional Meccha Chameleon context that doesn't hurt to have on-page */}
         <p className="sr-only">
-          The Meccha Chameleon game companion site. Meccha Chameleon game online, Meccha Chameleon
-          game multiplayer, Meccha Chameleon game guide, Meccha Chameleon game tips, Meccha
-          Chameleon game new player, Meccha Chameleon game mac, Meccha Chameleon game phone streaming,
-          Meccha Chameleon game mobile, Meccha Chameleon game crossplay, Meccha Chameleon game
-          2026, Meccha Chameleon game 7 million sales, Meccha Chameleon game osaka map, Meccha
-          Chameleon game camo lab, Meccha Chameleon game hiding spots, Meccha Chameleon game
-          crew roster, Meccha Chameleon game free browser play.
+          {zh ? '超级变色龙中文攻略，Meccha Chameleon 在线玩，超级变色龙地图，超级变色龙隐藏点，超级变色龙新手指南。' : 'The Meccha Chameleon game companion site. Meccha Chameleon game online, Meccha Chameleon game multiplayer, Meccha Chameleon game guide, Meccha Chameleon game tips, Meccha Chameleon game new player, Meccha Chameleon game mac, Meccha Chameleon game phone streaming, Meccha Chameleon game mobile, Meccha Chameleon game crossplay, Meccha Chameleon game 2026, Meccha Chameleon game 7 million sales, Meccha Chameleon game osaka map, Meccha Chameleon game camo lab, Meccha Chameleon game hiding spots, Meccha Chameleon game crew roster, Meccha Chameleon game free browser play.'}
         </p>
       </div>
     </section>

@@ -19,7 +19,23 @@ const maps = [
   { slug: 'blue-parlor', name: 'The Blue Floral Parlor' },
 ];
 
-const locales = ['en', 'zh'];
+const locales = [
+  'en',
+  'zh',
+  'ru',
+  'it',
+  'fr',
+  'de',
+  'es',
+  'pt',
+  'ja',
+  'ko',
+  'ar',
+  'th',
+  'vi',
+  'zh-TW',
+  'nl',
+];
 const defaultLocale = 'en';
 const now = new Date().toISOString();
 
@@ -45,18 +61,23 @@ for (const loc of locales) {
   });
 }
 
-// New player
+// New player + tools
 for (const loc of locales) {
-  entries.push({
-    loc: locUrl(loc, '/new-player'),
-    alternates: Object.fromEntries(
-      locales.map((l) => [l, locUrl(l, '/new-player')])
-    ),
-    'x-default': locUrl(defaultLocale, '/new-player'),
-    lastmod: now,
-    changefreq: 'monthly',
-    priority: '0.7',
-  });
+  for (const page of [
+    { path: '/new-player', priority: '0.7' },
+    { path: '/tools', priority: '0.85' },
+  ]) {
+    entries.push({
+      loc: locUrl(loc, page.path),
+      alternates: Object.fromEntries(
+        locales.map((l) => [l, locUrl(l, page.path)])
+      ),
+      'x-default': locUrl(defaultLocale, page.path),
+      lastmod: now,
+      changefreq: 'monthly',
+      priority: page.priority,
+    });
+  }
 }
 
 // Maps

@@ -2,10 +2,10 @@
   "header": {
     "id": "header",
     "brand": {
-      "title": "Meccha Chameleon Play Online",
+      "title": "Meccha Chameleon 線上遊玩",
       "logo": {
         "src": "/logo.png",
-        "alt": "Meccha Chameleon Play Online",
+        "alt": "Meccha Chameleon 線上遊玩",
         "width": 100,
         "height": 100
       },
@@ -14,22 +14,22 @@
     "nav": {
       "items": [
         {
-          "title": "Play",
+          "title": "遊玩",
           "url": "/#play",
           "icon": "Gamepad2"
         },
         {
-          "title": "New Player",
+          "title": "新手",
           "url": "/#new-player",
           "icon": "BadgeInfo"
         },
         {
-          "title": "Camo Lab",
+          "title": "偽裝實驗室",
           "url": "/#camo-lab",
           "icon": "Brush"
         },
         {
-          "title": "Map Atlas",
+          "title": "地圖圖鑑",
           "url": "/#atlas",
           "icon": "MapPinned"
         },
@@ -51,17 +51,17 @@
     "show_theme": false,
     "show_locale": true,
     "topbanner": {
-      "text": "浏览器直接玩 hide-and-seek，无需下载。"
+      "text": "在瀏覽器玩躲貓貓。不需下載。"
     }
   },
   "footer": {
     "id": "footer",
     "brand": {
-      "title": "Meccha Chameleon Play Online",
-      "description": "面向 Meccha Chameleon 玩家的在线试玩入口和手机二屏伪装辅助工具。",
+      "title": "Meccha Chameleon 線上遊玩",
+      "description": "給 Meccha Chameleon 玩家使用的瀏覽器遊玩入口與偽裝第二螢幕。",
       "logo": {
         "src": "/logo.png",
-        "alt": "Meccha Chameleon Play Online",
+        "alt": "Meccha Chameleon 線上遊玩",
         "width": 1024,
         "height": 1024
       },
@@ -70,35 +70,35 @@
     "nav": {
       "items": [
         {
-          "title": "Play",
+          "title": "遊玩",
           "children": [
             {
-              "title": "Play Online",
+              "title": "線上遊玩",
               "url": "/#play",
               "target": "_self"
             },
             {
-              "title": "New Player Guide",
+              "title": "新手指南",
               "url": "/new-player",
               "target": "_self"
             }
           ]
         },
         {
-          "title": "Guide",
+          "title": "指南",
           "children": [
             {
-              "title": "New Player",
+              "title": "新手",
               "url": "/#new-player",
               "target": "_self"
             },
             {
-              "title": "Camo Lab",
+              "title": "偽裝實驗室",
               "url": "/#camo-lab",
               "target": "_self"
             },
             {
-              "title": "Map Atlas",
+              "title": "地圖圖鑑",
               "url": "/#atlas",
               "target": "_self"
             }
@@ -108,7 +108,7 @@
           "title": "工具",
           "children": [
             {
-              "title": "辅助工具",
+              "title": "輔助工具",
               "url": "/tools",
               "target": "_self"
             }
@@ -122,11 +122,11 @@
     "agreement": {
       "items": [
         {
-          "title": "Privacy Policy",
+          "title": "隱私權政策",
           "url": "/privacy-policy"
         },
         {
-          "title": "Terms of Service",
+          "title": "服務條款",
           "url": "/terms-of-service"
         }
       ]

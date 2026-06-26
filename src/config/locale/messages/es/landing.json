@@ -2,10 +2,10 @@
   "header": {
     "id": "header",
     "brand": {
-      "title": "Meccha Chameleon Play Online",
+      "title": "Meccha Chameleon Jugar Online",
       "logo": {
         "src": "/logo.png",
-        "alt": "Meccha Chameleon Play Online",
+        "alt": "Meccha Chameleon Jugar Online",
         "width": 100,
         "height": 100
       },
@@ -14,12 +14,12 @@
     "nav": {
       "items": [
         {
-          "title": "Play",
+          "title": "Jugar",
           "url": "/#play",
           "icon": "Gamepad2"
         },
         {
-          "title": "New Player",
+          "title": "Nuevo jugador",
           "url": "/#new-player",
           "icon": "BadgeInfo"
         },
@@ -29,12 +29,12 @@
           "icon": "Brush"
         },
         {
-          "title": "Map Atlas",
+          "title": "Atlas de mapas",
           "url": "/#atlas",
           "icon": "MapPinned"
         },
         {
-          "title": "工具",
+          "title": "Herramientas",
           "url": "/tools",
           "icon": "Wrench"
         }
@@ -51,17 +51,17 @@
     "show_theme": false,
     "show_locale": true,
     "topbanner": {
-      "text": "浏览器直接玩 hide-and-seek，无需下载。"
+      "text": "Juega al escondite en el navegador. Sin descarga."
     }
   },
   "footer": {
     "id": "footer",
     "brand": {
-      "title": "Meccha Chameleon Play Online",
-      "description": "面向 Meccha Chameleon 玩家的在线试玩入口和手机二屏伪装辅助工具。",
+      "title": "Meccha Chameleon Jugar Online",
+      "description": "Hub de juego en navegador y segunda pantalla de camuflaje para jugadores de Meccha Chameleon.",
       "logo": {
         "src": "/logo.png",
-        "alt": "Meccha Chameleon Play Online",
+        "alt": "Meccha Chameleon Jugar Online",
         "width": 1024,
         "height": 1024
       },
@@ -70,25 +70,25 @@
     "nav": {
       "items": [
         {
-          "title": "Play",
+          "title": "Jugar",
           "children": [
             {
-              "title": "Play Online",
+              "title": "Jugar online",
               "url": "/#play",
               "target": "_self"
             },
             {
-              "title": "New Player Guide",
+              "title": "Guía para nuevos jugadores",
               "url": "/new-player",
               "target": "_self"
             }
           ]
         },
         {
-          "title": "Guide",
+          "title": "Guía",
           "children": [
             {
-              "title": "New Player",
+              "title": "Nuevo jugador",
               "url": "/#new-player",
               "target": "_self"
             },
@@ -98,17 +98,17 @@
               "target": "_self"
             },
             {
-              "title": "Map Atlas",
+              "title": "Atlas de mapas",
               "url": "/#atlas",
               "target": "_self"
             }
           ]
         },
         {
-          "title": "工具",
+          "title": "Herramientas",
           "children": [
             {
-              "title": "辅助工具",
+              "title": "Herramientas asistente",
               "url": "/tools",
               "target": "_self"
             }
@@ -122,11 +122,11 @@
     "agreement": {
       "items": [
         {
-          "title": "Privacy Policy",
+          "title": "Privacidad",
           "url": "/privacy-policy"
         },
         {
-          "title": "Terms of Service",
+          "title": "Términos",
           "url": "/terms-of-service"
         }
       ]

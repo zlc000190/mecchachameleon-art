@@ -2,10 +2,10 @@
   "header": {
     "id": "header",
     "brand": {
-      "title": "Meccha Chameleon Play Online",
+      "title": "Meccha Chameleon العب أونلاين",
       "logo": {
         "src": "/logo.png",
-        "alt": "Meccha Chameleon Play Online",
+        "alt": "Meccha Chameleon العب أونلاين",
         "width": 100,
         "height": 100
       },
@@ -14,27 +14,27 @@
     "nav": {
       "items": [
         {
-          "title": "Play",
+          "title": "العب",
           "url": "/#play",
           "icon": "Gamepad2"
         },
         {
-          "title": "New Player",
+          "title": "لاعب جديد",
           "url": "/#new-player",
           "icon": "BadgeInfo"
         },
         {
-          "title": "Camo Lab",
+          "title": "مختبر التمويه",
           "url": "/#camo-lab",
           "icon": "Brush"
         },
         {
-          "title": "Map Atlas",
+          "title": "أطلس الخرائط",
           "url": "/#atlas",
           "icon": "MapPinned"
         },
         {
-          "title": "工具",
+          "title": "الأدوات",
           "url": "/tools",
           "icon": "Wrench"
         }
@@ -51,17 +51,17 @@
     "show_theme": false,
     "show_locale": true,
     "topbanner": {
-      "text": "浏览器直接玩 hide-and-seek，无需下载。"
+      "text": "العب الغميضة في المتصفح. بدون تنزيل."
     }
   },
   "footer": {
     "id": "footer",
     "brand": {
-      "title": "Meccha Chameleon Play Online",
-      "description": "面向 Meccha Chameleon 玩家的在线试玩入口和手机二屏伪装辅助工具。",
+      "title": "Meccha Chameleon العب أونلاين",
+      "description": "مركز لعب في المتصفح وشاشة ثانية للتمويه للاعبي Meccha Chameleon.",
       "logo": {
         "src": "/logo.png",
-        "alt": "Meccha Chameleon Play Online",
+        "alt": "Meccha Chameleon العب أونلاين",
         "width": 1024,
         "height": 1024
       },
@@ -70,45 +70,45 @@
     "nav": {
       "items": [
         {
-          "title": "Play",
+          "title": "العب",
           "children": [
             {
-              "title": "Play Online",
+              "title": "العب أونلاين",
               "url": "/#play",
               "target": "_self"
             },
             {
-              "title": "New Player Guide",
+              "title": "دليل اللاعب الجديد",
               "url": "/new-player",
               "target": "_self"
             }
           ]
         },
         {
-          "title": "Guide",
+          "title": "الدليل",
           "children": [
             {
-              "title": "New Player",
+              "title": "لاعب جديد",
               "url": "/#new-player",
               "target": "_self"
             },
             {
-              "title": "Camo Lab",
+              "title": "مختبر التمويه",
               "url": "/#camo-lab",
               "target": "_self"
             },
             {
-              "title": "Map Atlas",
+              "title": "أطلس الخرائط",
               "url": "/#atlas",
               "target": "_self"
             }
           ]
         },
         {
-          "title": "工具",
+          "title": "الأدوات",
           "children": [
             {
-              "title": "辅助工具",
+              "title": "أدوات المساعدة",
               "url": "/tools",
               "target": "_self"
             }
@@ -122,11 +122,11 @@
     "agreement": {
       "items": [
         {
-          "title": "Privacy Policy",
+          "title": "الخصوصية",
           "url": "/privacy-policy"
         },
         {
-          "title": "Terms of Service",
+          "title": "الشروط",
           "url": "/terms-of-service"
         }
       ]

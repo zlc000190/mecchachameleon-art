@@ -2,10 +2,10 @@
   "header": {
     "id": "header",
     "brand": {
-      "title": "Meccha Chameleon Play Online",
+      "title": "Meccha Chameleon Online Spelen",
       "logo": {
         "src": "/logo.png",
-        "alt": "Meccha Chameleon Play Online",
+        "alt": "Meccha Chameleon Online Spelen",
         "width": 100,
         "height": 100
       },
@@ -14,12 +14,12 @@
     "nav": {
       "items": [
         {
-          "title": "Play",
+          "title": "Spelen",
           "url": "/#play",
           "icon": "Gamepad2"
         },
         {
-          "title": "New Player",
+          "title": "Nieuwe speler",
           "url": "/#new-player",
           "icon": "BadgeInfo"
         },
@@ -29,12 +29,12 @@
           "icon": "Brush"
         },
         {
-          "title": "Map Atlas",
+          "title": "Kaartatlas",
           "url": "/#atlas",
           "icon": "MapPinned"
         },
         {
-          "title": "工具",
+          "title": "Tools",
           "url": "/tools",
           "icon": "Wrench"
         }
@@ -51,17 +51,17 @@
     "show_theme": false,
     "show_locale": true,
     "topbanner": {
-      "text": "浏览器直接玩 hide-and-seek，无需下载。"
+      "text": "Speel verstoppertje in je browser. Geen download nodig."
     }
   },
   "footer": {
     "id": "footer",
     "brand": {
-      "title": "Meccha Chameleon Play Online",
-      "description": "面向 Meccha Chameleon 玩家的在线试玩入口和手机二屏伪装辅助工具。",
+      "title": "Meccha Chameleon Online Spelen",
+      "description": "Browser-speelhub en tweede scherm voor camouflagehulp voor Meccha Chameleon-spelers.",
       "logo": {
         "src": "/logo.png",
-        "alt": "Meccha Chameleon Play Online",
+        "alt": "Meccha Chameleon Online Spelen",
         "width": 1024,
         "height": 1024
       },
@@ -70,25 +70,25 @@
     "nav": {
       "items": [
         {
-          "title": "Play",
+          "title": "Spelen",
           "children": [
             {
-              "title": "Play Online",
+              "title": "Online spelen",
               "url": "/#play",
               "target": "_self"
             },
             {
-              "title": "New Player Guide",
+              "title": "Nieuwe-speler gids",
               "url": "/new-player",
               "target": "_self"
             }
           ]
         },
         {
-          "title": "Guide",
+          "title": "Gids",
           "children": [
             {
-              "title": "New Player",
+              "title": "Nieuwe speler",
               "url": "/#new-player",
               "target": "_self"
             },
@@ -98,17 +98,17 @@
               "target": "_self"
             },
             {
-              "title": "Map Atlas",
+              "title": "Kaartatlas",
               "url": "/#atlas",
               "target": "_self"
             }
           ]
         },
         {
-          "title": "工具",
+          "title": "Tools",
           "children": [
             {
-              "title": "辅助工具",
+              "title": "Assistent-tools",
               "url": "/tools",
               "target": "_self"
             }
@@ -122,11 +122,11 @@
     "agreement": {
       "items": [
         {
-          "title": "Privacy Policy",
+          "title": "Privacy",
           "url": "/privacy-policy"
         },
         {
-          "title": "Terms of Service",
+          "title": "Voorwaarden",
           "url": "/terms-of-service"
         }
       ]

@@ -11,34 +11,15 @@ import { setRequestLocale } from 'next-intl/server';
 
 import { AtlasPreview } from '@/shared/blocks/meccha/atlas-preview';
 import { DemoFrame } from '@/shared/blocks/meccha/demo-frame';
+import { getHomeCopy } from '@/shared/blocks/meccha/meccha-i18n';
+import { ToolsTeaser } from '@/shared/blocks/meccha/tools-teaser';
 import { HowToPlaySection } from '@/shared/blocks/meccha/how-to-play-section';
 import { KeywordSection } from '@/shared/blocks/meccha/keyword-section';
 import { UpdatesSection } from '@/shared/blocks/meccha/updates-section';
+import { BreadcrumbJsonLd } from '@/shared/components/seo/breadcrumb-json-ld';
+import { getCanonicalUrl } from '@/shared/lib/seo';
 
-const faqs = [
-  {
-    q: 'Can I play Meccha Chameleon online?',
-    a: 'Yes. Start with the browser game above, then use the play guide and hiding spot atlas when you want deeper match help.',
-  },
-  {
-    q: 'What should I try first?',
-    a: 'Play one short round, then open the How to play section for role basics, seeker habits, and hider positioning.',
-  },
-  {
-    q: 'Does this work on mobile?',
-    a: 'The browser games load on modern phones, and the guide sections are built to work as a second screen while you play on PC.',
-  },
-  {
-    q: 'Where are the best hiding spots?',
-    a: 'Use the map atlas below for quick spot ideas, paint colors, difficulty labels, and hider notes.',
-  },
-];
-
-const secondScreenItems: Array<[LucideIcon, string, string]> = [
-  [Smartphone, 'Phone first', 'Tap map, color, and pose notes without alt-tabbing.'],
-  [Gamepad2, 'PC aware', 'Keep a quick guide open while the match runs.'],
-  [ShieldCheck, 'Fast queue help', 'Use role notes, spot ideas, and color cues without leaving the round.'],
-];
+const secondScreenIcons: LucideIcon[] = [Smartphone, Gamepad2, ShieldCheck];
 
 export const revalidate = 3600;
 
@@ -49,66 +30,55 @@ export default async function LandingPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const copy = getHomeCopy(locale);
+  const homeUrl = await getCanonicalUrl('/', locale);
+  const showLongFormSections = locale === 'en' || locale === 'zh';
+  const showTranslatedDetailCards = locale === 'en' || locale === 'zh' || locale === 'ru';
+  const showTranslatedAtlasPreview = locale === 'en' || locale === 'zh';
 
   return (
     <main className="min-h-screen bg-[#fff7f1] text-[#29211D]">
+      <BreadcrumbJsonLd items={[{ name: locale === 'zh' ? '首页' : 'Home', item: homeUrl }]} />
       <section className="border-b border-[#f2cfd8] bg-gradient-to-br from-[#fff7c8] via-[#ffd2e1] to-[#cdefff]">
         <div className="container pb-8 pt-32 lg:pb-10 lg:pt-40">
           <div className="mb-5 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
               <h1 className="text-4xl font-bold leading-tight tracking-normal text-[#29211D] md:text-6xl">
-                Meccha Chameleon Play Online
+                {copy.title}
               </h1>
             </div>
             <div className="flex flex-wrap gap-3">
-              <a
-                href="#play"
-                className="inline-flex min-h-11 items-center gap-2 rounded-md bg-[#ff6f9a] px-5 py-3 font-semibold text-white transition hover:bg-[#e95a88]"
-              >
-                <Gamepad2 className="h-5 w-5" />
-                Play now
+              <a href="#play" className="inline-flex min-h-11 items-center gap-2 rounded-md bg-[#ff6f9a] px-5 py-3 font-semibold text-white transition hover:bg-[#e95a88]">
+                <Gamepad2 className="h-5 w-5" />{copy.playNow}
               </a>
-              <a
-                href="#how-to-play"
-                className="inline-flex min-h-11 items-center gap-2 rounded-md border border-[#efc8d3] bg-white px-5 py-3 font-semibold text-[#29211D] transition hover:bg-[#fff7c8]"
-              >
-                <BookOpen className="h-5 w-5" />
-                How to play
+              <a href="#how-to-play" className="inline-flex min-h-11 items-center gap-2 rounded-md border border-[#efc8d3] bg-white px-5 py-3 font-semibold text-[#29211D] transition hover:bg-[#fff7c8]">
+                <BookOpen className="h-5 w-5" />{copy.howToPlay}
               </a>
             </div>
           </div>
 
-          <div className="grid gap-5">
-            <div id="play">
-              <DemoFrame />
-            </div>
-          </div>
+          <div className="grid gap-5"><div id="play"><DemoFrame locale={locale} /></div></div>
         </div>
       </section>
+
+      <ToolsTeaser locale={locale} />
 
       <section id="new-player" className="border-b border-[#D8CFC6] bg-white">
         <div className="container grid gap-8 py-14 lg:grid-cols-[0.85fr_1.15fr]">
           <div>
-            <p className="mb-3 text-sm font-semibold uppercase tracking-normal text-[#7D6D69]">
-              New player route
-            </p>
-            <h2 className="text-3xl font-bold tracking-normal md:text-4xl">
-              If you searched before downloading, start with the browser game.
-            </h2>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-normal text-[#7D6D69]">{copy.newPlayerEyebrow}</p>
+            <h2 className="text-3xl font-bold tracking-normal md:text-4xl">{copy.newPlayerTitle}</h2>
           </div>
-          <div className="grid gap-4 md:grid-cols-2">
-            {[
-              ['What is it?', 'A PC hide-and-seek game where hiders paint their bodies to blend into the map.'],
-              ['Can I play here?', 'Yes. Start with the browser game above, then use the guide when you want match tips.'],
-              ['Should I install it?', 'Try one quick round first. If hiding, painting, and seeker pressure feel fun, keep this guide open for the next match.'],
-              ['What should I learn first?', 'Spot selection, color matching, pose discipline, and staying still after you commit.'],
-            ].map(([title, copy]) => (
-              <div key={title} className="rounded-md border border-[#e0d8c8] p-5">
-                <h3 className="font-semibold">{title}</h3>
-                <p className="mt-2 text-sm leading-6 text-[#4C3B35]">{copy}</p>
-              </div>
-            ))}
-          </div>
+          {showTranslatedDetailCards ? (
+            <div className="grid gap-4 md:grid-cols-2">
+              {copy.newPlayerCards.map(([title, body]: readonly [string, string]) => (
+                <div key={title} className="rounded-md border border-[#e0d8c8] p-5">
+                  <h3 className="font-semibold">{title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-[#4C3B35]">{body}</p>
+                </div>
+              ))}
+            </div>
+          ) : null}
         </div>
       </section>
 
@@ -116,107 +86,87 @@ export default async function LandingPage({
         <div className="container py-14">
           <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="mb-3 text-sm font-semibold uppercase tracking-normal text-[#7D6D69]">
-                For real players
-              </p>
-              <h2 className="max-w-3xl text-3xl font-bold tracking-normal md:text-4xl">
-                Camo Lab turns search traffic into match-ready help.
-              </h2>
+              <p className="mb-3 text-sm font-semibold uppercase tracking-normal text-[#7D6D69]">{copy.camoEyebrow}</p>
+              <h2 className="max-w-3xl text-3xl font-bold tracking-normal md:text-4xl">{copy.camoTitle}</h2>
             </div>
-            <a
-              href="#atlas"
-              className="inline-flex min-h-11 w-fit items-center gap-2 rounded-md bg-[#ff6f9a] px-4 py-3 text-sm font-semibold text-white hover:bg-[#e95a88]"
-            >
-              <MapPinned className="h-4 w-4" />
-              Preview map atlas
+            <a href="#atlas" className="inline-flex min-h-11 w-fit items-center gap-2 rounded-md bg-[#ff6f9a] px-4 py-3 text-sm font-semibold text-white hover:bg-[#e95a88]">
+              <MapPinned className="h-4 w-4" />{copy.previewAtlas}
             </a>
           </div>
-
-          <div className="grid gap-4 md:grid-cols-3">
-            {[
-              ['Color reads', 'Show primary and secondary paint colors for each map surface.'],
-              ['Pose notes', 'Tell players which side or silhouette should face the seeker.'],
-              ['Risk rating', 'Label beginner-safe, high-reward, and obvious bait spots.'],
-            ].map(([title, copy]) => (
-              <div key={title} className="rounded-md bg-white p-5 shadow-sm">
-                <Sparkles className="mb-4 h-5 w-5 text-[#AA776E]" />
-                <h3 className="font-semibold">{title}</h3>
-                <p className="mt-2 text-sm leading-6 text-[#4C3B35]">{copy}</p>
-              </div>
-            ))}
-          </div>
+          {showTranslatedDetailCards ? (
+            <div className="grid gap-4 md:grid-cols-3">
+              {copy.camoCards.map(([title, body]: readonly [string, string]) => (
+                <div key={title} className="rounded-md bg-white p-5 shadow-sm">
+                  <Sparkles className="mb-4 h-5 w-5 text-[#AA776E]" />
+                  <h3 className="font-semibold">{title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-[#4C3B35]">{body}</p>
+                </div>
+              ))}
+            </div>
+          ) : null}
         </div>
       </section>
 
-      <section
-        id="atlas"
-        className="scroll-mt-28 border-b border-[#D8CFC6] bg-white"
-      >
+      <section id="atlas" className="scroll-mt-28 border-b border-[#D8CFC6] bg-white">
         <div className="container py-14">
           <div className="mb-8 max-w-3xl">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-normal text-[#7D6D69]">
-              Hiding Spot Atlas
-            </p>
-            <h2 className="text-3xl font-bold tracking-normal md:text-4xl">
-              Five real map guides, fifty hiding spots, one fast second screen.
-            </h2>
-            <p className="mt-4 max-w-2xl text-sm leading-6 text-[#4C3B35]">
-              These are the captured Meccha Chameleon map assets Claude already
-              prepared: screenshots, paint colors, difficulty, and match tips.
-            </p>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-normal text-[#7D6D69]">{copy.atlasEyebrow}</p>
+            <h2 className="text-3xl font-bold tracking-normal md:text-4xl">{copy.atlasTitle}</h2>
+            <p className="mt-4 max-w-2xl text-sm leading-6 text-[#4C3B35]">{copy.atlasDesc}</p>
           </div>
-          <AtlasPreview locale={locale} />
+          {showTranslatedAtlasPreview ? <AtlasPreview locale={locale} /> : null}
         </div>
       </section>
 
-      <HowToPlaySection locale={locale} />
-
-      <UpdatesSection />
+      {showLongFormSections ? (
+        <>
+          <HowToPlaySection locale={locale} />
+          <UpdatesSection locale={locale} />
+        </>
+      ) : null}
 
       <section id="second-screen" className="border-b border-[#D8CFC6] bg-gradient-to-br from-[#9de7dc] via-[#cdefff] to-[#d9b7ff] text-[#29211D]">
         <div className="container grid gap-8 py-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
-            <p className="mb-3 text-sm font-semibold uppercase tracking-normal text-[#C9B2A8]">
-              Best form factor
-            </p>
-            <h2 className="text-3xl font-bold tracking-normal md:text-4xl">
-              Build for phone-in-hand while the real game runs on PC.
-            </h2>
-            <p className="mt-4 leading-7 text-[#4C3B35]">
-              A browser page beats a plugin here. PC gameplay happens outside
-              the browser, so the practical companion is a mobile-friendly web
-              guide that loads instantly and needs no account.
-            </p>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-normal text-[#7D6D69]">{copy.secondEyebrow}</p>
+            <h2 className="text-3xl font-bold tracking-normal md:text-4xl">{copy.secondTitle}</h2>
+            <p className="mt-4 leading-7 text-[#4C3B35]">{copy.secondDesc}</p>
+            <a
+              href={locale === 'en' ? '/tools' : `/${locale}/tools`}
+              className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-md bg-[#ff6f9a] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#e95a88]"
+            >
+              <BookOpen className="h-4 w-4" />
+              {copy.openTools}
+            </a>
           </div>
-          <div className="grid gap-4 sm:grid-cols-3">
-            {secondScreenItems.map(([Icon, title, copy]) => (
-              <div key={title} className="rounded-md border border-white/70 bg-white/70 p-5">
-                <Icon className="mb-4 h-5 w-5 text-[#ff6f9a]" />
-                <h3 className="font-semibold">{title}</h3>
-                <p className="mt-2 text-sm leading-6 text-[#4C3B35]">{copy}</p>
-              </div>
-            ))}
-          </div>
+          {showTranslatedDetailCards ? (
+            <div className="grid gap-4 sm:grid-cols-3">
+              {copy.secondScreenItems.map(([title, body]: readonly [string, string], i: number) => {
+                const Icon = secondScreenIcons[i];
+                return <div key={title} className="rounded-md border border-white/70 bg-white/70 p-5"><Icon className="mb-4 h-5 w-5 text-[#ff6f9a]" /><h3 className="font-semibold">{title}</h3><p className="mt-2 text-sm leading-6 text-[#4C3B35]">{body}</p></div>;
+              })}
+            </div>
+          ) : null}
         </div>
       </section>
 
-      <KeywordSection />
+      {showLongFormSections ? <KeywordSection locale={locale} /> : null}
 
-      <section className="bg-[#F6F0EA]">
-        <div className="container py-14">
-          <h2 className="mb-8 text-3xl font-bold tracking-normal md:text-4xl">
-            Quick answers
-          </h2>
-          <div className="grid gap-4 md:grid-cols-2">
-            {faqs.map((item) => (
-              <div key={item.q} className="rounded-md border border-[#D8CFC6] bg-white p-5">
-                <h3 className="font-semibold">{item.q}</h3>
-                <p className="mt-2 text-sm leading-6 text-[#4C3B35]">{item.a}</p>
-              </div>
-            ))}
+      {showTranslatedDetailCards ? (
+        <section className="bg-[#F6F0EA]">
+          <div className="container py-14">
+            <h2 className="mb-8 text-3xl font-bold tracking-normal md:text-4xl">{copy.quickAnswers}</h2>
+            <div className="grid gap-4 md:grid-cols-2">
+              {copy.faqs.map(([q, a]: readonly [string, string]) => (
+                <div key={q} className="rounded-md border border-[#D8CFC6] bg-white p-5">
+                  <h3 className="font-semibold">{q}</h3>
+                  <p className="mt-2 text-sm leading-6 text-[#4C3B35]">{a}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
     </main>
   );
 }

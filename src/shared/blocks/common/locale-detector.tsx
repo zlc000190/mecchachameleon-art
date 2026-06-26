@@ -88,7 +88,7 @@ export function LocaleDetector() {
     if (
       preferredLocale &&
       preferredLocale !== currentLocale &&
-      locales.includes(preferredLocale)
+      (locales as readonly string[]).includes(preferredLocale)
     ) {
       switchToLocale(preferredLocale);
       return;

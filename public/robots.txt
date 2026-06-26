@@ -5,18 +5,20 @@ User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /admin/
+Disallow: /settings/
+Disallow: /activity/
+Disallow: /sign-in
+Disallow: /sign-up
+Disallow: /verify-email
 
-# === Sitemaps (多语言) ===
+# Sitemap contains only game-related SEO pages:
+# home, tools, new-player, and map guides in supported locales.
 Sitemap: https://mecchachameleon.art/sitemap.xml
 
-# === IndexNow: Yandex 加速索引 ===
 User-agent: Yandex
 Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /settings/
+Disallow: /activity/
 Crawl-delay: 1
-Sitemap: https://mecchachameleon.art/sitemap.xml
-
-# === IndexNow: 通用提示 ===
-User-agent: *
-# 当你看到这段时, 我们已通过 IndexNow API 推送所有 URL
-# 推送脚本: ~/.hermes/scripts/indexnow-submit.sh
-# 最后推送: 2026-06-24

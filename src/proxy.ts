@@ -2,9 +2,33 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getSessionCookie } from 'better-auth/cookies';
 import createIntlMiddleware from 'next-intl/middleware';
 
+import { defaultLocale, isKeySeoPath, locales, type Locale } from '@/config/locale';
 import { routing } from '@/core/i18n/config';
 
 const intlMiddleware = createIntlMiddleware(routing);
+
+const NEW_LOCALES: Locale[] = [
+  'it',
+  'fr',
+  'de',
+  'es',
+  'pt',
+  'ja',
+  'ko',
+  'ar',
+  'th',
+  'vi',
+  'zh-TW',
+  'nl',
+];
+
+function stripLocale(pathname: string): { locale: string; rest: string } {
+  const seg = pathname.split('/')[1] ?? '';
+  if ((locales as readonly string[]).includes(seg)) {
+    return { locale: seg, rest: '/' + pathname.split('/').slice(2).join('/') };
+  }
+  return { locale: '', rest: pathname };
+}
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -14,10 +38,28 @@ export async function proxy(request: NextRequest) {
 
   // Extract locale from pathname
   const locale = pathname.split('/')[1];
-  const isValidLocale = routing.locales.includes(locale as any);
+  const isValidLocale = (locales as readonly string[]).includes(locale);
   const pathWithoutLocale = isValidLocale
     ? pathname.slice(locale.length + 1)
     : pathname;
+
+  // For the 12 newly added locales, force-en to non-key-SEO pages.
+  // This keeps the 4 key SEO pages (/, /tools, /new-player, /maps[/...])
+  // available in 15 locales while everything else stays in en for the
+  // 12 new locales (admin / settings / pricing / activity / ai / blog /
+  // showcases / updates / docs / chat / sign-in / sign-up etc.).
+  if (
+    isValidLocale &&
+    (NEW_LOCALES as readonly string[]).includes(locale) &&
+    !isKeySeoPath(pathWithoutLocale) &&
+    pathWithoutLocale !== '' &&
+    !pathWithoutLocale.startsWith('/admin') &&
+    !pathWithoutLocale.startsWith('/settings') &&
+    !pathWithoutLocale.startsWith('/activity')
+  ) {
+    const fallbackUrl = new URL(`/en${pathWithoutLocale}`, request.url);
+    return NextResponse.redirect(fallbackUrl, 302);
+  }
 
   // Only check authentication for admin routes
   if (
@@ -49,6 +91,11 @@ export async function proxy(request: NextRequest) {
 
   intlResponse.headers.set('x-pathname', request.nextUrl.pathname);
   intlResponse.headers.set('x-url', request.url);
+
+  const normalizedPathForSeo = pathWithoutLocale === '' ? '/' : pathWithoutLocale;
+  if (!isKeySeoPath(normalizedPathForSeo)) {
+    intlResponse.headers.set('X-Robots-Tag', 'noindex, nofollow');
+  }
 
   // Remove Set-Cookie from public pages to allow caching
   // We exclude admin, settings, activity, and auth pages from this behavior

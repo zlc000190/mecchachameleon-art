@@ -4,9 +4,39 @@ export const localeNames: any = {
   en: 'English',
   zh: '中文',
   ru: 'Русский',
+  it: 'Italiano',
+  fr: 'Français',
+  de: 'Deutsch',
+  es: 'Español',
+  pt: 'Português',
+  ja: '日本語',
+  ko: '한국어',
+  ar: 'العربية',
+  th: 'ไทย',
+  vi: 'Tiếng Việt',
+  'zh-TW': '繁體中文',
+  nl: 'Nederlands',
 };
 
-export const locales = ['en', 'zh', 'ru'];
+export const locales = [
+  'en',
+  'zh',
+  'ru',
+  'it',
+  'fr',
+  'de',
+  'es',
+  'pt',
+  'ja',
+  'ko',
+  'ar',
+  'th',
+  'vi',
+  'zh-TW',
+  'nl',
+] as const;
+
+export type Locale = (typeof locales)[number];
 
 export const defaultLocale = envConfigs.locale;
 
@@ -56,3 +86,29 @@ export const localeMessagesPaths = [
   'pages/blog',
   'pages/updates',
 ];
+
+// Locales that have a full i18n JSON bundle under src/config/locale/messages/<locale>.
+// `ru` is included for legacy reasons (the brand is anchored in Russian search intent).
+export const fullyTranslatedLocales: Locale[] = ['en', 'zh', 'ru'];
+
+// 4 SEO key pages that get full 15-locale coverage (manual translation).
+// Everything outside this list falls back to English for the 12 new locales.
+export const keySeoPages = [
+  '/',
+  '/tools',
+  '/new-player',
+  '/maps',
+] as const;
+
+// Locales that read right-to-left.
+export const rtlLocales: Locale[] = ['ar'];
+
+export function isRtl(locale: string): boolean {
+  return (rtlLocales as readonly string[]).includes(locale);
+}
+
+export function isKeySeoPath(pathname: string): boolean {
+  // Strip locale prefix (e.g. "/fr/maps/vintage-room" -> "/maps/vintage-room")
+  const stripped = pathname.replace(/^\/(en|zh|ru|it|fr|de|es|pt|ja|ko|ar|th|vi|zh-TW|nl)(?=\/|$)/, '');
+  return keySeoPages.some((p) => stripped === p || stripped.startsWith(`${p}/`));
+}

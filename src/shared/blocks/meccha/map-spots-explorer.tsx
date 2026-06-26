@@ -9,14 +9,18 @@ import {
   type AtlasSpot,
   getAtlasImagePath,
 } from './atlas-data';
+import { mapLabels } from './meccha-i18n';
 
 export function MapSpotsExplorer({
   map,
   spots,
+  locale = 'en',
 }: {
   map: AtlasMap;
   spots: AtlasSpot[];
+  locale?: string;
 }) {
+  const labels = locale === 'zh' ? mapLabels.zh : mapLabels.en;
   const [activeSpotId, setActiveSpotId] = useState(spots[0]?.id ?? '');
   const activeSpot = useMemo(
     () => spots.find((spot) => spot.id === activeSpotId) ?? spots[0],
@@ -33,7 +37,7 @@ export function MapSpotsExplorer({
         <div className="relative aspect-video">
           <Image
             src={getAtlasImagePath(activeSpot.screenshot)}
-            alt={`${activeSpot.name} hiding spot on ${map.name}`}
+            alt={`${activeSpot.name} ${locale === 'zh' ? '隐藏点，地图' : 'hiding spot on'} ${map.name}`}
             fill
             priority
             sizes="(min-width: 1024px) 70vw, 100vw"
@@ -49,7 +53,7 @@ export function MapSpotsExplorer({
         <div className="mb-5 flex items-start justify-between gap-4">
           <div>
             <p className="text-xs font-semibold uppercase tracking-normal text-[#7D6D69]">
-              Selected spot
+              {labels.selectedSpot}
             </p>
             <h2 className="mt-2 text-2xl font-bold leading-tight">
               {activeSpot.name}
@@ -64,18 +68,18 @@ export function MapSpotsExplorer({
           <div className="rounded-md border border-[#e0d8c8] bg-[#F6F0EA] p-4">
             <div className="mb-3 flex items-center gap-2 text-sm font-semibold">
               <Palette className="h-4 w-4 text-[#AA776E]" />
-              Paint colors
+              {labels.paintColors}
             </div>
             <div className="flex flex-wrap gap-3">
-              <ColorChip label="Primary" value={activeSpot.rgb} />
-              <ColorChip label="Secondary" value={activeSpot.secondary_rgb} />
+              <ColorChip label={labels.primary} value={activeSpot.rgb} />
+              <ColorChip label={labels.secondary} value={activeSpot.secondary_rgb} />
             </div>
           </div>
 
           <div className="rounded-md border border-[#e0d8c8] bg-[#F6F0EA] p-4">
             <div className="mb-3 flex items-center gap-2 text-sm font-semibold">
               <Star className="h-4 w-4 text-[#AA776E]" />
-              Difficulty
+              {labels.difficulty}
             </div>
             <div className="flex gap-1">
               {Array.from({ length: 5 }).map((_, index) => (
@@ -109,7 +113,7 @@ export function MapSpotsExplorer({
               <div className="relative aspect-video bg-[#cdefff]">
                 <Image
                   src={getAtlasImagePath(spot.screenshot)}
-                  alt={`${spot.name} thumbnail`}
+                  alt={`${spot.name} ${locale === 'zh' ? '缩略图' : 'thumbnail'}`}
                   fill
                   sizes="(min-width: 768px) 20vw, 50vw"
                   className="object-cover"

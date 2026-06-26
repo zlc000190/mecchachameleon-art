@@ -8,8 +8,8 @@ import {
 } from '@/config/locale';
 
 export const routing = defineRouting({
-  locales,
-  defaultLocale,
+  locales: locales as unknown as typeof locales & string[],
+  defaultLocale: defaultLocale as (typeof locales)[number],
   localePrefix,
   localeDetection,
 });
