@@ -57,6 +57,7 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
   const zh = locale === 'zh';
   const [activeId, setActiveId] = useState<Demo['id']>('easy');
   const [showHint, setShowHint] = useState(true);
+  const [loaded, setLoaded] = useState(false);
   const activeDemo = demos.find((demo) => demo.id === activeId) ?? demos[0];
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
@@ -64,6 +65,11 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
     const t = setTimeout(() => setShowHint(false), 9000);
     return () => clearTimeout(t);
   }, [activeId]);
+
+  function startGame() {
+    setLoaded(true);
+    requestAnimationFrame(() => iframeRef.current?.focus());
+  }
 
   return (
     <div id="play" className="scroll-mt-24">
@@ -80,7 +86,7 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
             </div>
             <button
               type="button"
-              onClick={() => iframeRef.current?.focus()}
+              onClick={startGame}
               className="inline-flex min-h-9 w-fit items-center gap-2 rounded-md bg-[#ff6f9a] px-4 text-sm font-semibold text-white transition hover:bg-[#e95a88]"
             >
               <Gamepad2 className="h-4 w-4" />
@@ -97,6 +103,7 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                 aria-selected={activeDemo.id === demo.id}
                 onClick={() => {
                   setActiveId(demo.id);
+                  setLoaded(false);
                   setShowHint(true);
                 }}
                 className={`min-h-9 rounded-md border px-4 text-sm font-semibold transition ${
@@ -115,24 +122,48 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
         </div>
 
         <div className={`relative w-full overflow-hidden bg-[#eef8ff] ${activeDemo.ratio}`}>
-          <iframe
-            key={activeDemo.id}
-            ref={iframeRef}
-            title={`${activeDemo.title} browser game`}
-            src={activeDemo.src}
-            className={
-              activeDemo.id === 'easy'
-                ? 'absolute inset-x-0 -top-[360px] h-[calc(100%+360px)] w-full sm:-top-[420px] sm:h-[calc(100%+420px)] lg:-top-[520px] lg:h-[calc(100%+520px)]'
-                : 'absolute inset-0 h-full w-full'
-            }
-            loading="lazy"
-            allow="autoplay; fullscreen; gamepad; pointer-lock; encrypted-media; web-share"
-            allowFullScreen
-            scrolling={activeDemo.id === 'easy' ? 'yes' : 'no'}
-            referrerPolicy="origin"
-            sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-pointer-lock allow-top-navigation allow-presentation"
-          />
-          {showHint && activeDemo.id !== 'easy' ? (
+          {loaded ? (
+            <iframe
+              key={activeDemo.id}
+              ref={iframeRef}
+              title={`${activeDemo.title} browser game`}
+              src={activeDemo.src}
+              className={
+                activeDemo.id === 'easy'
+                  ? 'absolute inset-x-0 -top-[360px] h-[calc(100%+360px)] w-full sm:-top-[420px] sm:h-[calc(100%+420px)] lg:-top-[520px] lg:h-[calc(100%+520px)]'
+                  : 'absolute inset-0 h-full w-full'
+              }
+              loading="lazy"
+              allow="autoplay; fullscreen; gamepad; pointer-lock; encrypted-media; web-share"
+              allowFullScreen
+              scrolling={activeDemo.id === 'easy' ? 'yes' : 'no'}
+              referrerPolicy="origin"
+              sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-pointer-lock allow-top-navigation allow-presentation"
+            />
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center bg-[radial-gradient(circle_at_20%_20%,#fff7c8_0,#ffd2e1_34%,#cdefff_100%)] p-6 text-center">
+              <div className="max-w-md rounded-2xl border border-white/80 bg-white/85 p-7 shadow-xl backdrop-blur">
+                <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#ff6f9a] text-white shadow-lg">
+                  <Gamepad2 className="h-6 w-6" />
+                </div>
+                <h3 className="text-2xl font-bold text-[#29211D]">{activeDemo.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-[#4C3B35]">
+                  {zh
+                    ? '点击后才加载第三方游戏，避免 Google 把外部页面的旧结构化数据算到本站。'
+                    : 'The third-party game loads only after a click, so Google does not read external structured data as part of this page.'}
+                </p>
+                <button
+                  type="button"
+                  onClick={startGame}
+                  className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-md bg-[#29211D] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#4C3B35]"
+                >
+                  <Gamepad2 className="h-4 w-4" />
+                  {zh ? '点击开始' : 'Click to Play'}
+                </button>
+              </div>
+            </div>
+          )}
+          {loaded && showHint && activeDemo.id !== 'easy' ? (
             <div className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center bg-gradient-to-t from-black/80 to-transparent p-4">
               <div className="pointer-events-auto flex max-w-md items-start gap-3 rounded-lg border border-amber-300/40 bg-amber-50/95 px-4 py-3 text-sm text-amber-950 shadow-lg">
                 <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" />
@@ -158,16 +189,27 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
         </div>
 
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-white/70 bg-white/80 px-4 py-3 text-xs text-[#4C3B35]">
-          <span>{zh ? '提示：第三方源不加载时，使用新标签获得完整体验。' : 'Tip: if a third-party source does not load, use the new-tab fallback.'}</span>
-          <a
-            href={activeDemo.openInNewTab}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-md border border-[#D8CFC6] bg-white px-3 py-1.5 font-semibold text-[#29211D] hover:bg-[#fff7c8]"
-          >
-            <ExternalLink className="h-3.5 w-3.5" />
-            {zh ? `打开 ${activeDemo.label}` : `Open ${activeDemo.title}`}
-          </a>
+          <span>{zh ? '提示：点击后才加载第三方游戏源。' : 'Tip: third-party game sources load only after you click play.'}</span>
+          {loaded ? (
+            <a
+              href={activeDemo.openInNewTab}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-md border border-[#D8CFC6] bg-white px-3 py-1.5 font-semibold text-[#29211D] hover:bg-[#fff7c8]"
+            >
+              <ExternalLink className="h-3.5 w-3.5" />
+              {zh ? `打开 ${activeDemo.label}` : `Open ${activeDemo.title}`}
+            </a>
+          ) : (
+            <button
+              type="button"
+              onClick={startGame}
+              className="inline-flex items-center gap-1.5 rounded-md border border-[#D8CFC6] bg-white px-3 py-1.5 font-semibold text-[#29211D] hover:bg-[#fff7c8]"
+            >
+              <Gamepad2 className="h-3.5 w-3.5" />
+              {zh ? `加载 ${activeDemo.label}` : `Load ${activeDemo.title}`}
+            </button>
+          )}
         </div>
       </div>
     </div>
