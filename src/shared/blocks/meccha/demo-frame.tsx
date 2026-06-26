@@ -1,86 +1,173 @@
 'use client';
 
-import { useRef, useState } from 'react';
-import { Gamepad2, Play } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { ExternalLink, Gamepad2, Sparkles } from 'lucide-react';
 
-const gameSrc = 'https://storytellergame.io/meccha-chameleon/';
+type Demo = {
+  id: 'easy' | 'hard' | 'social';
+  label: string;
+  title: string;
+  source: string;
+  ratio: string;
+  src: string;
+  note: string;
+  openInNewTab: string;
+};
 
-const frameCopy: Record<string, { title: string; play: string; iframe: string; note: string }> = {
-  en: { title: 'Meccha Chameleon', play: 'Click to Play', iframe: 'Meccha Chameleon browser game', note: 'The browser demo loads only after you click, so Google does not read third-party game-page breadcrumbs as part of this site.' },
-  zh: { title: '超级变色龙 Meccha Chameleon', play: '点击开始', iframe: '超级变色龙浏览器游戏', note: '点击后才加载浏览器游戏，避免 Google 把第三方游戏页的旧面包屑识别到本站。' },
-  ru: { title: 'Meccha Chameleon', play: 'Нажмите, чтобы играть', iframe: 'браузерная игра Meccha Chameleon', note: 'Демо загружается только после клика, чтобы Google не считывал сторонние breadcrumbs как часть сайта.' },
-  it: { title: 'Meccha Chameleon', play: 'Clicca per giocare', iframe: 'gioco browser Meccha Chameleon', note: 'La demo si carica solo dopo il clic, evitando breadcrumb di terze parti nel rendering Google.' },
-  fr: { title: 'Meccha Chameleon', play: 'Cliquer pour jouer', iframe: 'jeu navigateur Meccha Chameleon', note: 'La démo se charge après le clic pour éviter les breadcrumbs tiers dans le rendu Google.' },
-  de: { title: 'Meccha Chameleon', play: 'Zum Spielen klicken', iframe: 'Meccha Chameleon Browser-Spiel', note: 'Die Demo lädt erst nach dem Klick, damit Google keine Drittanbieter-Breadcrumbs übernimmt.' },
-  es: { title: 'Meccha Chameleon', play: 'Haz clic para jugar', iframe: 'juego de navegador Meccha Chameleon', note: 'La demo se carga solo tras hacer clic para evitar breadcrumbs externos en Google.' },
-  pt: { title: 'Meccha Chameleon', play: 'Clique para jogar', iframe: 'jogo de navegador Meccha Chameleon', note: 'A demo carrega só após o clique para evitar breadcrumbs de terceiros no Google.' },
-  ja: { title: 'Meccha Chameleon', play: 'クリックしてプレイ', iframe: 'Meccha Chameleon ブラウザゲーム', note: 'クリック後にだけデモを読み込み、Google が外部ページのパンくずを拾わないようにしています。' },
-  ko: { title: 'Meccha Chameleon', play: '클릭해서 플레이', iframe: 'Meccha Chameleon 브라우저 게임', note: '클릭 후에만 데모를 로드해 Google이 외부 페이지 breadcrumb를 읽지 않게 합니다.' },
-  ar: { title: 'Meccha Chameleon', play: 'انقر للعب', iframe: 'لعبة Meccha Chameleon في المتصفح', note: 'يتم تحميل العرض بعد النقر فقط حتى لا يقرأ Google مسارات تنقل خارجية.' },
-  th: { title: 'Meccha Chameleon', play: 'คลิกเพื่อเล่น', iframe: 'เกมเบราว์เซอร์ Meccha Chameleon', note: 'โหลดเดโมหลังคลิกเท่านั้น เพื่อไม่ให้ Google อ่าน breadcrumb ของเว็บภายนอก' },
-  vi: { title: 'Meccha Chameleon', play: 'Bấm để chơi', iframe: 'trò chơi trình duyệt Meccha Chameleon', note: 'Demo chỉ tải sau khi bấm để Google không đọc breadcrumb từ trang bên thứ ba.' },
-  'zh-TW': { title: 'Meccha Chameleon', play: '點擊開始', iframe: 'Meccha Chameleon 瀏覽器遊戲', note: '點擊後才載入瀏覽器遊戲，避免 Google 把第三方遊戲頁的舊麵包屑算到本站。' },
-  nl: { title: 'Meccha Chameleon', play: 'Klik om te spelen', iframe: 'Meccha Chameleon browsergame', note: 'De demo laadt pas na een klik, zodat Google geen externe breadcrumbs meeneemt.' },
+const demos: Demo[] = [
+  {
+    id: 'easy',
+    label: 'Easy',
+    title: 'Meccha Chameleon Browser Game',
+    source: 'StorytellerGame',
+    ratio: 'h-[760px] sm:h-[860px] lg:h-[980px] xl:h-[1080px]',
+    src: 'https://storytellergame.io/meccha-chameleon/',
+    note: 'Same easy play source as mecchachameleon.art. Best first click for users who want the fastest start.',
+    openInNewTab: 'https://storytellergame.io/meccha-chameleon/',
+  },
+  {
+    id: 'hard',
+    label: 'Hard',
+    title: 'Hide N Seek',
+    source: 'CrazyGames',
+    ratio: 'aspect-[9/16] min-h-[720px] max-h-[86vh]',
+    src: 'https://games.crazygames.com/en_US/hide-n-seek/index.html',
+    note: 'Hard mode uses the CrazyGames Hide N Seek iframe. If the ad splash sticks, use the new-tab fallback.',
+    openInNewTab: 'https://www.crazygames.com/game/hide-n-seek',
+  },
+  {
+    id: 'social',
+    label: 'Social',
+    title: 'Sneaky Friends',
+    source: 'GameDistribution',
+    ratio: 'aspect-[480/800] sm:aspect-[16/10] lg:aspect-[480/800] min-h-[640px] max-h-[86vh]',
+    src: 'https://embed.gamedistribution.com/?url=https://html5.gamedistribution.com/8529938662c2447091414e2cc73983e3/&width=480&height=800&language=en&gdpr-tracking=1&gdpr-targeting=1&gd_sdk_referrer_url=https://mechachameleon.games/',
+    note: 'Social mode uses the friend-focused hide-and-seek browser game. Best for users looking for a group-play flavor.',
+    openInNewTab: 'https://html5.gamedistribution.com/8529938662c2447091414e2cc73983e3/',
+  },
+];
+
+const zhNotes: Record<Demo['id'], string> = {
+  easy: 'Easy 使用和 mecchachameleon.art 一样的游戏源，适合用户最快开始。',
+  hard: 'Hard 使用 CrazyGames 的 Hide N Seek iframe。广告加载卡住时，用新标签打开。',
+  social: 'Social 使用偏朋友组队体验的 hide-and-seek 浏览器游戏，适合社交玩法搜索。',
 };
 
 export function DemoFrame({ locale = 'en' }: { locale?: string }) {
-  const copy = frameCopy[locale] ?? frameCopy.en;
+  const zh = locale === 'zh';
+  const [activeId, setActiveId] = useState<Demo['id']>('easy');
+  const [showHint, setShowHint] = useState(true);
+  const activeDemo = demos.find((demo) => demo.id === activeId) ?? demos[0];
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const [loaded, setLoaded] = useState(false);
 
-  function startGame() {
-    setLoaded(true);
-    requestAnimationFrame(() => iframeRef.current?.focus());
-  }
+  useEffect(() => {
+    const t = setTimeout(() => setShowHint(false), 9000);
+    return () => clearTimeout(t);
+  }, [activeId]);
 
   return (
     <div id="play" className="scroll-mt-24">
       <div className="overflow-hidden rounded-lg border border-[#efc8d3] bg-gradient-to-br from-[#fff7c8] via-[#ffd2e1] to-[#cdefff] shadow-[0_18px_60px_rgba(134,103,124,0.18)]">
-        <div className="flex items-center justify-between gap-3 border-b border-white/70 px-4 py-3 text-[#2f2730]">
-          <div className="text-sm font-semibold">{copy.title}</div>
-          <button
-            type="button"
-            onClick={startGame}
-            className="inline-flex min-h-9 items-center gap-2 rounded-md bg-[#ff6f9a] px-4 text-sm font-semibold text-white transition hover:bg-[#e95a88]"
-          >
-            <Gamepad2 className="h-4 w-4" />
-            {copy.play}
-          </button>
+        <div className="border-b border-white/70 px-4 py-3 text-[#2f2730]">
+          <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
+            <div>
+              <div className="text-sm font-semibold">
+                {zh ? 'Mecha Chameleon 在线游戏' : 'Mecha Chameleon Game'} · {activeDemo.label}
+              </div>
+              <div className="mt-1 text-xs text-[#4C3B35]">
+                {activeDemo.title} via {activeDemo.source}
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={() => iframeRef.current?.focus()}
+              className="inline-flex min-h-9 w-fit items-center gap-2 rounded-md bg-[#ff6f9a] px-4 text-sm font-semibold text-white transition hover:bg-[#e95a88]"
+            >
+              <Gamepad2 className="h-4 w-4" />
+              {zh ? '点击开始' : 'Click to Play'}
+            </button>
+          </div>
+
+          <div className="mt-4 flex flex-wrap gap-2" role="tablist" aria-label="Game mode">
+            {demos.map((demo) => (
+              <button
+                key={demo.id}
+                type="button"
+                role="tab"
+                aria-selected={activeDemo.id === demo.id}
+                onClick={() => {
+                  setActiveId(demo.id);
+                  setShowHint(true);
+                }}
+                className={`min-h-9 rounded-md border px-4 text-sm font-semibold transition ${
+                  activeDemo.id === demo.id
+                    ? 'border-[#29211D] bg-[#29211D] text-white'
+                    : 'border-[#efc8d3] bg-white text-[#29211D] hover:bg-[#fff7c8]'
+                }`}
+              >
+                {demo.label}
+              </button>
+            ))}
+          </div>
+          <p className="mt-3 text-xs leading-5 text-[#4C3B35]">
+            {zh ? zhNotes[activeDemo.id] : activeDemo.note}
+          </p>
         </div>
 
-        <div className="relative h-[760px] w-full overflow-hidden bg-[#eef8ff] sm:h-[860px] lg:h-[980px] xl:h-[1080px]">
-          {loaded ? (
-            <iframe
-              ref={iframeRef}
-              title={copy.iframe}
-              src={gameSrc}
-              className="absolute inset-x-0 -top-[360px] h-[calc(100%+360px)] w-full sm:-top-[420px] sm:h-[calc(100%+420px)] lg:-top-[520px] lg:h-[calc(100%+520px)]"
-              loading="lazy"
-              allow="autoplay; fullscreen; gamepad; pointer-lock; encrypted-media; web-share"
-              allowFullScreen
-              scrolling="yes"
-              referrerPolicy="origin"
-              sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-pointer-lock allow-top-navigation allow-presentation"
-            />
-          ) : (
-            <div className="absolute inset-0 flex items-center justify-center bg-[radial-gradient(circle_at_20%_20%,#fff7c8_0,#ffd2e1_34%,#cdefff_100%)] p-6 text-center">
-              <div className="max-w-md rounded-2xl border border-white/80 bg-white/85 p-7 shadow-xl backdrop-blur">
-                <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#ff6f9a] text-white shadow-lg">
-                  <Play className="h-6 w-6 fill-current" />
+        <div className={`relative w-full overflow-hidden bg-[#eef8ff] ${activeDemo.ratio}`}>
+          <iframe
+            key={activeDemo.id}
+            ref={iframeRef}
+            title={`${activeDemo.title} browser game`}
+            src={activeDemo.src}
+            className={
+              activeDemo.id === 'easy'
+                ? 'absolute inset-x-0 -top-[360px] h-[calc(100%+360px)] w-full sm:-top-[420px] sm:h-[calc(100%+420px)] lg:-top-[520px] lg:h-[calc(100%+520px)]'
+                : 'absolute inset-0 h-full w-full'
+            }
+            loading="lazy"
+            allow="autoplay; fullscreen; gamepad; pointer-lock; encrypted-media; web-share"
+            allowFullScreen
+            scrolling={activeDemo.id === 'easy' ? 'yes' : 'no'}
+            referrerPolicy="origin"
+            sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-pointer-lock allow-top-navigation allow-presentation"
+          />
+          {showHint && activeDemo.id !== 'easy' ? (
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center bg-gradient-to-t from-black/80 to-transparent p-4">
+              <div className="pointer-events-auto flex max-w-md items-start gap-3 rounded-lg border border-amber-300/40 bg-amber-50/95 px-4 py-3 text-sm text-amber-950 shadow-lg">
+                <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" />
+                <div>
+                  <div className="font-semibold">
+                    {zh ? '如果 iframe 加载卡住，点击下方新标签打开。' : 'If the iframe splash sticks, open the game in a new tab.'}
+                  </div>
+                  <div className="mt-1 text-xs text-amber-900/80">
+                    {zh ? '第三方游戏源，非官方 Meccha Chameleon。' : 'Third-party game source, not the official Meccha Chameleon.'}
+                  </div>
                 </div>
-                <h3 className="text-2xl font-bold text-[#29211D]">{copy.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-[#4C3B35]">{copy.note}</p>
                 <button
                   type="button"
-                  onClick={startGame}
-                  className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-md bg-[#29211D] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#4C3B35]"
+                  onClick={() => setShowHint(false)}
+                  className="-mr-1 -mt-1 rounded p-1 text-amber-700 hover:bg-amber-200/60"
+                  aria-label="Dismiss hint"
                 >
-                  <Gamepad2 className="h-4 w-4" />
-                  {copy.play}
+                  ×
                 </button>
               </div>
             </div>
-          )}
+          ) : null}
+        </div>
+
+        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-white/70 bg-white/80 px-4 py-3 text-xs text-[#4C3B35]">
+          <span>{zh ? '提示：第三方源不加载时，使用新标签获得完整体验。' : 'Tip: if a third-party source does not load, use the new-tab fallback.'}</span>
+          <a
+            href={activeDemo.openInNewTab}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-md border border-[#D8CFC6] bg-white px-3 py-1.5 font-semibold text-[#29211D] hover:bg-[#fff7c8]"
+          >
+            <ExternalLink className="h-3.5 w-3.5" />
+            {zh ? `打开 ${activeDemo.label}` : `Open ${activeDemo.title}`}
+          </a>
         </div>
       </div>
     </div>
