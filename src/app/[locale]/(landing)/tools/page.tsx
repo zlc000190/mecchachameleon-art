@@ -31,7 +31,7 @@ const copy = {
   en: {
     title: 'Meccha Chameleon Tools — Game Assistant Software',
     description:
-      'Meccha Chameleon Tools overview: external ESP, radar, aim assist, color tools, quick start, downloads, controls, and safety notes. Educational and research purposes only.',
+      'Meccha Chameleon Tools overview: ESP, radar, aim assist, color tools, downloads, controls, and safety notes. Educational research only.',
     eyebrow: 'Game assistant software',
     h1: 'Meccha Chameleon Tools for assisted play testing',
     intro:

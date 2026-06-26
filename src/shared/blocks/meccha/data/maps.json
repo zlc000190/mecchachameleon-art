@@ -12,7 +12,7 @@
     "difficulty": "easy",
     "desc": "Multi-room classic mansion with library bookshelves, tiled bathroom, kitchen, and a grand ballroom. Beginner-friendly: the most documented indoor spots in MECCHA CHAMELEON. Paint warm wood tones and gold to match the gilded frames.",
     "added_in": "v1.0.0",
-    "community_spots_estimate": 11
+    "community_spots_estimate": 10
   },
   {
     "id": "indoor-country",
@@ -27,13 +27,13 @@
     "difficulty": "easy",
     "desc": "Warm-toned indoor farmhouse with cows, hay bales, red barn doors, pumpkins, and cartoon sky murals. Beginner-friendly: large color blocks reward big-body paint over fine detail. The community has charted about 6 reliable spots.",
     "added_in": "v1.0.0",
-    "community_spots_estimate": 6
+    "community_spots_estimate": 10
   },
   {
     "id": "sewer",
     "name": "Sewer",
     "slug": "sewer",
-    "thumb": "maps/sewer/sewer-01.png",
+    "thumb": "maps/sewer/sewer-01.jpg",
     "palette": [
       "#2A2A2A",
       "#6F5449",
@@ -42,7 +42,7 @@
     "difficulty": "medium",
     "desc": "Dark industrial sewers with overhead pipes, red oil drums, and graffiti-covered walls. Dim lighting helps hiders because Seekers have no flashlights. The community has charted about 5 strong spots, dominated by the graffiti wall trick.",
     "added_in": "v1.0.0",
-    "community_spots_estimate": 5
+    "community_spots_estimate": 10
   },
   {
     "id": "backrooms",
@@ -57,7 +57,7 @@
     "difficulty": "hard",
     "desc": "Brightly lit yellow office-space homage to the Backrooms internet legend. Hardest map for hiders: intense uniform lighting leaves almost no shadows, and cover is scarce. The few save-zones are exit signs, bike-on-wall, chair stacks, and ceiling corners.",
     "added_in": "v1.0.0",
-    "community_spots_estimate": 5
+    "community_spots_estimate": 10
   },
   {
     "id": "penguin-hotel",
@@ -72,13 +72,13 @@
     "difficulty": "medium",
     "desc": "Fifth official map added in v1.2.0 (June 13, 2026). A winter-themed penguin hotel with lobby tiling, bedrooms, bathrooms, penguin statues, ducks, and balloons. Heavy clutter means many props to mimic but also many props for Seekers to check.",
     "added_in": "v1.2.0",
-    "community_spots_estimate": 6
+    "community_spots_estimate": 10
   },
   {
     "id": "osaka",
     "name": "Osaka",
     "slug": "osaka",
-    "thumb": "maps/osaka/osaka-01.png",
+    "thumb": "maps/osaka/osaka-01.jpg",
     "palette": [
       "#FF6F9A",
       "#2C5F8C",
@@ -87,6 +87,6 @@
     "difficulty": "medium",
     "desc": "Sixth official map added in v1.7.0 (June 22, 2026). A Japan-themed city block with a large truck, octopus signs and statues, trash bags, plywood stacks, and open shopfronts. Smallest official map: plan tight hiding routes and use the elevated signs.",
     "added_in": "v1.7.0",
-    "community_spots_estimate": 6
+    "community_spots_estimate": 10
   }
 ]
