@@ -2,6 +2,15 @@
 // sitemap.ts because the operator wants a static XML that Google can
 // index regardless of server runtime state. Run via: pnpm sitemap
 // or as a prebuild step in package.json.
+//
+// SEO rules (2026-06-26 fix):
+//   - Only list locales with REAL translations in <url> entries.
+//   - All 15 supported locales must still appear in <xhtml:link hreflang="...">
+//     under every entry so Google knows the full alternate set, but the other
+//     12 fallback locales do NOT get their own <url> entry — that would dilute
+//     link equity 15× per page and burn crawl budget on placeholder pages.
+//   - x-default always points to the en page (default locale), never to /xx/.
+//   - All in-urls use canonical absolute URLs ending with a trailing slash.
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -19,7 +28,9 @@ const maps = [
   { slug: 'blue-parlor', name: 'The Blue Floral Parlor' },
 ];
 
-const locales = [
+// All 15 supported locales — used for hreflang alternates so Google knows
+// about every language we serve, including the placeholder ones.
+const allLocales = [
   'en',
   'zh',
   'ru',
@@ -36,58 +47,51 @@ const locales = [
   'zh-TW',
   'nl',
 ];
+
+// ONLY these locales get their own <url> entry. Each must have a full i18n
+// JSON bundle under src/config/locale/messages/<locale>/.
+const fullyTranslatedLocales = ['en', 'zh', 'ru'];
+
 const defaultLocale = 'en';
 const now = new Date().toISOString();
 
-const locUrl = (locale, path) => {
-  const normalizedPath = path.endsWith('/') ? path : `${path}/`;
+const locUrl = (locale, p) => {
+  const normalizedPath = p.endsWith('/') ? p : `${p}/`;
   if (locale === defaultLocale) return `${base}${normalizedPath}`;
   return `${base}/${locale}${normalizedPath}`;
 };
 
 const entries = [];
 
-// Home
-for (const loc of locales) {
-  entries.push({
-    loc: locUrl(loc, '/'),
-    alternates: Object.fromEntries(
-      locales.map((l) => [l, locUrl(l, '/')])
-    ),
-    'x-default': locUrl(defaultLocale, '/'),
-    lastmod: now,
-    changefreq: 'weekly',
-    priority: '1.0',
-  });
-}
+// Home, new-player, tools, and 5 maps — but only for fullyTranslatedLocales.
+// The other 12 fallback locales still get hreflang coverage via alternates.
+const pageSpecs = [
+  { path: '/', priority: '1.0', changefreq: 'weekly' },
+  { path: '/new-player', priority: '0.7', changefreq: 'monthly' },
+  { path: '/tools', priority: '0.85', changefreq: 'monthly' },
+];
 
-// New player + tools
-for (const loc of locales) {
-  for (const page of [
-    { path: '/new-player', priority: '0.7' },
-    { path: '/tools', priority: '0.85' },
-  ]) {
+for (const spec of pageSpecs) {
+  for (const loc of fullyTranslatedLocales) {
     entries.push({
-      loc: locUrl(loc, page.path),
+      loc: locUrl(loc, spec.path),
       alternates: Object.fromEntries(
-        locales.map((l) => [l, locUrl(l, page.path)])
+        allLocales.map((l) => [l, locUrl(l, spec.path)])
       ),
-      'x-default': locUrl(defaultLocale, page.path),
+      'x-default': locUrl(defaultLocale, spec.path),
       lastmod: now,
-      changefreq: 'monthly',
-      priority: page.priority,
+      changefreq: spec.changefreq,
+      priority: spec.priority,
     });
   }
 }
 
-// Maps
 for (const map of maps) {
-  for (const loc of locales) {
-    const url = locUrl(loc, `/maps/${map.slug}`);
+  for (const loc of fullyTranslatedLocales) {
     entries.push({
-      loc: url,
+      loc: locUrl(loc, `/maps/${map.slug}`),
       alternates: Object.fromEntries(
-        locales.map((l) => [l, locUrl(l, `/maps/${map.slug}`)])
+        allLocales.map((l) => [l, locUrl(l, `/maps/${map.slug}`)])
       ),
       'x-default': locUrl(defaultLocale, `/maps/${map.slug}`),
       lastmod: now,
@@ -103,7 +107,7 @@ const buildUrl = (entry) => {
   xml += `    <lastmod>${entry.lastmod}</lastmod>\n`;
   xml += `    <changefreq>${entry.changefreq}</changefreq>\n`;
   xml += `    <priority>${entry.priority}</priority>\n`;
-  // xhtml:link alternates
+  // hreflang alternates — include EVERY supported locale so Google can dedupe
   for (const [hreflang, href] of Object.entries(entry.alternates)) {
     xml += `    <xhtml:link rel="alternate" hreflang="${hreflang}" href="${href}"/>\n`;
   }
@@ -119,8 +123,8 @@ ${entries.map(buildUrl).join('')}
 </urlset>
 `;
 
-const outDir = path.join(root, 'public');
-fs.mkdirSync(outDir, { recursive: true });
-const outPath = path.join(outDir, 'sitemap.xml');
-fs.writeFileSync(outPath, xml, 'utf-8');
+const outPath = path.join(root, 'public', 'sitemap.xml');
+fs.writeFileSync(outPath, xml);
 console.log(`Wrote ${outPath} (${entries.length} entries, ${xml.length} bytes)`);
+console.log(`Locales with <url> entries: ${fullyTranslatedLocales.join(', ')}`);
+console.log(`Locales with hreflang coverage only: ${allLocales.filter((l) => !fullyTranslatedLocales.includes(l)).join(', ')}`);

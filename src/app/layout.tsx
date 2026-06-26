@@ -1,6 +1,7 @@
 import '@/config/style/global.css';
 
 import { getLocale, setRequestLocale } from 'next-intl/server';
+import { headers } from 'next/headers';
 import NextTopLoader from 'nextjs-toploader';
 
 import { envConfigs } from '@/config';
@@ -25,6 +26,27 @@ export default async function RootLayout({
 
   // app url
   const appUrl = envConfigs.app_url || '';
+
+  // current URL — set by middleware/proxy as `x-url`. Used to build hreflang
+  // alternates that point at the SAME pathname in each language instead of
+  // every alternate pointing at the homepage (the old bug).
+  const headerList = await headers();
+  const requestUrl = headerList.get('x-url') || '';
+  let currentPath = '/';
+  try {
+    currentPath = requestUrl ? new URL(requestUrl).pathname.replace(/\/+$/, '/') || '/' : '/';
+  } catch {
+    currentPath = '/';
+  }
+  // strip leading locale segment so we can rebuild per-locale URLs
+  const strippedPath = currentPath.replace(
+    /^\/(en|zh|ru|it|fr|de|es|pt|ja|ko|ar|th|vi|zh-TW|nl)(?=\/|$)/,
+    ''
+  ) || '/';
+  const altUrl = (loc: string) =>
+    loc === 'en'
+      ? `${appUrl}${strippedPath === '/' ? '/' : strippedPath}`
+      : `${appUrl}/${loc}${strippedPath === '/' ? '/' : strippedPath}`;
 
   // ads components
   let adsMetaTags = null;
@@ -87,7 +109,10 @@ export default async function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="google-adsense-account" content="ca-pub-5387615281666707" />
 
-        {/* inject locales */}
+        {/* hreflang alternates — every supported locale points at the SAME
+            page in its own URL, and x-default points at the default-locale
+            (en) version. Without this Google treats each locale URL as a
+            separate page and dilutes ranking. */}
         {locales ? (
           <>
             {locales.map((loc) => (
@@ -95,9 +120,14 @@ export default async function RootLayout({
                 key={loc}
                 rel="alternate"
                 hrefLang={loc}
-                href={`${appUrl}${loc === 'en' ? '' : `/${loc}`}`}
+                href={altUrl(loc)}
               />
             ))}
+            <link
+              rel="alternate"
+              hrefLang="x-default"
+              href={altUrl('en')}
+            />
           </>
         ) : null}
 
