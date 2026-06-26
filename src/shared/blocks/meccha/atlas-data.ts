@@ -9,6 +9,8 @@ export type AtlasMap = {
   palette: string[];
   difficulty: 'easy' | 'medium' | 'hard';
   desc: string;
+  added_in: string;
+  community_spots_estimate: number;
 };
 
 export type AtlasSpot = {

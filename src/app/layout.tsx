@@ -85,6 +85,7 @@ export default async function RootLayout({
         <link rel="icon" href={envConfigs.app_favicon} />
         <link rel="alternate icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="google-adsense-account" content="ca-pub-5387615281666707" />
 
         {/* inject locales */}
         {locales ? (

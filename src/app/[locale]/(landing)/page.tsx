@@ -1,10 +1,8 @@
 import {
-  BookOpen,
   ExternalLink,
   Gamepad2,
   type LucideIcon,
   MapPinned,
-  MonitorSmartphone,
   ShieldCheck,
   Smartphone,
   Sparkles,
@@ -19,13 +17,6 @@ import { KeywordSection } from '@/shared/blocks/meccha/keyword-section';
 import { UpdatesSection } from '@/shared/blocks/meccha/updates-section';
 
 const steamUrl = 'https://store.steampowered.com/app/4704690/MECCHA_CHAMELEON/';
-
-const playHubCards: Array<[LucideIcon, string, string, string]> = [
-  [Gamepad2, 'Easy', 'Start here if you searched for Meccha Chameleon and want to play.', '#play'],
-  [MonitorSmartphone, 'Hidden Hunt', 'Scan quick scenes and warm up your seeker eye.', '#play'],
-  [BookOpen, 'How to play', 'Rules, hider/seeker roles, and first-match walkthrough.', '#how-to-play'],
-  [MapPinned, 'Hiding spots', 'Map-specific ideas once you understand the loop.', '#atlas'],
-];
 
 const faqs = [
   {
@@ -64,82 +55,44 @@ export default async function LandingPage({
 
   return (
     <main className="min-h-screen bg-[#fff7f1] text-[#29211D]">
+      <section className="border-b border-[#d8cfbd] bg-[#fff7c8] text-[#29211D]">
+        <div className="container py-3 text-center text-xs font-semibold md:text-sm">
+          ⚠️ Community fan-made atlas · not affiliated with the developer lemorion_1224 · v1.8.1 is the current official build
+        </div>
+      </section>
+
       <section className="border-b border-[#f2cfd8] bg-gradient-to-br from-[#fff7c8] via-[#ffd2e1] to-[#cdefff]">
-        <div className="container pb-8 pt-32 lg:pb-10 lg:pt-40">
+        <div className="container pb-8 pt-16 lg:pb-10 lg:pt-24">
           <div className="mb-5 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
+              <p className="mb-3 text-sm font-semibold uppercase tracking-normal text-[#7D6D69]">
+                Browser game · Easy / Hard / Social
+              </p>
               <h1 className="text-4xl font-bold leading-tight tracking-normal text-[#29211D] md:text-6xl">
-                Meccha Chameleon Play Online
+                Meccha Chameleon Game — Play Online Free
               </h1>
+              <p className="mt-4 max-w-2xl text-base leading-7 text-[#4C3B35]">
+                Play first, then use the atlas. Easy, Hard, and Social switch between three browser games copied from mechachameleon.games.
+              </p>
             </div>
             <div className="flex flex-wrap gap-3">
-              <a
-                href="#play"
-                className="inline-flex min-h-11 items-center gap-2 rounded-md bg-[#ff6f9a] px-5 py-3 font-semibold text-white transition hover:bg-[#e95a88]"
-              >
-                <Gamepad2 className="h-5 w-5" />
-                Play now
-              </a>
-              <a
-                href="#how-to-play"
-                className="inline-flex min-h-11 items-center gap-2 rounded-md border border-[#efc8d3] bg-white px-5 py-3 font-semibold text-[#29211D] transition hover:bg-[#fff7c8]"
-              >
-                <BookOpen className="h-5 w-5" />
-                How to play
-              </a>
-            </div>
-          </div>
-
-          <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start">
-            <div id="play">
-              <DemoFrame />
-            </div>
-
-            <aside className="grid gap-3 lg:sticky lg:top-24">
-              <div className="rounded-lg border border-[#efc8d3] bg-white/85 p-4">
-                <div className="text-sm font-semibold text-[#29211D]">
-                  Play first, read later
-                </div>
-                <p className="mt-2 text-sm leading-6 text-[#4C3B35]">
-                  If you came from search to play, stay in the game. If you need
-                  rules or Steam details, jump down without leaving the page.
-                </p>
-              </div>
-
-              {playHubCards.map(([Icon, title, copy, href]) => (
-                <a
-                  key={title}
-                  href={href}
-                  className="group rounded-lg border border-[#efc8d3] bg-white/90 p-4 transition hover:-translate-y-0.5 hover:border-[#ff8fb3] hover:bg-white"
-                >
-                  <div className="flex items-start gap-3">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-[#ffd2e1] text-[#a45a77] group-hover:bg-[#ff8fb3] group-hover:text-white">
-                      <Icon className="h-5 w-5" />
-                    </span>
-                    <span>
-                      <span className="block font-semibold">{title}</span>
-                      <span className="mt-1 block text-sm leading-5 text-[#4C3B35]">
-                        {copy}
-                      </span>
-                    </span>
-                  </div>
-                </a>
-              ))}
-
               <a
                 href={steamUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-[#9de7dc] bg-[#61a8ff] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#4b92ec]"
+                className="inline-flex min-h-11 items-center gap-2 rounded-md bg-[#61a8ff] px-5 py-3 font-semibold text-white transition hover:bg-[#4b92ec]"
               >
-                <Store className="h-4 w-4" />
+                <Store className="h-5 w-5" />
                 Steam · $5.99
                 <ExternalLink className="h-4 w-4" />
               </a>
-            </aside>
+            </div>
           </div>
+
+          <DemoFrame locale={locale} />
         </div>
       </section>
+
 
       <section id="new-player" className="border-b border-[#D8CFC6] bg-white">
         <div className="container grid gap-8 py-14 lg:grid-cols-[0.85fr_1.15fr]">
@@ -213,11 +166,11 @@ export default async function LandingPage({
               Hiding Spot Atlas
             </p>
             <h2 className="text-3xl font-bold tracking-normal md:text-4xl">
-              Five real map guides, fifty hiding spots, one fast second screen.
+              Six real map guides, charted hiding spots, one fast second screen.
             </h2>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-[#4C3B35]">
-              These are the captured Meccha Chameleon map assets Claude already
-              prepared: screenshots, paint colors, difficulty, and match tips.
+              Browse the current six-map Meccha Chameleon atlas: screenshots,
+              paint colors, difficulty labels, and match-ready hiding notes.
             </p>
           </div>
           <AtlasPreview locale={locale} />

@@ -6,6 +6,7 @@ import { setRequestLocale } from 'next-intl/server';
 
 import {
   atlasMaps,
+  atlasSpots,
   getAtlasImagePath,
   getAtlasMapBySlug,
   getLocalizedPath,
@@ -39,8 +40,9 @@ export async function generateMetadata({
     return {};
   }
 
-  const title = `${map.name} Hiding Spots — Meccha Chameleon`;
-  const description = `${map.name} Meccha Chameleon hiding spot atlas (10 spots): screenshots, paint RGB, difficulty, and hider tips.`;
+  const spots = getSpotsByMapId(map.id);
+  const title = `${map.name} Hiding Spots — Meccha Chameleon Atlas`;
+  const description = `${map.name} community atlas: ${spots.length} charted spots with paint RGB and hider tips. Fan-made, not the official lemorion build.`;
   const canonicalUrl = await getCanonicalUrl(`/maps/${mapSlug}`, locale);
 
   return {
@@ -100,6 +102,12 @@ export default async function MapPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
+      <section className="border-b border-[#d8cfbd] bg-[#fff7c8] text-[#29211D]">
+        <div className="container py-3 text-center text-xs font-semibold md:text-sm">
+          ⚠️ Community fan-made atlas · not affiliated with the developer lemorion_1224 · spot counts are community estimates and may differ from the official build (current: v1.8.1)
+        </div>
+      </section>
+
       <section className="border-b border-[#D8CFC6] bg-[#F6F0EA] text-[#29211D]">
         <div className="container grid gap-8 pt-16 pb-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(420px,1.08fr)] lg:items-center">
           <div>
@@ -128,6 +136,10 @@ export default async function MapPage({
               <div className="inline-flex min-h-10 items-center gap-2 rounded-md border border-[#d8cfbd] bg-white px-3 py-2 text-sm font-semibold">
                 <Palette className="h-4 w-4 text-[#AA776E]" />
                 {map.difficulty} difficulty
+              </div>
+              <div className="inline-flex min-h-10 items-center gap-2 rounded-md border border-[#d8cfbd] bg-white px-3 py-2 text-sm font-semibold">
+                <span className="text-[#7D6D69]">🗓</span>
+                {map.added_in}
               </div>
             </div>
 
