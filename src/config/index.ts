@@ -40,4 +40,5 @@ export const envConfigs: ConfigMap = {
   version: packageJson.version,
   locale_detect_enabled:
     process.env.NEXT_PUBLIC_LOCALE_DETECT_ENABLED ?? 'false',
+  adsense_code: process.env.NEXT_PUBLIC_ADSENSE_CODE ?? 'ca-pub-5387615281666707',
 };

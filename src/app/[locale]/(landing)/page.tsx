@@ -10,6 +10,7 @@ import {
 import { setRequestLocale } from 'next-intl/server';
 
 import { AtlasPreview } from '@/shared/blocks/meccha/atlas-preview';
+import { CommunityChallengePreview } from '@/shared/blocks/meccha/community-challenge-preview';
 import { DemoFrame } from '@/shared/blocks/meccha/demo-frame';
 import { getHomeCopy } from '@/shared/blocks/meccha/meccha-i18n';
 import { ToolsTeaser } from '@/shared/blocks/meccha/tools-teaser';
@@ -35,6 +36,7 @@ export default async function LandingPage({
   const showLongFormSections = locale === 'en' || locale === 'zh';
   const showTranslatedDetailCards = locale === 'en' || locale === 'zh' || locale === 'ru';
   const showTranslatedAtlasPreview = locale === 'en' || locale === 'zh';
+  const showCommunityPreview = locale === 'en' || locale === 'zh' || locale === 'ru';
 
   return (
     <main className="min-h-screen bg-[#fff7f1] text-[#29211D]">
@@ -104,6 +106,12 @@ export default async function LandingPage({
               ))}
             </div>
           ) : null}
+        </div>
+      </section>
+
+      <section id="community-challenge" className="border-b border-[#D8CFC6] bg-white">
+        <div className="container py-14">
+          {showCommunityPreview ? <CommunityChallengePreview locale={locale} /> : null}
         </div>
       </section>
 
