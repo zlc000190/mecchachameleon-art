@@ -43,14 +43,17 @@ export default async function RootLayout({
     /^\/(en|zh|ru|it|fr|de|es|pt|ja|ko|ar|th|vi|zh-TW|nl)(?=\/|$)/,
     ''
   ) || '/';
-  const altUrl = (loc: string) =>
-    loc === 'en'
-      ? `${appUrl}${strippedPath === '/' ? '/' : strippedPath}`
-      : `${appUrl}/${loc}${strippedPath === '/' ? '/' : strippedPath}`;
+  const altUrl = (loc: string) => {
+    const homePath = strippedPath === '/';
+    if (loc === 'en') {
+      return `${appUrl}${homePath ? '/' : strippedPath}`;
+    }
+    return `${appUrl}/${loc}${homePath ? '' : strippedPath}`;
+  };
 
   const activeSeoLocales = strippedPath === '/'
     ? seoLocales
-    : seoLocales.filter((loc) => loc !== 'es' && loc !== 'de');
+    : seoLocales.filter((loc) => loc !== 'es' && loc !== 'de' && loc !== 'pt');
 
   // ads components
   let adsMetaTags = null;

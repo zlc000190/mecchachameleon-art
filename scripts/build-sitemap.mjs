@@ -9,7 +9,7 @@
 //     Half-translated locales are redirected/noindexed until keyword-researched
 //     native rewrites justify promotion.
 //   - x-default always points to the en page (default locale), never to /xx/.
-//   - All in-urls use canonical absolute URLs ending with a trailing slash.
+//   - Locale homepages follow the live no-trailing-slash rule (/zh, /ru, /es...).
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -30,20 +30,22 @@ const maps = [
 // Only SEO-approved locales appear in sitemap/hreflang. Half-translated
 // locales are stopped until target-country keyword research + native rewrites
 // justify promoting them.
-const allLocales = ['en', 'zh', 'ru', 'es', 'de'];
+const allLocales = ['en', 'zh', 'ru', 'es', 'de', 'pt'];
 
 // ONLY these locales get their own <url> entry. Each must have a full i18n
 // JSON bundle under src/config/locale/messages/<locale>/.
 const fullyTranslatedLocales = ['en', 'zh', 'ru'];
-const homepageOnlyLocales = ['es', 'de'];
+const homepageOnlyLocales = ['es', 'de', 'pt'];
 
 const defaultLocale = 'en';
 const now = new Date().toISOString();
 
 const locUrl = (locale, p) => {
-  const normalizedPath = p.endsWith('/') ? p : `${p}/`;
-  if (locale === defaultLocale) return `${base}${normalizedPath}`;
-  return `${base}/${locale}${normalizedPath}`;
+  const normalizedPath = p === '/' ? '/' : p.replace(/\/$/, '');
+  if (locale === defaultLocale) {
+    return normalizedPath === '/' ? `${base}/` : `${base}${normalizedPath}`;
+  }
+  return normalizedPath === '/' ? `${base}/${locale}` : `${base}/${locale}${normalizedPath}`;
 };
 
 const entries = [];

@@ -17,6 +17,7 @@ import { ToolsTeaser } from '@/shared/blocks/meccha/tools-teaser';
 import { GermanSeoSection } from '@/shared/blocks/meccha/german-seo-section';
 import { HowToPlaySection } from '@/shared/blocks/meccha/how-to-play-section';
 import { KeywordSection } from '@/shared/blocks/meccha/keyword-section';
+import { PortugueseSeoSection } from '@/shared/blocks/meccha/portuguese-seo-section';
 import { SpanishSeoSection } from '@/shared/blocks/meccha/spanish-seo-section';
 import { UpdatesSection } from '@/shared/blocks/meccha/updates-section';
 import { BreadcrumbJsonLd } from '@/shared/components/seo/breadcrumb-json-ld';
@@ -38,8 +39,9 @@ export default async function LandingPage({
   const showLongFormSections = locale === 'en' || locale === 'zh';
   const showSpanishSeoSection = locale === 'es';
   const showGermanSeoSection = locale === 'de';
-  const showTranslatedDetailCards = locale === 'en' || locale === 'zh' || locale === 'ru' || locale === 'es' || locale === 'de';
-  const showTranslatedAtlasPreview = locale === 'en' || locale === 'zh' || locale === 'es' || locale === 'de';
+  const showPortugueseSeoSection = locale === 'pt';
+  const showTranslatedDetailCards = locale === 'en' || locale === 'zh' || locale === 'ru' || locale === 'es' || locale === 'de' || locale === 'pt';
+  const showTranslatedAtlasPreview = locale === 'en' || locale === 'zh' || locale === 'es' || locale === 'de' || locale === 'pt';
   const showCommunityPreview = locale === 'en' || locale === 'zh' || locale === 'ru';
 
   return (
@@ -132,6 +134,7 @@ export default async function LandingPage({
 
       {showSpanishSeoSection ? <SpanishSeoSection /> : null}
       {showGermanSeoSection ? <GermanSeoSection /> : null}
+      {showPortugueseSeoSection ? <PortugueseSeoSection /> : null}
 
       {showLongFormSections ? (
         <>
@@ -147,7 +150,7 @@ export default async function LandingPage({
             <h2 className="text-3xl font-bold tracking-normal md:text-4xl">{copy.secondTitle}</h2>
             <p className="mt-4 leading-7 text-[#4C3B35]">{copy.secondDesc}</p>
             <a
-              href={locale === 'en' || locale === 'es' || locale === 'de' ? '/tools' : `/${locale}/tools`}
+              href={locale === 'en' || locale === 'es' || locale === 'de' || locale === 'pt' ? '/tools' : `/${locale}/tools`}
               className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-md bg-[#ff6f9a] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#e95a88]"
             >
               <BookOpen className="h-4 w-4" />

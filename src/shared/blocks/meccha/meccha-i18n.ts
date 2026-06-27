@@ -2,6 +2,7 @@ import type { AtlasMap, AtlasSpot } from './atlas-data';
 
 export const isZh = (locale: string) => locale === 'zh';
 export const isEs = (locale: string) => locale === 'es';
+export const isPt = (locale: string) => locale === 'pt';
 
 export const homeCopy = {
   en: {
@@ -235,13 +236,44 @@ const homeCopyOverrides: Record<string, Partial<HomeCopy>> = {
     ],
   },
   pt: {
-    title: 'Meccha Chameleon Jogar Online', playNow: 'Jogar agora', howToPlay: 'Como jogar', openTools: 'Abrir ferramentas',
-    newPlayerEyebrow: 'Rota de novo jogador', newPlayerTitle: 'Se você pesquisou antes de baixar, comece pelo jogo no navegador.',
-    camoEyebrow: 'Para jogadores reais', camoTitle: 'O Camo Lab transforma buscas em ajuda pronta para a partida.', previewAtlas: 'Ver atlas de mapas',
-    atlasEyebrow: 'Atlas de esconderijos', atlasTitle: 'Cinco guias de mapas, cinquenta esconderijos e uma segunda tela rápida.',
-    atlasDesc: 'Capturas, cores de pintura, dificuldade e dicas de partida para mapas Meccha Chameleon.',
-    secondEyebrow: 'Software assistente de jogo', secondTitle: 'Página de ferramentas para overlay externo, radar e ajuda de camuflagem.',
-    secondDesc: 'A página de ferramentas resume softwares da comunidade, downloads, controles e notas de segurança. Apenas para fins educacionais e de pesquisa. Use por sua conta e risco.', quickAnswers: 'Respostas rápidas',
+    title: 'Meccha Chameleon em português: melhores esconderijos, mapas e camuflagem',
+    playNow: 'Jogar agora',
+    howToPlay: 'Como jogar',
+    openTools: 'Abrir ferramentas',
+    newPlayerEyebrow: 'Guia para novos jogadores',
+    newPlayerTitle: 'Se você buscou Meccha Chameleon em português, comece entendendo esconderijos, camuflagem, poses e leitura de mapa em vez de uma tradução literal.',
+    newPlayerCards: [
+      ['O que é Meccha Chameleon?', 'Um jogo multiplayer de esconde-esconde no Steam em que os Escondedores pintam o corpo para combinar com o cenário e os Buscadores procuram silhuetas, sombras e cores suspeitas.'],
+      ['Posso jogar online por aqui?', 'Você pode usar o acesso rápido no navegador e esta página como segunda tela. A versão oficial completa continua sendo a do Steam.'],
+      ['O que um iniciante aprende primeiro?', 'Escolha primeiro a superfície, copie as cores certas, teste a pose e confira se o seu contorno não denuncia você em outro ângulo.'],
+      ['O que os Buscadores procuram?', 'Eles não olham só movimento: procuram bordas estranhas, cor fora do tom, sombras erradas e esconderijos famosos demais.'],
+    ],
+    camoEyebrow: 'Esconderijos e camuflagem',
+    camoTitle: 'Os melhores esconderijos não ficam só em cantos escuros: eles funcionam quando pintura, pose e ruído visual se encaixam.',
+    previewAtlas: 'Ver mapas e esconderijos',
+    camoCards: [
+      ['Melhores esconderijos', 'Os spots mais fortes costumam ficar perto de livros, pôsteres, azulejos, caixas, madeira, sombras e áreas cheias de detalhes onde pequenos erros passam batido.'],
+      ['Camuflagem e pintura', 'Copie cor, luz, sombra e padrão da superfície. Uma cor quase certa perde valor se o seu contorno continuar parecendo um jogador.'],
+      ['Poses e risco', 'Uma pose simples ajuda no começo. Spots mais apelões só valem quando você já entende a rota dos Buscadores e sabe a hora de ficar totalmente imóvel.'],
+    ],
+    atlasEyebrow: 'Mapas de Meccha Chameleon',
+    atlasTitle: 'Mapas, melhores esconderijos e spots em que você não entrega a silhueta logo de cara.',
+    atlasDesc: 'Esta visão usa termos locais como “melhores esconderijos”, “camuflagem”, “buscadores”, “mapas” e “poses”. Ela serve como página de entrada em português para rodadas reais, não como uma tradução automática da home em inglês.',
+    secondEyebrow: 'Ferramentas e segunda tela',
+    secondTitle: 'Ajuda para revisar cores, rotas de mapa e camuflagem antes da próxima rodada.',
+    secondDesc: 'A página de ferramentas reúne notas sobre overlay, radar, leitura de cor e utilitários de camuflagem. Use como referência educacional e por sua conta e risco.',
+    quickAnswers: 'Respostas rápidas',
+    faqs: [
+      ['Quais são os melhores esconderijos em Meccha Chameleon?', 'Normalmente são spots com ruído visual: bibliotecas, quadros, azulejos, caixas, móveis, sombras e padrões em que o Buscador não checa duas vezes.'],
+      ['É melhor falar Escondedor ou Camaleão?', 'Os dois aparecem em português. Aqui usamos Escondedor para a função e esconderijo para o spot, porque a busca local gira em torno de “melhores esconderijos”.'],
+      ['Como melhorar minha camuflagem?', 'Não copie só a cor principal. Observe brilho, lado de sombra, padrão, material e se cabeça, braços ou pernas quebram a pose.'],
+      ['Esta página é oficial da Steam?', 'Não. Esta é uma página não oficial em português para mapas, esconderijos e táticas. A versão oficial do jogo está no Steam.'],
+    ],
+    secondScreenItems: [
+      ['Guia de esconderijos', 'Use a página como segunda tela para lembrar áreas com mais ruído visual e menos revisão de Buscadores.'],
+      ['Leitura de cor', 'Compare parede, chão, madeira, tecido e sombra antes de travar a pose final.'],
+      ['Aviso', 'Guia não oficial. Meccha Chameleon e seus assets pertencem aos respectivos donos. Uso por sua conta e risco.'],
+    ],
   },
   ja: {
     title: 'Meccha Chameleon オンラインプレイ', playNow: '今すぐプレイ', howToPlay: '遊び方', openTools: 'ツールページを開く',
@@ -326,6 +358,7 @@ export const mapLabels = {
   zh: { spots: '个点位', difficulty: '难度', selectedSpot: '当前点位', paintColors: '涂装颜色', primary: '主色', secondary: '辅色', back: '返回图鉴', guide: '超级变色龙地图攻略', hidingSpots: '隐藏点', ready: '准备进入真实对局了吗？', readyBody: '排队时保持这个图鉴打开，对照地图颜色，选择下一条隐藏路线。', play: '在线玩', titleSuffix: '隐藏点 — 超级变色龙', descriptionSuffix: '超级变色龙隐藏点地图图鉴（10 个点位）：截图、涂装 RGB、难度和隐藏者提示。', altPreview: '超级变色龙地图预览' },
   es: { spots: 'escondites', difficulty: 'dificultad', selectedSpot: 'Escondite seleccionado', paintColors: 'Colores de pintura', primary: 'Principal', secondary: 'Secundario', back: 'Volver al atlas', guide: 'Guía de mapas de Meccha Chameleon', hidingSpots: 'Mejores escondites', ready: '¿Listo para la partida real?', readyBody: 'Mantén este atlas abierto como segunda pantalla, compara colores del mapa y elige tu próxima ruta de escondite.', play: 'Jugar online', titleSuffix: 'Mejores escondites — Meccha Chameleon', descriptionSuffix: 'Atlas de escondites de Meccha Chameleon: capturas, RGB, dificultad y consejos para Ocultistas.', altPreview: 'Vista previa de mapa de Meccha Chameleon' },
   de: { spots: 'Verstecke', difficulty: 'Schwierigkeit', selectedSpot: 'Ausgewählter Spot', paintColors: 'Painting-Farben', primary: 'Primär', secondary: 'Sekundär', back: 'Zurück zum Atlas', guide: 'Meccha Chameleon Karten-Guide', hidingSpots: 'Beste Verstecke', ready: 'Bereit für die echte Runde?', readyBody: 'Lass den Atlas als zweiten Bildschirm offen, vergleiche Kartenfarben und wähle deine nächste Versteckroute.', play: 'Online spielen', titleSuffix: 'Beste Verstecke — Meccha Chameleon', descriptionSuffix: 'Meccha Chameleon Versteck-Atlas: Screenshots, RGB, Schwierigkeit und Tipps für Versteckende.', altPreview: 'Meccha Chameleon Karten-Vorschau' },
+  pt: { spots: 'esconderijos', difficulty: 'dificuldade', selectedSpot: 'Spot selecionado', paintColors: 'Cores de pintura', primary: 'Primária', secondary: 'Secundária', back: 'Voltar ao atlas', guide: 'Guia de mapas de Meccha Chameleon', hidingSpots: 'Melhores esconderijos', ready: 'Pronto para a partida real?', readyBody: 'Deixe o atlas aberto como segunda tela, compare as cores do mapa e escolha sua próxima rota de esconderijo.', play: 'Jogar online', titleSuffix: 'Melhores esconderijos — Meccha Chameleon', descriptionSuffix: 'Atlas de esconderijos de Meccha Chameleon: capturas, RGB, dificuldade e dicas para Escondedores.', altPreview: 'Prévia do mapa de Meccha Chameleon' },
 } as const;
 
 const mapZh: Record<string, Pick<AtlasMap, 'name' | 'desc' | 'difficulty'>> = {
@@ -352,6 +385,15 @@ const mapDe: Record<string, Pick<AtlasMap, 'name' | 'desc'>> = {
   'backrooms': { name: 'Backrooms', desc: 'Gelbe Büroräume mit starker Beleuchtung und wenig natürlicher Deckung. Schwer für Versteckende, weil jede harte Kante sofort auffällt.' },
   'penguin-hotel': { name: 'Pinguin-Hotel', desc: 'Winterliches Hotel mit Zimmern, Bädern, Pinguin-Statuen, Enten und Ballons. Viel visuelles Rauschen, aber auch viele Objekte, die Sucher kontrollieren.' },
   'osaka': { name: 'Osaka', desc: 'Kompakter Japan-Stadtblock mit Truck, Schildern, Müllsäcken, Holzstapeln und offenen Läden. Kurze Routen und erhöhte Schilder brechen die Silhouette.' },
+};
+
+const mapPt: Record<string, Pick<AtlasMap, 'name' | 'desc'>> = {
+  'hide-and-seek-mansion': { name: 'Mansão do esconde-esconde', desc: 'Mansão clássica com biblioteca, banheiro azulejado, cozinha e salão. Ótima para esconderijos entre livros, quadros, molduras douradas e madeira quente.' },
+  'indoor-country': { name: 'Campo interno', desc: 'Fazenda indoor com vacas, fardos de feno, portas vermelhas, abóboras e mural de céu. Boa para treinar camuflagem com blocos grandes de cor.' },
+  'sewer': { name: 'Esgoto', desc: 'Túneis escuros com canos, barris vermelhos e paredes grafitadas. A luz fraca ajuda os Escondedores, mas spots conhecidos são checados rápido pelos Buscadores.' },
+  'backrooms': { name: 'Backrooms', desc: 'Salas amarelas muito iluminadas e com pouca cobertura natural. É um mapa duro porque qualquer borda pintada errado aparece na hora.' },
+  'penguin-hotel': { name: 'Hotel Pinguim', desc: 'Hotel de inverno com quartos, banheiros, estátuas de pinguim, patos e balões. Tem muito ruído visual, mas também muitos objetos que os Buscadores inspecionam.' },
+  'osaka': { name: 'Osaka', desc: 'Mapa urbano compacto com caminhão, letreiros, sacos de lixo, madeira empilhada e lojas abertas. Rotas curtas e placas elevadas ajudam a quebrar a silhueta.' },
 };
 
 const spotZh: Record<string, Pick<AtlasSpot, 'name' | 'tip'>> = {
@@ -411,6 +453,7 @@ export function localizeMap(map: AtlasMap, locale: string): AtlasMap {
   if (isZh(locale)) return { ...map, ...(mapZh[map.id] ?? {}) };
   if (isEs(locale)) return { ...map, ...(mapEs[map.id] ?? {}) };
   if (locale === 'de') return { ...map, ...(mapDe[map.id] ?? {}) };
+  if (isPt(locale)) return { ...map, ...(mapPt[map.id] ?? {}) };
   return map;
 }
 

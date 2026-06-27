@@ -135,22 +135,15 @@ export async function getCanonicalUrl(canonicalUrl: string, locale: string) {
   }
 
   if (canonicalUrl.startsWith('http')) {
-    // full url
-    canonicalUrl = canonicalUrl;
-  } else {
-    // relative path
-    if (!canonicalUrl.startsWith('/')) {
-      canonicalUrl = `/${canonicalUrl}`;
-    }
-
-    canonicalUrl = `${envConfigs.app_url}${
-      !locale || locale === defaultLocale ? '' : `/${locale}`
-    }${canonicalUrl}`;
+    return canonicalUrl.replace(/\/$/, '') || canonicalUrl;
   }
 
-  if (!canonicalUrl.endsWith('/')) {
-    canonicalUrl = `${canonicalUrl}/`;
+  if (!canonicalUrl.startsWith('/')) {
+    canonicalUrl = `/${canonicalUrl}`;
   }
 
-  return canonicalUrl;
+  const isHome = canonicalUrl === '/';
+  const pathPart = isHome ? '' : canonicalUrl.replace(/\/$/, '');
+  const localizedPrefix = !locale || locale === defaultLocale ? '' : `/${locale}`;
+  return `${envConfigs.app_url}${localizedPrefix}${pathPart}`;
 }
