@@ -14,7 +14,6 @@ const NEW_LOCALES: Locale[] = [
   'th',
   'vi',
   'zh-TW',
-  'nl',
 ];
 
 function stripLocale(pathname: string): { locale: string; rest: string } {
@@ -47,11 +46,11 @@ export async function proxy(request: NextRequest) {
   }
 
   // Spanish and German are being re-opened one page at a time after local
-  // SERP wording research. Only /es, /de, /pt, /fr and /it are promoted now; keep localized
+  // SERP wording research. Only /es, /de, /pt, /fr, /it and /nl are promoted now; keep localized
   // tools/maps/etc. consolidated until they receive native rewrites.
   if (
     isValidLocale &&
-    (locale === 'es' || locale === 'de' || locale === 'pt' || locale === 'fr' || locale === 'it') &&
+    (locale === 'es' || locale === 'de' || locale === 'pt' || locale === 'fr' || locale === 'it' || locale === 'nl') &&
     pathWithoutLocale !== '' &&
     pathWithoutLocale !== '/'
   ) {

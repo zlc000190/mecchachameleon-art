@@ -82,6 +82,17 @@ const previewCopy = {
     likes: 'like',
     note: 'Bucket R2 mecchachameleon-art-community. In questa demo gli invii sono pubblici; l’endpoint di revisione dell’agente può rimuovere contenuti non adatti.',
   },
+  nl: {
+    eyebrow: 'Community-demo',
+    title: '30 minuten verstop-challenge',
+    description: 'Spelers sturen screenshots in nadat ze 30 minuten onontdekt zijn gebleven. De kaart met de meeste likes wordt de communitywinnaar van de week.',
+    submit: 'Stuur mijn 30-minuten screenshot in',
+    viewAll: 'Bekijk communityranglijst',
+    minutes: `${demoCommunityChallenge.minutesHidden}+ min`,
+    screenshotAlt: 'Voorbeeldscreenshot van de 30 minuten verstop-challenge in Meccha Chameleon',
+    likes: 'likes',
+    note: 'R2-bucket mecchachameleon-art-community. In deze demo zijn inzendingen openbaar; het agent-review-endpoint kan ongeschikte items verwijderen.',
+  },
   en: {
     eyebrow: 'Community demo',
     title: '30-Minute Hiding Challenge',
@@ -128,7 +139,7 @@ export function CommunityChallengePreview({ locale }: { locale: string }) {
           </div>
         </div>
 
-        <div className="flex flex-col gap-3"> 
+        <div className="flex flex-col gap-3">
           <a
             href={getLocalizedPath(locale, '/community')}
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-[#29211D] px-5 py-3 text-sm font-black text-white transition hover:bg-[#4C3B35]"
@@ -137,12 +148,12 @@ export function CommunityChallengePreview({ locale }: { locale: string }) {
             {cta.submit}
           </a>
           <a
-            href={getLocalizedPath(locale, '/community')}
+            href={getLocalizedPath(locale, '/community/gallery')}
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-[#29211D] bg-white px-5 py-3 text-sm font-black text-[#29211D] transition hover:bg-[#fff7c8]"
           >
             {cta.viewAll}
           </a>
-          <p className="text-[11px] leading-5 text-[#7D6D69]"> 
+          <p className="text-[11px] leading-5 text-[#7D6D69]">
             <a className="underline" href={`${COMMUNITY_R2_PUBLIC_DOMAIN}/`} target="_blank" rel="noopener noreferrer">mecchachameleon-art-community</a>. {cta.note}
           </p>
         </div>

@@ -5,6 +5,7 @@ export const isEs = (locale: string) => locale === 'es';
 export const isPt = (locale: string) => locale === 'pt';
 export const isFr = (locale: string) => locale === 'fr';
 export const isIt = (locale: string) => locale === 'it';
+export const isNl = (locale: string) => locale === 'nl';
 
 export const homeCopy = {
   en: {
@@ -394,13 +395,44 @@ const homeCopyOverrides: Record<string, Partial<HomeCopy>> = {
     secondDesc: '專門頁面整理社群版 Meccha Chameleon 工具的功能、下載、快捷鍵和風險提示。Educational and research purposes only. Use at your own risk.', quickAnswers: '快速解答',
   },
   nl: {
-    title: 'Meccha Chameleon Online Spelen', playNow: 'Nu spelen', howToPlay: 'Hoe speel je', openTools: 'Open tools-pagina',
-    newPlayerEyebrow: 'Nieuwe-speler route', newPlayerTitle: 'Als je zocht vóór het downloaden, begin dan met de browsergame.',
-    camoEyebrow: 'Voor echte spelers', camoTitle: 'Camo Lab verandert zoekverkeer in hulp die klaar is voor de match.', previewAtlas: 'Bekijk kaartatlas',
-    atlasEyebrow: 'Verstopplek-atlas', atlasTitle: 'Vijf echte kaartgidsen, vijftig verstopplekken en één snelle tweede scherm.',
-    atlasDesc: 'Screenshots, verfkleuren, moeilijkheid en wedstrijdtips voor Meccha Chameleon-kaarten.',
-    secondEyebrow: 'Game-assistentsoftware', secondTitle: 'Toolspagina voor externe overlay, radar en camouflagehulp.',
-    secondDesc: 'De toolspagina vat community-assistentsoftware, downloads, bediening en veiligheidsnotities samen. Alleen voor educatie en onderzoek. Gebruik op eigen risico.', quickAnswers: 'Snelle antwoorden',
+    title: 'Meccha Chameleon in het Nederlands: beste schuilplekken, kaarten en camouflage',
+    playNow: 'Nu spelen',
+    howToPlay: 'Hoe speel je',
+    openTools: 'Open tools',
+    newPlayerEyebrow: 'Startgids',
+    newPlayerTitle: 'Als je Meccha Chameleon in het Nederlands zoekt, begin dan met schuilplekken, camouflage, houding en kaartlezen in plaats van een letterlijke vertaling.',
+    newPlayerCards: [
+      ['Wat is Meccha Chameleon?', 'Een multiplayer verstopspel op Steam waarin Verstoppers hun lichaam verven om op de omgeving te lijken, terwijl Zoekers letten op rare silhouetten, schaduwen en verdachte kleuren.'],
+      ['Kun je hier online spelen?', 'Je kunt de snelle browser-ingang gebruiken en deze pagina openhouden als tweede scherm. De volledige officiële versie blijft die op Steam.'],
+      ['Wat moet een beginner eerst leren?', 'Kies eerst een oppervlak, kopieer de juiste kleuren, test je houding en controleer of je contour vanuit een andere hoek opvalt.'],
+      ['Waar letten Zoekers op?', 'Niet alleen op beweging. Ze zien ook foute tinten, harde lichaamsranden, vreemde schaduwen en verstopplekken die te bekend zijn.'],
+    ],
+    camoEyebrow: 'Schuilplekken en camouflage',
+    camoTitle: 'De beste schuilplekken zitten niet alleen in donkere hoeken: ze werken wanneer verf, houding en visuele ruis goed samenkomen.',
+    previewAtlas: 'Bekijk kaarten en schuilplekken',
+    camoCards: [
+      ['Beste schuilplekken', 'Sterke plekken zitten vaak bij boeken, posters, tegels, kratten, hout, schaduwen en drukke zones waar kleine fouten minder opvallen.'],
+      ['Camouflage en verf', 'Kopieer kleur, licht, schaduw en patroon van het oppervlak. Een bijna goede tint helpt niet als je silhouet nog steeds te duidelijk is.'],
+      ['Houding en risico', 'Een eenvoudige houding helpt beginners. Sterkere spots werken vooral als je de route van de Zoekers kent en weet wanneer je volledig stil moet blijven.'],
+    ],
+    atlasEyebrow: 'Meccha Chameleon-kaarten',
+    atlasTitle: 'Kaarten, beste schuilplekken en spots waar je silhouet niet meteen “speler” schreeuwt.',
+    atlasDesc: 'Deze overzichtspagina gebruikt lokale termen zoals “beste schuilplekken”, “camouflage”, “zoekers”, “verstoppers”, “kaarten” en “houding”. Ze is bedoeld als Nederlandse instappagina voor echte matches, niet als automatische vertaling van de Engelse home.',
+    secondEyebrow: 'Tools en tweede scherm',
+    secondTitle: 'Hulp om kleuren, kaartlijnen en camouflage te checken vóór je volgende ronde.',
+    secondDesc: 'De tools-pagina verzamelt notities over overlays, radar, kleurlezing en camouflagehulpen. Gebruik dit als educatieve referentie en op eigen risico.',
+    quickAnswers: 'Snelle antwoorden',
+    faqs: [
+      ['Wat zijn de beste schuilplekken in Meccha Chameleon?', 'Meestal zijn dat spots met veel visuele ruis: boekenkasten, lijsten, tegels, kratten, meubels, schaduwen en patronen waar een Zoeker niet twee keer naar kijkt.'],
+      ['Is het beter om Verstopper of Kameleon te zeggen?', 'Beide komen voor in het Nederlands. Hier gebruiken we Verstopper voor de rol en schuilplek voor de spot, omdat de lokale zoekintentie vooral rond “beste schuilplekken” draait.'],
+      ['Hoe verbeter ik mijn camouflage?', 'Kopieer niet alleen de hoofdkleur. Let ook op glans, schaduwkant, patroon, materiaal en of hoofd of armen de houding breken.'],
+      ['Is deze pagina officieel?', 'Nee. Dit is een onofficiële Nederlandse hulppagina voor kaarten, schuilplekken en tactieken. De officiële gameversie staat op Steam.'],
+    ],
+    secondScreenItems: [
+      ['Schuilplekgids', 'Gebruik de pagina als tweede scherm om zones met veel visuele ruis en minder controle door Zoekers snel terug te vinden.'],
+      ['Kleurcheck', 'Vergelijk muur, vloer, hout, stof en schaduw voordat je je definitieve houding vastzet.'],
+      ['Waarschuwing', 'Onofficiële gids. Meccha Chameleon en de assets horen bij hun rechthebbenden. Gebruik op eigen risico.'],
+    ],
   },
 };
 
@@ -425,6 +457,7 @@ export const mapLabels = {
   pt: { spots: 'esconderijos', difficulty: 'dificuldade', selectedSpot: 'Spot selecionado', paintColors: 'Cores de pintura', primary: 'Primária', secondary: 'Secundária', back: 'Voltar ao atlas', guide: 'Guia de mapas de Meccha Chameleon', hidingSpots: 'Melhores esconderijos', ready: 'Pronto para a partida real?', readyBody: 'Deixe o atlas aberto como segunda tela, compare as cores do mapa e escolha sua próxima rota de esconderijo.', play: 'Jogar online', titleSuffix: 'Melhores esconderijos — Meccha Chameleon', descriptionSuffix: 'Atlas de esconderijos de Meccha Chameleon: capturas, RGB, dificuldade e dicas para Escondedores.', altPreview: 'Prévia do mapa de Meccha Chameleon' },
   fr: { spots: 'cachettes', difficulty: 'difficulté', selectedSpot: 'Cachette sélectionnée', paintColors: 'Couleurs de peinture', primary: 'Principale', secondary: 'Secondaire', back: 'Retour à l’atlas', guide: 'Guide des cartes de Meccha Chameleon', hidingSpots: 'Meilleures cachettes', ready: 'Prêt pour la vraie partie ?', readyBody: 'Gardez cet atlas ouvert en second écran, comparez les couleurs de la carte et choisissez votre prochaine route de cachette.', play: 'Jouer en ligne', titleSuffix: 'Meilleures cachettes — Meccha Chameleon', descriptionSuffix: 'Atlas des cachettes de Meccha Chameleon : captures, RGB, difficulté et conseils pour les Cacheurs.', altPreview: 'Aperçu de carte Meccha Chameleon' },
   it: { spots: 'nascondigli', difficulty: 'difficoltà', selectedSpot: 'Spot selezionato', paintColors: 'Colori di pittura', primary: 'Primario', secondary: 'Secondario', back: 'Torna all’atlante', guide: 'Guida mappe di Meccha Chameleon', hidingSpots: 'Migliori nascondigli', ready: 'Pronto per la partita vera?', readyBody: 'Tieni aperto l’atlante come secondo schermo, confronta i colori della mappa e scegli il tuo prossimo percorso di nascondiglio.', play: 'Gioca online', titleSuffix: 'Migliori nascondigli — Meccha Chameleon', descriptionSuffix: 'Atlante dei nascondigli di Meccha Chameleon: screenshot, RGB, difficoltà e consigli per i Nasconditori.', altPreview: 'Anteprima mappa Meccha Chameleon' },
+  nl: { spots: 'schuilplekken', difficulty: 'moeilijkheid', selectedSpot: 'Geselecteerde plek', paintColors: 'Verfkleuren', primary: 'Primair', secondary: 'Secundair', back: 'Terug naar atlas', guide: 'Meccha Chameleon kaartgids', hidingSpots: 'Beste schuilplekken', ready: 'Klaar voor de echte match?', readyBody: 'Houd deze atlas open als tweede scherm, vergelijk kaartkleuren en kies je volgende schuilroute.', play: 'Speel online', titleSuffix: 'Beste schuilplekken — Meccha Chameleon', descriptionSuffix: 'Meccha Chameleon schuilplekatlas: screenshots, RGB, moeilijkheid en tips voor Verstoppers.', altPreview: 'Meccha Chameleon kaartvoorbeeld' },
 } as const;
 
 const mapZh: Record<string, Pick<AtlasMap, 'name' | 'desc' | 'difficulty'>> = {
@@ -478,6 +511,15 @@ const mapIt: Record<string, Pick<AtlasMap, 'name' | 'desc'>> = {
   'backrooms': { name: 'Backrooms', desc: 'Uffici gialli molto illuminati e con poca copertura naturale. Mappa dura perché ogni bordo dipinto male salta subito all’occhio.' },
   'penguin-hotel': { name: 'Hotel Pinguino', desc: 'Hotel invernale con stanze, bagni, statue di pinguino, paperelle e palloncini. Ha tanto rumore visivo, ma anche molti oggetti che i Cercatori ispezionano.' },
   'osaka': { name: 'Osaka', desc: 'Blocco urbano compatto con camion, insegne, sacchi della spazzatura, cataste di legno e negozi aperti. Percorsi corti e cartelli alti aiutano a spezzare la silhouette.' },
+};
+
+const mapNl: Record<string, Pick<AtlasMap, 'name' | 'desc'>> = {
+  'hide-and-seek-mansion': { name: 'Verstopvilla', desc: 'Klassieke villa met bibliotheek, betegelde badkamer, keuken en balzaal. Sterke map om schuilplekken tussen boeken, schilderijen, gouden lijsten en warm hout te leren.' },
+  'indoor-country': { name: 'Binnenboerderij', desc: 'Boerderij binnen met koeien, hooibalen, rode deuren, pompoenen en een luchtmuur. Goed om eenvoudige camouflage met grote kleurvlakken te oefenen.' },
+  'sewer': { name: 'Riolering', desc: 'Donkere tunnels met pijpen, rode vaten en graffitiwanden. Het zwakke licht helpt Verstoppers, maar bekende spots worden snel door Zoekers nagekeken.' },
+  'backrooms': { name: 'Backrooms', desc: 'Gele kantoorruimtes met veel licht en weinig natuurlijke dekking. Moeilijke map omdat elke verkeerd geverfde rand meteen opvalt.' },
+  'penguin-hotel': { name: 'Pinguïnhotel', desc: 'Winterhotel met kamers, badkamers, pinguïnbeelden, eendjes en ballonnen. Veel visuele ruis, maar ook veel objecten die Zoekers controleren.' },
+  'osaka': { name: 'Osaka', desc: 'Compact stadsblok met vrachtwagen, borden, vuilniszakken, houtstapels en open winkels. Korte routes en hoge borden helpen om je silhouet te breken.' },
 };
 
 const spotZh: Record<string, Pick<AtlasSpot, 'name' | 'tip'>> = {
@@ -540,6 +582,7 @@ export function localizeMap(map: AtlasMap, locale: string): AtlasMap {
   if (isPt(locale)) return { ...map, ...(mapPt[map.id] ?? {}) };
   if (isFr(locale)) return { ...map, ...(mapFr[map.id] ?? {}) };
   if (isIt(locale)) return { ...map, ...(mapIt[map.id] ?? {}) };
+  if (isNl(locale)) return { ...map, ...(mapNl[map.id] ?? {}) };
   return map;
 }
 
