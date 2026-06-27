@@ -102,6 +102,7 @@ export const keySeoPages = [
   '/tools',
   '/new-player',
   '/maps',
+  '/community',
 ] as const;
 
 // Locales that read right-to-left.

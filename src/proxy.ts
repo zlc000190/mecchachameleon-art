@@ -45,11 +45,16 @@ export async function proxy(request: NextRequest) {
   // Spanish and German are being re-opened one page at a time after local
   // SERP wording research. Only /es, /de, /pt, /fr, /it, /nl and /ar are promoted now; keep localized
   // tools/maps/etc. consolidated until they receive native rewrites.
+  // Key SEO pages (/, /tools, /new-player, /maps, /community) are exempted:
+  // next-intl middleware handles them by stripping the locale prefix and
+  // serving the English version (e.g. /it/community -> /community), so we
+  // must NOT 301 them to "/" here, or users lose access to those pages.
   if (
     isValidLocale &&
     (locale === 'es' || locale === 'de' || locale === 'pt' || locale === 'fr' || locale === 'it' || locale === 'nl' || locale === 'ar' || locale === 'ja' || locale === 'ko') &&
     pathWithoutLocale !== '' &&
-    pathWithoutLocale !== '/'
+    pathWithoutLocale !== '/' &&
+    !isKeySeoPath(pathWithoutLocale)
   ) {
     const fallbackUrl = new URL('/', request.url);
     return NextResponse.redirect(fallbackUrl, 301);
