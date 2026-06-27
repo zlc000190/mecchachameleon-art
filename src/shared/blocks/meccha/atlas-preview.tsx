@@ -14,8 +14,8 @@ import { mapLabels } from './meccha-i18n';
 // per-map pages.
 export function AtlasPreview({ locale }: { locale: string }) {
   const maps = getAtlasMapsWithSpots(locale);
-  const labels = locale === 'zh' ? mapLabels.zh : locale === 'es' ? mapLabels.es : mapLabels.en;
-  const detailLocale = locale === 'es' ? 'en' : locale;
+  const labels = locale === 'zh' ? mapLabels.zh : locale === 'es' ? mapLabels.es : locale === 'de' ? mapLabels.de : mapLabels.en;
+  const detailLocale = locale === 'es' || locale === 'de' ? 'en' : locale;
 
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">

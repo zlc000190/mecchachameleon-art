@@ -48,7 +48,9 @@ export default async function RootLayout({
       ? `${appUrl}${strippedPath === '/' ? '/' : strippedPath}`
       : `${appUrl}/${loc}${strippedPath === '/' ? '/' : strippedPath}`;
 
-  const activeSeoLocales = strippedPath === '/' ? seoLocales : seoLocales.filter((loc) => loc !== 'es');
+  const activeSeoLocales = strippedPath === '/'
+    ? seoLocales
+    : seoLocales.filter((loc) => loc !== 'es' && loc !== 'de');
 
   // ads components
   let adsMetaTags = null;
