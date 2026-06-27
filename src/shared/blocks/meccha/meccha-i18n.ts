@@ -359,13 +359,44 @@ const homeCopyOverrides: Record<string, Partial<HomeCopy>> = {
     secondDesc: '도구 페이지는 커뮤니티 보조 소프트웨어, 다운로드, 조작법, 안전 안내를 정리합니다. 교육 및 연구 목적 전용입니다. 사용은 본인 책임입니다.', quickAnswers: '빠른 답변',
   },
   ar: {
-    title: 'Meccha Chameleon العب أونلاين', playNow: 'العب الآن', howToPlay: 'طريقة اللعب', openTools: 'افتح صفحة الأدوات',
-    newPlayerEyebrow: 'مسار اللاعب الجديد', newPlayerTitle: 'إذا وصلت من البحث قبل التنزيل، ابدأ بلعبة المتصفح أولاً.',
-    camoEyebrow: 'للاعبين الحقيقيين', camoTitle: 'Camo Lab يحوّل البحث إلى مساعدة جاهزة للمباراة.', previewAtlas: 'معاينة أطلس الخرائط',
-    atlasEyebrow: 'أطلس أماكن الاختباء', atlasTitle: 'خمسة أدلة خرائط حقيقية، خمسون مكان اختباء، وشاشة ثانية سريعة.',
-    atlasDesc: 'لقطات شاشة وألوان طلاء ومستوى صعوبة ونصائح لعب لخرائط Meccha Chameleon.',
-    secondEyebrow: 'برنامج مساعد للعبة', secondTitle: 'صفحة أدوات للطبقة الخارجية والرادار ومساعدات التمويه.',
-    secondDesc: 'تلخص صفحة الأدوات برامج المجتمع المساعدة والتنزيلات والتحكم وملاحظات السلامة. للأغراض التعليمية والبحثية فقط. استخدمه على مسؤوليتك.', quickAnswers: 'إجابات سريعة',
+    title: 'Meccha Chameleon بالعربية: أفضل أماكن الاختباء والخرائط والتمويه',
+    playNow: 'العب الآن',
+    howToPlay: 'كيف تلعب',
+    openTools: 'افتح الأدوات',
+    newPlayerEyebrow: 'دليل البداية',
+    newPlayerTitle: 'إذا كنت تبحث عن Meccha Chameleon بالعربية، فابدأ بفهم أماكن الاختباء والتمويه والوضعية وقراءة الخريطة بدلاً من ترجمة حرفية سريعة.',
+    newPlayerCards: [
+      ['ما هي Meccha Chameleon؟', 'لعبة اختباء جماعية على Steam يلوّن فيها المختبئون أجسادهم لتشبه البيئة، بينما يفتش الباحثون عن الظلال والحواف والألوان المريبة.'],
+      ['هل أستطيع اللعب هنا أونلاين؟', 'يمكنك استخدام مدخل اللعب السريع في المتصفح وترك هذه الصفحة مفتوحة كشاشة ثانية. أما النسخة الرسمية الكاملة فهي على Steam.'],
+      ['ما أول شيء يجب أن يتعلمه المبتدئ؟', 'اختر السطح أولاً، ثم انسخ الألوان الصحيحة، وجرّب الوضعية، وتحقق إن كان شكل جسمك يفضحك من زاوية أخرى.'],
+      ['عمّ يبحث الباحثون؟', 'ليس عن الحركة فقط، بل عن الحواف الغريبة، والدرجات اللونية الخاطئة، والظلال غير المنطقية، وأماكن الاختباء المشهورة جداً.'],
+    ],
+    camoEyebrow: 'الاختباء والتمويه',
+    camoTitle: 'أفضل أماكن الاختباء لا تكون فقط في الزوايا المظلمة؛ بل تنجح عندما تتكامل الألوان والوضعية والضوضاء البصرية.',
+    previewAtlas: 'اعرض الخرائط وأماكن الاختباء',
+    camoCards: [
+      ['أفضل أماكن الاختباء', 'الأماكن الأقوى تكون غالباً قرب الكتب والملصقات والبلاط والصناديق والخشب والظلال والمناطق المزدحمة بالتفاصيل.'],
+      ['التمويه والطلاء', 'انسخ اللون والضوء والظل والنمط من السطح. اللون القريب لا يكفي إذا بقي silhouette واضحاً جداً.'],
+      ['الوضعية والمخاطرة', 'الوضعية البسيطة تساعد المبتدئ. أما الأماكن الأقوى فتحتاج فهماً لمسار الباحثين ومعرفة اللحظة التي يجب أن تتجمد فيها تماماً.'],
+    ],
+    atlasEyebrow: 'خرائط Meccha Chameleon',
+    atlasTitle: 'خرائط وأفضل أماكن الاختباء ونقاط لا يصرخ فيها شكل جسمك فوراً: هذا لاعب.',
+    atlasDesc: 'تستخدم هذه الصفحة كلمات محلية مثل أفضل أماكن الاختباء والتمويه والباحثين والخرائط والوضعية. وهي مدخل عربي عملي للمباريات الحقيقية، لا مجرد ترجمة آلية للصفحة الإنجليزية.',
+    secondEyebrow: 'الأدوات والشاشة الثانية',
+    secondTitle: 'مساعدة لمراجعة الألوان ومسارات الخريطة والتمويه قبل الجولة التالية.',
+    secondDesc: 'تجمع صفحة الأدوات ملاحظات عن الـ overlay والرادار وقراءة الألوان ومساعدات التمويه. استخدمها كمصدر تعليمي وعلى مسؤوليتك.',
+    quickAnswers: 'إجابات سريعة',
+    faqs: [
+      ['ما أفضل أماكن الاختباء في Meccha Chameleon؟', 'غالباً هي الأماكن المليئة بالضوضاء البصرية: مكتبات وإطارات وبلاط وصناديق وأثاث وظلال وأنماط لا يفحصها الباحث مرتين.'],
+      ['هل نقول مختبئ أم حرباء؟', 'كلاهما يظهر عربياً. هنا نستخدم مختبئ للدور ومكان اختباء للنقطة لأن نية البحث المحلية تدور أكثر حول أفضل أماكن الاختباء.'],
+      ['كيف أحسن التمويه؟', 'لا تنسخ اللون الأساسي فقط. راقب اللمعان والجهة المظللة والنمط والخامة وهل يفسد الرأس أو الذراعان الوضعية.'],
+      ['هل هذه الصفحة رسمية؟', 'لا. هذه صفحة مساعدة عربية غير رسمية للخرائط وأماكن الاختباء والتكتيكات. النسخة الرسمية للعبة موجودة على Steam.'],
+    ],
+    secondScreenItems: [
+      ['دليل أماكن الاختباء', 'استخدم الصفحة كشاشة ثانية لتتذكر المناطق ذات الضوضاء البصرية الأعلى والفحص الأقل من الباحثين.'],
+      ['فحص الألوان', 'قارن بين الجدار والأرضية والخشب والقماش والظل قبل تثبيت الوضعية النهائية.'],
+      ['تنبيه', 'دليل غير رسمي. تعود Meccha Chameleon وموادها إلى أصحابها. الاستخدام على مسؤوليتك.'],
+    ],
   },
   th: {
     title: 'Meccha Chameleon เล่นออนไลน์', playNow: 'เล่นเลย', howToPlay: 'วิธีเล่น', openTools: 'เปิดหน้าเครื่องมือ',
@@ -458,6 +489,7 @@ export const mapLabels = {
   fr: { spots: 'cachettes', difficulty: 'difficulté', selectedSpot: 'Cachette sélectionnée', paintColors: 'Couleurs de peinture', primary: 'Principale', secondary: 'Secondaire', back: 'Retour à l’atlas', guide: 'Guide des cartes de Meccha Chameleon', hidingSpots: 'Meilleures cachettes', ready: 'Prêt pour la vraie partie ?', readyBody: 'Gardez cet atlas ouvert en second écran, comparez les couleurs de la carte et choisissez votre prochaine route de cachette.', play: 'Jouer en ligne', titleSuffix: 'Meilleures cachettes — Meccha Chameleon', descriptionSuffix: 'Atlas des cachettes de Meccha Chameleon : captures, RGB, difficulté et conseils pour les Cacheurs.', altPreview: 'Aperçu de carte Meccha Chameleon' },
   it: { spots: 'nascondigli', difficulty: 'difficoltà', selectedSpot: 'Spot selezionato', paintColors: 'Colori di pittura', primary: 'Primario', secondary: 'Secondario', back: 'Torna all’atlante', guide: 'Guida mappe di Meccha Chameleon', hidingSpots: 'Migliori nascondigli', ready: 'Pronto per la partita vera?', readyBody: 'Tieni aperto l’atlante come secondo schermo, confronta i colori della mappa e scegli il tuo prossimo percorso di nascondiglio.', play: 'Gioca online', titleSuffix: 'Migliori nascondigli — Meccha Chameleon', descriptionSuffix: 'Atlante dei nascondigli di Meccha Chameleon: screenshot, RGB, difficoltà e consigli per i Nasconditori.', altPreview: 'Anteprima mappa Meccha Chameleon' },
   nl: { spots: 'schuilplekken', difficulty: 'moeilijkheid', selectedSpot: 'Geselecteerde plek', paintColors: 'Verfkleuren', primary: 'Primair', secondary: 'Secundair', back: 'Terug naar atlas', guide: 'Meccha Chameleon kaartgids', hidingSpots: 'Beste schuilplekken', ready: 'Klaar voor de echte match?', readyBody: 'Houd deze atlas open als tweede scherm, vergelijk kaartkleuren en kies je volgende schuilroute.', play: 'Speel online', titleSuffix: 'Beste schuilplekken — Meccha Chameleon', descriptionSuffix: 'Meccha Chameleon schuilplekatlas: screenshots, RGB, moeilijkheid en tips voor Verstoppers.', altPreview: 'Meccha Chameleon kaartvoorbeeld' },
+  ar: { spots: 'أماكن', difficulty: 'الصعوبة', selectedSpot: 'النقطة المحددة', paintColors: 'ألوان الطلاء', primary: 'أساسي', secondary: 'ثانوي', back: 'العودة إلى الأطلس', guide: 'دليل خرائط Meccha Chameleon', hidingSpots: 'أفضل أماكن الاختباء', ready: 'جاهز للمباراة الحقيقية؟', readyBody: 'اترك هذا الأطلس مفتوحاً كشاشة ثانية، وقارن ألوان الخريطة واختر طريق اختبائك التالي.', play: 'العب أونلاين', titleSuffix: 'أفضل أماكن الاختباء — Meccha Chameleon', descriptionSuffix: 'أطلس أماكن الاختباء في Meccha Chameleon: لقطات شاشة وRGB وصعوبة ونصائح للمختبئين.', altPreview: 'معاينة خريطة Meccha Chameleon' },
 } as const;
 
 const mapZh: Record<string, Pick<AtlasMap, 'name' | 'desc' | 'difficulty'>> = {
@@ -522,6 +554,15 @@ const mapNl: Record<string, Pick<AtlasMap, 'name' | 'desc'>> = {
   'osaka': { name: 'Osaka', desc: 'Compact stadsblok met vrachtwagen, borden, vuilniszakken, houtstapels en open winkels. Korte routes en hoge borden helpen om je silhouet te breken.' },
 };
 
+const mapAr: Record<string, Pick<AtlasMap, 'name' | 'desc'>> = {
+  'hide-and-seek-mansion': { name: 'قصر الاختباء', desc: 'قصر كلاسيكي فيه مكتبة وحمام مبلط ومطبخ وقاعة رقص. ممتاز لتعلّم الاختباء بين الكتب والإطارات الذهبية والخشب الدافئ.' },
+  'indoor-country': { name: 'الريف الداخلي', desc: 'مزرعة داخلية فيها أبقار ولفائف قش وأبواب حمراء ويقطين ولوحة سماء. جيدة لتعلّم تمويه بسيط على مساحات لونية كبيرة.' },
+  'sewer': { name: 'المجاري', desc: 'أنفاق مظلمة مع أنابيب وبراميل حمراء وجدران غرافيتي. الإضاءة الخافتة تساعد المختبئين، لكن النقاط المعروفة تُفحص بسرعة.' },
+  'backrooms': { name: 'Backrooms', desc: 'مكاتب صفراء شديدة الإضاءة وبغطاء طبيعي قليل. خريطة قاسية لأن أي حافة مطلية بشكل سيئ تظهر فوراً.' },
+  'penguin-hotel': { name: 'فندق البطريق', desc: 'فندق شتوي مع غرف وحمامات وتماثيل بطاريق وبطّات وبالونات. فيه ضوضاء بصرية كثيرة، لكن فيه أيضاً عناصر كثيرة يفتشها الباحثون.' },
+  'osaka': { name: 'أوساكا', desc: 'حي حضري مضغوط فيه شاحنة ولافتات وأكياس قمامة وخشب متراكم ومتاجر مفتوحة. المسارات القصيرة واللافتات العالية تساعد على كسر silhouette الجسم.' },
+};
+
 const spotZh: Record<string, Pick<AtlasSpot, 'name' | 'tip'>> = {
   'vintage-01': { name: '镀金画框伪装', tip: '蹲在金色画框后方，把身体涂成深锦缎绿，贴近周围墙纸纹理。' },
   'vintage-02': { name: '走廊花瓶藏点', tip: '站在派对旗帜下的高花瓶旁，使用米白底色并点上绿色花纹。' },
@@ -583,6 +624,7 @@ export function localizeMap(map: AtlasMap, locale: string): AtlasMap {
   if (isFr(locale)) return { ...map, ...(mapFr[map.id] ?? {}) };
   if (isIt(locale)) return { ...map, ...(mapIt[map.id] ?? {}) };
   if (isNl(locale)) return { ...map, ...(mapNl[map.id] ?? {}) };
+  if (locale === 'ar') return { ...map, ...(mapAr[map.id] ?? {}) };
   return map;
 }
 

@@ -53,7 +53,7 @@ export default async function RootLayout({
 
   const activeSeoLocales = strippedPath === '/'
     ? seoLocales
-    : seoLocales.filter((loc) => loc !== 'es' && loc !== 'de' && loc !== 'pt' && loc !== 'fr' && loc !== 'it' && loc !== 'nl');
+    : seoLocales.filter((loc) => loc !== 'es' && loc !== 'de' && loc !== 'pt' && loc !== 'fr' && loc !== 'it' && loc !== 'nl' && loc !== 'ar');
 
   // ads components
   let adsMetaTags = null;

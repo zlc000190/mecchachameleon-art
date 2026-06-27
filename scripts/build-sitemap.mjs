@@ -30,12 +30,12 @@ const maps = [
 // Only SEO-approved locales appear in sitemap/hreflang. Half-translated
 // locales are stopped until target-country keyword research + native rewrites
 // justify promoting them.
-const allLocales = ['en', 'zh', 'ru', 'es', 'de', 'pt', 'fr', 'it', 'nl'];
+const allLocales = ['en', 'zh', 'ru', 'es', 'de', 'pt', 'fr', 'it', 'nl', 'ar'];
 
 // ONLY these locales get their own <url> entry. Each must have a full i18n
 // JSON bundle under src/config/locale/messages/<locale>/.
 const fullyTranslatedLocales = ['en', 'zh', 'ru'];
-const homepageOnlyLocales = ['es', 'de', 'pt', 'fr', 'it', 'nl'];
+const homepageOnlyLocales = ['es', 'de', 'pt', 'fr', 'it', 'nl', 'ar'];
 
 const defaultLocale = 'en';
 const now = new Date().toISOString();

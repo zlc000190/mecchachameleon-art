@@ -12,6 +12,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { AtlasPreview } from '@/shared/blocks/meccha/atlas-preview';
 import { CommunityChallengePreview } from '@/shared/blocks/meccha/community-challenge-preview';
 import { DemoFrame } from '@/shared/blocks/meccha/demo-frame';
+import { ArabicSeoSection } from '@/shared/blocks/meccha/arabic-seo-section';
 import { DutchSeoSection } from '@/shared/blocks/meccha/dutch-seo-section';
 import { FrenchSeoSection } from '@/shared/blocks/meccha/french-seo-section';
 import { getHomeCopy } from '@/shared/blocks/meccha/meccha-i18n';
@@ -40,14 +41,16 @@ export default async function LandingPage({
   const copy = getHomeCopy(locale);
   const homeUrl = await getCanonicalUrl('/', locale);
   const showLongFormSections = locale === 'en' || locale === 'zh';
+  const showLocalizedHowToPlay = ['en', 'zh', 'ru', 'es', 'de', 'pt', 'fr', 'it', 'nl', 'ar'].includes(locale);
   const showSpanishSeoSection = locale === 'es';
   const showGermanSeoSection = locale === 'de';
   const showPortugueseSeoSection = locale === 'pt';
   const showFrenchSeoSection = locale === 'fr';
   const showItalianSeoSection = locale === 'it';
   const showDutchSeoSection = locale === 'nl';
-  const showTranslatedDetailCards = locale === 'en' || locale === 'zh' || locale === 'ru' || locale === 'es' || locale === 'de' || locale === 'pt' || locale === 'fr' || locale === 'it' || locale === 'nl';
-  const showTranslatedAtlasPreview = locale === 'en' || locale === 'zh' || locale === 'es' || locale === 'de' || locale === 'pt' || locale === 'fr' || locale === 'it' || locale === 'nl';
+  const showArabicSeoSection = locale === 'ar';
+  const showTranslatedDetailCards = locale === 'en' || locale === 'zh' || locale === 'ru' || locale === 'es' || locale === 'de' || locale === 'pt' || locale === 'fr' || locale === 'it' || locale === 'nl' || locale === 'ar';
+  const showTranslatedAtlasPreview = locale === 'en' || locale === 'zh' || locale === 'es' || locale === 'de' || locale === 'pt' || locale === 'fr' || locale === 'it' || locale === 'nl' || locale === 'ar';
   const showCommunityPreview =
     locale === 'en' ||
     locale === 'zh' ||
@@ -57,7 +60,8 @@ export default async function LandingPage({
     locale === 'pt' ||
     locale === 'fr' ||
     locale === 'it' ||
-    locale === 'nl';
+    locale === 'nl' ||
+    locale === 'ar';
 
   return (
     <main className="min-h-screen bg-[#fff7f1] text-[#29211D]">
@@ -153,13 +157,11 @@ export default async function LandingPage({
       {showFrenchSeoSection ? <FrenchSeoSection /> : null}
       {showItalianSeoSection ? <ItalianSeoSection /> : null}
       {showDutchSeoSection ? <DutchSeoSection /> : null}
+      {showArabicSeoSection ? <ArabicSeoSection /> : null}
 
-      {showLongFormSections ? (
-        <>
-          <HowToPlaySection locale={locale} />
-          <UpdatesSection locale={locale} />
-        </>
-      ) : null}
+      {showLocalizedHowToPlay ? <HowToPlaySection locale={locale} /> : null}
+
+      {showLongFormSections ? <UpdatesSection locale={locale} /> : null}
 
       <section id="second-screen" className="border-b border-[#D8CFC6] bg-gradient-to-br from-[#9de7dc] via-[#cdefff] to-[#d9b7ff] text-[#29211D]">
         <div className="container grid gap-8 py-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
@@ -168,7 +170,7 @@ export default async function LandingPage({
             <h2 className="text-3xl font-bold tracking-normal md:text-4xl">{copy.secondTitle}</h2>
             <p className="mt-4 leading-7 text-[#4C3B35]">{copy.secondDesc}</p>
             <a
-              href={locale === 'en' || locale === 'es' || locale === 'de' || locale === 'pt' || locale === 'fr' || locale === 'it' || locale === 'nl' ? '/tools' : `/${locale}/tools`}
+              href={locale === 'en' || locale === 'es' || locale === 'de' || locale === 'pt' || locale === 'fr' || locale === 'it' || locale === 'nl' || locale === 'ar' ? '/tools' : `/${locale}/tools`}
               className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-md bg-[#ff6f9a] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#e95a88]"
             >
               <BookOpen className="h-4 w-4" />

@@ -94,7 +94,7 @@ export const fullyTranslatedLocales: Locale[] = ['en', 'zh', 'ru'];
 // Only locales with acceptable page-body completeness stay in SEO alternates.
 // New-site rule: do not expose half-translated locales to Google. Promote a
 // locale here only after target-country keyword research and native rewrite.
-export const seoLocales: Locale[] = ['en', 'zh', 'ru', 'es', 'de', 'pt', 'fr', 'it', 'nl'];
+export const seoLocales: Locale[] = ['en', 'zh', 'ru', 'es', 'de', 'pt', 'fr', 'it', 'nl', 'ar'];
 
 // Key SEO pages that stay indexable for currently approved SEO locales.
 export const keySeoPages = [
