@@ -4,6 +4,7 @@ export const isZh = (locale: string) => locale === 'zh';
 export const isEs = (locale: string) => locale === 'es';
 export const isPt = (locale: string) => locale === 'pt';
 export const isFr = (locale: string) => locale === 'fr';
+export const isIt = (locale: string) => locale === 'it';
 
 export const homeCopy = {
   en: {
@@ -139,13 +140,44 @@ const homeCopyOverrides: Record<string, Partial<HomeCopy>> = {
     ],
   },
   it: {
-    title: 'Meccha Chameleon Gioca Online', playNow: 'Gioca ora', howToPlay: 'Come giocare', openTools: 'Apri pagina strumenti',
-    newPlayerEyebrow: 'Percorso per nuovi giocatori', newPlayerTitle: 'Se hai cercato prima di scaricare, inizia dal gioco nel browser.',
-    camoEyebrow: 'Per giocatori veri', camoTitle: 'Camo Lab trasforma la ricerca in aiuto pronto per la partita.', previewAtlas: 'Anteprima atlante mappe',
-    atlasEyebrow: 'Atlante dei nascondigli', atlasTitle: 'Cinque guide mappa reali, cinquanta nascondigli, un secondo schermo veloce.',
-    atlasDesc: 'Screenshot, colori di pittura, difficoltà e consigli pratici per le mappe di Meccha Chameleon.',
-    secondEyebrow: 'Software assistente di gioco', secondTitle: 'Pagina strumenti per overlay esterno, radar e aiuti mimetici.',
-    secondDesc: 'La pagina strumenti raccoglie download, controlli e note di sicurezza del software assistente della community. Solo per scopi educativi e di ricerca. Usalo a tuo rischio.', quickAnswers: 'Risposte rapide',
+    title: 'Meccha Chameleon in italiano: migliori nascondigli, mappe e mimetizzazione',
+    playNow: 'Gioca ora',
+    howToPlay: 'Come giocare',
+    openTools: 'Apri strumenti',
+    newPlayerEyebrow: 'Guida per iniziare',
+    newPlayerTitle: 'Se stai cercando Meccha Chameleon in italiano, parti da nascondigli, mimetizzazione, pose e lettura della mappa invece di una traduzione letterale.',
+    newPlayerCards: [
+      ['Cos’è Meccha Chameleon?', 'Un gioco multiplayer di nascondino su Steam in cui i Nasconditori dipingono il corpo per fondersi con lo scenario mentre i Cercatori controllano silhouette, ombre e colori sospetti.'],
+      ['Si può giocare online qui?', 'Puoi usare l’accesso rapido nel browser e tenere questa pagina come secondo schermo. La versione ufficiale completa resta quella su Steam.'],
+      ['Cosa deve imparare per primo un principiante?', 'Scegli prima la superficie, copia bene i colori, prova la posa e controlla se il contorno ti tradisce da un’altra angolazione.'],
+      ['Cosa cercano i Cercatori?', 'Non guardano solo il movimento: notano bordi strani, toni sbagliati, ombre incoerenti e nascondigli troppo famosi.'],
+    ],
+    camoEyebrow: 'Nascondigli e mimetizzazione',
+    camoTitle: 'I migliori nascondigli non stanno solo negli angoli bui: funzionano quando pittura, posa e rumore visivo si incastrano bene.',
+    previewAtlas: 'Vedi mappe e nascondigli',
+    camoCards: [
+      ['Migliori nascondigli', 'Gli spot forti sono spesso vicino a libri, poster, piastrelle, casse, legno, ombre e zone piene di dettagli dove piccoli errori passano inosservati.'],
+      ['Mimetizzazione e pittura', 'Copia colore, luce, ombra e motivo della superficie. Un tono quasi giusto non basta se la tua silhouette resta troppo leggibile.'],
+      ['Pose e rischio', 'Una posa semplice aiuta i principianti. Gli spot più forti rendono quando conosci il percorso dei Cercatori e il momento in cui devi restare completamente immobile.'],
+    ],
+    atlasEyebrow: 'Mappe di Meccha Chameleon',
+    atlasTitle: 'Mappe, migliori nascondigli e spot in cui la tua silhouette non urla subito “giocatore”.',
+    atlasDesc: 'Questa panoramica usa termini locali come “migliori nascondigli”, “mimetizzazione”, “cercatori”, “mappe” e “pose”. È pensata come porta d’ingresso in italiano per partite reali, non come una semplice traduzione automatica della home inglese.',
+    secondEyebrow: 'Strumenti e secondo schermo',
+    secondTitle: 'Aiuti per controllare colori, percorsi della mappa e mimetizzazione prima del prossimo round.',
+    secondDesc: 'La pagina strumenti raccoglie note su overlay, radar, lettura del colore e utilità di mimetizzazione. Usala come riferimento educativo e a tuo rischio.',
+    quickAnswers: 'Risposte rapide',
+    faqs: [
+      ['Quali sono i migliori nascondigli in Meccha Chameleon?', 'Di solito sono gli spot con molto rumore visivo: librerie, cornici, piastrelle, casse, mobili, ombre e pattern che il Cercatore non controlla due volte.'],
+      ['Meglio dire Nasconditore o Camaleonte?', 'Entrambe le forme compaiono in italiano. Qui usiamo Nasconditore per il ruolo e nascondiglio per lo spot, perché la ricerca locale ruota soprattutto attorno a “migliori nascondigli”.'],
+      ['Come miglioro la mia mimetizzazione?', 'Non copiare solo il colore principale. Guarda lucentezza, lato in ombra, pattern, materiale e se testa o braccia rompono la posa.'],
+      ['Questa pagina è ufficiale?', 'No. È una pagina non ufficiale in italiano su mappe, nascondigli e tattiche. La versione ufficiale del gioco è su Steam.'],
+    ],
+    secondScreenItems: [
+      ['Guida ai nascondigli', 'Usa la pagina come secondo schermo per ricordare le zone con più rumore visivo e meno controlli dei Cercatori.'],
+      ['Lettura dei colori', 'Confronta muro, pavimento, legno, tessuto e ombra prima di bloccare la posa finale.'],
+      ['Avviso', 'Guida non ufficiale. Meccha Chameleon e i suoi asset appartengono ai rispettivi proprietari. Uso a tuo rischio.'],
+    ],
   },
   fr: {
     title: 'Meccha Chameleon en français : meilleures cachettes, cartes et camouflage',
@@ -392,6 +424,7 @@ export const mapLabels = {
   de: { spots: 'Verstecke', difficulty: 'Schwierigkeit', selectedSpot: 'Ausgewählter Spot', paintColors: 'Painting-Farben', primary: 'Primär', secondary: 'Sekundär', back: 'Zurück zum Atlas', guide: 'Meccha Chameleon Karten-Guide', hidingSpots: 'Beste Verstecke', ready: 'Bereit für die echte Runde?', readyBody: 'Lass den Atlas als zweiten Bildschirm offen, vergleiche Kartenfarben und wähle deine nächste Versteckroute.', play: 'Online spielen', titleSuffix: 'Beste Verstecke — Meccha Chameleon', descriptionSuffix: 'Meccha Chameleon Versteck-Atlas: Screenshots, RGB, Schwierigkeit und Tipps für Versteckende.', altPreview: 'Meccha Chameleon Karten-Vorschau' },
   pt: { spots: 'esconderijos', difficulty: 'dificuldade', selectedSpot: 'Spot selecionado', paintColors: 'Cores de pintura', primary: 'Primária', secondary: 'Secundária', back: 'Voltar ao atlas', guide: 'Guia de mapas de Meccha Chameleon', hidingSpots: 'Melhores esconderijos', ready: 'Pronto para a partida real?', readyBody: 'Deixe o atlas aberto como segunda tela, compare as cores do mapa e escolha sua próxima rota de esconderijo.', play: 'Jogar online', titleSuffix: 'Melhores esconderijos — Meccha Chameleon', descriptionSuffix: 'Atlas de esconderijos de Meccha Chameleon: capturas, RGB, dificuldade e dicas para Escondedores.', altPreview: 'Prévia do mapa de Meccha Chameleon' },
   fr: { spots: 'cachettes', difficulty: 'difficulté', selectedSpot: 'Cachette sélectionnée', paintColors: 'Couleurs de peinture', primary: 'Principale', secondary: 'Secondaire', back: 'Retour à l’atlas', guide: 'Guide des cartes de Meccha Chameleon', hidingSpots: 'Meilleures cachettes', ready: 'Prêt pour la vraie partie ?', readyBody: 'Gardez cet atlas ouvert en second écran, comparez les couleurs de la carte et choisissez votre prochaine route de cachette.', play: 'Jouer en ligne', titleSuffix: 'Meilleures cachettes — Meccha Chameleon', descriptionSuffix: 'Atlas des cachettes de Meccha Chameleon : captures, RGB, difficulté et conseils pour les Cacheurs.', altPreview: 'Aperçu de carte Meccha Chameleon' },
+  it: { spots: 'nascondigli', difficulty: 'difficoltà', selectedSpot: 'Spot selezionato', paintColors: 'Colori di pittura', primary: 'Primario', secondary: 'Secondario', back: 'Torna all’atlante', guide: 'Guida mappe di Meccha Chameleon', hidingSpots: 'Migliori nascondigli', ready: 'Pronto per la partita vera?', readyBody: 'Tieni aperto l’atlante come secondo schermo, confronta i colori della mappa e scegli il tuo prossimo percorso di nascondiglio.', play: 'Gioca online', titleSuffix: 'Migliori nascondigli — Meccha Chameleon', descriptionSuffix: 'Atlante dei nascondigli di Meccha Chameleon: screenshot, RGB, difficoltà e consigli per i Nasconditori.', altPreview: 'Anteprima mappa Meccha Chameleon' },
 } as const;
 
 const mapZh: Record<string, Pick<AtlasMap, 'name' | 'desc' | 'difficulty'>> = {
@@ -436,6 +469,15 @@ const mapFr: Record<string, Pick<AtlasMap, 'name' | 'desc'>> = {
   'backrooms': { name: 'Backrooms', desc: 'Bureaux jaunes très éclairés avec peu de couverture naturelle. Carte difficile car la moindre bordure mal peinte saute immédiatement aux yeux.' },
   'penguin-hotel': { name: 'Hôtel Pingouin', desc: 'Hôtel hivernal avec chambres, salles de bain, statues de pingouin, canards et ballons. Beaucoup de bruit visuel, mais aussi beaucoup d’objets inspectés par les Chercheurs.' },
   'osaka': { name: 'Osaka', desc: 'Bloc urbain compact avec camion, enseignes, sacs-poubelle, piles de bois et boutiques ouvertes. Les trajets courts et les panneaux en hauteur aident à casser la silhouette.' },
+};
+
+const mapIt: Record<string, Pick<AtlasMap, 'name' | 'desc'>> = {
+  'hide-and-seek-mansion': { name: 'Villa nascondino', desc: 'Villa classica con biblioteca, bagno piastrellato, cucina e sala da ballo. Ottima per imparare i nascondigli tra libri, quadri, cornici dorate e legno caldo.' },
+  'indoor-country': { name: 'Campagna indoor', desc: 'Fattoria interna con mucche, balle di fieno, porte rosse, zucche e murale del cielo. Buona per allenare una mimetizzazione semplice su grandi blocchi di colore.' },
+  'sewer': { name: 'Fogne', desc: 'Tunnel scuri con tubi, barili rossi e muri coperti di graffiti. La luce bassa aiuta i Nasconditori, ma gli spot famosi vengono controllati in fretta dai Cercatori.' },
+  'backrooms': { name: 'Backrooms', desc: 'Uffici gialli molto illuminati e con poca copertura naturale. Mappa dura perché ogni bordo dipinto male salta subito all’occhio.' },
+  'penguin-hotel': { name: 'Hotel Pinguino', desc: 'Hotel invernale con stanze, bagni, statue di pinguino, paperelle e palloncini. Ha tanto rumore visivo, ma anche molti oggetti che i Cercatori ispezionano.' },
+  'osaka': { name: 'Osaka', desc: 'Blocco urbano compatto con camion, insegne, sacchi della spazzatura, cataste di legno e negozi aperti. Percorsi corti e cartelli alti aiutano a spezzare la silhouette.' },
 };
 
 const spotZh: Record<string, Pick<AtlasSpot, 'name' | 'tip'>> = {
@@ -497,6 +539,7 @@ export function localizeMap(map: AtlasMap, locale: string): AtlasMap {
   if (locale === 'de') return { ...map, ...(mapDe[map.id] ?? {}) };
   if (isPt(locale)) return { ...map, ...(mapPt[map.id] ?? {}) };
   if (isFr(locale)) return { ...map, ...(mapFr[map.id] ?? {}) };
+  if (isIt(locale)) return { ...map, ...(mapIt[map.id] ?? {}) };
   return map;
 }
 

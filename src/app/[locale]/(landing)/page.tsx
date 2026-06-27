@@ -17,6 +17,7 @@ import { getHomeCopy } from '@/shared/blocks/meccha/meccha-i18n';
 import { ToolsTeaser } from '@/shared/blocks/meccha/tools-teaser';
 import { GermanSeoSection } from '@/shared/blocks/meccha/german-seo-section';
 import { HowToPlaySection } from '@/shared/blocks/meccha/how-to-play-section';
+import { ItalianSeoSection } from '@/shared/blocks/meccha/italian-seo-section';
 import { KeywordSection } from '@/shared/blocks/meccha/keyword-section';
 import { PortugueseSeoSection } from '@/shared/blocks/meccha/portuguese-seo-section';
 import { SpanishSeoSection } from '@/shared/blocks/meccha/spanish-seo-section';
@@ -42,8 +43,9 @@ export default async function LandingPage({
   const showGermanSeoSection = locale === 'de';
   const showPortugueseSeoSection = locale === 'pt';
   const showFrenchSeoSection = locale === 'fr';
-  const showTranslatedDetailCards = locale === 'en' || locale === 'zh' || locale === 'ru' || locale === 'es' || locale === 'de' || locale === 'pt' || locale === 'fr';
-  const showTranslatedAtlasPreview = locale === 'en' || locale === 'zh' || locale === 'es' || locale === 'de' || locale === 'pt' || locale === 'fr';
+  const showItalianSeoSection = locale === 'it';
+  const showTranslatedDetailCards = locale === 'en' || locale === 'zh' || locale === 'ru' || locale === 'es' || locale === 'de' || locale === 'pt' || locale === 'fr' || locale === 'it';
+  const showTranslatedAtlasPreview = locale === 'en' || locale === 'zh' || locale === 'es' || locale === 'de' || locale === 'pt' || locale === 'fr' || locale === 'it';
   const showCommunityPreview =
     locale === 'en' ||
     locale === 'zh' ||
@@ -51,7 +53,8 @@ export default async function LandingPage({
     locale === 'es' ||
     locale === 'de' ||
     locale === 'pt' ||
-    locale === 'fr';
+    locale === 'fr' ||
+    locale === 'it';
 
   return (
     <main className="min-h-screen bg-[#fff7f1] text-[#29211D]">
@@ -145,6 +148,7 @@ export default async function LandingPage({
       {showGermanSeoSection ? <GermanSeoSection /> : null}
       {showPortugueseSeoSection ? <PortugueseSeoSection /> : null}
       {showFrenchSeoSection ? <FrenchSeoSection /> : null}
+      {showItalianSeoSection ? <ItalianSeoSection /> : null}
 
       {showLongFormSections ? (
         <>
@@ -160,7 +164,7 @@ export default async function LandingPage({
             <h2 className="text-3xl font-bold tracking-normal md:text-4xl">{copy.secondTitle}</h2>
             <p className="mt-4 leading-7 text-[#4C3B35]">{copy.secondDesc}</p>
             <a
-              href={locale === 'en' || locale === 'es' || locale === 'de' || locale === 'pt' || locale === 'fr' ? '/tools' : `/${locale}/tools`}
+              href={locale === 'en' || locale === 'es' || locale === 'de' || locale === 'pt' || locale === 'fr' || locale === 'it' ? '/tools' : `/${locale}/tools`}
               className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-md bg-[#ff6f9a] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#e95a88]"
             >
               <BookOpen className="h-4 w-4" />

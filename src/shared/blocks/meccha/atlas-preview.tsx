@@ -14,8 +14,8 @@ import { mapLabels } from './meccha-i18n';
 // per-map pages.
 export function AtlasPreview({ locale }: { locale: string }) {
   const maps = getAtlasMapsWithSpots(locale);
-  const labels = locale === 'zh' ? mapLabels.zh : locale === 'es' ? mapLabels.es : locale === 'de' ? mapLabels.de : locale === 'pt' ? mapLabels.pt : locale === 'fr' ? mapLabels.fr : mapLabels.en;
-  const detailLocale = locale === 'es' || locale === 'de' || locale === 'pt' || locale === 'fr' ? 'en' : locale;
+  const labels = locale === 'zh' ? mapLabels.zh : locale === 'es' ? mapLabels.es : locale === 'de' ? mapLabels.de : locale === 'pt' ? mapLabels.pt : locale === 'fr' ? mapLabels.fr : locale === 'it' ? mapLabels.it : mapLabels.en;
+  const detailLocale = locale === 'es' || locale === 'de' || locale === 'pt' || locale === 'fr' || locale === 'it' ? 'en' : locale;
 
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
