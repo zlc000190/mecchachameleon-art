@@ -30,11 +30,12 @@ const maps = [
 // Only SEO-approved locales appear in sitemap/hreflang. Half-translated
 // locales are stopped until target-country keyword research + native rewrites
 // justify promoting them.
-const allLocales = ['en', 'zh', 'ru'];
+const allLocales = ['en', 'zh', 'ru', 'es'];
 
 // ONLY these locales get their own <url> entry. Each must have a full i18n
 // JSON bundle under src/config/locale/messages/<locale>/.
 const fullyTranslatedLocales = ['en', 'zh', 'ru'];
+const homepageOnlyLocales = ['es'];
 
 const defaultLocale = 'en';
 const now = new Date().toISOString();
@@ -56,11 +57,16 @@ const pageSpecs = [
 ];
 
 for (const spec of pageSpecs) {
-  for (const loc of fullyTranslatedLocales) {
+  const localesForPage = spec.path === '/'
+    ? [...fullyTranslatedLocales, ...homepageOnlyLocales]
+    : fullyTranslatedLocales;
+  for (const loc of localesForPage) {
     entries.push({
       loc: locUrl(loc, spec.path),
       alternates: Object.fromEntries(
-        allLocales.map((l) => [l, locUrl(l, spec.path)])
+        allLocales
+          .filter((l) => spec.path === '/' || !homepageOnlyLocales.includes(l))
+          .map((l) => [l, locUrl(l, spec.path)])
       ),
       'x-default': locUrl(defaultLocale, spec.path),
       lastmod: now,
@@ -75,7 +81,9 @@ for (const map of maps) {
     entries.push({
       loc: locUrl(loc, `/maps/${map.slug}`),
       alternates: Object.fromEntries(
-        allLocales.map((l) => [l, locUrl(l, `/maps/${map.slug}`)])
+        allLocales
+          .filter((l) => !homepageOnlyLocales.includes(l))
+          .map((l) => [l, locUrl(l, `/maps/${map.slug}`)])
       ),
       'x-default': locUrl(defaultLocale, `/maps/${map.slug}`),
       lastmod: now,
@@ -110,5 +118,5 @@ ${entries.map(buildUrl).join('')}
 const outPath = path.join(root, 'public', 'sitemap.xml');
 fs.writeFileSync(outPath, xml);
 console.log(`Wrote ${outPath} (${entries.length} entries, ${xml.length} bytes)`);
-console.log(`Locales with <url> entries: ${fullyTranslatedLocales.join(', ')}`);
+console.log(`Locales with <url> entries: ${[...fullyTranslatedLocales, ...homepageOnlyLocales].join(', ')}`);
 console.log(`Locales with hreflang coverage only: ${allLocales.filter((l) => !fullyTranslatedLocales.includes(l)).join(', ')}`);

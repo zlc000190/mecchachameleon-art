@@ -1,6 +1,7 @@
 import type { AtlasMap, AtlasSpot } from './atlas-data';
 
 export const isZh = (locale: string) => locale === 'zh';
+export const isEs = (locale: string) => locale === 'es';
 
 export const homeCopy = {
   en: {
@@ -163,13 +164,44 @@ const homeCopyOverrides: Record<string, Partial<HomeCopy>> = {
     secondDesc: 'Die Tools-Seite fasst Community-Assistenten, Downloads, Steuerung und Sicherheitshinweise zusammen. Nur für Bildung und Forschung. Nutzung auf eigenes Risiko.', quickAnswers: 'Schnelle Antworten',
   },
   es: {
-    title: 'Meccha Chameleon Jugar Online', playNow: 'Jugar ahora', howToPlay: 'Cómo jugar', openTools: 'Abrir herramientas',
-    newPlayerEyebrow: 'Ruta para nuevos jugadores', newPlayerTitle: 'Si buscaste antes de descargar, empieza con el juego en navegador.',
-    camoEyebrow: 'Para jugadores reales', camoTitle: 'Camo Lab convierte búsquedas en ayuda lista para la partida.', previewAtlas: 'Ver atlas de mapas',
-    atlasEyebrow: 'Atlas de escondites', atlasTitle: 'Cinco guías de mapas, cincuenta escondites y una segunda pantalla rápida.',
-    atlasDesc: 'Capturas, colores de pintura, dificultad y consejos para mapas de Meccha Chameleon.',
-    secondEyebrow: 'Software asistente de juego', secondTitle: 'Página de herramientas para overlay externo, radar y ayudas de camuflaje.',
-    secondDesc: 'La página de herramientas resume software comunitario, descargas, controles y notas de seguridad. Solo para fines educativos y de investigación. Úsalo bajo tu responsabilidad.', quickAnswers: 'Respuestas rápidas',
+    title: 'Meccha Chameleon en español: guía de escondites, mapas y camuflaje',
+    playNow: 'Jugar ahora',
+    howToPlay: 'Cómo jugar',
+    openTools: 'Abrir herramientas',
+    newPlayerEyebrow: 'Guía para empezar',
+    newPlayerTitle: 'Si llegaste buscando Meccha Chameleon en español, empieza por entender cómo esconderte, pintar tu cuerpo y leer cada mapa.',
+    newPlayerCards: [
+      ['¿Qué es Meccha Chameleon?', 'Un juego multijugador de escondite en Steam donde los Ocultistas se pintan para fundirse con el escenario y los Buscadores revisan sombras, siluetas y colores sospechosos.'],
+      ['¿Se puede jugar online aquí?', 'Puedes probar el acceso rápido desde el navegador y usar esta página como segunda pantalla. Para la versión oficial, compra y juega en Steam.'],
+      ['¿Qué aprende primero un jugador nuevo?', 'Antes de memorizar trucos, aprende tres bases: elegir una superficie, copiar bien el color y adoptar una pose que no rompa la silueta.'],
+      ['¿Qué busca un Buscador?', 'No solo persigue movimiento: detecta bordes raros, tonos que no coinciden, objetos fuera de sitio y escondites demasiado populares.'],
+    ],
+    camoEyebrow: 'Escondites y camuflaje',
+    camoTitle: 'La clave no es esconderse en una esquina: es crear un disfraz visual que el Buscador pase por alto.',
+    previewAtlas: 'Ver mapas y escondites',
+    camoCards: [
+      ['Mejores escondites', 'Priorizamos lugares con ruido visual: libros, carteles, azulejos, muebles, sombras y patrones repetidos donde tu silueta se rompe.'],
+      ['Pintura y camuflaje', 'Usa el cuentagotas o copia tonos cercanos: pared, suelo, madera, tela o metal. Un color casi correcto puede fallar si el borde del cuerpo se ve limpio.'],
+      ['Riesgo por mapa', 'Un escondite fácil sirve al inicio; uno de alto riesgo funciona cuando conoces rutas de Buscadores y sabes cuándo quedarte inmóvil.'],
+    ],
+    atlasEyebrow: 'Mapas de Meccha Chameleon',
+    atlasTitle: 'Mapas, mejores escondites y puntos donde camuflarte sin parecer un objeto pegado.',
+    atlasDesc: 'Esta sección resume mapas y lugares útiles para jugadores que buscan “mejores escondites”, “guía de mapas” y “camuflaje” en Meccha Chameleon. Cada idea está pensada para usarla durante una partida, no como traducción literal de una guía inglesa.',
+    secondEyebrow: 'Herramientas y segunda pantalla',
+    secondTitle: 'Herramientas para revisar colores, rutas y ayudas de camuflaje antes de entrar a la partida.',
+    secondDesc: 'La página de herramientas reúne notas sobre overlay, radar, lectura de color y utilidades de camuflaje. Úsalo como referencia educativa y bajo tu responsabilidad.',
+    quickAnswers: 'Preguntas rápidas',
+    faqs: [
+      ['¿Cuál es el mejor escondite en Meccha Chameleon?', 'Depende del mapa, pero casi siempre gana un lugar con ruido visual: librerías, carteles, azulejos, muebles repetidos o zonas donde el Buscador no mira dos veces.'],
+      ['¿Ocultista o Escondido: qué término usamos?', 'En español aparecen ambos. Usamos Ocultista para el rol y escondite para la acción, porque las búsquedas locales mezclan “ocultarse”, “esconderse” y “mejores escondites”.'],
+      ['¿Cómo mejorar el camuflaje?', 'No copies solo el color principal. Fíjate en sombras, brillo, borde de la silueta y postura. Una pose mal elegida delata incluso una pintura buena.'],
+      ['¿Esta página reemplaza a Steam?', 'No. Es una guía no oficial en español para entender mapas, escondites y tácticas. La versión oficial del juego está en Steam.'],
+    ],
+    secondScreenItems: [
+      ['Guía de escondites', 'Usa la página como segunda pantalla para recordar qué zonas tienen más ruido visual y menos revisión de Buscadores.'],
+      ['Lectura de colores', 'Compara tonos de pared, suelo, madera y tela antes de decidir la pose final.'],
+      ['Aviso', 'Guía no oficial. Meccha Chameleon y sus recursos pertenecen a sus respectivos propietarios. Úsalo bajo tu responsabilidad.'],
+    ],
   },
   pt: {
     title: 'Meccha Chameleon Jogar Online', playNow: 'Jogar agora', howToPlay: 'Como jogar', openTools: 'Abrir ferramentas',
@@ -261,6 +293,7 @@ export function getLocalizedPath(locale: string, path: string): string {
 export const mapLabels = {
   en: { spots: 'spots', difficulty: 'difficulty', selectedSpot: 'Selected spot', paintColors: 'Paint colors', primary: 'Primary', secondary: 'Secondary', back: 'Back to atlas', guide: 'Meccha Chameleon map guide', hidingSpots: 'Hiding Spots', ready: 'Ready for the real match?', readyBody: 'Keep this atlas open while you queue up, compare map colors, and pick your next hiding route.', play: 'Play online', titleSuffix: 'Hiding Spots — Meccha Chameleon', descriptionSuffix: 'Meccha Chameleon hiding spot atlas (10 spots): screenshots, paint RGB, difficulty, and hider tips.', altPreview: 'Meccha Chameleon map preview' },
   zh: { spots: '个点位', difficulty: '难度', selectedSpot: '当前点位', paintColors: '涂装颜色', primary: '主色', secondary: '辅色', back: '返回图鉴', guide: '超级变色龙地图攻略', hidingSpots: '隐藏点', ready: '准备进入真实对局了吗？', readyBody: '排队时保持这个图鉴打开，对照地图颜色，选择下一条隐藏路线。', play: '在线玩', titleSuffix: '隐藏点 — 超级变色龙', descriptionSuffix: '超级变色龙隐藏点地图图鉴（10 个点位）：截图、涂装 RGB、难度和隐藏者提示。', altPreview: '超级变色龙地图预览' },
+  es: { spots: 'escondites', difficulty: 'dificultad', selectedSpot: 'Escondite seleccionado', paintColors: 'Colores de pintura', primary: 'Principal', secondary: 'Secundario', back: 'Volver al atlas', guide: 'Guía de mapas de Meccha Chameleon', hidingSpots: 'Mejores escondites', ready: '¿Listo para la partida real?', readyBody: 'Mantén este atlas abierto como segunda pantalla, compara colores del mapa y elige tu próxima ruta de escondite.', play: 'Jugar online', titleSuffix: 'Mejores escondites — Meccha Chameleon', descriptionSuffix: 'Atlas de escondites de Meccha Chameleon: capturas, RGB, dificultad y consejos para Ocultistas.', altPreview: 'Vista previa de mapa de Meccha Chameleon' },
 } as const;
 
 const mapZh: Record<string, Pick<AtlasMap, 'name' | 'desc' | 'difficulty'>> = {
@@ -269,6 +302,15 @@ const mapZh: Record<string, Pick<AtlasMap, 'name' | 'desc' | 'difficulty'>> = {
   'brick-tavern': { name: '砖墙酒馆大厅', difficulty: 'medium', desc: '红砖墙、外露木梁和金色马雕像，经典酒馆氛围。适合练习砖红和木棕色匹配。' },
   'grand-ballroom': { name: '豪华宴会厅', difficulty: 'hard', desc: '水晶吊灯、三角钢琴、宴会桌和弧形楼梯。暖黄和深红很多，装饰面复杂，是最难地图之一。' },
   'blue-parlor': { name: '蓝色花纹客厅', difficulty: 'hard', desc: '蓝色花纹墙纸、红色天鹅绒贵妃椅、圆形吊灯和衣帽架。冷蓝与红色点缀并存，对颜色匹配要求很高。' },
+};
+
+const mapEs: Record<string, Pick<AtlasMap, 'name' | 'desc'>> = {
+  'hide-and-seek-mansion': { name: 'Mansión del escondite', desc: 'Mansión clásica con biblioteca, baño de azulejos, cocina y salón de baile. Buen mapa para aprender escondites entre libros, cuadros, marcos dorados y madera cálida.' },
+  'indoor-country': { name: 'Campo interior', desc: 'Granja interior con vacas, pacas de paja, puertas rojas, calabazas y murales de cielo. Ideal para practicar camuflaje básico con bloques grandes de color.' },
+  'sewer': { name: 'Alcantarillado', desc: 'Túneles oscuros con tuberías, barriles rojos y paredes con grafiti. La luz tenue ayuda a los Ocultistas, pero los Buscadores revisan rápido las zonas conocidas.' },
+  'backrooms': { name: 'Backrooms', desc: 'Oficinas amarillas con mucha luz y pocos escondites obvios. Es difícil para Ocultistas porque cualquier borde mal pintado se nota enseguida.' },
+  'penguin-hotel': { name: 'Hotel Pingüino', desc: 'Hotel invernal con habitaciones, baños, estatuas de pingüino, patos y globos. Tiene mucho ruido visual, pero también muchos objetos que los Buscadores revisan.' },
+  'osaka': { name: 'Osaka', desc: 'Mapa japonés compacto con camión, carteles, bolsas de basura, madera y tiendas abiertas. Conviene planear rutas cortas y usar señales elevadas para romper la silueta.' },
 };
 
 const spotZh: Record<string, Pick<AtlasSpot, 'name' | 'tip'>> = {
@@ -325,8 +367,9 @@ const spotZh: Record<string, Pick<AtlasSpot, 'name' | 'tip'>> = {
 };
 
 export function localizeMap(map: AtlasMap, locale: string): AtlasMap {
-  if (!isZh(locale)) return map;
-  return { ...map, ...(mapZh[map.id] ?? {}) };
+  if (isZh(locale)) return { ...map, ...(mapZh[map.id] ?? {}) };
+  if (isEs(locale)) return { ...map, ...(mapEs[map.id] ?? {}) };
+  return map;
 }
 
 export function localizeSpot(spot: AtlasSpot, locale: string): AtlasSpot {

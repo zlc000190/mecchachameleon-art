@@ -48,6 +48,8 @@ export default async function RootLayout({
       ? `${appUrl}${strippedPath === '/' ? '/' : strippedPath}`
       : `${appUrl}/${loc}${strippedPath === '/' ? '/' : strippedPath}`;
 
+  const activeSeoLocales = strippedPath === '/' ? seoLocales : seoLocales.filter((loc) => loc !== 'es');
+
   // ads components
   let adsMetaTags = null;
   let adsHeadScripts = null;
@@ -112,9 +114,9 @@ export default async function RootLayout({
         {/* hreflang alternates — only SEO-approved locales are emitted.
             Half-translated new locales are routable only after native keyword
             rewrites; exposing them here would dilute the new site's quality. */}
-        {seoLocales ? (
+        {activeSeoLocales ? (
           <>
-            {seoLocales.map((loc) => (
+            {activeSeoLocales.map((loc) => (
               <link
                 key={loc}
                 rel="alternate"

@@ -16,6 +16,7 @@ import { getHomeCopy } from '@/shared/blocks/meccha/meccha-i18n';
 import { ToolsTeaser } from '@/shared/blocks/meccha/tools-teaser';
 import { HowToPlaySection } from '@/shared/blocks/meccha/how-to-play-section';
 import { KeywordSection } from '@/shared/blocks/meccha/keyword-section';
+import { SpanishSeoSection } from '@/shared/blocks/meccha/spanish-seo-section';
 import { UpdatesSection } from '@/shared/blocks/meccha/updates-section';
 import { BreadcrumbJsonLd } from '@/shared/components/seo/breadcrumb-json-ld';
 import { getCanonicalUrl } from '@/shared/lib/seo';
@@ -34,8 +35,9 @@ export default async function LandingPage({
   const copy = getHomeCopy(locale);
   const homeUrl = await getCanonicalUrl('/', locale);
   const showLongFormSections = locale === 'en' || locale === 'zh';
-  const showTranslatedDetailCards = locale === 'en' || locale === 'zh' || locale === 'ru';
-  const showTranslatedAtlasPreview = locale === 'en' || locale === 'zh';
+  const showSpanishSeoSection = locale === 'es';
+  const showTranslatedDetailCards = locale === 'en' || locale === 'zh' || locale === 'ru' || locale === 'es';
+  const showTranslatedAtlasPreview = locale === 'en' || locale === 'zh' || locale === 'es';
   const showCommunityPreview = locale === 'en' || locale === 'zh' || locale === 'ru';
 
   return (
@@ -126,6 +128,8 @@ export default async function LandingPage({
         </div>
       </section>
 
+      {showSpanishSeoSection ? <SpanishSeoSection /> : null}
+
       {showLongFormSections ? (
         <>
           <HowToPlaySection locale={locale} />
@@ -140,7 +144,7 @@ export default async function LandingPage({
             <h2 className="text-3xl font-bold tracking-normal md:text-4xl">{copy.secondTitle}</h2>
             <p className="mt-4 leading-7 text-[#4C3B35]">{copy.secondDesc}</p>
             <a
-              href={locale === 'en' ? '/tools' : `/${locale}/tools`}
+              href={locale === 'en' || locale === 'es' ? '/tools' : `/${locale}/tools`}
               className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-md bg-[#ff6f9a] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#e95a88]"
             >
               <BookOpen className="h-4 w-4" />

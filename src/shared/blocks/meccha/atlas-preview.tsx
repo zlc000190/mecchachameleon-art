@@ -14,20 +14,21 @@ import { mapLabels } from './meccha-i18n';
 // per-map pages.
 export function AtlasPreview({ locale }: { locale: string }) {
   const maps = getAtlasMapsWithSpots(locale);
-  const labels = locale === 'zh' ? mapLabels.zh : mapLabels.en;
+  const labels = locale === 'zh' ? mapLabels.zh : locale === 'es' ? mapLabels.es : mapLabels.en;
+  const detailLocale = locale === 'es' ? 'en' : locale;
 
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
       {maps.map((map, index) => (
         <a
           key={map.id}
-          href={getLocalizedPath(locale, `/maps/${map.slug}`)}
+          href={getLocalizedPath(detailLocale, `/maps/${map.slug}`)}
           className="group overflow-hidden rounded-md border border-[#efc8d3] bg-[#fff7f1] transition hover:-translate-y-0.5 hover:border-[#ff8fb3]"
         >
           <div className="relative aspect-[4/3] overflow-hidden bg-[#cdefff]">
             <Image
               src={getAtlasImagePath(map.thumb)}
-              alt={`${map.name} ${locale === 'zh' ? '超级变色龙隐藏点地图预览' : 'Meccha Chameleon hiding spots map preview'}`}
+              alt={`${map.name} ${labels.altPreview}`}
               fill
               sizes="(min-width: 1280px) 20vw, (min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
               className="object-cover transition duration-300 group-hover:scale-105"

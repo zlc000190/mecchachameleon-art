@@ -11,7 +11,6 @@ const NEW_LOCALES: Locale[] = [
   'it',
   'fr',
   'de',
-  'es',
   'pt',
   'ja',
   'ko',
@@ -47,6 +46,14 @@ export async function proxy(request: NextRequest) {
   // The 12 newly added locales are not keyword-researched/native-written yet,
   // so any request to them is permanently consolidated to the English homepage.
   if (isValidLocale && (NEW_LOCALES as readonly string[]).includes(locale)) {
+    const fallbackUrl = new URL('/', request.url);
+    return NextResponse.redirect(fallbackUrl, 301);
+  }
+
+  // Spanish is being re-opened one page at a time after local SERP wording
+  // research. Only /es is promoted now; keep /es/tools, /es/maps/*, etc.
+  // consolidated until they receive native Spanish rewrites.
+  if (isValidLocale && locale === 'es' && pathWithoutLocale !== '' && pathWithoutLocale !== '/') {
     const fallbackUrl = new URL('/', request.url);
     return NextResponse.redirect(fallbackUrl, 301);
   }
