@@ -44,7 +44,14 @@ export default async function LandingPage({
   const showFrenchSeoSection = locale === 'fr';
   const showTranslatedDetailCards = locale === 'en' || locale === 'zh' || locale === 'ru' || locale === 'es' || locale === 'de' || locale === 'pt' || locale === 'fr';
   const showTranslatedAtlasPreview = locale === 'en' || locale === 'zh' || locale === 'es' || locale === 'de' || locale === 'pt' || locale === 'fr';
-  const showCommunityPreview = locale === 'en' || locale === 'zh' || locale === 'ru';
+  const showCommunityPreview =
+    locale === 'en' ||
+    locale === 'zh' ||
+    locale === 'ru' ||
+    locale === 'es' ||
+    locale === 'de' ||
+    locale === 'pt' ||
+    locale === 'fr';
 
   return (
     <main className="min-h-screen bg-[#fff7f1] text-[#29211D]">
