@@ -68,3 +68,4 @@ src/config/db/migrations*
 .chats.dev.vars
 .claude/
 .dev.vars
+.dev.vars.save
