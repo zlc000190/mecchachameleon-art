@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 
-import { atlasMaps } from '@/shared/blocks/meccha/atlas-data';
+import { atlasMaps, getLocalizedPath } from '@/shared/blocks/meccha/atlas-data';
 import { CommunityChallengeClient } from '@/shared/blocks/meccha/community-challenge-client';
 import { getCanonicalUrl } from '@/shared/lib/seo';
 
@@ -32,6 +32,8 @@ export default async function CommunityPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
 
+  const galleryPath = getLocalizedPath(locale, '/community/gallery');
+
   return (
     <main className="container py-12">
       <header className="mb-8 max-w-3xl">
@@ -41,10 +43,14 @@ export default async function CommunityPage({ params }: Props) {
         </h1>
         <p className="mt-3 text-base leading-7 text-[#4C3B35]">
           Players submit screenshots after surviving 30 minutes undiscovered on the official Meccha Chameleon hide and
-          seek maps. Submissions are public for this demo. The site agent can remove unsuitable entries.
+          seek maps. Submissions are public for this demo. The site agent can remove unsuitable entries. Visit the{' '}
+          <a href={galleryPath} className="font-bold underline">
+            30 minutes challenges gallery
+          </a>{' '}
+          to browse every entry and react with likes, dislikes, or emoji prompts that ask authors to expand their story.
         </p>
       </header>
-      <CommunityChallengeClient maps={atlasMaps} />
+      <CommunityChallengeClient maps={atlasMaps} locale={locale} galleryPath={galleryPath} />
     </main>
   );
 }

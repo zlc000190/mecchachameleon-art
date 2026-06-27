@@ -93,6 +93,17 @@ const previewCopy = {
     likes: 'likes',
     note: 'R2-bucket mecchachameleon-art-community. In deze demo zijn inzendingen openbaar; het agent-review-endpoint kan ongeschikte items verwijderen.',
   },
+  ar: {
+    eyebrow: 'عرض المجتمع',
+    title: 'تحدي الاختباء 30 دقيقة',
+    description: 'يرسل اللاعبون لقطات شاشة بعد النجاة 30 دقيقة من دون اكتشاف. البطاقة ذات أكبر عدد من الإعجابات تصبح فائزة المجتمع لهذا الأسبوع.',
+    submit: 'أرسل لقطتي بعد 30 دقيقة',
+    viewAll: 'اعرض لوحة المجتمع',
+    minutes: `${demoCommunityChallenge.minutesHidden}+ دقيقة`,
+    screenshotAlt: 'لقطة مثال لتحدي الاختباء 30 دقيقة في Meccha Chameleon',
+    likes: 'إعجاب',
+    note: 'حاوية R2 mecchachameleon-art-community. في هذا العرض تكون المشاركات عامة؛ ويمكن لنقطة مراجعة الوكيل إزالة الإدخالات غير المناسبة.',
+  },
   en: {
     eyebrow: 'Community demo',
     title: '30-Minute Hiding Challenge',

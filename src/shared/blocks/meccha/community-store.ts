@@ -63,7 +63,32 @@ export async function readCommunityChallenges(): Promise<CommunityChallenge[]> {
 
   const text = await response.text();
   if (!text.trim()) return [];
-  return JSON.parse(text) as CommunityChallenge[];
+  const parsed = JSON.parse(text) as Array<Partial<CommunityChallenge>>;
+  return parsed.map(normalizeChallenge);
+}
+
+function normalizeChallenge(input: Partial<CommunityChallenge>): CommunityChallenge {
+  const screenshotUrl = input.screenshotUrl || '';
+  const images = Array.isArray(input.images) && input.images.length > 0 ? input.images : [screenshotUrl];
+  return {
+    id: input.id || '',
+    mapSlug: input.mapSlug || 'hide-and-seek-mansion',
+    mapName: input.mapName || 'Hide and Seek Mansion',
+    title: input.title || 'Untitled challenge',
+    playerName: input.playerName || 'Anonymous Chameleon',
+    minutesHidden: typeof input.minutesHidden === 'number' ? input.minutesHidden : 30,
+    likes: typeof input.likes === 'number' ? input.likes : 0,
+    dislikes: typeof input.dislikes === 'number' ? input.dislikes : 0,
+    screenshotUrl,
+    images,
+    description: input.description || '',
+    fullStory: input.fullStory || input.description || '',
+    expansionPrompts: Array.isArray(input.expansionPrompts) ? input.expansionPrompts : [],
+    status: input.status === 'rejected' ? 'rejected' : 'approved',
+    createdAt: input.createdAt || new Date().toISOString(),
+    updatedAt: input.updatedAt,
+    ownerToken: input.ownerToken,
+  };
 }
 
 export async function writeCommunityChallenges(challenges: CommunityChallenge[]) {
@@ -124,11 +149,17 @@ function extensionFromMime(type: string) {
   return map[type] || 'jpg';
 }
 
-export async function uploadCommunityScreenshot(file: File, challengeId: string) {
+export async function uploadCommunityScreenshot(
+  file: File,
+  challengeId: string,
+  suffix?: string,
+) {
   if (!r2Configured()) throw new Error('Cloudflare R2 is not configured');
 
   const ext = extensionFromMime(file.type);
-  const key = `community/${challengeId}.${ext}`;
+  const safeSuffix = suffix ? suffix.replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 24) : '';
+  const fileName = safeSuffix ? `${challengeId}-${safeSuffix}.${ext}` : `${challengeId}.${ext}`;
+  const key = `community/${fileName}`;
   const endpoint = `https://${r2AccountId}.r2.cloudflarestorage.com/${r2Bucket}/${key}`;
   const body = new Uint8Array(await file.arrayBuffer());
   const client = new AwsClient({
