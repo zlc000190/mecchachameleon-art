@@ -3,11 +3,9 @@ import Image from 'next/image';
 
 import { COMMUNITY_R2_PUBLIC_DOMAIN, demoCommunityChallenge } from '@/shared/blocks/meccha/community-challenges';
 import { getLocalizedPath } from '@/shared/blocks/meccha/atlas-data';
-import { mapLabels } from '@/shared/blocks/meccha/meccha-i18n';
 
 export function CommunityChallengePreview({ locale }: { locale: string }) {
   const zh = locale === 'zh';
-  const labels = locale === 'zh' ? mapLabels.zh : mapLabels.en;
   const cta = zh
     ? {
         eyebrow: '社区演示',

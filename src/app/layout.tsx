@@ -5,7 +5,7 @@ import { headers } from 'next/headers';
 import NextTopLoader from 'nextjs-toploader';
 
 import { envConfigs } from '@/config';
-import { locales } from '@/config/locale';
+import { seoLocales } from '@/config/locale';
 import { UtmCapture } from '@/shared/blocks/common/utm-capture';
 import { getAllConfigs } from '@/shared/models/config';
 import { getAdsService } from '@/shared/services/ads';
@@ -109,13 +109,12 @@ export default async function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="google-adsense-account" content="ca-pub-5387615281666707" />
 
-        {/* hreflang alternates — every supported locale points at the SAME
-            page in its own URL, and x-default points at the default-locale
-            (en) version. Without this Google treats each locale URL as a
-            separate page and dilutes ranking. */}
-        {locales ? (
+        {/* hreflang alternates — only SEO-approved locales are emitted.
+            Half-translated new locales are routable only after native keyword
+            rewrites; exposing them here would dilute the new site's quality. */}
+        {seoLocales ? (
           <>
-            {locales.map((loc) => (
+            {seoLocales.map((loc) => (
               <link
                 key={loc}
                 rel="alternate"

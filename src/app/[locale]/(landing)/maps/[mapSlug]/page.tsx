@@ -6,7 +6,6 @@ import { setRequestLocale } from 'next-intl/server';
 
 import {
   atlasMaps,
-  atlasSpots,
   getAtlasImagePath,
   getAtlasMapBySlug,
   getLocalizedPath,

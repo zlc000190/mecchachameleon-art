@@ -91,8 +91,12 @@ export const localeMessagesPaths = [
 // `ru` is included for legacy reasons (the brand is anchored in Russian search intent).
 export const fullyTranslatedLocales: Locale[] = ['en', 'zh', 'ru'];
 
-// 4 SEO key pages that get full 15-locale coverage (manual translation).
-// Everything outside this list falls back to English for the 12 new locales.
+// Only locales with acceptable page-body completeness stay in SEO alternates.
+// New-site rule: do not expose half-translated locales to Google. Promote a
+// locale here only after target-country keyword research and native rewrite.
+export const seoLocales: Locale[] = ['en', 'zh', 'ru'];
+
+// Key SEO pages that stay indexable for currently approved SEO locales.
 export const keySeoPages = [
   '/',
   '/tools',

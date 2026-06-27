@@ -43,22 +43,12 @@ export async function proxy(request: NextRequest) {
     ? pathname.slice(locale.length + 1)
     : pathname;
 
-  // For the 12 newly added locales, force-en to non-key-SEO pages.
-  // This keeps the 4 key SEO pages (/, /tools, /new-player, /maps[/...])
-  // available in 15 locales while everything else stays in en for the
-  // 12 new locales (admin / settings / pricing / activity / ai / blog /
-  // showcases / updates / docs / chat / sign-in / sign-up etc.).
-  if (
-    isValidLocale &&
-    (NEW_LOCALES as readonly string[]).includes(locale) &&
-    !isKeySeoPath(pathWithoutLocale) &&
-    pathWithoutLocale !== '' &&
-    !pathWithoutLocale.startsWith('/admin') &&
-    !pathWithoutLocale.startsWith('/settings') &&
-    !pathWithoutLocale.startsWith('/activity')
-  ) {
-    const fallbackUrl = new URL(`/en${pathWithoutLocale}`, request.url);
-    return NextResponse.redirect(fallbackUrl, 302);
+  // STOP half-translated locale rollout on this new site.
+  // The 12 newly added locales are not keyword-researched/native-written yet,
+  // so any request to them is permanently consolidated to the English homepage.
+  if (isValidLocale && (NEW_LOCALES as readonly string[]).includes(locale)) {
+    const fallbackUrl = new URL('/', request.url);
+    return NextResponse.redirect(fallbackUrl, 301);
   }
 
   // Only check authentication for admin routes

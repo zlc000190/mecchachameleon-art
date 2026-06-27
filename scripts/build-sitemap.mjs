@@ -5,10 +5,9 @@
 //
 // SEO rules (2026-06-26 fix):
 //   - Only list locales with REAL translations in <url> entries.
-//   - All 15 supported locales must still appear in <xhtml:link hreflang="...">
-//     under every entry so Google knows the full alternate set, but the other
-//     12 fallback locales do NOT get their own <url> entry — that would dilute
-//     link equity 15× per page and burn crawl budget on placeholder pages.
+//   - Only SEO-approved locales appear in <xhtml:link hreflang="...">.
+//     Half-translated locales are redirected/noindexed until keyword-researched
+//     native rewrites justify promotion.
 //   - x-default always points to the en page (default locale), never to /xx/.
 //   - All in-urls use canonical absolute URLs ending with a trailing slash.
 import fs from 'node:fs';
@@ -28,25 +27,10 @@ const maps = [
   { slug: 'blue-parlor', name: 'The Blue Floral Parlor' },
 ];
 
-// All 15 supported locales — used for hreflang alternates so Google knows
-// about every language we serve, including the placeholder ones.
-const allLocales = [
-  'en',
-  'zh',
-  'ru',
-  'it',
-  'fr',
-  'de',
-  'es',
-  'pt',
-  'ja',
-  'ko',
-  'ar',
-  'th',
-  'vi',
-  'zh-TW',
-  'nl',
-];
+// Only SEO-approved locales appear in sitemap/hreflang. Half-translated
+// locales are stopped until target-country keyword research + native rewrites
+// justify promoting them.
+const allLocales = ['en', 'zh', 'ru'];
 
 // ONLY these locales get their own <url> entry. Each must have a full i18n
 // JSON bundle under src/config/locale/messages/<locale>/.
