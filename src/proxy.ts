@@ -8,7 +8,6 @@ import { routing } from '@/core/i18n/config';
 const intlMiddleware = createIntlMiddleware(routing);
 
 const NEW_LOCALES: Locale[] = [
-  'ko',
   'th',
   'vi',
   'zh-TW',
@@ -48,7 +47,7 @@ export async function proxy(request: NextRequest) {
   // tools/maps/etc. consolidated until they receive native rewrites.
   if (
     isValidLocale &&
-    (locale === 'es' || locale === 'de' || locale === 'pt' || locale === 'fr' || locale === 'it' || locale === 'nl' || locale === 'ar' || locale === 'ja') &&
+    (locale === 'es' || locale === 'de' || locale === 'pt' || locale === 'fr' || locale === 'it' || locale === 'nl' || locale === 'ar' || locale === 'ja' || locale === 'ko') &&
     pathWithoutLocale !== '' &&
     pathWithoutLocale !== '/'
   ) {

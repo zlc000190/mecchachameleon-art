@@ -101,12 +101,6 @@ export default async function MapPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <section className="border-b border-[#d8cfbd] bg-[#fff7c8] text-[#29211D]">
-        <div className="container py-3 text-center text-xs font-semibold md:text-sm">
-          ⚠️ Community fan-made atlas · not affiliated with the developer lemorion_1224 · spot counts are community estimates and may differ from the official build (current: v1.8.1)
-        </div>
-      </section>
-
       <section className="border-b border-[#D8CFC6] bg-[#F6F0EA] text-[#29211D]">
         <div className="container grid gap-8 pt-16 pb-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(420px,1.08fr)] lg:items-center">
           <div>

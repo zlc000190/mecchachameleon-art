@@ -115,6 +115,17 @@ const previewCopy = {
     likes: 'いいね',
     note: 'R2 バケット mecchachameleon-art-community を使用。デモは公開投稿のみを含み、エージェントのモデレーションで不適切な投稿は除外できます。',
   },
+  ko: {
+    eyebrow: '커뮤니티 데모',
+    title: '30분 동안 숨기 챌린지',
+    description: '30분 동안 들키지 않고 살아남은 스크린샷을 올리세요. 좋아요가 가장 많은 게시글이 이번 주 커뮤니티 우승입니다.',
+    submit: '내 30분 스크린샷 보내기',
+    viewAll: '커뮤니티 보드 보기',
+    minutes: `${demoCommunityChallenge.minutesHidden}+ 분`,
+    screenshotAlt: 'Meccha Chameleon 30분 숨기 챌린지 샘플 스크린샷',
+    likes: '좋아요',
+    note: 'R2 버킷 mecchachameleon-art-community 사용. 데모는 공개 게시물만 포함하며, 에이전트 검수에서 부적절한 항목은 제외할 수 있습니다.',
+  },
   en: {
     eyebrow: 'Community demo',
     title: '30-Minute Hiding Challenge',

@@ -5,6 +5,7 @@ export const isEs = (locale: string) => locale === 'es';
 export const isPt = (locale: string) => locale === 'pt';
 export const isFr = (locale: string) => locale === 'fr';
 export const isIt = (locale: string) => locale === 'it';
+export const isKo = (locale: string) => locale === 'ko';
 export const isJa = (locale: string) => locale === 'ja';
 export const isNl = (locale: string) => locale === 'nl';
 
@@ -341,6 +342,46 @@ const homeCopyOverrides: Record<string, Partial<HomeCopy>> = {
       ['Aviso', 'Guia não oficial. Meccha Chameleon e seus assets pertencem aos respectivos donos. Uso por sua conta e risco.'],
     ],
   },
+  ko: {
+    title: 'Meccha Chameleon 메차 카멜레온 한국어: 숨는 장소·지도·위장 가이드',
+    playNow: '지금 플레이',
+    howToPlay: '플레이 방법',
+    openTools: '도구 페이지 열기',
+    newPlayerEyebrow: '신규 플레이어 가이드',
+    newPlayerTitle: 'Meccha Chameleon 을 검색해서 들어왔다면, "숨는 장소 / 위장 / 자세 / 지도 읽기" 4 가지를 먼저 익히고 실전에 합류하세요.',
+    newPlayerCards: [
+      ['Meccha Chameleon 이란?', 'PC 용 파티형 숨바꼭질 게임. 숨는 쪽은 캐릭터 몸에 색을 칠해 배경에 섞이고, 찾는 쪽(시커) 은 색온도·윤곽·그림자·단골 스팟을 봅니다. 2026 년 6 월 10 일 출시, 초동 700 만 본 판매.'],
+      ['온라인 플레이 어디서?', '페이지 상단 브라우저 플레이 입구로 바로 시작. 풀 버전은 Steam/공식 클라이언트만 제공되며 Mac/모바일 네이티브 정식판은 없음.'],
+      ['입문자가 먼저 배울 것?', '위치 → 페인트 → 자세 → 지도 읽기 순서로 익히기. 색만 맞추면 시커에게 즉시 들킴.'],
+      ['시커는 무엇을 보나요?', '움직임이 없어도 "색온도 미스매치, 부자연스러운 그림자, 윤곽선, 단골 스팟" 을 봅니다.'],
+    ],
+    camoEyebrow: '위장 / 카모플라주',
+    camoTitle: '진짜 안 들키는 장소는 "어두운 구석" 이 아니라, 색 / 자세 / 시각적 노이즈 가 모두 맞는 자리입니다.',
+    previewAtlas: '지도와 숨는 스팟 보기',
+    camoCards: [
+      ['베스트 숨는 스팟', '책장, 액자, 타일, 나무, 골판지, 그림자, 디테일이 많은 사물 주변. 시각적 노이즈가 많을수록 시커가 놓침.'],
+      ['페인트 / 위장', '색상뿐 아니라 명도·하이라이트·소재감·패턴까지 복사. 색이 비슷해도 윤곽이 떠 있으면 즉시 들킴.'],
+      ['자세와 포즈', '기본은 "막대 자세 + 완전 정지". 숙련자는 맵의 오목함, 벽면, 가구에 녹아드는 자세를 사용.'],
+    ],
+    atlasEyebrow: '맵 목록',
+    atlasTitle: '6 개 공식 맵 + 50+ 숨는 스팟: 스크린샷과 페인트 샘플까지 한 페이지에서.',
+    atlasDesc: '이 한국어 페이지는 "숨는 장소 / 카모플라주 / 시커 / 자세 / 멀티플레이 / 커스텀 룸" 6 개 키워드를 모두 다루는 비공식 가이드 허브입니다.',
+    secondEyebrow: '서브 화면 활용',
+    secondTitle: '매치 직전, 두 번째 화면에서 점검하는 맵 컬러와 도구 노트.',
+    secondDesc: '커뮤니티가 만든 비공식 미러. 컬러 샘플, 도구 설명, 커뮤니티 갤러리를 한 곳에 정리했습니다.',
+    quickAnswers: '자주 묻는 질문',
+    faqs: [
+      ['Meccha Chameleon 추천 맵은?', '1.7.0 의 신맵 오사카는 일본식 테마 + 12+ 스팟이라 하이더 연습에 최적. 그 외 단골은 "숨바꼭질 저택", "실내 농장", "하수도", "백룸", "펭귄 호텔".'],
+      ['시커(술래) 는 어떻게 움직이나요?', '"색온도 차이, 부자연스러운 그림자, 단골 스팟에 있는 사람" 을 봅니다. 시차 효과를 위해 1-2m 옆으로 비껴서 벽을 확인하는 게 기본.'],
+      ['페인트의 정석은?', '반드시 3-5 색을 샘플. 하이라이트와 그림자 모두 잡고, 소재감(메탈릭/러프니스)도 맞춥니다.'],
+      ['이 페이지는 공식인가요?', '아닙니다. 비공식 한국어 커뮤니티 가이드. 공식은 Steam 스토어와 공식 Wiki 를 확인하세요.'],
+    ],
+    secondScreenItems: [
+      ['맵 아틀라스', '6 개 공식 맵과 50+ 스팟을 한 페이지에서 한눈에.'],
+      ['컬러 샘플 + RGB', '스팟별 스크린샷과 페인트용 RGB 값 함께.'],
+      ['주의', 'Meccha Chameleon 및 관련 에셋의 권리는 LEMORION 과 원작자에게 있습니다. 본 페이지는 팬이 만든 비공식 미러.'],
+    ],
+  },
   ja: {
     title: 'Meccha Chameleon オンラインプレイ', playNow: '今すぐプレイ', howToPlay: '遊び方', openTools: 'ツールページを開く',
     newPlayerEyebrow: '新規プレイヤールート', newPlayerTitle: 'ダウンロード前に検索して来たなら、まずブラウザ版から始めましょう。',
@@ -349,15 +390,6 @@ const homeCopyOverrides: Record<string, Partial<HomeCopy>> = {
     atlasDesc: 'Meccha Chameleon のマップ用スクリーンショット、塗装色、難易度、実戦ヒントをまとめています。',
     secondEyebrow: 'ゲーム補助ソフト', secondTitle: '外部オーバーレイ、レーダー、カモフラージュ補助のツールページ。',
     secondDesc: '専用ツールページではコミュニティ製補助ソフト、ダウンロード、操作、注意事項をまとめています。教育・研究目的のみ。自己責任で使用してください。', quickAnswers: 'クイック回答',
-  },
-  ko: {
-    title: 'Meccha Chameleon 온라인 플레이', playNow: '지금 플레이', howToPlay: '플레이 방법', openTools: '도구 페이지 열기',
-    newPlayerEyebrow: '신규 플레이어 루트', newPlayerTitle: '다운로드 전에 검색해 왔다면 브라우저 게임부터 시작하세요.',
-    camoEyebrow: '실전 플레이어용', camoTitle: 'Camo Lab은 검색 방문자를 바로 경기에서 쓸 수 있는 도움으로 바꿉니다.', previewAtlas: '지도 아틀라스 보기',
-    atlasEyebrow: '숨는 위치 아틀라스', atlasTitle: '실제 지도 가이드 5개, 숨는 위치 50개, 빠른 세컨드 스크린.',
-    atlasDesc: 'Meccha Chameleon 지도 스크린샷, 도색 색상, 난이도, 경기 팁을 정리했습니다.',
-    secondEyebrow: '게임 보조 소프트웨어', secondTitle: '외부 오버레이, 레이더, 위장 보조 도구 페이지.',
-    secondDesc: '도구 페이지는 커뮤니티 보조 소프트웨어, 다운로드, 조작법, 안전 안내를 정리합니다. 교육 및 연구 목적 전용입니다. 사용은 본인 책임입니다.', quickAnswers: '빠른 답변',
   },
   ar: {
     title: 'Meccha Chameleon بالعربية: أفضل أماكن الاختباء والخرائط والتمويه',
@@ -477,8 +509,17 @@ export function getHomeCopy(locale: string): HomeCopy {
   } as HomeCopy;
 }
 
+// Only `/zh/tools` and `/ru/tools` are fully localized.
+// All other reopened locales should land on the English `/tools` page
+// until those pages get native rewrites. This avoids the proxy 301→/
+// redirect that swallows in-page links.
+const TOOLS_LOCALES = new Set(['zh', 'ru']);
+
 export function getLocalizedPath(locale: string, path: string): string {
-  return locale === 'en' ? path : `/${locale}${path}`;
+  if (locale === 'en') return path;
+  if (path === '/tools' && !TOOLS_LOCALES.has(locale)) return '/tools';
+  if (path === '/new-player' && !TOOLS_LOCALES.has(locale)) return '/new-player';
+  return `/${locale}${path}`;
 }
 
 export const mapLabels = {
@@ -492,6 +533,7 @@ export const mapLabels = {
   nl: { spots: 'schuilplekken', difficulty: 'moeilijkheid', selectedSpot: 'Geselecteerde plek', paintColors: 'Verfkleuren', primary: 'Primair', secondary: 'Secundair', back: 'Terug naar atlas', guide: 'Meccha Chameleon kaartgids', hidingSpots: 'Beste schuilplekken', ready: 'Klaar voor de echte match?', readyBody: 'Houd deze atlas open als tweede scherm, vergelijk kaartkleuren en kies je volgende schuilroute.', play: 'Speel online', titleSuffix: 'Beste schuilplekken — Meccha Chameleon', descriptionSuffix: 'Meccha Chameleon schuilplekatlas: screenshots, RGB, moeilijkheid en tips voor Verstoppers.', altPreview: 'Meccha Chameleon kaartvoorbeeld' },
   ar: { spots: 'أماكن', difficulty: 'الصعوبة', selectedSpot: 'النقطة المحددة', paintColors: 'ألوان الطلاء', primary: 'أساسي', secondary: 'ثانوي', back: 'العودة إلى الأطلس', guide: 'دليل خرائط Meccha Chameleon', hidingSpots: 'أفضل أماكن الاختباء', ready: 'جاهز للمباراة الحقيقية؟', readyBody: 'اترك هذا الأطلس مفتوحاً كشاشة ثانية، وقارن ألوان الخريطة واختر طريق اختبائك التالي.', play: 'العب أونلاين', titleSuffix: 'أفضل أماكن الاختباء — Meccha Chameleon', descriptionSuffix: 'أطلس أماكن الاختباء في Meccha Chameleon: لقطات شاشة وRGB وصعوبة ونصائح للمختبئين.', altPreview: 'معاينة خريطة Meccha Chameleon' },
   ja: { spots: '隠れスポット', difficulty: '難易度', selectedSpot: '選択中のスポット', paintColors: 'ペイント色', primary: 'メイン', secondary: 'サブ', back: 'アトラスへ戻る', guide: 'Meccha Chameleon マップ ガイド', hidingSpots: '最強の隠れ場所', ready: '実戦の準備はいいですか?', readyBody: 'このアトラスをサブ画面で開いたまま、マップの色彩とベスト スポットを比較しましょう。', play: 'オンラインでプレイ', titleSuffix: '最強の隠れ場所 — Meccha Chameleon', descriptionSuffix: 'Meccha Chameleon 隠れスポット アトラス: スクリーンショット、RGB、難易度、ヒダー向け Tips。', altPreview: 'Meccha Chameleon マップ プレビュー' },
+  ko: { spots: '숨는 스팟', difficulty: '난이도', selectedSpot: '선택한 스팟', paintColors: '페인트 색상', primary: '메인', secondary: '서브', back: '아틀라스로 돌아가기', guide: 'Meccha Chameleon 맵 가이드', hidingSpots: '최고의 숨는 장소', ready: '실전 준비 완료?', readyBody: '이 아틀라스를 서브 화면에서 열어 두고, 맵 컬러와 베스트 스팟을 비교하세요.', play: '온라인 플레이', titleSuffix: '최고의 숨는 장소 — Meccha Chameleon', descriptionSuffix: 'Meccha Chameleon 숨는 스팟 아틀라스: 스크린샷, RGB, 난이도, 하이더 팁.', altPreview: 'Meccha Chameleon 맵 미리보기' },
 } as const;
 
 const mapZh: Record<string, Pick<AtlasMap, 'name' | 'desc' | 'difficulty'>> = {
@@ -563,6 +605,15 @@ const mapAr: Record<string, Pick<AtlasMap, 'name' | 'desc'>> = {
   'backrooms': { name: 'Backrooms', desc: 'مكاتب صفراء شديدة الإضاءة وبغطاء طبيعي قليل. خريطة قاسية لأن أي حافة مطلية بشكل سيئ تظهر فوراً.' },
   'penguin-hotel': { name: 'فندق البطريق', desc: 'فندق شتوي مع غرف وحمامات وتماثيل بطاريق وبطّات وبالونات. فيه ضوضاء بصرية كثيرة، لكن فيه أيضاً عناصر كثيرة يفتشها الباحثون.' },
   'osaka': { name: 'أوساكا', desc: 'حي حضري مضغوط فيه شاحنة ولافتات وأكياس قمامة وخشب متراكم ومتاجر مفتوحة. المسارات القصيرة واللافتات العالية تساعد على كسر silhouette الجسم.' },
+};
+
+const mapKo: Record<string, Pick<AtlasMap, 'name' | 'desc'>> = {
+  'hide-and-seek-mansion': { name: '숨바꼭질 저택', desc: '책장, 액자, 타일, 따뜻한 조명, 주방, 거실. 하이더가 시각 노이즈 많은 위치를 익히기 좋은 맵.' },
+  'indoor-country': { name: '실내 농장', desc: '소, 건초, 빨간 문, 호박, 하늘 벽. 색면이 넓어 페인트 입문에 좋음.' },
+  'sewer': { name: '하수도', desc: '파이프, 빨간 드럼, 그래피티 벽. 어두운 조명은 하이더에 유리하지만 단골 스팟은 빠르게 스캔됨.' },
+  'backrooms': { name: '백룸', desc: '노란 사무실, 형광등, 자연 은폐 부족. 가장 까다로운 맵, 작은 가장자리도 즉시 노출.' },
+  'penguin-hotel': { name: '펭귄 호텔', desc: '객실, 욕실, 펭귄 조각상, 오리 소품, 풍선. 시각 노이즈는 많지만 시커의 체크 항목도 많음.' },
+  'osaka': { name: '오사카', desc: '1.7.0 신규 일본식 도시 블록: 트럭, 간판, 쓰레기 봉투, 나무 더미, 개방된 가게. 좁은 통로와 높은 간판이 실루엣을 끊어줌.' },
 };
 
 const mapJa: Record<string, Pick<AtlasMap, 'name' | 'desc'>> = {
