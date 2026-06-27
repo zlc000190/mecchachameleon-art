@@ -5,6 +5,7 @@ export const isEs = (locale: string) => locale === 'es';
 export const isPt = (locale: string) => locale === 'pt';
 export const isFr = (locale: string) => locale === 'fr';
 export const isIt = (locale: string) => locale === 'it';
+export const isJa = (locale: string) => locale === 'ja';
 export const isNl = (locale: string) => locale === 'nl';
 
 export const homeCopy = {
@@ -490,6 +491,7 @@ export const mapLabels = {
   it: { spots: 'nascondigli', difficulty: 'difficoltà', selectedSpot: 'Spot selezionato', paintColors: 'Colori di pittura', primary: 'Primario', secondary: 'Secondario', back: 'Torna all’atlante', guide: 'Guida mappe di Meccha Chameleon', hidingSpots: 'Migliori nascondigli', ready: 'Pronto per la partita vera?', readyBody: 'Tieni aperto l’atlante come secondo schermo, confronta i colori della mappa e scegli il tuo prossimo percorso di nascondiglio.', play: 'Gioca online', titleSuffix: 'Migliori nascondigli — Meccha Chameleon', descriptionSuffix: 'Atlante dei nascondigli di Meccha Chameleon: screenshot, RGB, difficoltà e consigli per i Nasconditori.', altPreview: 'Anteprima mappa Meccha Chameleon' },
   nl: { spots: 'schuilplekken', difficulty: 'moeilijkheid', selectedSpot: 'Geselecteerde plek', paintColors: 'Verfkleuren', primary: 'Primair', secondary: 'Secundair', back: 'Terug naar atlas', guide: 'Meccha Chameleon kaartgids', hidingSpots: 'Beste schuilplekken', ready: 'Klaar voor de echte match?', readyBody: 'Houd deze atlas open als tweede scherm, vergelijk kaartkleuren en kies je volgende schuilroute.', play: 'Speel online', titleSuffix: 'Beste schuilplekken — Meccha Chameleon', descriptionSuffix: 'Meccha Chameleon schuilplekatlas: screenshots, RGB, moeilijkheid en tips voor Verstoppers.', altPreview: 'Meccha Chameleon kaartvoorbeeld' },
   ar: { spots: 'أماكن', difficulty: 'الصعوبة', selectedSpot: 'النقطة المحددة', paintColors: 'ألوان الطلاء', primary: 'أساسي', secondary: 'ثانوي', back: 'العودة إلى الأطلس', guide: 'دليل خرائط Meccha Chameleon', hidingSpots: 'أفضل أماكن الاختباء', ready: 'جاهز للمباراة الحقيقية؟', readyBody: 'اترك هذا الأطلس مفتوحاً كشاشة ثانية، وقارن ألوان الخريطة واختر طريق اختبائك التالي.', play: 'العب أونلاين', titleSuffix: 'أفضل أماكن الاختباء — Meccha Chameleon', descriptionSuffix: 'أطلس أماكن الاختباء في Meccha Chameleon: لقطات شاشة وRGB وصعوبة ونصائح للمختبئين.', altPreview: 'معاينة خريطة Meccha Chameleon' },
+  ja: { spots: '隠れスポット', difficulty: '難易度', selectedSpot: '選択中のスポット', paintColors: 'ペイント色', primary: 'メイン', secondary: 'サブ', back: 'アトラスへ戻る', guide: 'Meccha Chameleon マップ ガイド', hidingSpots: '最強の隠れ場所', ready: '実戦の準備はいいですか?', readyBody: 'このアトラスをサブ画面で開いたまま、マップの色彩とベスト スポットを比較しましょう。', play: 'オンラインでプレイ', titleSuffix: '最強の隠れ場所 — Meccha Chameleon', descriptionSuffix: 'Meccha Chameleon 隠れスポット アトラス: スクリーンショット、RGB、難易度、ヒダー向け Tips。', altPreview: 'Meccha Chameleon マップ プレビュー' },
 } as const;
 
 const mapZh: Record<string, Pick<AtlasMap, 'name' | 'desc' | 'difficulty'>> = {
@@ -563,6 +565,15 @@ const mapAr: Record<string, Pick<AtlasMap, 'name' | 'desc'>> = {
   'osaka': { name: 'أوساكا', desc: 'حي حضري مضغوط فيه شاحنة ولافتات وأكياس قمامة وخشب متراكم ومتاجر مفتوحة. المسارات القصيرة واللافتات العالية تساعد على كسر silhouette الجسم.' },
 };
 
+const mapJa: Record<string, Pick<AtlasMap, 'name' | 'desc'>> = {
+  'hide-and-seek-mansion': { name: 'かくれんぼマンション', desc: '本棚、額縁、タイル、暖色照明、キッチン、キッチン タイル、暖色木材が特徴。ヒーダーが視覚ノイズの多い位置を覚えるのに最適。' },
+  'indoor-country': { name: '田園屋内', desc: '牛、藁、赤い扉、カボチャ、空の壁がある屋内ファーム。色面が大きく、ペイント練習の入門に最適。' },
+  'sewer': { name: '下水道', desc: 'パイプ、赤いドラム缶、グラフィティ ウォール。薄暗さがヒーダーに有利だが、有名スポットはシーカーにチェックされやすい。' },
+  'backrooms': { name: 'バックルームズ', desc: '黄色いオフィス、蛍光灯、少ない自然カバー。エッジが少し浮いただけで即バレする鬼畜マップ。' },
+  'penguin-hotel': { name: 'ペンギン ホテル', desc: '客室、浴室、ペンギン像、アヒル グッズ、風船。視覚ノイズは多いが、シーカーがチェックする対象も多い。' },
+  'osaka': { name: '大阪', desc: '1.7.0 で追加されたジャパニーズ テーマの街ブロック: トラック、看板、ゴミ袋、材木、商店が密集。狭い通路と高い看板がシルエットを切る。' },
+};
+
 const spotZh: Record<string, Pick<AtlasSpot, 'name' | 'tip'>> = {
   'vintage-01': { name: '镀金画框伪装', tip: '蹲在金色画框后方，把身体涂成深锦缎绿，贴近周围墙纸纹理。' },
   'vintage-02': { name: '走廊花瓶藏点', tip: '站在派对旗帜下的高花瓶旁，使用米白底色并点上绿色花纹。' },
@@ -625,6 +636,7 @@ export function localizeMap(map: AtlasMap, locale: string): AtlasMap {
   if (isIt(locale)) return { ...map, ...(mapIt[map.id] ?? {}) };
   if (isNl(locale)) return { ...map, ...(mapNl[map.id] ?? {}) };
   if (locale === 'ar') return { ...map, ...(mapAr[map.id] ?? {}) };
+  if (locale === 'ja') return { ...map, ...(mapJa[map.id] ?? {}) };
   return map;
 }
 

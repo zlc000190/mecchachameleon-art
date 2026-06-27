@@ -69,11 +69,60 @@ type SectionCopy = {
 };
 
 const modeIcons = [Users, PartyPopper, MapPin, Globe];
-const stepLocales = ['en', 'zh', 'ru', 'es', 'de', 'pt', 'fr', 'it', 'nl', 'ar'] as const;
+const stepLocales = ['en', 'zh', 'ru', 'es', 'de', 'pt', 'fr', 'it', 'nl', 'ar', 'ja'] as const;
 
 type SupportedLocale = (typeof stepLocales)[number];
 
 const copy: Record<SupportedLocale, SectionCopy> = {
+  ja: {
+    eyebrow: 'マルチプレイ',
+    title: '同じラウンドに仲間をどうやって集めるか',
+    intro: 'Meccha Chameleon は友達と遊ぶパーティー ゲームです。フレンド グループ、遠距離のクラン、パブリック マッチメイキングの実践的なプレイブックをこの 1 ページにまとめました。',
+    watchEyebrow: 'プレイ前に視聴',
+    watchTitle: 'Meccha Chameleon ビギナー ガイド動画シリーズ',
+    watchBody: '最初のクリップから始めて、プレイリストを自動再生にしておけばグループがページから離れずに視聴・検証できます。',
+    watchBullets: ['1. ループと操作を覚える。', '2. ヒダーとシーカーの基本を確認。', '3. 次のラウンドまでタブを開いたままに。'],
+    watchFooterLeft: 'プレイリストは自動で進みます。',
+    watchFooterRight: '埋め込みはサイト内に保持。',
+    shareTitle: '仲間にシェア',
+    shareBody: 'いつものプラットフォームを選ぶだけ。ログインも登録も不要、リンクをチャットに投げるだけ。',
+    nativeShare: 'シェア',
+    shared: 'シェア済み!',
+    unsupported: '未対応',
+    copyLink: 'リンクをコピー',
+    copied: 'コピー済み',
+    shareWhyTitle: 'なぜシェア ボタン?',
+    shareWhyBody: 'カスタム ルームは友達が来てこそ楽しい。"今夜これやろう" のひと言が、プレイと観戦とスポット比較が 1 ページで完結するリンクだと伝わりやすい。',
+    rosterTitle: 'クラン名簿 + 招待スコアボード',
+    rosterBody: '招待した人、実際に来た人、スコアボードを引っ張り上げている人を記録。データはこのブラウザだけに保存され、サーバーには送られません。',
+    namePlaceholder: 'フレンドのニックネーム / ハンドル',
+    add: '追加',
+    noCrew: 'まだ仲間が登録されていません。カスタム ルームに誘いたい人を追加しましょう。招待したら +1、ラウンドを運んだら +5。',
+    scoreTip: 'ヒント: スコアは正直に記録するのがコツ。パーティ ゲームの半分は、誰がグループ最弱のヒダーか発掘して 1 週間いじめる楽しみ。',
+    statusLabel: 'ステータス',
+    statuses: { invited: '招待済み', joined: '参加', ghosted: '音信不通' },
+    platforms: { PC: 'PC', Discord: 'Discord', Mobile: 'モバイル', Other: 'その他' },
+    ctaTitle: 'マッチ メーキング前に完全初心者向けガイドが必要ですか?',
+    ctaBody: '操作方法、ペインティング ツール、役割ガイド、初回マッチのチェックリストを 1 ページに集約。',
+    ctaGuide: '初心者ガイド',
+    ctaPlay: 'オンラインでプレイ',
+    shareText: 'Meccha Chameleon のブラウザ プレイ + マルチプレイ ガイドが 1 ページにまとまっているので、グループ チャットにそのまま投げやすい:',
+    pageTitle: 'Meccha Chameleon 日本語',
+    modes: [
+      { name: 'クラシックかくれんぼ', players: '2 - 24', body: 'ヒダーがペイントして動かなくなる。シーカーが狩る。基本のループを教えるのに最適。' },
+      { name: 'インフェクション', players: '4 - 12', body: '見つかった人がシーカーに変わる。ラウンドごとに緊張感が上がる。' },
+      { name: 'スピード ハント', players: '3 - 8', body: 'ヒダーは同時にペイント、その後シーカーが走ってスキャンする。' },
+      { name: 'カスタム ルーム', players: '2 - 24', body: 'フレンド グループ用のプライベート ロビー。' },
+    ],
+    steps: [
+      { title: '同じ部屋・同じ Wi-Fi', body: '一番シンプル。ホスト 1 人 + 仲間が招待で参加。ポート開放もファイアーウォールも不要。', bullets: ['ホストがカスタム ルームを開く。', 'ゲーム内から直接フレンドを招待。', '音声チャットでシーカーが座標コール。'] },
+      { title: '別宅・同じ国内', body: 'カスタム ルームはリレー サーバー経由なので、国内なら開ける必要なし。', bullets: ['ホストは最も近いリレー リージョンを選ぶ。', '80ms 以下で快適、140ms 以下はプレイ可能。', '会社のネットが厳しければモバイル ホットスポットが楽。'] },
+      { title: '大陸をまたぐ場合', body: '遠距離では中央寄りのリレー リージョンを選択。', bullets: ['開始前に ping を比較。', '遅延を感じたらネットワーク統計を開く。', 'ボイスは外部でも OK、マッチ自体はクライアント内。'] },
+      { title: 'パブリック マッチメイキング', body: 'パブリック キューは一番手軽。固定クランを作る前に、ループを覚える最短ルート。', bullets: ['推奨人数は 2 - 10 人。', 'キュー前に言語設定。', '玄人ロビーは Discord のカスタム ルーム。'] },
+      { title: '配信・ウォッチ パーティ', body: 'ペイント フェーズとリビール フェーズは配信映えする。', bullets: ['1080p / 60 で十分。', 'クリップ ショートカットを先に設定。', 'チャットが snipe するならロビーの名前を非表示に。'] },
+      { title: '家族やライト層と一緒に', body: 'スキル フロアが低いので、子供やライト層も 1 ラウンド説明すれば大丈夫。', bullets: ['Mac ネイティブ版なし。', 'モバイル版なし、PC からストリーミング。', 'プッシュ トゥ トークとペイント ツールは 1 ラウンドで教えられる。'] },
+    ],
+  },
   en: {
     eyebrow: 'Multiplayer',
     title: 'How to actually get a group into the same round',

@@ -104,6 +104,17 @@ const previewCopy = {
     likes: 'إعجاب',
     note: 'حاوية R2 mecchachameleon-art-community. في هذا العرض تكون المشاركات عامة؛ ويمكن لنقطة مراجعة الوكيل إزالة الإدخالات غير المناسبة.',
   },
+  ja: {
+    eyebrow: 'コミュニティ デモ',
+    title: '30分 見つからずに隠れるチャレンジ',
+    description: '30分間見つからずに生き残ったスクリーンショットを投稿。最多いいねを獲得した投稿が今週のコミュニティ優勝です。',
+    submit: '私の30分スクリーンショットを送る',
+    viewAll: 'コミュニティ ボードを見る',
+    minutes: `${demoCommunityChallenge.minutesHidden}+ 分`,
+    screenshotAlt: 'Meccha Chameleon 30分隠れのチャレンジ サンプル画像',
+    likes: 'いいね',
+    note: 'R2 バケット mecchachameleon-art-community を使用。デモは公開投稿のみを含み、エージェントのモデレーションで不適切な投稿は除外できます。',
+  },
   en: {
     eyebrow: 'Community demo',
     title: '30-Minute Hiding Challenge',
