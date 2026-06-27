@@ -3,6 +3,7 @@ import type { AtlasMap, AtlasSpot } from './atlas-data';
 export const isZh = (locale: string) => locale === 'zh';
 export const isEs = (locale: string) => locale === 'es';
 export const isPt = (locale: string) => locale === 'pt';
+export const isFr = (locale: string) => locale === 'fr';
 
 export const homeCopy = {
   en: {
@@ -147,13 +148,44 @@ const homeCopyOverrides: Record<string, Partial<HomeCopy>> = {
     secondDesc: 'La pagina strumenti raccoglie download, controlli e note di sicurezza del software assistente della community. Solo per scopi educativi e di ricerca. Usalo a tuo rischio.', quickAnswers: 'Risposte rapide',
   },
   fr: {
-    title: 'Meccha Chameleon Jouer en Ligne', playNow: 'Jouer maintenant', howToPlay: 'Comment jouer', openTools: 'Ouvrir les outils',
-    newPlayerEyebrow: 'Parcours nouveau joueur', newPlayerTitle: 'Si vous avez cherché avant de télécharger, commencez par le jeu navigateur.',
-    camoEyebrow: 'Pour les vrais joueurs', camoTitle: 'Camo Lab transforme le trafic de recherche en aide prête pour la partie.', previewAtlas: 'Voir l’atlas des cartes',
-    atlasEyebrow: 'Atlas des cachettes', atlasTitle: 'Cinq guides de cartes, cinquante cachettes, un second écran rapide.',
-    atlasDesc: 'Captures, couleurs de peinture, difficulté et conseils de match pour les cartes Meccha Chameleon.',
-    secondEyebrow: 'Logiciel assistant de jeu', secondTitle: 'Page d’outils pour overlay externe, radar et aides de camouflage.',
-    secondDesc: 'La page outils résume les logiciels assistants communautaires, téléchargements, contrôles et notes de sécurité. À des fins éducatives et de recherche uniquement. Utilisez à vos risques.', quickAnswers: 'Réponses rapides',
+    title: 'Meccha Chameleon en français : meilleures cachettes, cartes et camouflage',
+    playNow: 'Jouer maintenant',
+    howToPlay: 'Comment jouer',
+    openTools: 'Ouvrir les outils',
+    newPlayerEyebrow: 'Guide pour débuter',
+    newPlayerTitle: 'Si vous cherchez Meccha Chameleon en français, commencez par comprendre les cachettes, le camouflage, les poses et la lecture de carte plutôt que par une traduction littérale.',
+    newPlayerCards: [
+      ['Qu’est-ce que Meccha Chameleon ?', 'Un jeu multijoueur de cache-cache sur Steam où les Cacheurs peignent leur corps pour se fondre dans le décor pendant que les Chercheurs inspectent les silhouettes, les ombres et les couleurs suspectes.'],
+      ['Peut-on jouer en ligne ici ?', 'Vous pouvez utiliser l’accès rapide dans le navigateur et garder cette page comme second écran. La version officielle complète reste celle de Steam.'],
+      ['Que faut-il apprendre en premier ?', 'Choisissez d’abord la surface, copiez les bonnes couleurs, testez la pose et vérifiez si votre contour vous trahit sous un autre angle.'],
+      ['Que recherchent les Chercheurs ?', 'Ils ne regardent pas seulement les mouvements : ils repèrent les bords étranges, les mauvais tons, les ombres incohérentes et les cachettes trop populaires.'],
+    ],
+    camoEyebrow: 'Cachettes et camouflage',
+    camoTitle: 'Les meilleures cachettes ne sont pas seulement dans les coins sombres : elles marchent quand la peinture, la pose et le bruit visuel se complètent.',
+    previewAtlas: 'Voir les cartes et cachettes',
+    camoCards: [
+      ['Meilleures cachettes', 'Les bons spots se trouvent souvent près des livres, affiches, carreaux, caisses, bois, ombres et zones chargées où de petites erreurs passent inaperçues.'],
+      ['Camouflage et peinture', 'Copiez la couleur, la lumière, l’ombre et le motif de la surface. Une teinte “presque juste” ne suffit pas si votre silhouette reste trop lisible.'],
+      ['Poses et risque', 'Une pose simple aide les débutants. Les spots plus forts valent surtout quand vous connaissez le trajet des Chercheurs et le bon moment pour rester totalement immobile.'],
+    ],
+    atlasEyebrow: 'Cartes de Meccha Chameleon',
+    atlasTitle: 'Cartes, meilleures cachettes et spots où votre silhouette ne crie pas tout de suite “joueur”.',
+    atlasDesc: 'Cette vue reprend les termes locaux « meilleures cachettes », « camouflage », « cacheurs », « chercheurs », « cartes » et « pose ». Elle sert d’entrée en français pour de vraies parties, pas de simple traduction automatique de la home anglaise.',
+    secondEyebrow: 'Outils et second écran',
+    secondTitle: 'Aides pour vérifier les couleurs, les routes de carte et le camouflage avant la prochaine manche.',
+    secondDesc: 'La page outils regroupe des notes sur les overlays, le radar, la lecture des couleurs et les aides de camouflage. Utilisez-la comme ressource éducative et à vos risques.',
+    quickAnswers: 'Réponses rapides',
+    faqs: [
+      ['Quelles sont les meilleures cachettes dans Meccha Chameleon ?', 'En général, ce sont les spots avec beaucoup de bruit visuel : bibliothèques, cadres, carreaux, caisses, meubles, ombres et motifs que le Chercheur ne vérifie pas deux fois.'],
+      ['Faut-il dire cacheur ou caméléon ?', 'Les deux apparaissent en français. Ici nous utilisons Cacheur pour le rôle et cachette pour le spot, car la recherche locale tourne surtout autour de “meilleures cachettes”.'],
+      ['Comment améliorer mon camouflage ?', 'Ne copiez pas seulement la couleur principale. Regardez la brillance, le côté ombre, le motif, la matière et si la tête ou les bras cassent la pose.'],
+      ['Cette page est-elle officielle ?', 'Non. C’est une page d’aide non officielle en français sur les cartes, les cachettes et les tactiques. La version officielle du jeu est sur Steam.'],
+    ],
+    secondScreenItems: [
+      ['Guide de cachette', 'Utilisez la page comme second écran pour mémoriser les zones avec le plus de bruit visuel et le moins de vérifications des Chercheurs.'],
+      ['Lecture des couleurs', 'Comparez mur, sol, bois, tissu et ombre avant de verrouiller votre pose finale.'],
+      ['Avertissement', 'Guide non officiel. Meccha Chameleon et ses assets appartiennent à leurs ayants droit. Utilisation à vos risques.'],
+    ],
   },
   de: {
     title: 'Meccha Chameleon Deutsch: beste Verstecke, Karten und Tarnung',
@@ -359,6 +391,7 @@ export const mapLabels = {
   es: { spots: 'escondites', difficulty: 'dificultad', selectedSpot: 'Escondite seleccionado', paintColors: 'Colores de pintura', primary: 'Principal', secondary: 'Secundario', back: 'Volver al atlas', guide: 'Guía de mapas de Meccha Chameleon', hidingSpots: 'Mejores escondites', ready: '¿Listo para la partida real?', readyBody: 'Mantén este atlas abierto como segunda pantalla, compara colores del mapa y elige tu próxima ruta de escondite.', play: 'Jugar online', titleSuffix: 'Mejores escondites — Meccha Chameleon', descriptionSuffix: 'Atlas de escondites de Meccha Chameleon: capturas, RGB, dificultad y consejos para Ocultistas.', altPreview: 'Vista previa de mapa de Meccha Chameleon' },
   de: { spots: 'Verstecke', difficulty: 'Schwierigkeit', selectedSpot: 'Ausgewählter Spot', paintColors: 'Painting-Farben', primary: 'Primär', secondary: 'Sekundär', back: 'Zurück zum Atlas', guide: 'Meccha Chameleon Karten-Guide', hidingSpots: 'Beste Verstecke', ready: 'Bereit für die echte Runde?', readyBody: 'Lass den Atlas als zweiten Bildschirm offen, vergleiche Kartenfarben und wähle deine nächste Versteckroute.', play: 'Online spielen', titleSuffix: 'Beste Verstecke — Meccha Chameleon', descriptionSuffix: 'Meccha Chameleon Versteck-Atlas: Screenshots, RGB, Schwierigkeit und Tipps für Versteckende.', altPreview: 'Meccha Chameleon Karten-Vorschau' },
   pt: { spots: 'esconderijos', difficulty: 'dificuldade', selectedSpot: 'Spot selecionado', paintColors: 'Cores de pintura', primary: 'Primária', secondary: 'Secundária', back: 'Voltar ao atlas', guide: 'Guia de mapas de Meccha Chameleon', hidingSpots: 'Melhores esconderijos', ready: 'Pronto para a partida real?', readyBody: 'Deixe o atlas aberto como segunda tela, compare as cores do mapa e escolha sua próxima rota de esconderijo.', play: 'Jogar online', titleSuffix: 'Melhores esconderijos — Meccha Chameleon', descriptionSuffix: 'Atlas de esconderijos de Meccha Chameleon: capturas, RGB, dificuldade e dicas para Escondedores.', altPreview: 'Prévia do mapa de Meccha Chameleon' },
+  fr: { spots: 'cachettes', difficulty: 'difficulté', selectedSpot: 'Cachette sélectionnée', paintColors: 'Couleurs de peinture', primary: 'Principale', secondary: 'Secondaire', back: 'Retour à l’atlas', guide: 'Guide des cartes de Meccha Chameleon', hidingSpots: 'Meilleures cachettes', ready: 'Prêt pour la vraie partie ?', readyBody: 'Gardez cet atlas ouvert en second écran, comparez les couleurs de la carte et choisissez votre prochaine route de cachette.', play: 'Jouer en ligne', titleSuffix: 'Meilleures cachettes — Meccha Chameleon', descriptionSuffix: 'Atlas des cachettes de Meccha Chameleon : captures, RGB, difficulté et conseils pour les Cacheurs.', altPreview: 'Aperçu de carte Meccha Chameleon' },
 } as const;
 
 const mapZh: Record<string, Pick<AtlasMap, 'name' | 'desc' | 'difficulty'>> = {
@@ -394,6 +427,15 @@ const mapPt: Record<string, Pick<AtlasMap, 'name' | 'desc'>> = {
   'backrooms': { name: 'Backrooms', desc: 'Salas amarelas muito iluminadas e com pouca cobertura natural. É um mapa duro porque qualquer borda pintada errado aparece na hora.' },
   'penguin-hotel': { name: 'Hotel Pinguim', desc: 'Hotel de inverno com quartos, banheiros, estátuas de pinguim, patos e balões. Tem muito ruído visual, mas também muitos objetos que os Buscadores inspecionam.' },
   'osaka': { name: 'Osaka', desc: 'Mapa urbano compacto com caminhão, letreiros, sacos de lixo, madeira empilhada e lojas abertas. Rotas curtas e placas elevadas ajudam a quebrar a silhueta.' },
+};
+
+const mapFr: Record<string, Pick<AtlasMap, 'name' | 'desc'>> = {
+  'hide-and-seek-mansion': { name: 'Manoir cache-cache', desc: 'Manoir classique avec bibliothèque, salle de bain carrelée, cuisine et salle de bal. Excellent pour apprendre les cachettes entre livres, cadres, dorures et bois chaud.' },
+  'indoor-country': { name: 'Campagne intérieure', desc: 'Ferme intérieure avec vaches, bottes de foin, portes rouges, citrouilles et fresque de ciel. Bonne carte pour entraîner un camouflage simple sur de grands aplats de couleur.' },
+  'sewer': { name: 'Égouts', desc: 'Tunnels sombres avec tuyaux, barils rouges et murs couverts de graffitis. La faible lumière aide les Cacheurs, mais les spots connus sont vite vérifiés par les Chercheurs.' },
+  'backrooms': { name: 'Backrooms', desc: 'Bureaux jaunes très éclairés avec peu de couverture naturelle. Carte difficile car la moindre bordure mal peinte saute immédiatement aux yeux.' },
+  'penguin-hotel': { name: 'Hôtel Pingouin', desc: 'Hôtel hivernal avec chambres, salles de bain, statues de pingouin, canards et ballons. Beaucoup de bruit visuel, mais aussi beaucoup d’objets inspectés par les Chercheurs.' },
+  'osaka': { name: 'Osaka', desc: 'Bloc urbain compact avec camion, enseignes, sacs-poubelle, piles de bois et boutiques ouvertes. Les trajets courts et les panneaux en hauteur aident à casser la silhouette.' },
 };
 
 const spotZh: Record<string, Pick<AtlasSpot, 'name' | 'tip'>> = {
@@ -454,6 +496,7 @@ export function localizeMap(map: AtlasMap, locale: string): AtlasMap {
   if (isEs(locale)) return { ...map, ...(mapEs[map.id] ?? {}) };
   if (locale === 'de') return { ...map, ...(mapDe[map.id] ?? {}) };
   if (isPt(locale)) return { ...map, ...(mapPt[map.id] ?? {}) };
+  if (isFr(locale)) return { ...map, ...(mapFr[map.id] ?? {}) };
   return map;
 }
 

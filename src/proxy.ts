@@ -9,7 +9,6 @@ const intlMiddleware = createIntlMiddleware(routing);
 
 const NEW_LOCALES: Locale[] = [
   'it',
-  'fr',
   'ja',
   'ko',
   'ar',
@@ -49,11 +48,11 @@ export async function proxy(request: NextRequest) {
   }
 
   // Spanish and German are being re-opened one page at a time after local
-  // SERP wording research. Only /es, /de and /pt are promoted now; keep localized
+  // SERP wording research. Only /es, /de, /pt and /fr are promoted now; keep localized
   // tools/maps/etc. consolidated until they receive native rewrites.
   if (
     isValidLocale &&
-    (locale === 'es' || locale === 'de' || locale === 'pt') &&
+    (locale === 'es' || locale === 'de' || locale === 'pt' || locale === 'fr') &&
     pathWithoutLocale !== '' &&
     pathWithoutLocale !== '/'
   ) {
