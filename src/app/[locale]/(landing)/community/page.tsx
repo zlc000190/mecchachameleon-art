@@ -4,6 +4,8 @@ import { setRequestLocale } from 'next-intl/server';
 import { atlasMaps, getLocalizedPath } from '@/shared/blocks/meccha/atlas-data';
 import { CommunityChallengeClient } from '@/shared/blocks/meccha/community-challenge-client';
 import { getCanonicalUrl } from '@/shared/lib/seo';
+import { envConfigs } from '@/config';
+import { locales as allLocales } from '@/config/locale';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -12,17 +14,26 @@ type Props = {
 export const revalidate = 0;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { locale } = await params;
   const title = 'Community 30-Minute Hiding Challenges | Meccha Chameleon';
   const description =
     'Meccha Chameleon community hiding challenges. Players who survived 30 minutes undiscovered and earned the most likes.';
-  const canonical = await getCanonicalUrl('/community', locale);
+  // Single canonical URL: all locale-prefixed /<locale>/community requests
+  // are 301'd by the proxy to /community, so this is the one URL Google
+  // indexes. hreflang alternates below tell Google about every locale
+  // variant even though they all serve the same English page (page-level
+  // localization is not in scope for the community section yet).
+  const canonical = `${envConfigs.app_url}/community`;
+  const languages: Record<string, string> = {};
+  for (const loc of allLocales) {
+    languages[loc] = `${envConfigs.app_url}/community`;
+  }
   return {
     title,
     description,
-    robots: { index: false, follow: false },
+    robots: { index: true, follow: true },
     alternates: {
       canonical,
+      languages,
     },
     openGraph: { title, description, type: 'website' },
   };

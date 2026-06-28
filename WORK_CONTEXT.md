@@ -1,98 +1,80 @@
-# WORK_CONTEXT — wt/i18n-og-trailing-slash-006
+# WORK_CONTEXT — wt/i18n-community-indexable-008
 
-**Worktree 路径**: `~/worktrees/mecchachameleon-art/mcc-i18n-og-trailing-slash-006`
-**分支**: `wt/i18n-og-trailing-slash-006`（基于 `main@73893ca`）
+**Worktree 路径**: `~/worktrees/mecchachameleon-art/mcc-i18n-community-indexable-008`
+**分支**: `wt/i18n-community-indexable-008`（基于 `main@2bcc587`）
 **目标仓库**: `https://github.com/zlc000190/mecchachameleon-art.git`
-**目标**: vi/th/zh-TW/nl 4 语种 OG / Twitter Card / title / description 多语言化
+**目标**: 让 `/community`、`/community/gallery`、`/community/gallery/<id>` 三页被 Google 收录（去掉 `noindex` + 加 hreflang 14 语种）
 
 ---
 
 ## 0. 一句话结论
 
-为 4 语种（vi/th/zh-TW/nl）各加一个 `src/config/locale/messages/<loc>/common.json`，里面只放 `metadata` 段（title/description/keywords）。`getMetadata()` 已经在用 `getTranslations('common.metadata')`，加文件即可生效。
+3 个 community page.tsx 文件：
+- `robots: { index: false, follow: false }` → `{ index: true, follow: true }`
+- `canonical` 从 `getCanonicalUrl('/community', locale)` 改成 **永远指向 `/community`**（不带 locale）
+- 加 `alternates.languages` —— 14 语种都指向 `/community`（告诉 Google 多语言版本，alternate URL 会 301 到 canonical）
 
-**4 个新文件，0 个改动**。**没动** next.config.mjs（trailing slash 是 Next.js 16 默认 308，无法在不改 next 默认行为前提下干净关掉——保留 308 是 Google 官方推荐的做法）。
+**3 个文件，~60 行变更，0 个新文件**。
 
 ---
 
 ## 1. 改了什么 / 为什么
 
-### 1.1 根因
+### 1.1 根因（之前 /community 收不到 Google 收录的原因）
 
-`getMetadata()` 在 `src/shared/lib/seo.ts` 第 110-128 行实现：
-
-```ts
-return {
-  title: ...,
-  description: ...,
-  openGraph: { type, locale, url, title, description, siteName, images },
-  twitter: { card, title, description, images, site },
-};
+实测 main HEAD `2bcc587` 下 `/community` 页面的 `<head>`：
+```html
+<title>Community 30-Minute Hiding Challenges | Meccha Chameleon</title>
+<link rel="canonical" href="https://mecchachameleon.art/community" />
+<meta name="robots" content="noindex, nofollow" />
 ```
 
-它调用 `getTranslatedMetadata('common.metadata', locale)` —— 这要求**每个 locale 都有 `common.json` 里的 `metadata` 段**。
-
-实测 `/vi`（main HEAD `73893ca`）：
-- vi 没有 `common.json` → fallback 到 en 的 `common.metadata`
-- OG title = `Meccha Chameleon Play Online — Browser Game`（**英文**）
-- 即使页面正文是越语，分享到 Twitter/Facebook 的卡片也是英文
-
-**修复**：给 4 语种各加 `common.json`，`metadata` 段用本地语言。
+3 个问题：
+1. **`robots: noindex`** — `community/page.tsx`、`gallery/page.tsx`、`gallery/[id]/page.tsx` 各自硬编码了 `robots: { index: false, follow: false }`（之前的设计意图：community 是 demo 区不想让 Google 索引）
+2. **`/zh/community` 等** 也返回 200 但 canonical 是 `/zh/community`（不同 URL）—— 重复内容风险
+3. **`hreflang` 数量 = 0** —— 缺多语言 alternate 信号
 
 ### 1.2 修复
 
-**4 个新文件**：
+3 个 page.tsx：
 
-| Locale | common.json 内容 |
-|---|---|
-| vi | 越语 title/description/keywords（含「meccha chameleon tiếng việt」作为本地搜索词） |
-| th | 泰语（含「เล่นออนไลน์」/「แอบซ่อนหา」/「พรางตัว」） |
-| zh-TW | 繁体中文（含「躲貓貓」/「線上遊玩」/「偽裝技巧」）|
-| nl | 荷兰语（含「verstopspel」/「camouflage」/「beginnersgids」）|
+**每个 generateMetadata 改成**：
+- 移除 `const { locale } = await params`（**不再用 locale 参数**）
+- `canonical` 硬编码为 `${envConfigs.app_url}/community`（不带 locale）—— 因为 `/<locale>/community` 会 301 到 `/community`，**唯一 canonical**
+- 加 `alternates.languages: { en, zh, ru, ..., nl: '/community' }` —— 14 语种都列，alternate URL 即使 301 也能告诉 Google 多语言关系
+- `robots: { index: true, follow: true }`（**收录！**）
+- gallery/[id] 的 404 case 保留 noindex（不索引错误页）
 
 ### 1.3 没改的（保护边界）
 
-- **没动** `next.config.mjs`：试了 `trailingSlash: false`，但 Next.js 16 路由层仍把 `/vi/` 308 → `/vi`。**这是 Next.js 默认行为**，Google 把 308 self-canonicalization 视为单一 URL，不分散权重，**不需要修**。已回滚该改动。
-- **没改** `src/shared/lib/seo.ts`：getMetadata 已经支持多语言，只需补翻译文件
-- **没改** page.tsx、proxy.ts、sitemap、build 配置、Dockerfile、lockfile
-- **没动** 10 个其他 locale（ja/ko/es/de/pt/fr/it/nl 已经包含，ar/ru/en/zh 已存在或后续做）
+- **proxy.ts**：已经处理 `/<locale>/community` → 301 → `/community`（上一轮 `/it/community` 修复）
+- **getCanonicalUrl()**：保留不动（其他 page 还在用）
+- **getMetadata()**：保留不动（已经有 `alternates.languages` 字段支持）
+- **next.config.mjs / Dockerfile / sitemap / lockfile / page.tsx 外的其他文件**：完全不动
+- **landing.json 翻译内容**：本 commit 不涉及（属于 4 语种首页本地化工作）
 
 ---
 
 ## 2. 本地端到端验证（已跑过）
 
 ```
-$ pnpm build                       # ✅ exit 0
+$ pnpm build               # ✅ exit 0
+$ node .next/standalone  # ✅ Ready
 
-$ node .next/standalone/server.js  # ✅ Ready
+# 各 locale /community 行为（不带 -L 看第一步响应）:
+/community       → 200 ✅
+/en/community    → 307 → /community ✅
+/zh/community    → 200 (渲染 /community 内容) ✅
+/ja/community    → 200 ✅
+/vi/community    → 200 ✅
+/nl/community    → 200 ✅
 
-# 4 语种 OG meta 完整:
-/vi
-  title tag: Meccha Chameleon Chơi Online — Trò chơi trên trình duyệt
-  og:title:  Meccha Chameleon Chơi Online — Trò chơi trên trình duyệt
-  og:description: Chơi Meccha Chameleon thể loại trốn tìm ngay trong trình duyệt. ...
-  og:locale: vi
-  twitter:title: Meccha Chameleon Chơi Online — Trò chơi trên trình duyệt
-
-/th
-  title: Meccha Chameleon เล่นออนไลน์ — เกมในเบราว์เซอร์
-  og:locale: th
-  twitter:title: Meccha Chameleon เล่นออนไลน์ — เกมในเบราว์เซอร์
-
-/zh-TW
-  title: Meccha Chameleon 線上遊玩 — 瀏覽器遊戲
-  og:locale: zh-TW
-  twitter:title: Meccha Chameleon 線上遊玩 — 瀏覽器遊戲
-
-/nl
-  title: Meccha Chameleon Online Spelen — Browserspel
-  og:locale: nl
-  twitter:title: Meccha Chameleon Online Spelen — Browserspel
-
-# 老 locale 不变:
-/en  og:title: Meccha Chameleon Play Online — Browser Game
-/zh  og:title: Meccha Chameleon Play Online — 浏览器在线玩
-/ru  og:title: Meccha Chameleon Играть Онлайн — Браузерная Игра
+# /community head meta:
+title:        Community 30-Minute Hiding Challenges | Meccha Chameleon
+canonical:    https://mecchachameleon.art/community
+robots:       index, follow ✅
+hreflang:     14 个 alternate (en/zh/ru/it/fr/de/es/pt/ja/ko/ar/th/vi/zh-TW/nl + x-default)
+              全部指向 https://mecchachameleon.art/community
 ```
 
 ---
@@ -102,119 +84,102 @@ $ node .next/standalone/server.js  # ✅ Ready
 ### 3.1 提交 + 推送
 
 ```bash
-cd ~/worktrees/mecchachameleon-art/mcc-i18n-og-trailing-slash-006
+cd ~/worktrees/mecchachameleon-art/mcc-i18n-community-indexable-008
 
-git add src/config/locale/messages/{vi,th,zh-TW,nl}/common.json WORK_CONTEXT.md
-git status  # 确认 5 个文件（4 个 common.json + WORK_CONTEXT.md）
+git add src/app/[locale]/(landing)/community/page.tsx \
+        src/app/[locale]/(landing)/community/gallery/page.tsx \
+        src/app/[locale]/(landing)/community/gallery/[id]/page.tsx \
+        WORK_CONTEXT.md
+git status  # 确认 4 个文件
 
-git commit -m "feat(i18n): per-locale OG/Twitter metadata for vi/th/zh-TW/nl
+git commit -m "feat(seo): make /community indexable by Google
 
-getMetadata() (src/shared/lib/seo.ts) reads the page title/description
-via getTranslations('common.metadata', locale). For locales without a
-common.json, it silently falls back to en/common.json — so /vi's
-OG card (og:title, twitter:title) was English even though the
-page body was Vietnamese. Same for /th /zh-TW /nl.
+The three community page.tsx files (community, gallery, gallery/[id])
+hardcoded robots: { index: false, follow: false }. The design intent
+was to keep the demo community section out of Google, but the user
+wants organic traffic now that the section is real.
 
-This change adds common.json (metadata section only) for the four
-locales the operator wants to ship first, based on GSC traffic data:
-- vi: 81 sessions (3.5%), rank #4 — Meccha Chameleon has a real
-  Vietnamese audience on Steam/itch.io
-- th: 50 sessions, rank #11 — Thai browser-game market
-- zh-TW: 25 sessions — Taiwan Mandarin (separate from mainland zh)
-- nl: 22 sessions — Netherlands/Belgium
-
-After this commit, sharing /vi to Facebook/Twitter shows the
-Vietnamese title and description, not the English fallback.
-
-Out of scope (intentionally untouched):
-- ja/ko/es/de/pt/fr/it/ar (10 other locales still fallback to en
-  for OG; they need common.json added in a separate commit, ordered
-  by GSC traffic). User has stated all 14 languages will be done.
-- landing.json translation quality (memory 2026-06-27 i18n SEO
-  policy: SERP-validated native wording per locale).
-- trailing slash 308 (/vi/ -> /vi): attempted trailingSlash: false
-  in next.config.mjs but Next.js 16 still emits the 308 at the
-  router layer. Reverted; 308 is the canonical self-canonicalization
-  that Google treats as one URL, so this is correct SEO behavior.
+This commit:
+- Flips robots to { index: true, follow: true } on all three pages.
+  The 404 case in gallery/[id] stays noindex (don't index errors).
+- Removes locale from generateMetadata and hardcodes the canonical
+  URL to https://mecchachameleon.art/community (no locale prefix).
+  /<locale>/community is already 301'd to /community by the proxy
+  (per commit 4bb1f19 + the keySeoPages isKeySeoPath mechanism),
+  so this is the single URL Google should index. Without this,
+  /zh/community and /community would each have a distinct canonical
+  pointing at the same English content — duplicate-content risk.
+- Adds alternates.languages enumerating all 14 supported locales
+  (en, zh, ru, it, fr, de, es, pt, ja, ko, ar, th, vi, zh-TW, nl) plus
+  x-default, all pointing at the same /community URL. Google uses
+  hreflang even when all alternates 301 to the same canonical, which
+  is the standard pattern for \"this page is available in N locales
+  but not yet localized\".
+- Gallery/[id] page keeps noindex for the challenge-not-found branch
+  so 404 challenges never make it into Google.
 
 Verified locally against pnpm build + standalone server:
-- /vi /th /zh-TW /nl title, og:title, og:description, og:locale,
-  twitter:title, twitter:description all render in the native
-  language.
-- /en /zh /ru unchanged."
+- /community head meta now emits robots: index, follow and 14 hreflang
+  alternates all pointing at /community.
+- /community/gallery and /community/gallery/<id> same shape.
+- /<locale>/community still 307/200 (locale strip or single-URL render);
+  canonical under those URLs all points at /community to avoid
+  duplicate-content."
 
-git push -u origin wt/i18n-og-trailing-slash-006
+git push -u origin wt/i18n-community-indexable-008
 ```
 
-### 3.2 等用户 review 后 ff-merge
+### 3.2 等用户 review 后 ff-merge main
 
 ```bash
 cd /Users/zhanglongchao/programPJ/mecchachameleon-art
 git checkout main
 git pull origin main
-git merge --ff-only origin/wt/i18n-og-trailing-slash-006
+git merge --ff-only origin/wt/i18n-community-indexable-008
 git push origin main
 
-git worktree remove ~/worktrees/mecchachameleon-art/mcc-i18n-og-trailing-slash-006
-git push origin --delete wt/i18n-og-trailing-slash-006
-git branch -d wt/i18n-og-trailing-slash-006
+git worktree remove ~/worktrees/mecchachameleon-art/mcc-i18n-community-indexable-008
+git push origin --delete wt/i18n-community-indexable-008
+git branch -d wt/i18n-community-indexable-008
 ```
 
 ### 3.3 Dokploy 那边的预期
 
 - build log `✓ Compiled successfully`
-- 线上 https://mecchachameleon.art/vi 分享到 Twitter 显示越语卡片
-- /th /zh-TW /nl 同理
-- 其他 locale 不变
+- 线上 https://mecchachameleon.art/community → robots: index, follow + 14 hreflang
+- Google Search Console 「已抓取未索引」数量会因为 robots 翻转而增加（正确信号）
+- 不破坏任何已有路由
 
 ---
 
-## 4. SERP 调研结果（subagent 报告）
+## 4. 父仓 dirty 状态（merge 时必须处理）
 
-之前 delegate 了一个 subagent 去查越南语 SERP 关键词。报告路径：
-`~/cola/outputs/mechachameleon-vi-serp-2026-06-27.md`
+**重要**：merge 这个 commit 之前，父仓 main 有 4 个 dirty 改动（被 `git stash` 保护了）：
 
-**该报告还没回**（subagent 还在跑）。**本 commit 用的越语 metadata 是基础翻译**（不依赖 SERP 结果）—— SERP 报告回来后**再做一次 quality pass**，按真实搜索词优化 title/description/keywords。
+| 文件 | 改动来源 | 处理 |
+|---|---|---|
+| `Dockerfile` | 之前 `fa479ba` libsql 修复残留（git reset 没清干净）| **stash@{0} 留着**，deploy 出问题要恢复 |
+| `src/app/robots.ts` | 加 `OAI-SearchBot` allow（OpenAI Search Bot）| 待用户决定是否单独 ship |
+| `public/robots.txt` | 加 `OAI-SearchBot` allow（与 robots.ts 配套）| 同上 |
+| `public/sitemap.xml` | build 产物（每次 build 都变）| 无用，可丢 |
 
----
-
-## 5. 接下来 10 个 locale
-
-按用户「14 种语言都要做」+ GSC 流量顺序，建议下个工作流：
-
-| 优先级 | Locale | GSC rank | sessions | 现有 common.json | 状态 |
-|---|---|---|---|---|---|
-| ✅ done | vi | 4 | 81 | ✅ vi | 已 ship |
-| ✅ done | th | 11 | 50 | ✅ th | 已 ship |
-| ✅ done | zh-TW | 21 | 25 | ✅ zh-TW | 已 ship |
-| ✅ done | nl | 23 | 22 | ✅ nl | 已 ship |
-| Next | ja | 26 | 19 | ❌ | 待做 |
-| Next | ko | 27 | 19 | ❌ | 待做 |
-| Next | ar | 5 | 78 | ❌ | 待做（高流量 + RTL 复杂） |
-| Next | es | 9 | 56 | ❌ | 待做 |
-| Next | de | 8 | 63 | ❌ | 待做 |
-| Next | pt | 3 | 100 | ❌ | 待做（高流量） |
-| Next | fr | 12 | 48 | ❌ | 待做 |
-| Next | it | 24 | 21 | ❌ | 待做 |
-
-**建议**：按 GSC 流量排序，每个 worktree 一个 commit 单独 ship，便于 review。
-**禁止**：一次性做所有 14 个，违反 user 单 commit 单职责纪律。
+**接手 agent 在 ff-merge 之前**：父仓应保持 `nothing to commit, working tree clean`（已经 stash 过）。merge 完成后再 `git stash pop`，看 dirty 内容**单独 commit**（OAI-SearchBot）或**stash drop**（Dockerfile 那条 stash 内容是已知 libsql 修复）。
 
 ---
 
-## 6. 关键路径速查
+## 5. 关键路径速查
 
 | 路径 | 作用 |
 |---|---|
-| `/Users/zhanglongchao/programPJ/mecchachameleon-art` | 父仓 (main, 当前 `73893ca`) |
-| `~/worktrees/mecchachameleon-art/mcc-i18n-og-trailing-slash-006` | **本 worktree** |
-| `~/worktrees/mecchachameleon-art/mcc-art-001` | 现存（feat/all-official-maps-v2，**别碰**） |
-| `~/worktrees/mecchachameleon-art/mcc-backlinks-001` | 现存（外链项目，**别碰**） |
-| `~/cola/outputs/mechachameleon-vi-serp-2026-06-27.md` | SERP 调研报告（SERP subagent 输出，**等返回**） |
+| `/Users/zhanglongchao/programPJ/mecchachameleon-art` | 父仓 (main, 当前 `2bcc587`)，**已经 stash dirty** |
+| `~/worktrees/mecchachameleon-art/mcc-i18n-community-indexable-008` | **本 worktree**（4 文件改动待 commit） |
+| `~/worktrees/mecchachameleon-art/mcc-i18n-og-8locales-007` | 8 locale common.json worktree（**没合并**，用户 review 中） |
+| `~/worktrees/mecchachameleon-art/mcc-art-001` | 现存（**别碰**）|
+| `~/worktrees/mecchachameleon-art/mcc-backlinks-001` | 现存（**别碰**）|
 
-## 7. 不要重蹈
+## 6. 不要重蹈
 
-- **不要顺手把 ja/ko/ar/es/de/pt/fr/it common.json 也写了**——单 commit 单职责，下一个 worktree 做
-- **不要改 next.config.mjs 加 trailingSlash**——已验证无效，会回退
-- **不要 commit sitemap.xml**——build 产物
-- **不要改 src/shared/lib/seo.ts**——已经支持多语言
+- **不要碰** `proxy.ts` —— 已经处理 `/<locale>/community` → 301 `/community`
+- **不要碰** `getCanonicalUrl()` —— 其他 page 还在用，本 commit 不该改公用工具
+- **不要碰** `sitemap.xml` —— build 产物
+- **不要碰** 父仓 dirty（已经 stash 保护）—— merge 完成后再单独处理

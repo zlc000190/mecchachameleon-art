@@ -8,7 +8,8 @@ import {
   challengesWithDemo,
   type CommunityChallenge,
 } from '@/shared/blocks/meccha/community-challenges';
-import { getCanonicalUrl } from '@/shared/lib/seo';
+import { envConfigs } from '@/config';
+import { locales as allLocales } from '@/config/locale';
 
 export const revalidate = 0;
 
@@ -17,16 +18,23 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
-  const { locale } = await params;
   const title = '30-Minute Hiding Challenges Gallery | Meccha Chameleon';
   const description =
     'Browse every Meccha Chameleon 30-minute hiding challenge screenshot. Like, dislike, or send an emoji prompt to ask the author for the full story.';
-  const canonical = await getCanonicalUrl('/community/gallery', locale);
+  // Single canonical URL: all locale-prefixed /<locale>/community/gallery
+  // requests are 301'd by the proxy to /community/gallery. hreflang
+  // alternates below tell Google about every locale variant even though
+  // they all serve the same English page.
+  const canonical = `${envConfigs.app_url}/community/gallery`;
+  const languages: Record<string, string> = {};
+  for (const loc of allLocales) {
+    languages[loc] = `${envConfigs.app_url}/community/gallery`;
+  }
   return {
     title,
     description,
-    robots: { index: false, follow: false },
-    alternates: { canonical },
+    robots: { index: true, follow: true },
+    alternates: { canonical, languages },
     openGraph: { title, description, type: 'website' },
   };
 }

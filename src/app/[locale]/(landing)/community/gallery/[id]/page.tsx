@@ -10,7 +10,8 @@ import {
   type CommunityChallenge,
 } from '@/shared/blocks/meccha/community-challenges';
 import { readCommunityChallenges } from '@/shared/blocks/meccha/community-store';
-import { getCanonicalUrl } from '@/shared/lib/seo';
+import { envConfigs } from '@/config';
+import { locales as allLocales } from '@/config/locale';
 
 export const revalidate = 0;
 
@@ -31,22 +32,31 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string; id: string }>;
 }): Promise<Metadata> {
-  const { locale, id } = await params;
+  const { id } = await params;
   const challenge = await loadChallenge(id);
   if (!challenge) {
     return {
       title: 'Challenge not found | Meccha Chameleon',
+      // 404 challenges stay noindex (don't want Google to index errors).
       robots: { index: false, follow: false },
     };
   }
   const title = `${challenge.title} — 30-Minute Hiding Challenge`;
   const description = challenge.description.slice(0, 200);
-  const canonical = await getCanonicalUrl(`/community/gallery/${id}`, locale);
+  // Single canonical URL: all locale-prefixed /<locale>/community/gallery/<id>
+  // requests are 301'd by the proxy to /community/gallery/<id>. hreflang
+  // alternates below tell Google about every locale variant even though
+  // they all serve the same English page.
+  const canonical = `${envConfigs.app_url}/community/gallery/${id}`;
+  const languages: Record<string, string> = {};
+  for (const loc of allLocales) {
+    languages[loc] = `${envConfigs.app_url}/community/gallery/${id}`;
+  }
   return {
     title,
     description,
-    robots: { index: false, follow: false },
-    alternates: { canonical },
+    robots: { index: true, follow: true },
+    alternates: { canonical, languages },
     openGraph: {
       title,
       description,
