@@ -4,7 +4,7 @@ import { Fragment, ReactNode } from 'react';
  * Ads configs interface
  */
 export interface AdsConfigs {
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 // Ads provider interface
@@ -60,3 +60,4 @@ export class AdsManager {
 }
 
 export * from './adsense';
+export * from './adsterra';
