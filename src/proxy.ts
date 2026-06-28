@@ -2,16 +2,33 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getSessionCookie } from 'better-auth/cookies';
 import createIntlMiddleware from 'next-intl/middleware';
 
-import { defaultLocale, isKeySeoPath, locales, type Locale } from '@/config/locale';
+import { isKeySeoPath, locales } from '@/config/locale';
 import { routing } from '@/core/i18n/config';
 
 const intlMiddleware = createIntlMiddleware(routing);
 
-const NEW_LOCALES: Locale[] = [
+// Locales whose landing.json has been translated and reviewed. The homepage
+// (/, /<locale>) is promoted to search engines; sub-pages still fall back
+// to the English version of the page (e.g. /th/tools -> /tools) via the
+// isKeySeoPath() check below + next-intl's locale-stripping. This list
+// intentionally includes every locale that has a landing.json translation,
+// regardless of translation maturity. Adding a locale here is the
+// canonical "promote this locale to first-class homepage visibility"
+// switch.
+const LOCALES_WITH_HOMEPAGE = [
+  'es',
+  'de',
+  'pt',
+  'fr',
+  'it',
+  'nl',
+  'ar',
+  'ja',
+  'ko',
   'th',
   'vi',
   'zh-TW',
-];
+] as const;
 
 function stripLocale(pathname: string): { locale: string; rest: string } {
   const seg = pathname.split('/')[1] ?? '';
@@ -34,24 +51,16 @@ export async function proxy(request: NextRequest) {
     ? pathname.slice(locale.length + 1)
     : pathname;
 
-  // STOP half-translated locale rollout on this new site.
-  // The 12 newly added locales are not keyword-researched/native-written yet,
-  // so any request to them is permanently consolidated to the English homepage.
-  if (isValidLocale && (NEW_LOCALES as readonly string[]).includes(locale)) {
-    const fallbackUrl = new URL('/', request.url);
-    return NextResponse.redirect(fallbackUrl, 301);
-  }
-
-  // Spanish and German are being re-opened one page at a time after local
-  // SERP wording research. Only /es, /de, /pt, /fr, /it, /nl and /ar are promoted now; keep localized
-  // tools/maps/etc. consolidated until they receive native rewrites.
-  // Key SEO pages (/, /tools, /new-player, /maps, /community) are exempted:
-  // next-intl middleware handles them by stripping the locale prefix and
-  // serving the English version (e.g. /it/community -> /community), so we
-  // must NOT 301 them to "/" here, or users lose access to those pages.
+  // For every locale that has a translated landing page, only key SEO
+  // pages (/, /tools, /new-player, /maps, /community) are promoted at
+  // their non-root path. Deeper paths (e.g. /it/pricing, /ja/showcases)
+  // are consolidated to the English homepage because the shared/models
+  // translations are not yet complete for any locale other than en/zh.
+  // Key SEO paths themselves are NOT 301'd here; next-intl middleware
+  // strips the locale prefix and serves the English version of the page.
   if (
     isValidLocale &&
-    (locale === 'es' || locale === 'de' || locale === 'pt' || locale === 'fr' || locale === 'it' || locale === 'nl' || locale === 'ar' || locale === 'ja' || locale === 'ko') &&
+    (LOCALES_WITH_HOMEPAGE as readonly string[]).includes(locale) &&
     pathWithoutLocale !== '' &&
     pathWithoutLocale !== '/' &&
     !isKeySeoPath(pathWithoutLocale)

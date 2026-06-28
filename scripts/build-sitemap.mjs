@@ -35,7 +35,20 @@ const allLocales = ['en', 'zh', 'ru', 'es', 'de', 'pt', 'fr', 'it', 'nl', 'ar', 
 // ONLY these locales get their own <url> entry. Each must have a full i18n
 // JSON bundle under src/config/locale/messages/<locale>/.
 const fullyTranslatedLocales = ['en', 'zh', 'ru'];
-const homepageOnlyLocales = ['es', 'de', 'pt', 'fr', 'it', 'nl', 'ar', 'ja', 'ko'];
+const homepageOnlyLocales = [
+  'es',
+  'de',
+  'pt',
+  'fr',
+  'it',
+  'nl',
+  'ar',
+  'ja',
+  'ko',
+  'th',
+  'vi',
+  'zh-TW',
+];
 
 const defaultLocale = 'en';
 const now = new Date().toISOString();
