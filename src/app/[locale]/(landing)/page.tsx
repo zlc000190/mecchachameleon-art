@@ -25,6 +25,7 @@ import {
   getHomeCopy,
   getLocalizedPath,
 } from '@/shared/blocks/meccha/meccha-i18n';
+import { PaidDownloadButton } from '@/shared/blocks/meccha/paid-download-button';
 import { PortugueseSeoSection } from '@/shared/blocks/meccha/portuguese-seo-section';
 import { SpanishSeoSection } from '@/shared/blocks/meccha/spanish-seo-section';
 import { ToolsTeaser } from '@/shared/blocks/meccha/tools-teaser';
@@ -285,13 +286,16 @@ export default async function LandingPage({
               {copy.secondTitle}
             </h2>
             <p className="mt-4 leading-7 text-[#4C3B35]">{copy.secondDesc}</p>
-            <a
-              href={getLocalizedPath(locale, '/tools')}
+            <PaidDownloadButton
+              locale={locale}
+              href={`${getLocalizedPath(locale, '/tools')}#paid-download-intent`}
+              price="$7"
+              source="home_second_screen"
               className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-md bg-[#ff6f9a] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#e95a88]"
             >
               <BookOpen className="h-4 w-4" />
-              {copy.openTools}
-            </a>
+              Download Tools - $7
+            </PaidDownloadButton>
           </div>
           {showTranslatedDetailCards ? (
             <div className="grid gap-4 sm:grid-cols-3">

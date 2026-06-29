@@ -1,9 +1,21 @@
-import { ArrowRight, ShieldCheck, Wrench } from 'lucide-react';
+import { Download, ShieldCheck, Wrench } from 'lucide-react';
 
-import { getLocalizedPath, getHomeCopy } from './meccha-i18n';
+import { getHomeCopy, getLocalizedPath } from './meccha-i18n';
+import { PaidDownloadButton } from './paid-download-button';
 
 export function ToolsTeaser({ locale }: { locale: string }) {
   const copy = getHomeCopy(locale);
+  const zh = locale === 'zh';
+  const price = '$7';
+  const paidTitle = zh
+    ? `超级变色龙工具箱 ${price} 付费下载测试`
+    : `Meccha Chameleon Tools paid download test - ${price}`;
+  const paidBody = zh
+    ? '不再把用户导向免费镜像或安装包。先用低价一次性下载按钮测试付费意愿；如果点击足够强，再接 Stripe 支付后下载。'
+    : 'No more free mirror or file handoff here. This low one-time download button tests paid intent before Stripe checkout is connected.';
+  const paidButton = zh
+    ? `Download Tools - ${price}`
+    : `Download Tools - ${price}`;
 
   return (
     <section className="border-b border-[#e0b44d]/35 bg-[#fffaf0]">
@@ -15,25 +27,28 @@ export function ToolsTeaser({ locale }: { locale: string }) {
                 <ShieldCheck className="size-6" />
               </div>
               <div>
-                <p className="mb-2 flex items-center gap-2 text-sm font-semibold uppercase tracking-normal text-[#8B6A18]">
+                <p className="mb-2 flex items-center gap-2 text-sm font-semibold tracking-normal text-[#8B6A18] uppercase">
                   <Wrench className="size-4" />
                   {copy.secondEyebrow}
                 </p>
                 <h2 className="text-2xl font-bold tracking-normal text-[#29211D] md:text-3xl">
-                  {copy.secondTitle}
+                  {paidTitle}
                 </h2>
                 <p className="mt-3 max-w-3xl text-sm leading-6 text-[#4C3B35] md:text-base">
-                  {copy.secondDesc}
+                  {paidBody}
                 </p>
               </div>
             </div>
-            <a
-              href={getLocalizedPath(locale, '/tools')}
+            <PaidDownloadButton
+              locale={locale}
+              href={`${getLocalizedPath(locale, '/tools')}#paid-download-intent`}
+              price={price}
+              source="home_tools_teaser"
               className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-md bg-[#e0b44d] px-5 py-3 text-sm font-bold text-[#29211D] transition hover:bg-[#c99d2e]"
             >
-              {copy.openTools}
-              <ArrowRight className="size-4" />
-            </a>
+              <Download className="size-4" />
+              {paidButton}
+            </PaidDownloadButton>
           </div>
         </div>
       </div>
