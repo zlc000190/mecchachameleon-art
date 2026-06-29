@@ -1,185 +1,47 @@
-# WORK_CONTEXT — wt/i18n-community-indexable-008
+# WORK_CONTEXT — wt/fix-tools-en-russian
 
-**Worktree 路径**: `~/worktrees/mecchachameleon-art/mcc-i18n-community-indexable-008`
-**分支**: `wt/i18n-community-indexable-008`（基于 `main@2bcc587`）
-**目标仓库**: `https://github.com/zlc000190/mecchachameleon-art.git`
-**目标**: 让 `/community`、`/community/gallery`、`/community/gallery/<id>` 三页被 Google 收录（去掉 `noindex` + 加 hreflang 14 语种）
+**一句话结论**：把 `/tools` 英文版里被错塞的俄语字符串还原成英文（commit 4983843 回归修复）。
 
----
+## 改了什么
+- 单文件：`src/app/[locale]/(landing)/tools/page.tsx`
+- 范围：仅 `copy.en` block（30 行字典项：eyebrow / repoLabel / releaseLabel / exeLabel / quickSteps / features 中 3 项 / controls 中 2 项）
+- 未触碰：`copy.zh`、`copy.ru`、链接、布局、组件、依赖
 
-## 0. 一句话结论
+## 根因
+commit 4983843「feat: localize lower-home sections across reopened locales and reopen Arabic homepage」(2026-06-27, Hermes) 在给各语种加本地化时，把俄文字典块的几个 key（eyebrow/repoLabel/releaseLabel/exeLabel/quickSteps/features 中 Health-bars/Radar/Colors/controls 开关项）**错位贴到了 copy.en** 上面去了。`copy.ru` 是干净的，所以 ru 页面没事；en 页面中招。
 
-3 个 community page.tsx 文件：
-- `robots: { index: false, follow: false }` → `{ index: true, follow: true }`
-- `canonical` 从 `getCanonicalUrl('/community', locale)` 改成 **永远指向 `/community`**（不带 locale）
-- 加 `alternates.languages` —— 14 语种都指向 `/community`（告诉 Google 多语言版本，alternate URL 会 301 到 canonical）
+## 本地端到端验证（pnpm dev :3002 实拉 HTML）
+| URL | 状态 | 关键文案 | 老 RU 串 |
+|---|---|---|---|
+| `/tools` (en) | 200, 257KB | Game assistant software ✓ / English source repository ✓ / Latest English release ✓ / Download MecchaCamouflage.exe ✓ / Toggle settings menu ✓ / Photo paint / camouflage ✓ / Health bars ✓ / External minimap radar ✓ / Enemy, local player, and skeleton overlay color pickers ✓ / Run MecchaCamouflage.exe and use Insert ✓ | Вспомогательное ✓ absent / Исходный репозиторий ✓ absent / Скачайте ✓ absent / Здоровье и щит ✓ absent / Фотопокраска ✓ absent / Открыть / закрыть ✓ absent |
+| `/zh/tools` (zh) | 200, 263KB | 游戏辅助软件 ✓ / 中文源码仓库 ✓ / 中文最新版发布页 ✓ / 下载 MecchaCamouflage.exe ✓ / 切换设置菜单 ✓ / 伪装采样与应用 ✓ / 本页面整理社区版 ✓ | — |
+| `/ru/tools` (ru) | 200, 257KB | Вспомогательное ПО ✓ / Исходный репозиторий ✓ / Последний релиз ✓ / Скачать MecchaCamouflage.exe ✓ / Открыть / закрыть ✓ / Фотопокраска ✓ / Возможности ✓ / Быстрый старт ✓ | — |
 
-**3 个文件，~60 行变更，0 个新文件**。
+实渲染 banner 对照（EN vs RU）：
+- EN: eyebrow=`Game assistant software` / h1=`Meccha Chameleon Tools for assisted play testing` / steps=Download… | Launch MECCHA CHAMELEON in windowed or borderless mode. | Run MecchaCamouflage.exe and use Insert / F1 to open the settings menu.
+- RU: eyebrow=`Вспомогательное ПО` / h1=`Meccha Chameleon Tools для исследовательского тестирования` / steps=Скачайте… | Запустите MECCHA CHAMELEON в оконном или borderless-режиме. | Запустите MecchaCamouflage.exe и нажмите Insert / F1, чтобы открыть меню настроек.
 
----
-
-## 1. 改了什么 / 为什么
-
-### 1.1 根因（之前 /community 收不到 Google 收录的原因）
-
-实测 main HEAD `2bcc587` 下 `/community` 页面的 `<head>`：
-```html
-<title>Community 30-Minute Hiding Challenges | Meccha Chameleon</title>
-<link rel="canonical" href="https://mecchachameleon.art/community" />
-<meta name="robots" content="noindex, nofollow" />
-```
-
-3 个问题：
-1. **`robots: noindex`** — `community/page.tsx`、`gallery/page.tsx`、`gallery/[id]/page.tsx` 各自硬编码了 `robots: { index: false, follow: false }`（之前的设计意图：community 是 demo 区不想让 Google 索引）
-2. **`/zh/community` 等** 也返回 200 但 canonical 是 `/zh/community`（不同 URL）—— 重复内容风险
-3. **`hreflang` 数量 = 0** —— 缺多语言 alternate 信号
-
-### 1.2 修复
-
-3 个 page.tsx：
-
-**每个 generateMetadata 改成**：
-- 移除 `const { locale } = await params`（**不再用 locale 参数**）
-- `canonical` 硬编码为 `${envConfigs.app_url}/community`（不带 locale）—— 因为 `/<locale>/community` 会 301 到 `/community`，**唯一 canonical**
-- 加 `alternates.languages: { en, zh, ru, ..., nl: '/community' }` —— 14 语种都列，alternate URL 即使 301 也能告诉 Google 多语言关系
-- `robots: { index: true, follow: true }`（**收录！**）
-- gallery/[id] 的 404 case 保留 noindex（不索引错误页）
-
-### 1.3 没改的（保护边界）
-
-- **proxy.ts**：已经处理 `/<locale>/community` → 301 → `/community`（上一轮 `/it/community` 修复）
-- **getCanonicalUrl()**：保留不动（其他 page 还在用）
-- **getMetadata()**：保留不动（已经有 `alternates.languages` 字段支持）
-- **next.config.mjs / Dockerfile / sitemap / lockfile / page.tsx 外的其他文件**：完全不动
-- **landing.json 翻译内容**：本 commit 不涉及（属于 4 语种首页本地化工作）
-
----
-
-## 2. 本地端到端验证（已跑过）
-
-```
-$ pnpm build               # ✅ exit 0
-$ node .next/standalone  # ✅ Ready
-
-# 各 locale /community 行为（不带 -L 看第一步响应）:
-/community       → 200 ✅
-/en/community    → 307 → /community ✅
-/zh/community    → 200 (渲染 /community 内容) ✅
-/ja/community    → 200 ✅
-/vi/community    → 200 ✅
-/nl/community    → 200 ✅
-
-# /community head meta:
-title:        Community 30-Minute Hiding Challenges | Meccha Chameleon
-canonical:    https://mecchachameleon.art/community
-robots:       index, follow ✅
-hreflang:     14 个 alternate (en/zh/ru/it/fr/de/es/pt/ja/ko/ar/th/vi/zh-TW/nl + x-default)
-              全部指向 https://mecchachameleon.art/community
-```
-
----
-
-## 3. 下一步（接手 agent）
-
-### 3.1 提交 + 推送
-
+## 下一步接手命令
 ```bash
-cd ~/worktrees/mecchachameleon-art/mcc-i18n-community-indexable-008
-
-git add src/app/[locale]/(landing)/community/page.tsx \
-        src/app/[locale]/(landing)/community/gallery/page.tsx \
-        src/app/[locale]/(landing)/community/gallery/[id]/page.tsx \
-        WORK_CONTEXT.md
-git status  # 确认 4 个文件
-
-git commit -m "feat(seo): make /community indexable by Google
-
-The three community page.tsx files (community, gallery, gallery/[id])
-hardcoded robots: { index: false, follow: false }. The design intent
-was to keep the demo community section out of Google, but the user
-wants organic traffic now that the section is real.
-
-This commit:
-- Flips robots to { index: true, follow: true } on all three pages.
-  The 404 case in gallery/[id] stays noindex (don't index errors).
-- Removes locale from generateMetadata and hardcodes the canonical
-  URL to https://mecchachameleon.art/community (no locale prefix).
-  /<locale>/community is already 301'd to /community by the proxy
-  (per commit 4bb1f19 + the keySeoPages isKeySeoPath mechanism),
-  so this is the single URL Google should index. Without this,
-  /zh/community and /community would each have a distinct canonical
-  pointing at the same English content — duplicate-content risk.
-- Adds alternates.languages enumerating all 14 supported locales
-  (en, zh, ru, it, fr, de, es, pt, ja, ko, ar, th, vi, zh-TW, nl) plus
-  x-default, all pointing at the same /community URL. Google uses
-  hreflang even when all alternates 301 to the same canonical, which
-  is the standard pattern for \"this page is available in N locales
-  but not yet localized\".
-- Gallery/[id] page keeps noindex for the challenge-not-found branch
-  so 404 challenges never make it into Google.
-
-Verified locally against pnpm build + standalone server:
-- /community head meta now emits robots: index, follow and 14 hreflang
-  alternates all pointing at /community.
-- /community/gallery and /community/gallery/<id> same shape.
-- /<locale>/community still 307/200 (locale strip or single-URL render);
-  canonical under those URLs all points at /community to avoid
-  duplicate-content."
-
-git push -u origin wt/i18n-community-indexable-008
+cd /Users/zhanglongchao/worktrees/mecchachameleon-art/mcc-tools-en-fix
+git status -s                              # 应只看到 tools/page.tsx 改
+git diff src/app/.../tools/page.tsx        # 确认只动 copy.en 段
+git add src/app/[locale]/(landing)/tools/page.tsx
+git commit -m "fix(tools): restore English strings on /tools (regression from 4983843)"
 ```
-
-### 3.2 等用户 review 后 ff-merge main
-
+ff-merge：
 ```bash
 cd /Users/zhanglongchao/programPJ/mecchachameleon-art
-git checkout main
-git pull origin main
-git merge --ff-only origin/wt/i18n-community-indexable-008
-git push origin main
-
-git worktree remove ~/worktrees/mecchachameleon-art/mcc-i18n-community-indexable-008
-git push origin --delete wt/i18n-community-indexable-008
-git branch -d wt/i18n-community-indexable-008
+git merge --ff-only wt/fix-tools-en-russian
+git push origin main                       # Dokploy 监听 main 自动部署
 ```
 
-### 3.3 Dokploy 那边的预期
+## 边界
+- 边界：`/tools` 页 en 文案字典（`copy.en`）
+- 边界：未碰 zh/ru 文案、未碰布局、未碰链接结构
 
-- build log `✓ Compiled successfully`
-- 线上 https://mecchachameleon.art/community → robots: index, follow + 14 hreflang
-- Google Search Console 「已抓取未索引」数量会因为 robots 翻转而增加（正确信号）
-- 不破坏任何已有路由
-
----
-
-## 4. 父仓 dirty 状态（merge 时必须处理）
-
-**重要**：merge 这个 commit 之前，父仓 main 有 4 个 dirty 改动（被 `git stash` 保护了）：
-
-| 文件 | 改动来源 | 处理 |
-|---|---|---|
-| `Dockerfile` | 之前 `fa479ba` libsql 修复残留（git reset 没清干净）| **stash@{0} 留着**，deploy 出问题要恢复 |
-| `src/app/robots.ts` | 加 `OAI-SearchBot` allow（OpenAI Search Bot）| 待用户决定是否单独 ship |
-| `public/robots.txt` | 加 `OAI-SearchBot` allow（与 robots.ts 配套）| 同上 |
-| `public/sitemap.xml` | build 产物（每次 build 都变）| 无用，可丢 |
-
-**接手 agent 在 ff-merge 之前**：父仓应保持 `nothing to commit, working tree clean`（已经 stash 过）。merge 完成后再 `git stash pop`，看 dirty 内容**单独 commit**（OAI-SearchBot）或**stash drop**（Dockerfile 那条 stash 内容是已知 libsql 修复）。
-
----
-
-## 5. 关键路径速查
-
-| 路径 | 作用 |
-|---|---|
-| `/Users/zhanglongchao/programPJ/mecchachameleon-art` | 父仓 (main, 当前 `2bcc587`)，**已经 stash dirty** |
-| `~/worktrees/mecchachameleon-art/mcc-i18n-community-indexable-008` | **本 worktree**（4 文件改动待 commit） |
-| `~/worktrees/mecchachameleon-art/mcc-i18n-og-8locales-007` | 8 locale common.json worktree（**没合并**，用户 review 中） |
-| `~/worktrees/mecchachameleon-art/mcc-art-001` | 现存（**别碰**）|
-| `~/worktrees/mecchachameleon-art/mcc-backlinks-001` | 现存（**别碰**）|
-
-## 6. 不要重蹈
-
-- **不要碰** `proxy.ts` —— 已经处理 `/<locale>/community` → 301 `/community`
-- **不要碰** `getCanonicalUrl()` —— 其他 page 还在用，本 commit 不该改公用工具
-- **不要碰** `sitemap.xml` —— build 产物
-- **不要碰** 父仓 dirty（已经 stash 保护）—— merge 完成后再单独处理
+## 禁区
+- **不要** 在这次 merge 里夹带其他修改（哪怕是顺手看到的小问题）
+- **不要** 用 `git reset --force` 或 `git rebase` 退到我或其他 worktree 没看过的历史
+- **不要** 跳 worktree 直接在 main 上 commit/push
+- en/zh/ru 三条 locale 端到端检查全部 200 + key 文案存在才能 merge，缺一就回来再查
