@@ -37,6 +37,11 @@
           "title": "Strumenti",
           "url": "/tools",
           "icon": "Wrench"
+        },
+        {
+          "title": "30-minutes hiding challenge",
+          "url": "/community",
+          "icon": "Users"
         }
       ]
     },

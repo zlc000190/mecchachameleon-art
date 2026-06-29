@@ -37,6 +37,11 @@
           "title": "Herramientas",
           "url": "/tools",
           "icon": "Wrench"
+        },
+        {
+          "title": "30-minutes hiding challenge",
+          "url": "/community",
+          "icon": "Users"
         }
       ]
     },
@@ -78,14 +83,14 @@
               "target": "_self"
             },
             {
-              "title": "Guía para nuevos jugadores",
+              "title": "Gu\u00eda para nuevos jugadores",
               "url": "/new-player",
               "target": "_self"
             }
           ]
         },
         {
-          "title": "Guía",
+          "title": "Gu\u00eda",
           "children": [
             {
               "title": "Nuevo jugador",
@@ -126,7 +131,7 @@
           "url": "/privacy-policy"
         },
         {
-          "title": "Términos",
+          "title": "T\u00e9rminos",
           "url": "/terms-of-service"
         }
       ]

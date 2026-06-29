@@ -2,10 +2,10 @@
   "header": {
     "id": "header",
     "brand": {
-      "title": "Meccha Chameleon 線上遊玩",
+      "title": "Meccha Chameleon \u7dda\u4e0a\u904a\u73a9",
       "logo": {
         "src": "/logo.png",
-        "alt": "Meccha Chameleon 線上遊玩",
+        "alt": "Meccha Chameleon \u7dda\u4e0a\u904a\u73a9",
         "width": 100,
         "height": 100
       },
@@ -14,29 +14,34 @@
     "nav": {
       "items": [
         {
-          "title": "遊玩",
+          "title": "\u904a\u73a9",
           "url": "/#play",
           "icon": "Gamepad2"
         },
         {
-          "title": "新手",
+          "title": "\u65b0\u624b",
           "url": "/#new-player",
           "icon": "BadgeInfo"
         },
         {
-          "title": "偽裝實驗室",
+          "title": "\u507d\u88dd\u5be6\u9a57\u5ba4",
           "url": "/#camo-lab",
           "icon": "Brush"
         },
         {
-          "title": "地圖圖鑑",
+          "title": "\u5730\u5716\u5716\u9451",
           "url": "/#atlas",
           "icon": "MapPinned"
         },
         {
-          "title": "工具",
+          "title": "\u5de5\u5177",
           "url": "/tools",
           "icon": "Wrench"
+        },
+        {
+          "title": "30-minutes hiding challenge",
+          "url": "/community",
+          "icon": "Users"
         }
       ]
     },
@@ -51,17 +56,17 @@
     "show_theme": false,
     "show_locale": true,
     "topbanner": {
-      "text": "在瀏覽器玩躲貓貓。不需下載。"
+      "text": "\u5728\u700f\u89bd\u5668\u73a9\u8eb2\u8c93\u8c93\u3002\u4e0d\u9700\u4e0b\u8f09\u3002"
     }
   },
   "footer": {
     "id": "footer",
     "brand": {
-      "title": "Meccha Chameleon 線上遊玩",
-      "description": "給 Meccha Chameleon 玩家使用的瀏覽器遊玩入口與偽裝第二螢幕。",
+      "title": "Meccha Chameleon \u7dda\u4e0a\u904a\u73a9",
+      "description": "\u7d66 Meccha Chameleon \u73a9\u5bb6\u4f7f\u7528\u7684\u700f\u89bd\u5668\u904a\u73a9\u5165\u53e3\u8207\u507d\u88dd\u7b2c\u4e8c\u87a2\u5e55\u3002",
       "logo": {
         "src": "/logo.png",
-        "alt": "Meccha Chameleon 線上遊玩",
+        "alt": "Meccha Chameleon \u7dda\u4e0a\u904a\u73a9",
         "width": 1024,
         "height": 1024
       },
@@ -70,45 +75,45 @@
     "nav": {
       "items": [
         {
-          "title": "遊玩",
+          "title": "\u904a\u73a9",
           "children": [
             {
-              "title": "線上遊玩",
+              "title": "\u7dda\u4e0a\u904a\u73a9",
               "url": "/#play",
               "target": "_self"
             },
             {
-              "title": "新手指南",
+              "title": "\u65b0\u624b\u6307\u5357",
               "url": "/new-player",
               "target": "_self"
             }
           ]
         },
         {
-          "title": "指南",
+          "title": "\u6307\u5357",
           "children": [
             {
-              "title": "新手",
+              "title": "\u65b0\u624b",
               "url": "/#new-player",
               "target": "_self"
             },
             {
-              "title": "偽裝實驗室",
+              "title": "\u507d\u88dd\u5be6\u9a57\u5ba4",
               "url": "/#camo-lab",
               "target": "_self"
             },
             {
-              "title": "地圖圖鑑",
+              "title": "\u5730\u5716\u5716\u9451",
               "url": "/#atlas",
               "target": "_self"
             }
           ]
         },
         {
-          "title": "工具",
+          "title": "\u5de5\u5177",
           "children": [
             {
-              "title": "輔助工具",
+              "title": "\u8f14\u52a9\u5de5\u5177",
               "url": "/tools",
               "target": "_self"
             }
@@ -122,11 +127,11 @@
     "agreement": {
       "items": [
         {
-          "title": "隱私權政策",
+          "title": "\u96b1\u79c1\u6b0a\u653f\u7b56",
           "url": "/privacy-policy"
         },
         {
-          "title": "服務條款",
+          "title": "\u670d\u52d9\u689d\u6b3e",
           "url": "/terms-of-service"
         }
       ]

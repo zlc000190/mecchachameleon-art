@@ -37,6 +37,11 @@
           "title": "Tools",
           "url": "/tools",
           "icon": "Wrench"
+        },
+        {
+          "title": "30-minutes hiding challenge",
+          "url": "/community",
+          "icon": "Users"
         }
       ]
     },
@@ -51,14 +56,14 @@
     "show_theme": false,
     "show_locale": true,
     "topbanner": {
-      "text": "Verstecken im Browser spielen. Kein Download nötig."
+      "text": "Verstecken im Browser spielen. Kein Download n\u00f6tig."
     }
   },
   "footer": {
     "id": "footer",
     "brand": {
       "title": "Meccha Chameleon Online Spielen",
-      "description": "Browser-Spielhub und zweiter Bildschirm für Camo-Hilfe für Meccha Chameleon-Spieler.",
+      "description": "Browser-Spielhub und zweiter Bildschirm f\u00fcr Camo-Hilfe f\u00fcr Meccha Chameleon-Spieler.",
       "logo": {
         "src": "/logo.png",
         "alt": "Meccha Chameleon Online Spielen",
@@ -78,7 +83,7 @@
               "target": "_self"
             },
             {
-              "title": "Guide für neue Spieler",
+              "title": "Guide f\u00fcr neue Spieler",
               "url": "/new-player",
               "target": "_self"
             }

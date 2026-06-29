@@ -2,10 +2,10 @@
   "header": {
     "id": "header",
     "brand": {
-      "title": "Meccha Chameleon เล่นออนไลน์",
+      "title": "Meccha Chameleon \u0e40\u0e25\u0e48\u0e19\u0e2d\u0e2d\u0e19\u0e44\u0e25\u0e19\u0e4c",
       "logo": {
         "src": "/logo.png",
-        "alt": "Meccha Chameleon เล่นออนไลน์",
+        "alt": "Meccha Chameleon \u0e40\u0e25\u0e48\u0e19\u0e2d\u0e2d\u0e19\u0e44\u0e25\u0e19\u0e4c",
         "width": 100,
         "height": 100
       },
@@ -14,12 +14,12 @@
     "nav": {
       "items": [
         {
-          "title": "เล่น",
+          "title": "\u0e40\u0e25\u0e48\u0e19",
           "url": "/#play",
           "icon": "Gamepad2"
         },
         {
-          "title": "ผู้เล่นใหม่",
+          "title": "\u0e1c\u0e39\u0e49\u0e40\u0e25\u0e48\u0e19\u0e43\u0e2b\u0e21\u0e48",
           "url": "/#new-player",
           "icon": "BadgeInfo"
         },
@@ -29,14 +29,19 @@
           "icon": "Brush"
         },
         {
-          "title": "แผนที่",
+          "title": "\u0e41\u0e1c\u0e19\u0e17\u0e35\u0e48",
           "url": "/#atlas",
           "icon": "MapPinned"
         },
         {
-          "title": "เครื่องมือ",
+          "title": "\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e21\u0e37\u0e2d",
           "url": "/tools",
           "icon": "Wrench"
+        },
+        {
+          "title": "30-minutes hiding challenge",
+          "url": "/community",
+          "icon": "Users"
         }
       ]
     },
@@ -51,17 +56,17 @@
     "show_theme": false,
     "show_locale": true,
     "topbanner": {
-      "text": "เล่นซ่อนหาในเบราว์เซอร์ ไม่ต้องดาวน์โหลด"
+      "text": "\u0e40\u0e25\u0e48\u0e19\u0e0b\u0e48\u0e2d\u0e19\u0e2b\u0e32\u0e43\u0e19\u0e40\u0e1a\u0e23\u0e32\u0e27\u0e4c\u0e40\u0e0b\u0e2d\u0e23\u0e4c \u0e44\u0e21\u0e48\u0e15\u0e49\u0e2d\u0e07\u0e14\u0e32\u0e27\u0e19\u0e4c\u0e42\u0e2b\u0e25\u0e14"
     }
   },
   "footer": {
     "id": "footer",
     "brand": {
-      "title": "Meccha Chameleon เล่นออนไลน์",
-      "description": "ศูนย์เล่นบนเบราว์เซอร์และหน้าจอที่สองสำหรับคำแนะนำการพรางตัวของ Meccha Chameleon",
+      "title": "Meccha Chameleon \u0e40\u0e25\u0e48\u0e19\u0e2d\u0e2d\u0e19\u0e44\u0e25\u0e19\u0e4c",
+      "description": "\u0e28\u0e39\u0e19\u0e22\u0e4c\u0e40\u0e25\u0e48\u0e19\u0e1a\u0e19\u0e40\u0e1a\u0e23\u0e32\u0e27\u0e4c\u0e40\u0e0b\u0e2d\u0e23\u0e4c\u0e41\u0e25\u0e30\u0e2b\u0e19\u0e49\u0e32\u0e08\u0e2d\u0e17\u0e35\u0e48\u0e2a\u0e2d\u0e07\u0e2a\u0e33\u0e2b\u0e23\u0e31\u0e1a\u0e04\u0e33\u0e41\u0e19\u0e30\u0e19\u0e33\u0e01\u0e32\u0e23\u0e1e\u0e23\u0e32\u0e07\u0e15\u0e31\u0e27\u0e02\u0e2d\u0e07 Meccha Chameleon",
       "logo": {
         "src": "/logo.png",
-        "alt": "Meccha Chameleon เล่นออนไลน์",
+        "alt": "Meccha Chameleon \u0e40\u0e25\u0e48\u0e19\u0e2d\u0e2d\u0e19\u0e44\u0e25\u0e19\u0e4c",
         "width": 1024,
         "height": 1024
       },
@@ -70,25 +75,25 @@
     "nav": {
       "items": [
         {
-          "title": "เล่น",
+          "title": "\u0e40\u0e25\u0e48\u0e19",
           "children": [
             {
-              "title": "เล่นออนไลน์",
+              "title": "\u0e40\u0e25\u0e48\u0e19\u0e2d\u0e2d\u0e19\u0e44\u0e25\u0e19\u0e4c",
               "url": "/#play",
               "target": "_self"
             },
             {
-              "title": "คู่มือผู้เล่นใหม่",
+              "title": "\u0e04\u0e39\u0e48\u0e21\u0e37\u0e2d\u0e1c\u0e39\u0e49\u0e40\u0e25\u0e48\u0e19\u0e43\u0e2b\u0e21\u0e48",
               "url": "/new-player",
               "target": "_self"
             }
           ]
         },
         {
-          "title": "คู่มือ",
+          "title": "\u0e04\u0e39\u0e48\u0e21\u0e37\u0e2d",
           "children": [
             {
-              "title": "ผู้เล่นใหม่",
+              "title": "\u0e1c\u0e39\u0e49\u0e40\u0e25\u0e48\u0e19\u0e43\u0e2b\u0e21\u0e48",
               "url": "/#new-player",
               "target": "_self"
             },
@@ -98,17 +103,17 @@
               "target": "_self"
             },
             {
-              "title": "แผนที่",
+              "title": "\u0e41\u0e1c\u0e19\u0e17\u0e35\u0e48",
               "url": "/#atlas",
               "target": "_self"
             }
           ]
         },
         {
-          "title": "เครื่องมือ",
+          "title": "\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e21\u0e37\u0e2d",
           "children": [
             {
-              "title": "เครื่องมือช่วย",
+              "title": "\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e21\u0e37\u0e2d\u0e0a\u0e48\u0e27\u0e22",
               "url": "/tools",
               "target": "_self"
             }
@@ -122,11 +127,11 @@
     "agreement": {
       "items": [
         {
-          "title": "ความเป็นส่วนตัว",
+          "title": "\u0e04\u0e27\u0e32\u0e21\u0e40\u0e1b\u0e47\u0e19\u0e2a\u0e48\u0e27\u0e19\u0e15\u0e31\u0e27",
           "url": "/privacy-policy"
         },
         {
-          "title": "ข้อกำหนด",
+          "title": "\u0e02\u0e49\u0e2d\u0e01\u0e33\u0e2b\u0e19\u0e14",
           "url": "/terms-of-service"
         }
       ]

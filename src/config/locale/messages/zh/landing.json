@@ -34,9 +34,14 @@
           "icon": "MapPinned"
         },
         {
-          "title": "工具",
+          "title": "\u5de5\u5177",
           "url": "/tools",
           "icon": "Wrench"
+        },
+        {
+          "title": "30-minutes hiding challenge",
+          "url": "/community",
+          "icon": "Users"
         }
       ]
     },
@@ -51,14 +56,14 @@
     "show_theme": false,
     "show_locale": true,
     "topbanner": {
-      "text": "浏览器直接玩 hide-and-seek，无需下载。"
+      "text": "\u6d4f\u89c8\u5668\u76f4\u63a5\u73a9 hide-and-seek\uff0c\u65e0\u9700\u4e0b\u8f7d\u3002"
     }
   },
   "footer": {
     "id": "footer",
     "brand": {
       "title": "Meccha Chameleon Play Online",
-      "description": "面向 Meccha Chameleon 玩家的在线试玩入口和手机二屏伪装辅助工具。",
+      "description": "\u9762\u5411 Meccha Chameleon \u73a9\u5bb6\u7684\u5728\u7ebf\u8bd5\u73a9\u5165\u53e3\u548c\u624b\u673a\u4e8c\u5c4f\u4f2a\u88c5\u8f85\u52a9\u5de5\u5177\u3002",
       "logo": {
         "src": "/logo.png",
         "alt": "Meccha Chameleon Play Online",
@@ -105,10 +110,10 @@
           ]
         },
         {
-          "title": "工具",
+          "title": "\u5de5\u5177",
           "children": [
             {
-              "title": "辅助工具",
+              "title": "\u8f85\u52a9\u5de5\u5177",
               "url": "/tools",
               "target": "_self"
             }

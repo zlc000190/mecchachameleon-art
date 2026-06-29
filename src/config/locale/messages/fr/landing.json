@@ -37,6 +37,11 @@
           "title": "Outils",
           "url": "/tools",
           "icon": "Wrench"
+        },
+        {
+          "title": "30-minutes hiding challenge",
+          "url": "/community",
+          "icon": "Users"
         }
       ]
     },
@@ -51,14 +56,14 @@
     "show_theme": false,
     "show_locale": true,
     "topbanner": {
-      "text": "Jouez à cache-cache dans le navigateur. Aucun téléchargement."
+      "text": "Jouez \u00e0 cache-cache dans le navigateur. Aucun t\u00e9l\u00e9chargement."
     }
   },
   "footer": {
     "id": "footer",
     "brand": {
       "title": "Meccha Chameleon Jouer en Ligne",
-      "description": "Hub de jeu navigateur et second écran de camouflage pour les joueurs de Meccha Chameleon.",
+      "description": "Hub de jeu navigateur et second \u00e9cran de camouflage pour les joueurs de Meccha Chameleon.",
       "logo": {
         "src": "/logo.png",
         "alt": "Meccha Chameleon Jouer en Ligne",
@@ -122,7 +127,7 @@
     "agreement": {
       "items": [
         {
-          "title": "Confidentialité",
+          "title": "Confidentialit\u00e9",
           "url": "/privacy-policy"
         },
         {
