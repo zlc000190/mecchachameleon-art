@@ -2,7 +2,7 @@ FROM node:22-alpine AS base
 
 # Install dependencies only when needed
 FROM base AS deps
-RUN apk add --no-cache libc6-compat && yarn global add pnpm@10
+RUN apk add --no-cache libc6-compat && yarn global add pnpm@11.7.0
 
 WORKDIR /app
 
