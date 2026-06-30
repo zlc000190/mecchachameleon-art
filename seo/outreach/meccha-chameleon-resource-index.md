@@ -6,6 +6,7 @@ Meccha Chameleon Art is an unofficial fan-made browser atlas for Meccha Chameleo
 - Homepage resource hub: https://zlc000190.github.io/AwesomeMecchaChameleonHideSpot/homepage.html
 - Map index: https://mecchachameleon.art/maps
 - GitHub resource list: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot
+- Main repo homepage issue: https://github.com/zlc000190/mecchachameleon-art/issues/2
 - Medium build note: https://medium.com/@zlc000194/a-tiny-browser-atlas-for-hide-and-seek-game-notes-7ba5713b8c44
 - DEV build note: https://dev.to/dive-one-person-comp/building-a-tiny-browser-atlas-for-a-hide-and-seek-game-2h61
 - Hacker News discussion: https://news.ycombinator.com/item?id=48707000
