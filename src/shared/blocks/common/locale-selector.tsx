@@ -62,9 +62,9 @@ export function LocaleSelector({
 
   const buttonClass =
     type === 'footer-select'
-      ? 'min-w-[220px] justify-between border-[#D8CFC6] bg-white text-[#29211D] hover:bg-[#fff7c8]'
+      ? 'min-w-[220px] justify-between whitespace-nowrap border-[#D8CFC6] bg-white text-[#29211D] hover:bg-[#fff7c8]'
       : type === 'flag'
-        ? 'h-9 gap-1.5 rounded-full border border-[#e0b44d]/50 bg-white/85 px-2.5 text-base shadow-sm hover:bg-[#fff7c8]'
+        ? 'h-9 gap-1.5 whitespace-nowrap rounded-full border border-[#e0b44d]/50 bg-white/85 px-2.5 text-base shadow-sm hover:bg-[#fff7c8]'
         : type === 'icon'
           ? 'h-auto w-auto p-0'
           : 'hover:bg-primary/10';
