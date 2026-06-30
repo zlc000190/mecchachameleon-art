@@ -19,5 +19,7 @@ Game-directory references:
 
 - IndieDB profile: https://www.indiedb.com/games/meccha-chameleon-art-lab-unofficial-fan-made
 - IndieDB update: https://www.indiedb.com/games/meccha-chameleon-art-lab-unofficial-fan-made/news/fan-atlas-update-5-map-hiding-spot-reference-is-live
+- IndieDB map index update: https://www.indiedb.com/games/meccha-chameleon-art-lab-unofficial-fan-made/news/meccha-chameleon-map-index-all-hiding-spot-pages-in-one-place
+- IndieDB map links forum: https://www.indiedb.com/games/meccha-chameleon-art-lab-unofficial-fan-made/forum/thread/meccha-chameleon-map-index-and-hiding-spot-pages/
 
 Note: Meccha Chameleon Art is an unofficial fan-made companion project. It is not an official LEMORION release and does not redistribute official game assets, art, audio, or source code.

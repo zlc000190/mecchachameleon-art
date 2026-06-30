@@ -10,6 +10,8 @@ Meccha Chameleon Art is an unofficial fan-made browser atlas for Meccha Chameleo
 - Hacker News discussion: https://news.ycombinator.com/item?id=48707000
 - IndieDB profile: https://www.indiedb.com/games/meccha-chameleon-art-lab-unofficial-fan-made
 - IndieDB update: https://www.indiedb.com/games/meccha-chameleon-art-lab-unofficial-fan-made/news/fan-atlas-update-5-map-hiding-spot-reference-is-live
+- IndieDB map index update: https://www.indiedb.com/games/meccha-chameleon-art-lab-unofficial-fan-made/news/meccha-chameleon-map-index-all-hiding-spot-pages-in-one-place
+- IndieDB map links forum: https://www.indiedb.com/games/meccha-chameleon-art-lab-unofficial-fan-made/forum/thread/meccha-chameleon-map-index-and-hiding-spot-pages/
 - GitHub wiki hub: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/wiki
 - GitHub release: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/releases/tag/resources-index-2026-06-30
 
