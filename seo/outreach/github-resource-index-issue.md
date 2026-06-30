@@ -6,6 +6,7 @@ Main project:
 - Meccha Chameleon homepage resource hub: https://zlc000190.github.io/AwesomeMecchaChameleonHideSpot/homepage.html
 - Meccha Chameleon map index: https://mecchachameleon.art/maps
 - Main repo homepage issue: https://github.com/zlc000190/mecchachameleon-art/issues/2
+- Main repo homepage discussion: https://github.com/zlc000190/mecchachameleon-art/discussions/3
 - GitHub awesome list: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot
 - Public resource index gist: https://gist.github.com/zlc000190/55d19859ab850bb1b1d1cf4ce8a9ea49
 - Homepage resource gist: https://gist.github.com/zlc000190/d2e893aa3d6d86cbdf8bbddea1782485
