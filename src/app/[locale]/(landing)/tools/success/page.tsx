@@ -6,6 +6,9 @@ import { setRequestLocale } from 'next-intl/server';
 import { envConfigs } from '@/config';
 import { getCanonicalUrl } from '@/shared/lib/seo';
 
+const ORIGINAL_DOWNLOAD_URL =
+  'https://pub-df9b5ddb7c4049af9616db9a99a48adf.r2.dev/mecchachameleon.art-ass/MecchaCamouflage.exe';
+
 export async function generateMetadata({
   params,
 }: {
@@ -45,7 +48,7 @@ export default async function ToolsSuccessPage({
 
   const downloadHref = sessionId
     ? `/api/play-kit/download?session_id=${encodeURIComponent(sessionId)}`
-    : '/tools';
+    : ORIGINAL_DOWNLOAD_URL;
 
   return (
     <main className="min-h-screen bg-[#06121b] text-white">
@@ -67,7 +70,7 @@ export default async function ToolsSuccessPage({
               className="inline-flex min-h-12 items-center gap-2 rounded-md bg-[#39ff88] px-5 py-3 text-sm font-bold text-[#06121b] hover:bg-[#72ffad]"
             >
               <Download className="h-4 w-4" />
-              Download Play Kit
+              Download original file
             </a>
             <Link
               href="/tools"
