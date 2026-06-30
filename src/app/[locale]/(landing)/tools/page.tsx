@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 import { setRequestLocale } from 'next-intl/server';
 
-import { PaidDownloadButton } from '@/shared/blocks/meccha/paid-download-button';
+import { PlayKitCheckoutButton } from '@/shared/blocks/meccha/play-kit-checkout-button';
 import { BreadcrumbJsonLd } from '@/shared/components/seo/breadcrumb-json-ld';
 import { getCanonicalUrl } from '@/shared/lib/seo';
 
@@ -253,14 +253,12 @@ export default async function ToolsPage({
             {t.disclaimer}
           </div>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <PaidDownloadButton
-              locale={locale}
-              price={price}
-              source="tools_hero"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-[#29211D] px-6 py-3 font-bold text-white transition hover:bg-[#4C3B35]"
-            >
-              <Download className="h-4 w-4" /> {t.paidButton}
-            </PaidDownloadButton>
+            <div className="w-full sm:w-auto">
+              <PlayKitCheckoutButton
+                label={t.paidButton}
+                priceLabel={price}
+              />
+            </div>
             <span className="max-w-xl text-sm leading-6 text-[#4C3B35]">
               {t.paidNote}
             </span>
