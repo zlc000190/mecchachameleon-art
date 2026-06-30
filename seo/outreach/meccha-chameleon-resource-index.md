@@ -18,6 +18,7 @@ Meccha Chameleon Art is an unofficial fan-made browser atlas for Meccha Chameleo
 - GitHub wiki hub: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/wiki
 - GitHub Pages maps resource page: https://zlc000190.github.io/AwesomeMecchaChameleonHideSpot/maps.html
 - GitHub wiki homepage resource page: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/wiki/Meccha-Chameleon-Homepage
+- GitHub homepage release: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/releases/tag/homepage-resource-2026-06-30
 - GitHub release: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/releases/tag/resources-index-2026-06-30
 
 This is an unofficial fan-made companion project. It is not an official LEMORION release and does not redistribute official game assets, art, audio, or source code.
