@@ -13,6 +13,7 @@ import {
   Target,
   Zap,
 } from 'lucide-react';
+import Image from 'next/image';
 import { setRequestLocale } from 'next-intl/server';
 
 import { PlayKitCheckoutButton } from '@/shared/blocks/meccha/play-kit-checkout-button';
@@ -238,30 +239,42 @@ export default async function ToolsPage({
       />
 
       <section className="border-b border-[#f2cfd8] bg-gradient-to-br from-[#fff7c8] via-[#ffd2e1] to-[#cdefff]">
-        <div className="container py-20 lg:py-28">
-          <p className="mb-4 inline-flex rounded-full border border-[#29211D]/20 bg-white/75 px-3 py-1 text-sm font-semibold">
-            {t.eyebrow}
-          </p>
-          <h1 className="max-w-4xl text-4xl leading-tight font-bold md:text-6xl">
-            {t.h1}
-          </h1>
-          <p className="mt-5 max-w-3xl text-base leading-7 text-[#4C3B35]">
-            {t.intro}
-          </p>
-          <div className="mt-6 rounded-md border border-amber-300 bg-amber-50 p-4 text-sm leading-6 text-amber-950">
-            <AlertTriangle className="mr-2 inline h-4 w-4" />
-            {t.disclaimer}
-          </div>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <div className="w-full sm:w-auto">
-              <PlayKitCheckoutButton
-                label={t.paidButton}
-                priceLabel={price}
-              />
+        <div className="container grid gap-8 py-20 lg:grid-cols-[1.02fr_0.98fr] lg:items-center lg:py-28">
+          <div>
+            <p className="mb-4 inline-flex rounded-full border border-[#29211D]/20 bg-white/75 px-3 py-1 text-sm font-semibold">
+              {t.eyebrow}
+            </p>
+            <h1 className="max-w-4xl text-4xl leading-tight font-bold md:text-6xl">
+              {t.h1}
+            </h1>
+            <p className="mt-5 max-w-3xl text-base leading-7 text-[#4C3B35]">
+              {t.intro}
+            </p>
+            <div className="mt-6 rounded-md border border-amber-300 bg-amber-50 p-4 text-sm leading-6 text-amber-950">
+              <AlertTriangle className="mr-2 inline h-4 w-4" />
+              {t.disclaimer}
             </div>
-            <span className="max-w-xl text-sm leading-6 text-[#4C3B35]">
-              {t.paidNote}
-            </span>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <div className="w-full sm:w-auto">
+                <PlayKitCheckoutButton
+                  label={t.paidButton}
+                  priceLabel={price}
+                />
+              </div>
+              <span className="max-w-xl text-sm leading-6 text-[#4C3B35]">
+                {t.paidNote}
+              </span>
+            </div>
+          </div>
+          <div className="overflow-hidden rounded-2xl border border-white/75 bg-white shadow-[0_24px_80px_rgba(93,63,86,0.18)]">
+            <Image
+              src="/imgs/meccha/play-kit-promo.png"
+              alt="Meccha Chameleon Play Kit promo preview"
+              width={1672}
+              height={941}
+              priority
+              className="h-auto w-full"
+            />
           </div>
         </div>
       </section>

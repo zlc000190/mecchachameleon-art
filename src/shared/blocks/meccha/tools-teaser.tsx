@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Download, ShieldCheck, Wrench } from 'lucide-react';
 
 import { getHomeCopy, getLocalizedPath } from './meccha-i18n';
@@ -21,8 +22,18 @@ export function ToolsTeaser({ locale }: { locale: string }) {
     <section className="border-b border-[#e0b44d]/35 bg-[#fffaf0]">
       <div className="container py-6">
         <div className="rounded-2xl border border-[#e0b44d]/45 bg-white p-5 shadow-[0_16px_50px_rgba(224,180,77,0.18)] md:p-6">
-          <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
-            <div className="flex gap-4">
+          <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <div className="overflow-hidden rounded-xl border border-[#e0b44d]/35 bg-[#fff8e6]">
+              <Image
+                src="/imgs/meccha/play-kit-promo.png"
+                alt="Meccha Chameleon Play Kit promo preview"
+                width={1672}
+                height={941}
+                className="h-auto w-full"
+              />
+            </div>
+            <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+              <div className="flex gap-4">
               <div className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-[#e0b44d] text-[#29211D] shadow-sm">
                 <ShieldCheck className="size-6" />
               </div>
@@ -38,17 +49,18 @@ export function ToolsTeaser({ locale }: { locale: string }) {
                   {paidBody}
                 </p>
               </div>
+              </div>
+              <PaidDownloadButton
+                locale={locale}
+                href={`${getLocalizedPath(locale, '/tools')}#paid-download-intent`}
+                price={price}
+                source="home_tools_teaser"
+                className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-md bg-[#e0b44d] px-5 py-3 text-sm font-bold text-[#29211D] transition hover:bg-[#c99d2e]"
+              >
+                <Download className="size-4" />
+                {paidButton}
+              </PaidDownloadButton>
             </div>
-            <PaidDownloadButton
-              locale={locale}
-              href={`${getLocalizedPath(locale, '/tools')}#paid-download-intent`}
-              price={price}
-              source="home_tools_teaser"
-              className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-md bg-[#e0b44d] px-5 py-3 text-sm font-bold text-[#29211D] transition hover:bg-[#c99d2e]"
-            >
-              <Download className="size-4" />
-              {paidButton}
-            </PaidDownloadButton>
           </div>
         </div>
       </div>
