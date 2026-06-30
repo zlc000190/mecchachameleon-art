@@ -7,6 +7,7 @@ Main project:
 - GitHub awesome list: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot
 - Public resource index gist: https://gist.github.com/zlc000190/55d19859ab850bb1b1d1cf4ce8a9ea49
 - GitHub wiki hub: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/wiki
+- GitHub Pages maps resource page: https://zlc000190.github.io/AwesomeMecchaChameleonHideSpot/maps.html
 - GitHub release: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/releases/tag/resources-index-2026-06-30
 
 Community write-ups:

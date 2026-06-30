@@ -13,6 +13,7 @@ Meccha Chameleon Art is an unofficial fan-made browser atlas for Meccha Chameleo
 - IndieDB map index update: https://www.indiedb.com/games/meccha-chameleon-art-lab-unofficial-fan-made/news/meccha-chameleon-map-index-all-hiding-spot-pages-in-one-place
 - IndieDB map links forum: https://www.indiedb.com/games/meccha-chameleon-art-lab-unofficial-fan-made/forum/thread/meccha-chameleon-map-index-and-hiding-spot-pages/
 - GitHub wiki hub: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/wiki
+- GitHub Pages maps resource page: https://zlc000190.github.io/AwesomeMecchaChameleonHideSpot/maps.html
 - GitHub release: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/releases/tag/resources-index-2026-06-30
 
 This is an unofficial fan-made companion project. It is not an official LEMORION release and does not redistribute official game assets, art, audio, or source code.
