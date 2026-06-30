@@ -68,6 +68,7 @@ date,target_repo,target_type,pr_or_submission_id,status,do_or_no_follow,url_subm
 2026-06-29,web.archive.org,archive_snapshot,20260629013328,archived,nofollow,https://web.archive.org/web/20260629013328/https://zlc000190.github.io/AwesomeMecchaChameleonHideSpot/,"saved GitHub Pages resource index snapshot"
 2026-06-29,github.com/zlc000190/AwesomeMecchaChameleonHideSpot,own_repo,26c9fe5,updated,dofollow,https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot,"added GitHub Pages resource index link to README"
 2026-06-30,github.com/zlc000190/AwesomeMecchaChameleonHideSpot,wiki,Home,published,dofollow,https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/wiki,"created public GitHub wiki Home page as a living resource hub; links to https://mecchachameleon.art/ + GitHub repo + GitHub Pages + Gist + GitHub issue/release + Medium + DEV + HN + IndieDB; no personal contact info"
+2026-06-30,github.com/zlc000190/AwesomeMecchaChameleonHideSpot,own_repo,4d4640e,updated,dofollow,https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot,"added GitHub wiki resource hub link to README"
 2026-06-29,gitlab.com,snippet,TBD,blocked,follow,https://gitlab.com/-/snippets/new,"Cloudflare/security verification blocked access; did not bypass"
 2026-06-29,reddit.com,community_post,TBD,blocked,follow,https://www.reddit.com/r/SideProject/submit/,"not logged in; redirected to login; did not submit"
 2026-06-29,tumblr.com,blog_post,TBD,blocked,follow,https://www.tumblr.com/new/text,"not logged in; did not start Google/Apple login flow"
