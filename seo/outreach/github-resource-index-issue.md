@@ -3,8 +3,11 @@ This issue keeps the public Meccha Chameleon Art resource links in one place for
 Main project:
 
 - Meccha Chameleon Art atlas: https://mecchachameleon.art/
+- Meccha Chameleon map index: https://mecchachameleon.art/maps
 - GitHub awesome list: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot
 - Public resource index gist: https://gist.github.com/zlc000190/55d19859ab850bb1b1d1cf4ce8a9ea49
+- GitHub wiki hub: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/wiki
+- GitHub release: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/releases/tag/resources-index-2026-06-30
 
 Community write-ups:
 
