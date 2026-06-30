@@ -224,6 +224,10 @@ export default async function NewPlayerPage({
   const newPlayerUrl = await getCanonicalUrl('/new-player', locale);
   const backHref = locale === 'en' ? '/#new-player' : `/${locale}/#new-player`;
   const atHowToPlay = locale === 'en' ? '/#how-to-play' : `/${locale}/#how-to-play`;
+  const mapsHref = locale === 'en' ? '/maps' : `/${locale}/maps`;
+  const updatesHref = locale === 'en' ? '/updates' : `/${locale}/updates`;
+  const communityHref = locale === 'en' ? '/community' : `/${locale}/community`;
+  const toolsHref = locale === 'en' ? '/tools' : `/${locale}/tools`;
 
   return (
     <main className="min-h-screen bg-white text-[#29211D]">
@@ -507,34 +511,69 @@ export default async function NewPlayerPage({
 
       {/* Cross-link to multiplayer + CTA */}
       <section className="bg-[#F6F0EA]">
-        <div className="container flex flex-col items-start gap-6 py-14 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-start gap-4">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-[#ff8fb3] text-white">
-              <PartyPopper className="h-5 w-5" />
-            </span>
-            <div>
-              <h3 className="text-lg font-semibold text-[#29211D]">Ready to actually queue up?</h3>
-              <p className="mt-1 max-w-xl text-sm leading-6 text-[#4C3B35]">
-                Now that you know the controls and the round structure, read the multiplayer playbook
-                for how to get a friend group — local, long-distance, or matchmaking — into the
-                same lobby.
-              </p>
+        <div className="container py-14">
+          <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-start gap-4">
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-[#ff8fb3] text-white">
+                <PartyPopper className="h-5 w-5" />
+              </span>
+              <div>
+                <h3 className="text-lg font-semibold text-[#29211D]">Ready to actually queue up?</h3>
+                <p className="mt-1 max-w-xl text-sm leading-6 text-[#4C3B35]">
+                  Now that you know the controls and the round structure, read the multiplayer playbook
+                  for how to get a friend group — local, long-distance, or matchmaking — into the
+                  same lobby.
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <a
+                href={atHowToPlay}
+                className="inline-flex min-h-10 items-center gap-1.5 rounded-md bg-[#ff6f9a] px-4 text-sm font-semibold text-white transition hover:bg-[#e95a88]"
+              >
+                <Sparkles className="h-4 w-4" />
+                Multiplayer playbook
+              </a>
+              <a
+                href={backHref}
+                className="inline-flex min-h-10 items-center gap-1.5 rounded-md border border-[#29211D] bg-white px-4 text-sm font-semibold text-[#29211D] transition hover:border-[#7D6D69] hover:text-[#7D6D69]"
+              >
+                Play online
+              </a>
             </div>
           </div>
-          <div className="flex gap-2">
-            <a
-              href={atHowToPlay}
-              className="inline-flex min-h-10 items-center gap-1.5 rounded-md bg-[#ff6f9a] px-4 text-sm font-semibold text-white transition hover:bg-[#e95a88]"
-            >
-              <Sparkles className="h-4 w-4" />
-              Multiplayer playbook
-            </a>
-            <a
-              href={backHref}
-              className="inline-flex min-h-10 items-center gap-1.5 rounded-md border border-[#29211D] bg-white px-4 text-sm font-semibold text-[#29211D] transition hover:border-[#7D6D69] hover:text-[#7D6D69]"
-            >
-              Play online
-            </a>
+          <div className="mt-8 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+            {[
+              {
+                href: mapsHref,
+                title: 'Map index',
+                body: 'Jump from keywords to every map page and spot breakdown.',
+              },
+              {
+                href: updatesHref,
+                title: 'Updates',
+                body: 'Track patch notes, site changes, and new routes.',
+              },
+              {
+                href: communityHref,
+                title: 'Community',
+                body: 'Browse challenges, submissions, and player showcases.',
+              },
+              {
+                href: toolsHref,
+                title: 'Tools',
+                body: 'Open the utility page for second-screen helpers.',
+              },
+            ].map((item) => (
+              <a
+                key={item.title}
+                href={item.href}
+                className="rounded-md border border-[#D8CFC6] bg-white p-4 transition hover:border-[#7D6D69] hover:bg-[#FFF9F5]"
+              >
+                <h4 className="text-sm font-semibold text-[#29211D]">{item.title}</h4>
+                <p className="mt-2 text-xs leading-5 text-[#4C3B35]">{item.body}</p>
+              </a>
+            ))}
           </div>
         </div>
       </section>

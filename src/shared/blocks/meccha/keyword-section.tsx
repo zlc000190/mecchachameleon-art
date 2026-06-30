@@ -1,4 +1,6 @@
-import { HelpCircle, Sparkles, Tag } from 'lucide-react';
+import { BookOpen, HelpCircle, MapPinned, Sparkles, Tag, Users, Wrench } from 'lucide-react';
+
+import { getLocalizedPath } from './atlas-data';
 
 // Industry-best-practice keyword block. Bumps the core Meccha Chameleon
 // density on the home page to ~0.5% (meccha), ~0.5% (meccha chameleon),
@@ -168,6 +170,39 @@ const searchTermsZh = [
   '超级变色龙多人联机', '超级变色龙自定义房间', '超级变色龙颜色匹配', '超级变色龙涂装工具',
 ];
 
+const relatedPages = [
+  {
+    href: '/new-player',
+    icon: BookOpen,
+    title: { en: 'New player guide', zh: '新手指南' },
+    body: { en: 'Controls, first match, and rookie mistakes.', zh: '控制、首局流程和常见失误。' },
+  },
+  {
+    href: '/maps',
+    icon: MapPinned,
+    title: { en: 'Map index', zh: '地图索引' },
+    body: { en: 'All maps, all spot pages, one index.', zh: '所有地图与点位页的总入口。' },
+  },
+  {
+    href: '/updates',
+    icon: Sparkles,
+    title: { en: 'Updates', zh: '更新记录' },
+    body: { en: 'Patch notes plus the site changelog.', zh: '补丁记录和本站改动。' },
+  },
+  {
+    href: '/community',
+    icon: Users,
+    title: { en: 'Community', zh: '社区' },
+    body: { en: 'Challenge runs, submissions, and gallery.', zh: '挑战、投稿和社区展示。' },
+  },
+  {
+    href: '/tools',
+    icon: Wrench,
+    title: { en: 'Tools', zh: '工具页' },
+    body: { en: 'Utility helpers and second-screen notes.', zh: '辅助工具和第二屏参考。' },
+  },
+];
+
 const faqsZh: Array<{ q: string; a: string }> = [
   { q: '超级变色龙是什么？', a: '超级变色龙（Meccha Chameleon）是一款 PC 非对称躲猫猫派对游戏。隐藏者把角色涂成环境颜色，搜寻者在地图里找出伪装失败的人。本站把在线试玩、50 个隐藏点图鉴和多人玩法说明放在同一页。' },
   { q: 'Meccha Chameleon 应该翻译成什么？', a: '这里统一翻译为「超级变色龙」。页面会保留英文 Meccha Chameleon，方便同时覆盖中文玩家和英文搜索词。' },
@@ -192,13 +227,44 @@ export function KeywordSection({ locale = 'en' }: { locale?: string }) {
             {zh ? '搜索解答' : 'Search answers'}
           </p>
           <h2 className="mt-1 text-2xl font-bold leading-tight text-[#29211D] md:text-3xl">
-            {zh ? '超级变色龙 Meccha Chameleon — 你搜索的是这个游戏吗？' : 'Meccha Chameleon — Are you actually search for this'}
+            {zh ? '超级变色龙 Meccha Chameleon — 你搜索的是这个游戏吗？' : 'Meccha Chameleon — are you actually searching for this?'}
           </h2>
           <p className="mt-3 text-sm leading-6 text-[#4C3B35]">
             {zh
               ? '这里整理超级变色龙在搜索结果里常见的叫法：中文名、英文名、在线玩、地图攻略、隐藏点和新手技巧。你可以在同一页完成试玩、看攻略和查地图。'
               : 'A quick reference for every way the Meccha Chameleon game shows up in search results. If you came here looking for Meccha Chameleon guides, Meccha Chameleon tips, or a Meccha Chameleon play online, the answers below should cover it. This browser hub keeps the play window, guide, and hiding-spot atlas together so you can try the Meccha Chameleon game idea without leaving the page.'}
           </p>
+        </div>
+
+        <div className="mb-10">
+          <div className="mb-4 flex items-center gap-2">
+            <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-[#61a8ff] text-white">
+              <BookOpen className="h-4 w-4" />
+            </span>
+            <h3 className="text-base font-semibold text-[#29211D]">
+              {zh ? '相关内页' : 'Related pages'}
+            </h3>
+          </div>
+          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
+            {relatedPages.map((page) => {
+              const Icon = page.icon;
+              return (
+                <a
+                  key={page.href}
+                  href={getLocalizedPath(locale, page.href)}
+                  className="flex h-full flex-col rounded-md border border-[#D8CFC6] bg-white p-4 transition hover:border-[#7D6D69] hover:bg-[#FFF9F5]"
+                >
+                  <Icon className="h-5 w-5 text-[#7D6D69]" />
+                  <h4 className="mt-3 text-sm font-semibold text-[#29211D]">
+                    {zh ? page.title.zh : page.title.en}
+                  </h4>
+                  <p className="mt-2 text-xs leading-5 text-[#4C3B35]">
+                    {zh ? page.body.zh : page.body.en}
+                  </p>
+                </a>
+              );
+            })}
+          </div>
         </div>
 
         {/* Search terms cloud */}
