@@ -4,6 +4,9 @@ Main project:
 
 - Meccha Chameleon Art atlas: https://mecchachameleon.art/
 - Meccha Chameleon homepage resource hub: https://zlc000190.github.io/AwesomeMecchaChameleonHideSpot/homepage.html
+- Meccha Chameleon how to play: https://zlc000190.github.io/AwesomeMecchaChameleonHideSpot/how-to-play.html
+- Meccha Chameleon tips: https://zlc000190.github.io/AwesomeMecchaChameleonHideSpot/tips.html
+- Meccha Chameleon mods: https://zlc000190.github.io/AwesomeMecchaChameleonHideSpot/mods.html
 - Meccha Chameleon press kit: https://zlc000190.github.io/AwesomeMecchaChameleonHideSpot/presskit.html
 - Meccha Chameleon FAQ: https://zlc000190.github.io/AwesomeMecchaChameleonHideSpot/faq.html
 - Meccha Chameleon map index: https://mecchachameleon.art/maps
@@ -15,6 +18,9 @@ Main project:
 - GitHub homepage discussion: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/discussions/2
 - GitHub wiki hub: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/wiki
 - GitHub wiki homepage resource page: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/wiki/Meccha-Chameleon-Homepage
+- GitHub wiki how to play: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/wiki/Meccha-Chameleon-How-To-Play
+- GitHub wiki tips: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/wiki/Meccha-Chameleon-Tips
+- GitHub wiki mods: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/wiki/Meccha-Chameleon-Mods
 - GitHub wiki press kit: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/wiki/Meccha-Chameleon-Press-Kit
 - GitHub wiki FAQ: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/wiki/Meccha-Chameleon-FAQ
 - GitHub Pages maps resource page: https://zlc000190.github.io/AwesomeMecchaChameleonHideSpot/maps.html
