@@ -12,7 +12,7 @@ Disallow: /sign-up
 Disallow: /verify-email
 
 # Sitemap contains only game-related SEO pages:
-# home, tools, new-player, and map guides in supported locales.
+# home, meccha-chameleon-online, tools, new-player, and map guides.
 Sitemap: https://mecchachameleon.art/sitemap.xml
 
 User-agent: Yandex

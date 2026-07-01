@@ -1,4 +1,4 @@
-import { BookOpen, HelpCircle, MapPinned, Sparkles, Tag, Users, Wrench } from 'lucide-react';
+import { BookOpen, Gamepad2, HelpCircle, MapPinned, Sparkles, Tag, Users, Wrench } from 'lucide-react';
 
 import { getLocalizedPath } from './atlas-data';
 
@@ -172,6 +172,12 @@ const searchTermsZh = [
 
 const relatedPages = [
   {
+    href: '/meccha-chameleon-online',
+    icon: Gamepad2,
+    title: { en: 'Play online', zh: '在线玩' },
+    body: { en: 'Free browser play, no download needed.', zh: '免费浏览器试玩，无需下载。' },
+  },
+  {
     href: '/new-player',
     icon: BookOpen,
     title: { en: 'New player guide', zh: '新手指南' },
@@ -245,7 +251,7 @@ export function KeywordSection({ locale = 'en' }: { locale?: string }) {
               {zh ? '相关内页' : 'Related pages'}
             </h3>
           </div>
-          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
+          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-6">
             {relatedPages.map((page) => {
               const Icon = page.icon;
               return (

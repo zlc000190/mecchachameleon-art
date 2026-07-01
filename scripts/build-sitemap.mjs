@@ -67,21 +67,21 @@ const entries = [];
 // The other 12 fallback locales still get hreflang coverage via alternates.
 const pageSpecs = [
   { path: '/', priority: '1.0', changefreq: 'weekly' },
+  { path: '/meccha-chameleon-online', priority: '0.9', changefreq: 'weekly', locales: ['en'] },
   { path: '/new-player', priority: '0.7', changefreq: 'monthly' },
   { path: '/tools', priority: '0.85', changefreq: 'monthly' },
 ];
 
 for (const spec of pageSpecs) {
-  const localesForPage = spec.path === '/'
+  const localesForPage = spec.locales || (spec.path === '/'
     ? [...fullyTranslatedLocales, ...homepageOnlyLocales]
-    : fullyTranslatedLocales;
+    : fullyTranslatedLocales);
+  const alternateLocales = spec.locales || allLocales.filter((l) => spec.path === '/' || !homepageOnlyLocales.includes(l));
   for (const loc of localesForPage) {
     entries.push({
       loc: locUrl(loc, spec.path),
       alternates: Object.fromEntries(
-        allLocales
-          .filter((l) => spec.path === '/' || !homepageOnlyLocales.includes(l))
-          .map((l) => [l, locUrl(l, spec.path)])
+        alternateLocales.map((l) => [l, locUrl(l, spec.path)])
       ),
       'x-default': locUrl(defaultLocale, spec.path),
       lastmod: now,
