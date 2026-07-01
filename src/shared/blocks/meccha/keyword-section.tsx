@@ -218,10 +218,134 @@ const faqsZh: Array<{ q: string; a: string }> = [
   { q: '这个网站是官网吗？', a: '不是。本站是粉丝制作的社区辅助站，提供在线试玩入口、地图图鉴和攻略整理，不代表 LEMORION 官方。' },
 ];
 
+const localizedSearch: Record<string, {
+  terms: string[];
+  faqs: Array<{ q: string; a: string }>;
+  eyebrow: string;
+  title: string;
+  body: string;
+  relatedTitle: string;
+  termsTitle: string;
+  termsBody: string;
+  faqTitle: string;
+  sr: string;
+}> = {
+  zh: {
+    terms: searchTermsZh,
+    faqs: faqsZh,
+    eyebrow: '搜索解答',
+    title: '超级变色龙 Meccha Chameleon — 你搜索的是这个游戏吗？',
+    body: '这里整理超级变色龙在搜索结果里常见的叫法：中文名、英文名、在线玩、地图攻略、隐藏点和新手技巧。你可以在同一页完成试玩、看攻略和查地图。',
+    relatedTitle: '相关内页',
+    termsTitle: '超级变色龙相关搜索词',
+    termsBody: '玩家搜索超级变色龙在线玩、中文攻略、地图隐藏点、多人联机和更新日志时会用到这些词。',
+    faqTitle: '关于超级变色龙的快速解答',
+    sr: '超级变色龙中文攻略，Meccha Chameleon 在线玩，超级变色龙地图，超级变色龙隐藏点，超级变色龙新手指南。',
+  },
+  'zh-TW': {
+    terms: [
+      'Meccha Chameleon 線上玩', 'Meccha Chameleon 免費玩', 'Meccha Chameleon 繁體中文',
+      '變色龍躲貓貓遊戲', 'Meccha Chameleon 地圖', 'Meccha Chameleon 隱藏點',
+      'Meccha Chameleon 新手指南', 'Meccha Chameleon 朋友房間', 'Meccha Chameleon 偽裝技巧',
+      'Meccha Chameleon browser game', 'Meccha Chameleon no download', 'Meccha Chameleon online free',
+    ],
+    faqs: [
+      { q: '可以免費線上玩 Meccha Chameleon 嗎？', a: '可以。先用頁面上方的瀏覽器遊戲入口試玩，不需要先下載，再用地圖圖鑑查隱藏點和顏色。' },
+      { q: '這裡是官方網站嗎？', a: '不是。這是粉絲整理的線上遊玩和攻略站，方便玩家快速試玩、查地圖和練習偽裝。' },
+      { q: '新手最容易被抓的原因是什麼？', a: '通常不是不會塗色，而是輪廓太明顯、姿勢太突兀，或選了搜尋者第一眼就會檢查的熱門角落。' },
+      { q: '這個頁面適合當第二螢幕嗎？', a: '適合。PC 上玩遊戲時，可以把地圖、隱藏點、Play Kit 和 FAQ 留在手機或另一個分頁。' },
+    ],
+    eyebrow: '搜尋解答',
+    title: 'Meccha Chameleon 線上玩、免費試玩與隱藏點整理',
+    body: '這裡整理繁體中文玩家常用的搜尋意圖：線上玩、免費、不用下載、地圖、隱藏點、偽裝技巧和朋友房間。',
+    relatedTitle: '相關頁面',
+    termsTitle: '繁中玩家常搜關鍵詞',
+    termsBody: '這些詞用來覆蓋「線上玩」「免費」「不用下載」「地圖攻略」「隱藏點」和「新手指南」等搜尋需求。',
+    faqTitle: '快速解答',
+    sr: 'Meccha Chameleon 繁體中文，Meccha Chameleon 線上玩，免費玩，不用下載，隱藏點，地圖攻略。',
+  },
+  th: {
+    terms: [
+      'Meccha Chameleon เล่นออนไลน์', 'Meccha Chameleon ฟรี', 'เกมกิ้งก่าซ่อนหา',
+      'Meccha Chameleon ไม่ต้องดาวน์โหลด', 'Meccha Chameleon วิธีเล่น', 'Meccha Chameleon แผนที่',
+      'จุดซ่อน Meccha Chameleon', 'เทคนิคพรางตัว', 'เล่นกับเพื่อน', 'เกมซ่อนหาออนไลน์',
+      'Meccha Chameleon browser game', 'Meccha Chameleon online free',
+    ],
+    faqs: [
+      { q: 'Meccha Chameleon เล่นฟรีได้ไหม?', a: 'ได้ ใช้เกมบนเบราว์เซอร์ด้านบนเพื่อเริ่มเล่นแบบไม่ต้องดาวน์โหลด แล้วค่อยเปิดแผนที่และจุดซ่อนประกอบตอนเล่นจริง' },
+      { q: 'ควรเริ่มจากโหมดไหน?', a: 'เริ่มจาก Easy และลอง Quick play ก่อน จากนั้นค่อยดูแผนที่ จุดซ่อน และวิธีเลือกสีให้กลืนกับฉาก' },
+      { q: 'จุดซ่อนที่ดีควรดูยังไง?', a: 'มองหาพื้นที่ที่มีลาย สี เงา และรายละเอียดเยอะ เพราะขอบตัวละครจะหายไปใน noise ของฉากได้ง่ายกว่า' },
+      { q: 'เว็บนี้เป็นทางการไหม?', a: 'ไม่ใช่ เป็นเว็บแฟนเมดสำหรับเล่นออนไลน์ อ่านวิธีเล่น และใช้เป็นหน้าจอที่สองสำหรับแผนที่กับเทคนิคพรางตัว' },
+    ],
+    eyebrow: 'คำตอบจากการค้นหา',
+    title: 'Meccha Chameleon เล่นออนไลน์ ฟรี ไม่ต้องดาวน์โหลด',
+    body: 'หน้านี้ทำสำหรับผู้เล่นไทยที่ค้นหา Meccha Chameleon เล่นออนไลน์ เกมซ่อนหา กิ้งก่าพรางตัว แผนที่ จุดซ่อน และวิธีเล่นกับเพื่อน',
+    relatedTitle: 'หน้าที่เกี่ยวข้อง',
+    termsTitle: 'คำค้นภาษาไทย',
+    termsBody: 'รวมคำค้นที่ผู้เล่นไทยใช้เมื่ออยากเล่นฟรี ดูวิธีเล่น หาแผนที่ จุดซ่อน และเทคนิคพรางตัวใน Meccha Chameleon',
+    faqTitle: 'คำถามที่พบบ่อย',
+    sr: 'Meccha Chameleon ภาษาไทย เล่นออนไลน์ ฟรี ไม่ต้องดาวน์โหลด แผนที่ จุดซ่อน วิธีเล่น เกมซ่อนหาออนไลน์',
+  },
+  vi: {
+    terms: [
+      'Meccha Chameleon chơi online', 'Meccha Chameleon miễn phí', 'Meccha Chameleon không cần tải',
+      'game tắc kè trốn tìm', 'Meccha Chameleon hướng dẫn', 'Meccha Chameleon bản đồ',
+      'điểm ẩn Meccha Chameleon', 'mẹo ngụy trang', 'chơi với bạn bè', 'phòng bạn bè',
+      'Meccha Chameleon browser game', 'Meccha Chameleon online free',
+    ],
+    faqs: [
+      { q: 'Meccha Chameleon có chơi miễn phí không?', a: 'Có. Bạn có thể chơi thử trực tiếp trong trình duyệt, không cần tải, rồi dùng atlas để xem điểm ẩn và màu sơn phù hợp.' },
+      { q: 'Người mới nên làm gì trước?', a: 'Chơi một vòng ngắn trước, sau đó xem hướng dẫn về chọn bề mặt, lấy màu, giữ pose và tránh lộ silhouette.' },
+      { q: 'Điểm ẩn nào tốt nhất?', a: 'Các spot nhiều chi tiết như kệ sách, tường hoa văn, gỗ, bóng đổ và đồ trang trí thường che silhouette tốt hơn góc trống.' },
+      { q: 'Trang này có chính thức không?', a: 'Không. Đây là trang fan-made để chơi nhanh, xem hướng dẫn, bản đồ, điểm ẩn và dùng như màn hình phụ.' },
+    ],
+    eyebrow: 'Câu trả lời tìm kiếm',
+    title: 'Meccha Chameleon chơi online miễn phí, không cần tải',
+    body: 'Trang này phục vụ người chơi Việt tìm Meccha Chameleon miễn phí, chơi online, không cần tải, bản đồ, điểm ẩn, mẹo ngụy trang và chơi cùng bạn bè.',
+    relatedTitle: 'Trang liên quan',
+    termsTitle: 'Từ khóa tiếng Việt',
+    termsBody: 'Các biến thể tìm kiếm tự nhiên quanh miễn phí, không cần tải, chơi online, hướng dẫn, bản đồ và điểm ẩn Meccha Chameleon.',
+    faqTitle: 'Trả lời nhanh',
+    sr: 'Meccha Chameleon tiếng Việt, chơi online, miễn phí, không cần tải, bản đồ, điểm ẩn, mẹo ngụy trang.',
+  },
+  nl: {
+    terms: [
+      'Meccha Chameleon online spelen', 'Meccha Chameleon gratis', 'Meccha Chameleon zonder download',
+      'beste schuilplekken', 'Meccha Chameleon kaarten', 'Meccha Chameleon camouflage',
+      'Meccha Chameleon gids', 'Meccha Chameleon met vrienden', 'Meccha Chameleon browser game',
+      'verstoppertje game online', 'Meccha Chameleon tips', 'Meccha Chameleon map guide',
+    ],
+    faqs: [
+      { q: 'Kan ik Meccha Chameleon gratis online spelen?', a: 'Ja. Begin met het browservenster bovenaan de pagina. Je hoeft niets te downloaden om de loop eerst te proberen.' },
+      { q: 'Wat zijn goede schuilplekken?', a: 'Goede schuilplekken hebben visuele ruis: boeken, tegels, hout, posters, schaduwen en drukke patronen waar je silhouet minder opvalt.' },
+      { q: 'Hoe verbeter ik camouflage?', a: 'Kopieer niet alleen de hoofdkleur. Let op licht, schaduw, materiaal, patroon en of je houding de vorm van een speler verraadt.' },
+      { q: 'Is dit officieel?', a: 'Nee. Dit is een onofficiële hulppagina met browser play, kaarten, schuilplekken en spelerstips.' },
+    ],
+    eyebrow: 'Zoekantwoorden',
+    title: 'Meccha Chameleon online spelen, gratis proberen en beter verstoppen',
+    body: 'Deze Nederlandse sectie vangt zoekintenties rond gratis spelen, zonder download, beste schuilplekken, kaarten, camouflage en spelen met vrienden.',
+    relatedTitle: 'Gerelateerde pagina’s',
+    termsTitle: 'Nederlandse zoektermen',
+    termsBody: 'Termen die spelers gebruiken voor online spelen, gratis proberen, kaartgidsen, schuilplekken en camouflage in Meccha Chameleon.',
+    faqTitle: 'Snelle antwoorden',
+    sr: 'Meccha Chameleon Nederlands, online spelen, gratis, zonder download, beste schuilplekken, kaarten, camouflage.',
+  },
+};
+
 export function KeywordSection({ locale = 'en' }: { locale?: string }) {
-  const zh = locale === 'zh';
-  const terms = zh ? searchTermsZh : searchTerms;
-  const activeFaqs = zh ? faqsZh : faqs;
+  const data = localizedSearch[locale] ?? {
+    terms: searchTerms,
+    faqs,
+    eyebrow: 'Search answers',
+    title: 'Meccha Chameleon — are you actually searching for this?',
+    body: 'A quick reference for every way the Meccha Chameleon game shows up in search results. If you came here looking for Meccha Chameleon guides, Meccha Chameleon tips, or a Meccha Chameleon play online, the answers below should cover it. This browser hub keeps the play window, guide, and hiding-spot atlas together so you can try the Meccha Chameleon game idea without leaving the page.',
+    relatedTitle: 'Related pages',
+    termsTitle: 'Search terms for the Meccha Chameleon game',
+    termsBody: 'Every variant players type when looking for the Meccha Chameleon game online, Meccha Chameleon game guides, Meccha Chameleon game multiplayer setup, or Meccha Chameleon game patch notes. Use this list to jump straight to the section that matches what you searched for.',
+    faqTitle: 'Quick answers about the Meccha Chameleon game',
+    sr: 'The Meccha Chameleon game companion site. Meccha Chameleon game online, Meccha Chameleon game multiplayer, Meccha Chameleon game guide, Meccha Chameleon game tips, Meccha Chameleon game new player, Meccha Chameleon game mac, Meccha Chameleon game phone streaming, Meccha Chameleon game mobile, Meccha Chameleon game crossplay, Meccha Chameleon game 2026, Meccha Chameleon game 7 million sales, Meccha Chameleon game osaka map, Meccha Chameleon game camo lab, Meccha Chameleon game hiding spots, Meccha Chameleon game crew roster, Meccha Chameleon game free browser play.',
+  };
+  const isChinese = locale === 'zh' || locale === 'zh-TW';
   return (
     <section
       id="search-answers"
@@ -230,15 +354,13 @@ export function KeywordSection({ locale = 'en' }: { locale?: string }) {
       <div className="container py-14">
         <div className="mb-8 max-w-3xl">
           <p className="text-xs font-semibold uppercase tracking-widest text-[#7D6D69]">
-            {zh ? '搜索解答' : 'Search answers'}
+            {data.eyebrow}
           </p>
           <h2 className="mt-1 text-2xl font-bold leading-tight text-[#29211D] md:text-3xl">
-            {zh ? '超级变色龙 Meccha Chameleon — 你搜索的是这个游戏吗？' : 'Meccha Chameleon — are you actually searching for this?'}
+            {data.title}
           </h2>
           <p className="mt-3 text-sm leading-6 text-[#4C3B35]">
-            {zh
-              ? '这里整理超级变色龙在搜索结果里常见的叫法：中文名、英文名、在线玩、地图攻略、隐藏点和新手技巧。你可以在同一页完成试玩、看攻略和查地图。'
-              : 'A quick reference for every way the Meccha Chameleon game shows up in search results. If you came here looking for Meccha Chameleon guides, Meccha Chameleon tips, or a Meccha Chameleon play online, the answers below should cover it. This browser hub keeps the play window, guide, and hiding-spot atlas together so you can try the Meccha Chameleon game idea without leaving the page.'}
+            {data.body}
           </p>
         </div>
 
@@ -248,7 +370,7 @@ export function KeywordSection({ locale = 'en' }: { locale?: string }) {
               <BookOpen className="h-4 w-4" />
             </span>
             <h3 className="text-base font-semibold text-[#29211D]">
-              {zh ? '相关内页' : 'Related pages'}
+              {data.relatedTitle}
             </h3>
           </div>
           <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-6">
@@ -262,10 +384,10 @@ export function KeywordSection({ locale = 'en' }: { locale?: string }) {
                 >
                   <Icon className="h-5 w-5 text-[#7D6D69]" />
                   <h4 className="mt-3 text-sm font-semibold text-[#29211D]">
-                    {zh ? page.title.zh : page.title.en}
+                    {isChinese ? page.title.zh : page.title.en}
                   </h4>
                   <p className="mt-2 text-xs leading-5 text-[#4C3B35]">
-                    {zh ? page.body.zh : page.body.en}
+                    {isChinese ? page.body.zh : page.body.en}
                   </p>
                 </a>
               );
@@ -280,16 +402,14 @@ export function KeywordSection({ locale = 'en' }: { locale?: string }) {
               <Tag className="h-4 w-4" />
             </span>
             <h3 className="text-base font-semibold text-[#29211D]">
-              {zh ? '超级变色龙相关搜索词' : 'Search terms for the Meccha Chameleon game'}
+              {data.termsTitle}
             </h3>
           </div>
           <p className="mb-4 text-xs leading-5 text-[#4C3B35]">
-            {zh
-              ? '玩家搜索超级变色龙在线玩、中文攻略、地图隐藏点、多人联机和更新日志时会用到这些词。'
-              : 'Every variant players type when looking for the Meccha Chameleon game online, Meccha Chameleon game guides, Meccha Chameleon game multiplayer setup, or Meccha Chameleon game patch notes. Use this list to jump straight to the section that matches what you searched for.'}
+            {data.termsBody}
           </p>
           <ul className="flex flex-wrap gap-2">
-            {terms.map((term) => (
+            {data.terms.map((term) => (
               <li
                 key={term}
                 className="inline-flex items-center rounded-full border border-[#D8CFC6] bg-white px-3 py-1 text-xs font-medium text-[#29211D]"
@@ -307,11 +427,11 @@ export function KeywordSection({ locale = 'en' }: { locale?: string }) {
               <HelpCircle className="h-4 w-4" />
             </span>
             <h3 className="text-base font-semibold text-[#29211D]">
-              {zh ? '关于超级变色龙的快速解答' : 'Quick answers about the Meccha Chameleon game'}
+              {data.faqTitle}
             </h3>
           </div>
           <div className="grid gap-3 md:grid-cols-2">
-            {activeFaqs.map((f) => (
+            {data.faqs.map((f) => (
               <details
                 key={f.q}
                 className="group rounded-md border border-[#D8CFC6] bg-[#F6F0EA] p-5 [&_summary::-webkit-details-marker]:hidden"
@@ -331,7 +451,7 @@ export function KeywordSection({ locale = 'en' }: { locale?: string }) {
 
         {/* Hidden closing — additional Meccha Chameleon context that doesn't hurt to have on-page */}
         <p className="sr-only">
-          {zh ? '超级变色龙中文攻略，Meccha Chameleon 在线玩，超级变色龙地图，超级变色龙隐藏点，超级变色龙新手指南。' : 'The Meccha Chameleon game companion site. Meccha Chameleon game online, Meccha Chameleon game multiplayer, Meccha Chameleon game guide, Meccha Chameleon game tips, Meccha Chameleon game new player, Meccha Chameleon game mac, Meccha Chameleon game phone streaming, Meccha Chameleon game mobile, Meccha Chameleon game crossplay, Meccha Chameleon game 2026, Meccha Chameleon game 7 million sales, Meccha Chameleon game osaka map, Meccha Chameleon game camo lab, Meccha Chameleon game hiding spots, Meccha Chameleon game crew roster, Meccha Chameleon game free browser play.'}
+          {data.sr}
         </p>
       </div>
     </section>

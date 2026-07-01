@@ -437,7 +437,8 @@ function saveCrew(crew: CrewMember[]) {
 
 export function HowToPlaySection({ locale }: { locale: string }) {
   const getHref = (path: string) => (locale === 'en' ? path : `/${locale}${path}`);
-  const t = copy[(stepLocales.includes(locale as SupportedLocale) ? locale : 'en') as SupportedLocale];
+  const copyLocale = locale === 'zh-TW' ? 'zh' : locale;
+  const t = copy[(stepLocales.includes(copyLocale as SupportedLocale) ? copyLocale : 'en') as SupportedLocale];
 
   const [crew, setCrew] = useState<CrewMember[]>(() => loadCrew());
   const [newName, setNewName] = useState('');

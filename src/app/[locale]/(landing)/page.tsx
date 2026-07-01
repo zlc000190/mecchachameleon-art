@@ -34,6 +34,24 @@ import { BreadcrumbJsonLd } from '@/shared/components/seo/breadcrumb-json-ld';
 import { getCanonicalUrl } from '@/shared/lib/seo';
 
 const secondScreenIcons: LucideIcon[] = [Smartphone, Gamepad2, ShieldCheck];
+const coreLocalizedLocales = [
+  'en',
+  'zh',
+  'ru',
+  'es',
+  'de',
+  'pt',
+  'fr',
+  'it',
+  'nl',
+  'ar',
+  'ja',
+  'ko',
+  'th',
+  'vi',
+  'zh-TW',
+];
+const longFormLocales = ['en', 'zh', 'nl', 'th', 'vi', 'zh-TW'];
 
 export const revalidate = 3600;
 
@@ -46,10 +64,11 @@ export default async function LandingPage({
   setRequestLocale(locale);
   const copy = getHomeCopy(locale);
   const homeUrl = await getCanonicalUrl('/', locale);
-  const showLongFormSections = locale === 'en' || locale === 'zh';
+  const showLongFormSections = longFormLocales.includes(locale);
   const showLocalizedHowToPlay = [
     'en',
     'zh',
+    'zh-TW',
     'ru',
     'es',
     'de',
@@ -69,44 +88,9 @@ export default async function LandingPage({
   const showDutchSeoSection = locale === 'nl';
   const showArabicSeoSection = locale === 'ar';
   const showJapaneseSeoSection = locale === 'ja';
-  const showTranslatedDetailCards =
-    locale === 'en' ||
-    locale === 'zh' ||
-    locale === 'ru' ||
-    locale === 'es' ||
-    locale === 'de' ||
-    locale === 'pt' ||
-    locale === 'fr' ||
-    locale === 'it' ||
-    locale === 'nl' ||
-    locale === 'ar' ||
-    locale === 'ja' ||
-    locale === 'ko';
-  const showTranslatedAtlasPreview =
-    locale === 'en' ||
-    locale === 'zh' ||
-    locale === 'es' ||
-    locale === 'de' ||
-    locale === 'pt' ||
-    locale === 'fr' ||
-    locale === 'it' ||
-    locale === 'nl' ||
-    locale === 'ar' ||
-    locale === 'ja' ||
-    locale === 'ko';
-  const showCommunityPreview =
-    locale === 'en' ||
-    locale === 'zh' ||
-    locale === 'ru' ||
-    locale === 'es' ||
-    locale === 'de' ||
-    locale === 'pt' ||
-    locale === 'fr' ||
-    locale === 'it' ||
-    locale === 'nl' ||
-    locale === 'ar' ||
-    locale === 'ja' ||
-    locale === 'ko';
+  const showTranslatedDetailCards = coreLocalizedLocales.includes(locale);
+  const showTranslatedAtlasPreview = coreLocalizedLocales.includes(locale);
+  const showCommunityPreview = coreLocalizedLocales.includes(locale);
 
   return (
     <main className="min-h-screen bg-[#fff7f1] text-[#29211D]">
