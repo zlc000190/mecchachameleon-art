@@ -19,6 +19,7 @@ Main project:
 - GitHub wiki FAQ: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/wiki/Meccha-Chameleon-FAQ
 - GitHub Pages maps resource page: https://zlc000190.github.io/AwesomeMecchaChameleonHideSpot/maps.html
 - GitHub homepage release: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/releases/tag/homepage-resource-2026-06-30
+- GitHub homepage release v2: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/releases/tag/homepage-resource-2026-07-01
 - GitHub release: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/releases/tag/resources-index-2026-06-30
 
 Community write-ups:
