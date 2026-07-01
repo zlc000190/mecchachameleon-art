@@ -19,11 +19,11 @@ const demos: Demo[] = [
     id: 'easy',
     label: 'Easy',
     title: 'Meccha Chameleon Browser Game',
-    source: 'StorytellerGame',
+    source: 'Geometry Online',
     ratio: 'h-[760px] sm:h-[860px] lg:h-[980px] xl:h-[1080px]',
-    src: 'https://storytellergame.io/meccha-chameleon/',
-    note: 'Same easy play source as mecchachameleon.art. Best first click for users who want the fastest start.',
-    openInNewTab: 'https://storytellergame.io/meccha-chameleon/',
+    src: 'https://geometry-online.io/meccha-chameleon',
+    note: 'Easy mode opens the same fast Meccha Chameleon browser game source from Geometry Online.',
+    openInNewTab: 'https://geometry-online.io/meccha-chameleon',
   },
   {
     id: 'hard',
@@ -48,7 +48,7 @@ const demos: Demo[] = [
 ];
 
 const zhNotes: Record<Demo['id'], string> = {
-  easy: 'Easy 使用和 mecchachameleon.art 一样的游戏源，适合用户最快开始。',
+  easy: 'Easy 使用 Geometry Online 的 Meccha Chameleon 浏览器游戏源，适合用户最快开始。',
   hard: 'Hard 使用 CrazyGames 的 Hide N Seek iframe。广告加载卡住时，用新标签打开。',
   social: 'Social 使用偏朋友组队体验的 hide-and-seek 浏览器游戏，适合社交玩法搜索。',
 };
