@@ -20,10 +20,10 @@ const demos: Demo[] = [
     label: 'Easy',
     title: 'Meccha Chameleon Browser Game',
     source: 'Geometry Online',
-    ratio: 'h-[760px] sm:h-[860px] lg:h-[980px] xl:h-[1080px]',
-    src: 'https://geometry-online.io/meccha-chameleon',
-    note: 'Easy mode opens the same fast Meccha Chameleon browser game source from Geometry Online.',
-    openInNewTab: 'https://geometry-online.io/meccha-chameleon',
+    ratio: 'aspect-[16/9] min-h-[520px] max-h-[86vh]',
+    src: 'https://chameleon-game.com/',
+    note: 'Easy mode opens the Meccha Chameleon game screen directly, with Quick play, room creation, and practice visible right away.',
+    openInNewTab: 'https://chameleon-game.com/',
   },
   {
     id: 'hard',
@@ -48,7 +48,7 @@ const demos: Demo[] = [
 ];
 
 const zhNotes: Record<Demo['id'], string> = {
-  easy: 'Easy 使用 Geometry Online 的 Meccha Chameleon 浏览器游戏源，适合用户最快开始。',
+  easy: 'Easy 直接打开 Meccha Chameleon 游戏屏，进入后就能看到 Quick play、创建房间和练习模式。',
   hard: 'Hard 使用 CrazyGames 的 Hide N Seek iframe。广告加载卡住时，用新标签打开。',
   social: 'Social 使用偏朋友组队体验的 hide-and-seek 浏览器游戏，适合社交玩法搜索。',
 };
@@ -129,14 +129,12 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
               title={`${activeDemo.title} browser game`}
               src={activeDemo.src}
               className={
-                activeDemo.id === 'easy'
-                  ? 'absolute inset-x-0 -top-[360px] h-[calc(100%+360px)] w-full sm:-top-[420px] sm:h-[calc(100%+420px)] lg:-top-[520px] lg:h-[calc(100%+520px)]'
-                  : 'absolute inset-0 h-full w-full'
+                'absolute inset-0 h-full w-full'
               }
               loading="eager"
               allow="autoplay; fullscreen; gamepad; pointer-lock; encrypted-media; web-share"
               allowFullScreen
-              scrolling={activeDemo.id === 'easy' ? 'yes' : 'no'}
+              scrolling="no"
               referrerPolicy="origin"
               sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-pointer-lock allow-top-navigation allow-presentation"
             />
