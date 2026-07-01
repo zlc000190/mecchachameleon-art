@@ -4,6 +4,8 @@ Main project:
 
 - Meccha Chameleon Art atlas: https://mecchachameleon.art/
 - Meccha Chameleon homepage resource hub: https://zlc000190.github.io/AwesomeMecchaChameleonHideSpot/homepage.html
+- Meccha Chameleon press kit: https://zlc000190.github.io/AwesomeMecchaChameleonHideSpot/presskit.html
+- Meccha Chameleon FAQ: https://zlc000190.github.io/AwesomeMecchaChameleonHideSpot/faq.html
 - Meccha Chameleon map index: https://mecchachameleon.art/maps
 - Main repo homepage issue: https://github.com/zlc000190/mecchachameleon-art/issues/2
 - Main repo homepage discussion: https://github.com/zlc000190/mecchachameleon-art/discussions/3
@@ -13,6 +15,8 @@ Main project:
 - GitHub homepage discussion: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/discussions/2
 - GitHub wiki hub: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/wiki
 - GitHub wiki homepage resource page: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/wiki/Meccha-Chameleon-Homepage
+- GitHub wiki press kit: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/wiki/Meccha-Chameleon-Press-Kit
+- GitHub wiki FAQ: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/wiki/Meccha-Chameleon-FAQ
 - GitHub Pages maps resource page: https://zlc000190.github.io/AwesomeMecchaChameleonHideSpot/maps.html
 - GitHub homepage release: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/releases/tag/homepage-resource-2026-06-30
 - GitHub release: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/releases/tag/resources-index-2026-06-30

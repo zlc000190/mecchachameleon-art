@@ -4,6 +4,8 @@ Meccha Chameleon Art is an unofficial fan-made browser atlas for Meccha Chameleo
 
 - Main atlas: https://mecchachameleon.art/
 - Homepage resource hub: https://zlc000190.github.io/AwesomeMecchaChameleonHideSpot/homepage.html
+- Press kit: https://zlc000190.github.io/AwesomeMecchaChameleonHideSpot/presskit.html
+- FAQ: https://zlc000190.github.io/AwesomeMecchaChameleonHideSpot/faq.html
 - Map index: https://mecchachameleon.art/maps
 - GitHub resource list: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot
 - Main repo homepage issue: https://github.com/zlc000190/mecchachameleon-art/issues/2
@@ -22,6 +24,8 @@ Meccha Chameleon Art is an unofficial fan-made browser atlas for Meccha Chameleo
 - GitHub wiki hub: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/wiki
 - GitHub Pages maps resource page: https://zlc000190.github.io/AwesomeMecchaChameleonHideSpot/maps.html
 - GitHub wiki homepage resource page: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/wiki/Meccha-Chameleon-Homepage
+- GitHub wiki press kit: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/wiki/Meccha-Chameleon-Press-Kit
+- GitHub wiki FAQ: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/wiki/Meccha-Chameleon-FAQ
 - GitHub homepage release: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/releases/tag/homepage-resource-2026-06-30
 - GitHub release: https://github.com/zlc000190/AwesomeMecchaChameleonHideSpot/releases/tag/resources-index-2026-06-30
 
