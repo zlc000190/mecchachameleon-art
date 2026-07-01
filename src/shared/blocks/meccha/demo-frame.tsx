@@ -57,7 +57,7 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
   const zh = locale === 'zh';
   const [activeId, setActiveId] = useState<Demo['id']>('easy');
   const [showHint, setShowHint] = useState(true);
-  const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(true);
   const activeDemo = demos.find((demo) => demo.id === activeId) ?? demos[0];
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
@@ -103,7 +103,7 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                 aria-selected={activeDemo.id === demo.id}
                 onClick={() => {
                   setActiveId(demo.id);
-                  setLoaded(false);
+                  setLoaded(true);
                   setShowHint(true);
                 }}
                 className={`min-h-9 rounded-md border px-4 text-sm font-semibold transition ${
@@ -133,7 +133,7 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                   ? 'absolute inset-x-0 -top-[360px] h-[calc(100%+360px)] w-full sm:-top-[420px] sm:h-[calc(100%+420px)] lg:-top-[520px] lg:h-[calc(100%+520px)]'
                   : 'absolute inset-0 h-full w-full'
               }
-              loading="lazy"
+              loading="eager"
               allow="autoplay; fullscreen; gamepad; pointer-lock; encrypted-media; web-share"
               allowFullScreen
               scrolling={activeDemo.id === 'easy' ? 'yes' : 'no'}
@@ -149,8 +149,8 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                 <h3 className="text-2xl font-bold text-[#29211D]">{activeDemo.title}</h3>
                 <p className="mt-3 text-sm leading-6 text-[#4C3B35]">
                   {zh
-                    ? '点击后才加载第三方游戏，避免 Google 把外部页面的旧结构化数据算到本站。'
-                    : 'The third-party game loads only after a click, so Google does not read external structured data as part of this page.'}
+                    ? '点击开始游戏；如果加载卡住，可以用下方的新标签打开。'
+                    : 'Click to start playing. If the game gets stuck while loading, use the new-tab option below.'}
                 </p>
                 <button
                   type="button"
@@ -189,7 +189,7 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
         </div>
 
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-white/70 bg-white/80 px-4 py-3 text-xs text-[#4C3B35]">
-          <span>{zh ? '提示：点击后才加载第三方游戏源。' : 'Tip: third-party game sources load only after you click play.'}</span>
+          <span>{zh ? '游戏已经在上方显示；卡住时可新标签打开。' : 'The game is visible above; use a new tab if loading gets stuck.'}</span>
           {loaded ? (
             <a
               href={activeDemo.openInNewTab}
