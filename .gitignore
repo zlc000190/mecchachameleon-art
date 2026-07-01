@@ -69,3 +69,6 @@ src/config/db/migrations*
 .claude/
 .dev.vars
 .dev.vars.save
+
+# local SEO/outreach working notes; do not deploy or publish
+/seo/
