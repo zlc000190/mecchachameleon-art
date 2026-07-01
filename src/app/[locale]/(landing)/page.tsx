@@ -294,7 +294,7 @@ export default async function LandingPage({
               className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-md bg-[#ff6f9a] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#e95a88]"
             >
               <BookOpen className="h-4 w-4" />
-              Download Tools - $7
+              Get Play Kit - $7
             </PaidDownloadButton>
           </div>
           {showTranslatedDetailCards ? (

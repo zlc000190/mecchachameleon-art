@@ -9,14 +9,14 @@ export function ToolsTeaser({ locale }: { locale: string }) {
   const zh = locale === 'zh';
   const price = '$7';
   const paidTitle = zh
-    ? `超级变色龙工具箱 ${price} 付费下载测试`
-    : `Meccha Chameleon Tools paid download test - ${price}`;
+    ? `超级变色龙 Play Kit ${price}，让你更顺手地玩`
+    : `Meccha Chameleon Play Kit - play better for ${price}`;
   const paidBody = zh
-    ? '不再把用户导向免费镜像或安装包。先用低价一次性下载按钮测试付费意愿；如果点击足够强，再接 Stripe 支付后下载。'
-    : 'No more free mirror or file handoff here. This low one-time download button tests paid intent before Stripe checkout is connected.';
+    ? '把开局清单、联机修复、FPS 调整、伪装练习和路线卡放在一个包里，省去来回找资料的时间。'
+    : 'Keep the useful parts in one place: fast starts, lobby fixes, FPS tuning, camo practice, and route cards.';
   const paidButton = zh
-    ? `Download Tools - ${price}`
-    : `Download Tools - ${price}`;
+    ? `获取 Play Kit - ${price}`
+    : `Get Play Kit - ${price}`;
 
   return (
     <section className="border-b border-[#e0b44d]/35 bg-[#fffaf0]">

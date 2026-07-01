@@ -18,18 +18,18 @@ export async function generateMetadata({
   const canonicalUrl = await getCanonicalUrl('/tools/success', locale);
   return {
     title: 'Play Kit payment complete',
-    description: 'Your Stripe payment went through. Download the Meccha Chameleon tools pack now.',
+    description: 'Your Stripe payment went through. Download the Meccha Chameleon Play Kit now.',
     alternates: { canonical: canonicalUrl },
     openGraph: {
       title: 'Play Kit payment complete',
-      description: 'Your Stripe payment went through. Download the Meccha Chameleon tools pack now.',
+      description: 'Your Stripe payment went through. Download the Meccha Chameleon Play Kit now.',
       url: canonicalUrl,
       images: [envConfigs.app_preview_image],
     },
     twitter: {
       card: 'summary_large_image',
       title: 'Play Kit payment complete',
-      description: 'Your Stripe payment went through. Download the Meccha Chameleon tools pack now.',
+      description: 'Your Stripe payment went through. Download the Meccha Chameleon Play Kit now.',
       images: [envConfigs.app_preview_image],
     },
   };
