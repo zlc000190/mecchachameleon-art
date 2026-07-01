@@ -14,7 +14,7 @@ Primary anchor: Meccha Chameleon
    - `meccha chameleon tips`
    - `meccha chameleon mods`
 2. Competitor and link-source domains extracted from ranking pages.
-3. sim.3ue.co was attempted through the logged-in Chrome session, but the existing sim tab timed out during claim/navigation. Continue with sim once Chrome is responsive.
+3. sim.3ue.co was attempted through the logged-in Chrome session. After opening a fresh Chrome window through the Codex Chrome plugin, the plugin successfully opened `mecchamaps.com` in sim. The page showed no useful referral list and only sparse metrics. Switching to `meccha-chameleon.com` caused the Chrome plugin communication to time out again.
 4. IndieDB authorization email was checked against public pages. Current public IndieDB page already shows 5 image/media entries and a fuller description with the homepage link.
 
 ## SERP Competitor Set
@@ -53,7 +53,7 @@ Primary anchor: Meccha Chameleon
 
 | Source | Reason |
 | --- | --- |
-| sim.3ue.co | Chrome tab timed out during claim; retry after Chrome is responsive or export backlink CSV manually. |
+| sim.3ue.co | Plugin opened `mecchamaps.com` but showed no usable referral list; later sim navigation caused Chrome plugin communication timeout. Close/restart stuck sim tabs and retry `meccha-chameleon.com` / `chameleon-game.com`. |
 | Cheat/mod-menu itch.io pages | Bad neighborhood and risk to brand trust; skip. |
 | Spam Android download pages on GameJolt | Low quality and likely misleading; skip. |
 | Random comment farms | Off-topic and high-risk; skip. |
@@ -61,9 +61,9 @@ Primary anchor: Meccha Chameleon
 ## Next Execution Queue
 
 1. Retry sim.3ue.co for:
-   - mecchamaps.com
    - meccha-chameleon.com
    - chameleon-game.com
+   - mecchamaps.com only if a longer date range or export becomes available
 2. Export or copy the top referring pages, then filter to free reproducible sources.
 3. Fix or confirm IndieDB authorization after the next IndieDB status email.
 4. Use working platform sessions for Steam, Reddit, Nexus, Thunderstore, and GameDeveloper only where no CAPTCHA/contact verification blocks the final action.
