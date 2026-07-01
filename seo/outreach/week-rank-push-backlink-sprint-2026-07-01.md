@@ -74,6 +74,36 @@ Use helpful, non-spam comments. Comment angle should be: "For people looking for
 | 48 | Indie Games Developer submit | https://devcentral.indiegamesdeveloper.com/submit-your-game/ | blocked_contact | Requires name/email; pause unless business alias is authorized. |
 | 49 | Indie X submit game | https://indiex.online/submitgame/ | blocked_contact | Requires name/email; pause unless business alias is authorized. |
 | 50 | Newgrounds | https://www.newgrounds.com/ | queued | Needs account; potential game/art/news post. |
+| 51 | GameVertex | https://gamevertex.com/submit-game/ | blocked_contact | Email submission required; needs authorized business alias. |
+| 52 | Gamer Challenger | https://gamerchallenger.pro/submit-game.html | blocked_contact | Form requires full name and email. |
+| 53 | ViralGameZone | https://viralgamezone.com/submit-game | blocked_contact | Form requires name and email. |
+| 54 | Playinmo | https://playinmo.com/submit-game | blocked_contact | Form requires email. |
+| 55 | GameDravo | https://gamedravo.com/submit-game | blocked_contact | Form requires contact email. |
+| 56 | Gamevoi | https://gamevoi.com/submit-game | blocked_contact | Form requires name, mobile number, email. |
+| 57 | Atmeplay | https://www.atmeplay.com/submit-game | blocked_contact | Form requires name, mobile number, email, country. |
+| 58 | Kevin Games | https://kevin.games/add-game | blocked_contact | Form requires email and reciprocal link. |
+| 59 | Funox | https://funox.com/ | blocked_contact | Submission via contact page. |
+| 60 | SayGames | https://saygames.com/SubmitGame?lang=en | queued | Submit page exists; login/admin surface needs browser check. |
+| 61 | Online Games Gallery | https://www.onlinegamesgallery.com/sgame.php | blocked_captcha_contact | Email plus code image required. |
+| 62 | MMORPG50 | https://www.mmorpg50.net/sgame.php | blocked_captcha_contact | Email plus code image required. |
+
+## Small Game Site Comment Targets
+
+| # | Source | URL | Status | Notes |
+| --- | --- | --- | --- | --- |
+| 63 | Geometry Online | https://geometry-online.io/meccha-chameleon | blocked_contact | Comment form exists; requires name, email, terms checkbox. |
+| 64 | 1Games | https://1games.io/meccha-chameleon | checked_no_comment | Game page found; no usable comment form found in scan. |
+| 65 | DLCompare news | https://www.dlcompare.com/gaming-news/meccha-chameleon-is-the-weird-and-viral-hide-and-seek-game | blocked_login | Comment box exists, login required. |
+| 66 | DLCompare sales news | https://www.dlcompare.com/gaming-news/how-meccha-chameleon-sold-7-million-copies | blocked_login | Comment box exists, login required. |
+| 67 | RetroGems beginner guide | https://retrogems.fr/en/meccha-chameleon-beginner-guide-tips-tricks/ | blocked_login | Be-first comment page; Google login or email login required. |
+| 68 | RetroGems review | https://retrogems.fr/en/meccha-chameleon-review-pc/ | blocked_login | Comment page exists, login required. |
+| 69 | FandomWire tips | https://fandomwire.com/meccha-chameleon-tips-tricks-that-all-players-should-know/ | qualified | Be-first comment target; needs browser/account check. |
+| 70 | AllKeyShop article | https://www.allkeyshop.com/blog/en-us/meccha-chameleon-small-hide-and-seek-game-steam-hit-news-k/ | blocked_login | Must be logged in to comment. |
+| 71 | BusinessToday news | https://www.businesstoday.in/technology/news/story/paint-pose-and-disappear-what-is-meccha-chameleon-instagrams-viral-new-hide-and-seek-game-538949-2026-06-25 | qualified | Post-comment surface found; needs browser/account check. |
+| 72 | Nevirax news | https://nevirax.com/en/news/meccha-chameleon-the-4-steam-hit-that-sold-7-million-copies-and-became-2026-s-wildest-multiplayer-breakout | blocked_login | Login required to comment. |
+| 73 | PureXbox article | https://www.purexbox.com/news/2026/06/meccha-chameleon-dev-remains-tight-lipped-on-xbox-version-following-pc-success | blocked_login | Login required to post comment. |
+| 74 | PushSquare guide | https://www.pushsquare.com/guides/can-you-play-meccha-chameleon-on-ps5 | qualified | Console article; needs comment path check. |
+| 75 | KnowYourMeme comments | https://knowyourmeme.com/memes/meccha-chameleon/comments | queued | Meme/community comments page found; login state unknown. |
 
 ## Comment Copy Bank
 
@@ -92,5 +122,7 @@ New-player comment:
 ## Immediate Execution Notes
 
 - Browser plugin timed out on GameJolt, GameFAQs, and Games.GG interaction attempts. Those targets were not abandoned; they were logged and skipped for now per the skip-fast rule.
+- Browser plugin checked Geometry Online and confirmed the comment form exists but requires email. It checked 1Games and found no usable comment form.
+- Browser plugin timed out on ModDB comment-form inspection; skipped per skip-fast rule.
 - Contact-form targets requiring real name/email were not submitted because no exact business alias/email authorization was provided for those destinations.
 - Itch was not expanded further because the user previously said itch should pause after many submissions.
