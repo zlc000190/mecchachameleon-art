@@ -3,6 +3,12 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { envConfigs } from '@/config';
 import { defaultLocale } from '@/config/locale';
 
+type MetadataText = {
+  title: string;
+  description: string;
+  keywords: string;
+};
+
 // get metadata for page component
 export function getMetadata(
   options: {
@@ -38,7 +44,7 @@ export function getMetadata(
     );
 
     // translated metadata
-    let translatedMetadata: any = {};
+    let translatedMetadata: Partial<MetadataText> = {};
     if (options.metadataKey) {
       translatedMetadata = await getTranslatedMetadata(
         options.metadataKey,
@@ -134,8 +140,11 @@ export async function getCanonicalUrl(canonicalUrl: string, locale: string) {
     canonicalUrl = '/';
   }
 
+  const appUrl = envConfigs.app_url.replace(/\/$/, '');
+
   if (canonicalUrl.startsWith('http')) {
-    return canonicalUrl.replace(/\/$/, '') || canonicalUrl;
+    const normalizedUrl = canonicalUrl.replace(/\/+$/, '');
+    return normalizedUrl === appUrl ? `${appUrl}/` : normalizedUrl;
   }
 
   if (!canonicalUrl.startsWith('/')) {
@@ -145,5 +154,10 @@ export async function getCanonicalUrl(canonicalUrl: string, locale: string) {
   const isHome = canonicalUrl === '/';
   const pathPart = isHome ? '' : canonicalUrl.replace(/\/$/, '');
   const localizedPrefix = !locale || locale === defaultLocale ? '' : `/${locale}`;
-  return `${envConfigs.app_url}${localizedPrefix}${pathPart}`;
+
+  if (isHome && !localizedPrefix) {
+    return `${appUrl}/`;
+  }
+
+  return `${appUrl}${localizedPrefix}${pathPart}`;
 }
