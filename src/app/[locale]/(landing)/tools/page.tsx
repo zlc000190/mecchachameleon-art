@@ -18,11 +18,17 @@ import { setRequestLocale } from 'next-intl/server';
 
 import { PlayKitCheckoutButton } from '@/shared/blocks/meccha/play-kit-checkout-button';
 import { BreadcrumbJsonLd } from '@/shared/components/seo/breadcrumb-json-ld';
+import {
+  getPlayKitCompareAtLabel,
+  getPlayKitOfferLabel,
+  getPlayKitOfferNote,
+  getPlayKitPriceLabel,
+} from '@/shared/lib/play-kit';
 import { getCanonicalUrl } from '@/shared/lib/seo';
 
 export const revalidate = 3600;
 
-const price = '$7';
+const price = getPlayKitPriceLabel();
 
 const copy = {
   en: {
@@ -226,6 +232,10 @@ export default async function ToolsPage({
   setRequestLocale(locale);
   const t = localeCopy(locale);
   const zh = locale === 'zh';
+  const salePriceLabel = getPlayKitPriceLabel();
+  const compareAtPriceLabel = getPlayKitCompareAtLabel();
+  const offerLabel = getPlayKitOfferLabel(locale);
+  const offerNote = getPlayKitOfferNote(locale);
   const homeUrl = await getCanonicalUrl('/', locale);
   const toolsUrl = await getCanonicalUrl('/tools', locale);
 
@@ -258,7 +268,7 @@ export default async function ToolsPage({
               <div className="w-full sm:w-auto">
                 <PlayKitCheckoutButton
                   label={t.paidButton}
-                  priceLabel={price}
+                  priceLabel={salePriceLabel}
                 />
               </div>
               <span className="max-w-xl text-sm leading-6 text-[#4C3B35]">
@@ -350,6 +360,18 @@ export default async function ToolsPage({
                 {t.signalTitle}
               </h3>
               <p className="text-sm leading-6 text-white/80">{t.signalBody}</p>
+              <div className="mt-4 flex flex-wrap items-center gap-3 text-sm">
+                <span className="rounded-full bg-[#39ff88]/10 px-3 py-1 font-semibold text-[#39ff88]">
+                  {offerLabel}
+                </span>
+                <span className="text-2xl font-bold text-white">
+                  {salePriceLabel}
+                </span>
+                <span className="text-white/45 line-through">
+                  {compareAtPriceLabel}
+                </span>
+              </div>
+              <p className="mt-2 text-xs text-white/55">{offerNote}</p>
             </div>
           </div>
         </div>

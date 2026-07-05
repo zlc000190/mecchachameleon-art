@@ -1,13 +1,20 @@
 import Image from 'next/image';
 import { Download, ShieldCheck, Wrench } from 'lucide-react';
 
+import {
+  getPlayKitCompareAtLabel,
+  getPlayKitOfferLabel,
+  getPlayKitPriceLabel,
+} from '@/shared/lib/play-kit';
 import { getHomeCopy, getLocalizedPath } from './meccha-i18n';
 import { PaidDownloadButton } from './paid-download-button';
 
 export function ToolsTeaser({ locale }: { locale: string }) {
   const copy = getHomeCopy(locale);
   const zh = locale === 'zh';
-  const price = '$7';
+  const price = getPlayKitPriceLabel();
+  const compareAtPrice = getPlayKitCompareAtLabel();
+  const offerLabel = getPlayKitOfferLabel(locale);
   const paidTitle = zh
     ? `超级变色龙 Play Kit ${price}，让你更顺手地玩`
     : `Meccha Chameleon Play Kit - play better for ${price}`;
@@ -48,6 +55,15 @@ export function ToolsTeaser({ locale }: { locale: string }) {
                 <p className="mt-3 max-w-3xl text-sm leading-6 text-[#4C3B35] md:text-base">
                   {paidBody}
                 </p>
+                <div className="mt-3 flex flex-wrap items-center gap-2 text-sm">
+                  <span className="rounded-full bg-[#fff3c9] px-3 py-1 font-semibold text-[#8B6A18]">
+                    {offerLabel}
+                  </span>
+                  <span className="font-bold text-[#29211D]">{price}</span>
+                  <span className="text-[#8E7B63] line-through">
+                    {compareAtPrice}
+                  </span>
+                </div>
               </div>
               </div>
               <PaidDownloadButton

@@ -31,6 +31,7 @@ import { SpanishSeoSection } from '@/shared/blocks/meccha/spanish-seo-section';
 import { ToolsTeaser } from '@/shared/blocks/meccha/tools-teaser';
 import { UpdatesSection } from '@/shared/blocks/meccha/updates-section';
 import { BreadcrumbJsonLd } from '@/shared/components/seo/breadcrumb-json-ld';
+import { getPlayKitPriceLabel } from '@/shared/lib/play-kit';
 import { getCanonicalUrl } from '@/shared/lib/seo';
 
 const secondScreenIcons: LucideIcon[] = [Smartphone, Gamepad2, ShieldCheck];
@@ -91,6 +92,7 @@ export default async function LandingPage({
   const showTranslatedDetailCards = coreLocalizedLocales.includes(locale);
   const showTranslatedAtlasPreview = coreLocalizedLocales.includes(locale);
   const showCommunityPreview = coreLocalizedLocales.includes(locale);
+  const salePriceLabel = getPlayKitPriceLabel();
 
   return (
     <main className="min-h-screen bg-[#fff7f1] text-[#29211D]">
@@ -273,12 +275,14 @@ export default async function LandingPage({
             <PaidDownloadButton
               locale={locale}
               href={`${getLocalizedPath(locale, '/tools')}#paid-download-intent`}
-              price="$7"
+              price={salePriceLabel}
               source="home_second_screen"
               className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-md bg-[#ff6f9a] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#e95a88]"
             >
               <BookOpen className="h-4 w-4" />
-              Get Play Kit - $7
+              {locale === 'zh'
+                ? `获取 Play Kit - ${salePriceLabel}`
+                : `Get Play Kit - ${salePriceLabel}`}
             </PaidDownloadButton>
           </div>
           {showTranslatedDetailCards ? (
