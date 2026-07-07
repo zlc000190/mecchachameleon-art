@@ -54,7 +54,7 @@ const zhNotes: Record<Demo['id'], string> = {
   social: 'Social 使用偏朋友组队体验的 hide-and-seek 浏览器游戏，适合社交玩法搜索。',
 };
 
-const EASY_LOAD_TIMEOUT_MS = 4500;
+const EASY_LOAD_TIMEOUT_MS = 8000;
 const EASY_POLL_INTERVAL_MS = 250;
 
 function isEasyFrameReady(frame: HTMLIFrameElement | null) {
@@ -67,15 +67,32 @@ function isEasyFrameReady(frame: HTMLIFrameElement | null) {
     if (!doc || !body) return false;
     if (body.querySelector('.loader')) return false;
 
-    const title = doc.title.toLowerCase();
-    const text = body.textContent?.toLowerCase() ?? '';
-    const html = body.innerHTML.toLowerCase();
+    const title = (doc.title || '').toLowerCase();
+    const text = (body.textContent || '').toLowerCase();
+    const html = (body.innerHTML || '').toLowerCase();
 
-    if (title.includes('meccha chameleon')) return true;
-    if (text.includes('meccha chameleon')) return true;
+    // Match by host (any chameleon-game.com variant) or by recognisable game
+    // surfaces. Don't require "meccha chameleon" exactly — some embeds
+    // translate the title or skip it, and we'd rather show a real game
+    // than fall back to a "new tab" button prematurely.
+    let host = '';
+    try {
+      host = (frame.contentWindow?.location?.hostname || '').toLowerCase();
+    } catch {
+      host = '';
+    }
+    if (host.includes('chameleon-game.com') || host.includes('meccha')) {
+      return true;
+    }
+
+    if (title.includes('chameleon')) return true;
     if (text.includes('quick play')) return true;
     if (text.includes('create room')) return true;
     if (text.includes('practice')) return true;
+    if (text.includes('play now')) return true;
+    if (text.includes('start game')) return true;
+    if (text.includes('meccha chameleon')) return true;
+    if (text.includes('mecha chameleon')) return true;
 
     return html.length > 1000;
   } catch {
