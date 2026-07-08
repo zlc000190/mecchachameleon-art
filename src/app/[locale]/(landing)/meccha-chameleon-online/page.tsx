@@ -19,32 +19,90 @@ export const revalidate = 3600;
 
 const pagePath = '/meccha-chameleon-online';
 
+// 12 locale metadata (Batch 1+ 强化) - title/description localized to match locale intent
+const metaByLocale: Record<string, { title: string; description: string }> = {
+  en: {
+    title: 'Meccha Chameleon Online - Play Free, No Download',
+    description:
+      'Play Meccha Chameleon online for free in your browser. No download, no install, quick start hide-and-seek gameplay with maps, tips, and friend-room help.',
+  },
+  zh: {
+    title: 'Meccha Chameleon 在线玩 - 免费浏览器游戏',
+    description: '在浏览器中免费玩 Meccha Chameleon。无需下载、无需安装、快速开始捉迷藏游戏，包含地图、技巧和好友房间。',
+  },
+  ru: {
+    title: 'Meccha Chameleon Онлайн - Бесплатная Браузерная Игра',
+    description:
+      'Играйте в Meccha Chameleon онлайн бесплатно в браузере. Без скачивания, без установки, быстрый старт игры в прятки с картами, советами и комнатами с друзьями.',
+  },
+  es: {
+    title: 'Meccha Chameleon Online - Juega Gratis Sin Descargar',
+    description:
+      'Juega a Meccha Chameleon online gratis en tu navegador. Sin descarga, sin instalación, inicio rápido del escondite con mapas, consejos y salas con amigos.',
+  },
+  fr: {
+    title: 'Meccha Chameleon en Ligne - Gratuit Sans Téléchargement',
+    description:
+      "Jouez à Meccha Chameleon en ligne gratuitement dans votre navigateur. Sans téléchargement, sans installation, démarrage rapide du cache-cache avec cartes, astuces et salles entre amis.",
+  },
+  ar: {
+    title: 'ميتشا تشامليون أونلاين - العب مجاناً بدون تنزيل',
+    description: 'العب ميتشا تشامليون أونلاين مجاناً في متصفحك. بدون تنزيل، بدون تثبيت، بداية سريعة للعبة الغميضة مع الخرائط والنصائح وغرف الأصدقاء.',
+  },
+  pt: {
+    title: 'Meccha Chameleon Online - Jogue Grátis Sem Download',
+    description:
+      'Jogue Meccha Chameleon online grátis no seu navegador. Sem download, sem instalação, início rápido do esconde-esconde com mapas, dicas e salas com amigos.',
+  },
+  de: {
+    title: 'Meccha Chameleon Online - Kostenlos Ohne Download',
+    description:
+      'Spiele Meccha Chameleon online kostenlos in deinem Browser. Kein Download, keine Installation, schneller Start ins Versteckspiel mit Karten, Tipps und Freundesräumen.',
+  },
+  it: {
+    title: 'Meccha Chameleon Online - Gioca Gratis Senza Download',
+    description:
+      'Gioca a Meccha Chameleon online gratis nel tuo browser. Senza download, senza installazione, avvio rapido del nascondino con mappe, consigli e stanze con amici.',
+  },
+  nl: {
+    title: 'Meccha Chameleon Online - Gratis Spelen Zonder Download',
+    description:
+      'Speel Meccha Chameleon online gratis in je browser. Geen download, geen installatie, snelle start van het verstopspel met kaarten, tips en vriendenkamers.',
+  },
+  ja: {
+    title: 'めっちゃカメレオン オンライン - 無料ダウンロード不要',
+    description: 'ブラウザで「めっちゃカメレオン」を無料でオンラインプレイ。ダウンロード不要、インストール不要、マップ・コツ・フレンドルーム付きのかくれんぼ。',
+  },
+  ko: {
+    title: 'Meccha Chameleon 온라인 - 무료 다운로드 불필요',
+    description: '브라우저에서 Meccha Chameleon을 무료로 온라인 플레이하세요. 다운로드, 설치 필요 없음, 지도, 팁, 친구 방이 있는 숨바꼭질 게임 빠른 시작.',
+  },
+};
+
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const title = 'Meccha Chameleon Online - Play Free, No Download';
-  const description =
-    'Play Meccha Chameleon online for free in your browser. No download, no install, quick start hide-and-seek gameplay with maps, tips, and friend-room help.';
+  const m = metaByLocale[locale] ?? metaByLocale.en;
   const canonicalUrl = await getCanonicalUrl(pagePath, locale);
 
   return {
-    title,
-    description,
+    title: m.title,
+    description: m.description,
     alternates: {
       canonical: canonicalUrl,
     },
     openGraph: {
-      title,
-      description,
+      title: m.title,
+      description: m.description,
       url: canonicalUrl,
     },
     twitter: {
       card: 'summary_large_image',
-      title,
-      description,
+      title: m.title,
+      description: m.description,
     },
   };
 }
@@ -245,6 +303,45 @@ export default async function MecchaChameleonOnlinePage({
                 New player guide
               </a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Related play pages - SEO internal linking (Batch 1+ addition) */}
+      <section className="border-t border-[#D8CFC6] bg-[#FFF9F5]">
+        <div className="container py-12">
+          <div className="mb-6 max-w-3xl">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-normal text-[#7D6D69]">More ways to play</p>
+            <h2 className="text-2xl font-bold tracking-normal md:text-3xl">Related play pages</h2>
+          </div>
+          <div className="grid gap-4 md:grid-cols-3">
+            <a
+              href={getLocalizedPath(locale, '/unblocked')}
+              className="rounded-md border border-[#D8CFC6] bg-white p-5 transition hover:bg-[#fff7c8]"
+            >
+              <h3 className="font-semibold">Play Meccha Chameleon Unblocked</h3>
+              <p className="mt-2 text-sm leading-6 text-[#4C3B35]">
+                The same game, opened in a normal browser tab without a VPN. Works on school, work, and library networks.
+              </p>
+            </a>
+            <a
+              href={getLocalizedPath(locale, '/hide-and-seek')}
+              className="rounded-md border border-[#D8CFC6] bg-white p-5 transition hover:bg-[#fff7c8]"
+            >
+              <h3 className="font-semibold">Meccha Chameleon Hide and Seek</h3>
+              <p className="mt-2 text-sm leading-6 text-[#4C3B35]">
+                Paint, hide, and survive the seeker across 6 official maps. Pro tips, map guides, and 8 hider strategies.
+              </p>
+            </a>
+            <a
+              href={getLocalizedPath(locale, '/demo')}
+              className="rounded-md border border-[#D8CFC6] bg-white p-5 transition hover:bg-[#fff7c8]"
+            >
+              <h3 className="font-semibold">Meccha Chameleon Free Demo</h3>
+              <p className="mt-2 text-sm leading-6 text-[#4C3B35]">
+                Try the paint-and-hide loop in your browser before bringing friends in. One map, full mechanics, no signup.
+              </p>
+            </a>
           </div>
         </div>
       </section>
