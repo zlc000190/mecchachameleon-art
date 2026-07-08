@@ -65,14 +65,70 @@ const entries = [];
 
 // Home, new-player, tools, and 5 maps — but only for fullyTranslatedLocales.
 // The other 12 fallback locales still get hreflang coverage via alternates.
+// 2026-07-08 SEO expansion (GSC 28-day data):
+//   - Add 3 play pages (unblocked/hide-and-seek/demo) + reinforced online
+//   - Add 5 locale depth pages (ru/igrat, es/donde-jugar, etc)
+//   - Add 11 English longtail + 5 locale longtail (en + zh MDX)
+//
+// Rule: pageSpecs.locales overrides default behavior. If unset:
+//   - For /: include all locales (homepage only locales get their own entry)
+//   - For other pages: only fullyTranslatedLocales (en/zh/ru)
+//
+// `singleLocale: true` marks locale-specific pages (e.g. /es/donde-jugar):
+//   - Only one <loc> entry (no en alternate with double-prefix)
+//   - alternateLocales = the single locale only (no hreflang loop)
 const pageSpecs = [
   { path: '/', priority: '1.0', changefreq: 'weekly' },
-  { path: '/meccha-chameleon-online', priority: '0.9', changefreq: 'weekly', locales: ['en'] },
+  { path: '/meccha-chameleon-online', priority: '0.9', changefreq: 'weekly',
+    locales: allLocales },  // expanded to all 12 locales (Batch 1 reinforcement)
+  { path: '/unblocked', priority: '0.9', changefreq: 'weekly',
+    locales: allLocales },  // Batch 1 - 12 locale play page
+  { path: '/hide-and-seek', priority: '0.9', changefreq: 'weekly',
+    locales: allLocales },  // Batch 1 - 12 locale play page
+  { path: '/demo', priority: '0.8', changefreq: 'weekly',
+    locales: allLocales },  // Batch 1 - 12 locale play page
+  // Batch 2 - locale depth pages (single-locale each)
+  { path: '/ru/igrat', priority: '0.9', changefreq: 'weekly', locales: ['ru'], singleLocale: true },
+  { path: '/es/donde-jugar', priority: '0.8', changefreq: 'weekly', locales: ['es'], singleLocale: true },
+  { path: '/ar/download', priority: '0.8', changefreq: 'weekly', locales: ['ar'], singleLocale: true },
+  { path: '/pt/jogar-gratis', priority: '0.8', changefreq: 'weekly', locales: ['pt'], singleLocale: true },
+  { path: '/ja/online', priority: '0.8', changefreq: 'weekly', locales: ['ja'], singleLocale: true },
+  // Batch 3 - 11 English longtail MDX (12 locales each)
+  { path: '/chameleon-hide-and-seek-game', priority: '0.7', changefreq: 'monthly', locales: allLocales },
+  { path: '/hide-and-seek-paint-game', priority: '0.7', changefreq: 'monthly', locales: allLocales },
+  { path: '/hide-and-seek-paint-game-online', priority: '0.7', changefreq: 'monthly', locales: allLocales },
+  { path: '/paint-hide-and-seek-online', priority: '0.7', changefreq: 'monthly', locales: allLocales },
+  { path: '/camouflage-game-online', priority: '0.7', changefreq: 'monthly', locales: allLocales },
+  { path: '/chameleon-game', priority: '0.7', changefreq: 'monthly', locales: allLocales },
+  { path: '/chameleon-paint-game', priority: '0.7', changefreq: 'monthly', locales: allLocales },
+  { path: '/meccha-chameleon-poki', priority: '0.7', changefreq: 'monthly', locales: allLocales },
+  { path: '/meccha-chameleon-official', priority: '0.7', changefreq: 'monthly', locales: allLocales },
+  { path: '/chameleon', priority: '0.7', changefreq: 'monthly', locales: allLocales },
+  { path: '/chameleon-game-online', priority: '0.7', changefreq: 'monthly', locales: allLocales },
+  // Batch 3 - 5 locale longtail MDX (single-locale each, en + zh handled by MDX i18n)
+  { path: '/es/juego-camaleon', priority: '0.7', changefreq: 'monthly', locales: ['es'], singleLocale: true },
+  { path: '/pt/jogo-camuflagem', priority: '0.7', changefreq: 'monthly', locales: ['pt'], singleLocale: true },
+  { path: '/it/nascondino-online', priority: '0.7', changefreq: 'monthly', locales: ['it'], singleLocale: true },
+  { path: '/fr/jeu-cache-cache', priority: '0.7', changefreq: 'monthly', locales: ['fr'], singleLocale: true },
+  { path: '/de/chameleon-spiel', priority: '0.7', changefreq: 'monthly', locales: ['de'], singleLocale: true },
   { path: '/new-player', priority: '0.7', changefreq: 'monthly' },
   { path: '/tools', priority: '0.85', changefreq: 'monthly' },
 ];
 
 for (const spec of pageSpecs) {
+  // singleLocale: only emit one <loc> entry with the path as-is (no locale prefix)
+  if (spec.singleLocale) {
+    const onlyLocale = spec.locales[0];
+    entries.push({
+      loc: `${base}${spec.path}`,
+      alternates: { [onlyLocale]: `${base}${spec.path}` },
+      'x-default': `${base}${spec.path}`,
+      lastmod: now,
+      changefreq: spec.changefreq,
+      priority: spec.priority,
+    });
+    continue;
+  }
   const localesForPage = spec.locales || (spec.path === '/'
     ? [...fullyTranslatedLocales, ...homepageOnlyLocales]
     : fullyTranslatedLocales);
