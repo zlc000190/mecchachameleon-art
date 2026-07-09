@@ -113,6 +113,18 @@ const pageSpecs = [
   { path: '/de/chameleon-spiel', priority: '0.7', changefreq: 'monthly', locales: ['de'], singleLocale: true },
   { path: '/new-player', priority: '0.7', changefreq: 'monthly' },
   { path: '/tools', priority: '0.85', changefreq: 'monthly' },
+  // Featured HTML5 game detail pages (each one is an internal detail page
+  // wrapping an embed of the original hide-and-seek browser game).
+  { path: '/hide-n-seek', priority: '0.85', changefreq: 'weekly' },
+  { path: '/sneaky-friends', priority: '0.7', changefreq: 'weekly' },
+  { path: '/stickman-hide-and-seek', priority: '0.7', changefreq: 'weekly' },
+  { path: '/skibidi-titans-hide-and-seek', priority: '0.7', changefreq: 'weekly' },
+  { path: '/hide-and-seek-horror-escape', priority: '0.7', changefreq: 'weekly' },
+  { path: '/kitten-hide-and-seek', priority: '0.7', changefreq: 'weekly' },
+  { path: '/among-them-hide-n-seek-2', priority: '0.7', changefreq: 'weekly' },
+  { path: '/hunt-and-seek', priority: '0.7', changefreq: 'weekly' },
+  { path: '/blumgi-slime', priority: '0.7', changefreq: 'weekly' },
+  { path: '/wacky-steps', priority: '0.7', changefreq: 'weekly' },
 ];
 
 for (const spec of pageSpecs) {

@@ -12,6 +12,15 @@ import { getCanonicalUrl } from '@/shared/lib/seo';
 
 export const revalidate = 3600;
 
+// Pre-render every related-game slug for faster Google indexing.
+export async function generateStaticParams() {
+  // Locale-aware: emit a static entry per supported locale + per game slug.
+  const locales = ['en', 'zh'];
+  return locales.flatMap((locale) =>
+    relatedGames.map((game) => ({ locale, slug: [game.slug] }))
+  );
+}
+
 // dynamic page metadata
 export async function generateMetadata({
   params,
@@ -141,6 +150,34 @@ export default async function DynamicPage({
       .filter((game) => game.slug !== relatedGame.slug)
       .slice(0, 12);
 
+    const fallbackDescription =
+      relatedGame.description ??
+      `${relatedGame.title} is a free browser-playable hide-and-seek game available right here on mecchachameleon.art. ${relatedGame.note} The embedded iframe loads the full game from ${relatedGame.source}, no install or login required. Click play inside the frame to start a round, and use the controls table below as a quick reference while you learn the mechanics.`;
+
+    const highlightItems = relatedGame.highlights && relatedGame.highlights.length > 0
+      ? relatedGame.highlights
+      : [
+          `${relatedGame.source} embedded, instant browser play`,
+          'No install or signup — click play and start a round',
+          'Full screen and controller support inside the iframe',
+          'Works on desktop and mobile browsers',
+        ];
+
+    const controlItems = relatedGame.controls && relatedGame.controls.length > 0
+      ? relatedGame.controls
+      : [
+          { keys: 'Click play', action: `Start ${relatedGame.title}` },
+          { keys: 'WASD / Arrows', action: 'Move around the map' },
+          { keys: 'Shift', action: 'Sprint / move quietly (game-specific)' },
+          { keys: 'F', action: 'Fullscreen inside the iframe' },
+        ];
+
+    const gamepixCdn = (() => {
+      const m = relatedGame.iframeSrc.match(/([a-f0-9]{32})/i);
+      if (!m) return null;
+      return `https://img.gamepix.com/games/h/${m[1]}.jpg`;
+    })();
+
     return (
       <main className="min-h-screen bg-[#fff7f1] text-[#29211D]">
         <section className="border-b border-[#f2cfd8] bg-gradient-to-br from-[#fff7c8] via-[#ffd2e1] to-[#cdefff]">
@@ -148,7 +185,7 @@ export default async function DynamicPage({
             <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
               <div>
                 <p className="mb-2 text-sm font-semibold uppercase tracking-normal text-[#7D6D69]">
-                  {relatedGame.source}
+                  {relatedGame.source} · {locale === 'zh' ? '浏览器小游戏' : 'Browser mini-game'}
                 </p>
                 <h1 className="max-w-4xl text-4xl leading-tight font-bold tracking-normal md:text-6xl">
                   {relatedGame.title}
@@ -187,10 +224,134 @@ export default async function DynamicPage({
         </section>
 
         <section className="border-b border-[#D8CFC6] bg-[#fff7f1]">
+          <div className="container py-12 lg:py-16">
+            <div className="grid gap-8 lg:grid-cols-[1.6fr_1fr]">
+              <article className="space-y-6">
+                <header>
+                  <h2 className="text-2xl font-bold tracking-normal md:text-3xl">
+                    {locale === 'zh' ? '怎么玩 / 有什么特色' : 'How to play & what makes it fun'}
+                  </h2>
+                </header>
+                <p className="text-base leading-7 text-[#29211D] md:text-lg">
+                  {fallbackDescription}
+                </p>
+
+                <div className="grid gap-6 sm:grid-cols-3">
+                  <figure className="overflow-hidden rounded-lg border border-[#D8CFC6] bg-white shadow-sm">
+                    <div className="relative aspect-[4/3] bg-[#f5e6e0]">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={relatedGame.image}
+                        alt={`${relatedGame.title} gameplay thumbnail`}
+                        loading="lazy"
+                        decoding="async"
+                        className="absolute inset-0 h-full w-full object-cover"
+                      />
+                    </div>
+                    <figcaption className="bg-white px-3 py-2 text-xs font-semibold text-[#4C3B35]">
+                      {locale === 'zh' ? '封面截图' : 'Cover artwork'}
+                    </figcaption>
+                  </figure>
+                  <figure className="overflow-hidden rounded-lg border border-[#D8CFC6] bg-white shadow-sm">
+                    <div className="relative aspect-[4/3] bg-[#1f1230]">
+                      <div className="absolute inset-0 flex items-center justify-center text-center text-xs font-semibold text-white/80">
+                        <div className="px-3">
+                          <div className="mb-1 text-[10px] uppercase tracking-normal text-[#ff6f9a]">
+                            {locale === 'zh' ? '实时画面' : 'Live gameplay'}
+                          </div>
+                          <div>
+                            {locale === 'zh'
+                              ? '上方 iframe = 正在运行的本游戏'
+                              : 'The play frame above is this game running live'}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <figcaption className="bg-white px-3 py-2 text-xs font-semibold text-[#4C3B35]">
+                      {locale === 'zh' ? '实机画面（iframe 上方）' : 'Live frame (above)'}
+                    </figcaption>
+                  </figure>
+                  <figure className="overflow-hidden rounded-lg border border-[#D8CFC6] bg-white shadow-sm">
+                    <div className="relative aspect-[4/3] bg-[#f5e6e0]">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={gamepixCdn ?? relatedGame.image}
+                        alt={`${relatedGame.title} source preview`}
+                        loading="lazy"
+                        decoding="async"
+                        className="absolute inset-0 h-full w-full object-cover"
+                      />
+                    </div>
+                    <figcaption className="bg-white px-3 py-2 text-xs font-semibold text-[#4C3B35]">
+                      {locale === 'zh' ? '源站预览' : `${relatedGame.source} preview`}
+                    </figcaption>
+                  </figure>
+                </div>
+              </article>
+
+              <aside className="space-y-6">
+                <div className="rounded-lg border border-[#D8CFC6] bg-white p-5 shadow-sm">
+                  <h3 className="mb-3 text-lg font-bold tracking-normal">
+                    {locale === 'zh' ? '为什么好玩' : 'Why it’s fun'}
+                  </h3>
+                  <ul className="space-y-2 text-sm leading-6 text-[#29211D]">
+                    {highlightItems.map((line, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <span className="mt-1 inline-block h-2 w-2 shrink-0 rounded-full bg-[#ff6f9a]" />
+                        <span>{line}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="rounded-lg border border-[#D8CFC6] bg-white p-5 shadow-sm">
+                  <h3 className="mb-3 text-lg font-bold tracking-normal">
+                    {locale === 'zh' ? '操作' : 'Controls'}
+                  </h3>
+                  <ul className="space-y-2 text-sm leading-6 text-[#29211D]">
+                    {controlItems.map((c, idx) => (
+                      <li key={idx} className="flex items-start gap-3">
+                        <kbd className="min-w-[64px] shrink-0 rounded-md bg-[#fff7c8] px-2 py-0.5 text-center text-xs font-bold text-[#29211D]">
+                          {c.keys}
+                        </kbd>
+                        <span>{c.action}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-4 flex gap-3">
+                    <a
+                      href={relatedGame.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex min-h-9 items-center rounded-md bg-[#ff6f9a] px-4 text-sm font-semibold text-white transition hover:bg-[#e95a88]"
+                    >
+                      {locale === 'zh' ? '在源站全屏' : `Open on ${relatedGame.source}`}
+                    </a>
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <section className="border-b border-[#D8CFC6] bg-[#fff7f1]">
           <div className="container py-12">
-            <h2 className="mb-6 text-3xl font-bold tracking-normal">
-              {locale === 'zh' ? '你可能也喜欢' : 'You may also like'}
-            </h2>
+            <div className="mb-6 flex items-center justify-between gap-4">
+              <div>
+                <p className="mb-1 text-sm font-semibold uppercase tracking-normal text-[#7D6D69]">
+                  {locale === 'zh' ? '更多浏览器游戏' : 'More browser games'}
+                </p>
+                <h2 className="text-3xl font-bold tracking-normal">
+                  {locale === 'zh' ? '你可能也喜欢' : 'You may also like'}
+                </h2>
+              </div>
+              <a
+                href={getLocalizedPath(locale, '/')}
+                className="inline-flex min-h-9 items-center rounded-md border border-[#efc8d3] bg-white px-4 text-sm font-semibold text-[#29211D] transition hover:bg-[#fff7c8]"
+              >
+                {locale === 'zh' ? '看全部' : 'See all'}
+              </a>
+            </div>
             <div className="flex snap-x gap-4 overflow-x-auto pb-4 [scrollbar-width:thin]">
               {alsoLike.map((game) => (
                 <a

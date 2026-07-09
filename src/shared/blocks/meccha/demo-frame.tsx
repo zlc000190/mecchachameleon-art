@@ -1,6 +1,5 @@
 'use client';
 
-import Script from 'next/script';
 import { useEffect, useRef, useState } from 'react';
 import { ExternalLink, Gamepad2, Sparkles } from 'lucide-react';
 
@@ -18,13 +17,13 @@ type Demo = {
 const demos: Demo[] = [
   {
     id: 'easy',
-    label: 'Easy',
-    title: 'Meccha Chameleon Browser Game',
-    source: 'Geometry Online',
+    label: 'Hide N Seek',
+    title: 'Meccha Chameleon Hide N Seek',
+    source: 'GameDistribution',
     ratio: 'aspect-[16/9] min-h-[650px] max-h-[90vh]',
-    src: 'https://chameleon-game.com/',
-    note: 'Easy mode opens the Meccha Chameleon game screen directly, with Quick play, room creation, and practice visible right away.',
-    openInNewTab: 'https://chameleon-game.com/',
+    src: 'https://html5.gamedistribution.com/7eda2be289604aa89f3b97df59661bfe/',
+    note: 'The default Meccha Chameleon playframe loads a real HTML5 hide-and-seek game that embeds cleanly with no X-Frame block. Round timer, multiple AI opponents, and a maze map you can re-paint each round.',
+    openInNewTab: 'https://html5.gamedistribution.com/7eda2be289604aa89f3b97df59661bfe/',
   },
   {
     id: 'hard',
@@ -139,7 +138,7 @@ const demos: Demo[] = [
 ];
 
 const zhNotes: Record<string, string> = {
-  easy: 'Easy 直接打开 Meccha Chameleon 游戏屏，进入后就能看到 Quick play、创建房间和练习模式。',
+  easy: 'Easy 直接加载 GameDistribution 的 Hide N Seek 浏览器游戏，整局倒计时走迷宫，多人追躲立刻进入。',
   hard: 'Hard 使用 CrazyGames 的 Hide N Seek iframe。广告加载卡住时，用新标签打开。',
   social: 'Social 使用偏朋友组队体验的 hide-and-seek 浏览器游戏，适合社交玩法搜索。',
   'hide-n-seek-gd': 'GameDistribution 的经典 Hide N Seek，点击周围卡片会在中间直接切换。',
@@ -184,14 +183,14 @@ function isEasyFrameReady(frame: HTMLIFrameElement | null) {
       return true;
     }
 
-    if (title.includes('chameleon')) return true;
+    if (title.includes('hide') || title.includes('seek')) return true;
     if (text.includes('quick play')) return true;
-    if (text.includes('create room')) return true;
-    if (text.includes('practice')) return true;
     if (text.includes('play now')) return true;
     if (text.includes('start game')) return true;
-    if (text.includes('meccha chameleon')) return true;
-    if (text.includes('mecha chameleon')) return true;
+    if (text.includes('find players')) return true;
+    if (text.includes('round')) return true;
+    if (text.includes('hide')) return true;
+    if (text.includes('seek')) return true;
 
     return html.length > 1000;
   } catch {
@@ -347,7 +346,6 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
 
     return (
       <div id="play" className="scroll-mt-24">
-        <Script src="/vendor/x-frame-bypass.js" strategy="afterInteractive" />
         <div className="overflow-hidden rounded-lg border border-[#efc8d3] bg-gradient-to-br from-[#fff7c8] via-[#ffd2e1] to-[#cdefff] shadow-[0_18px_60px_rgba(134,103,124,0.18)]">
           <div className="border-b border-white/70 px-4 py-3 text-[#2f2730]">
             <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
@@ -407,7 +405,6 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                   ref={iframeRef}
                   title={`${activeDemo.title} browser game`}
                   src={activeDemo.src}
-                  is={activeDemo.id === 'easy' ? 'x-frame-bypass' : undefined}
                   className="absolute inset-0 h-full w-full"
                   loading="eager"
                   allow="autoplay; fullscreen; gamepad; pointer-lock; encrypted-media; web-share"
@@ -452,7 +449,6 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                   ref={iframeRef}
                   title={`${activeDemo.title} browser game`}
                   src={activeDemo.src}
-                  is={activeDemo.id === 'easy' ? 'x-frame-bypass' : undefined}
                   className="absolute inset-0 h-full w-full"
                   loading="eager"
                   allow="autoplay; fullscreen; gamepad; pointer-lock; encrypted-media; web-share"
@@ -497,7 +493,6 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
 
   return (
     <div id="play" className="scroll-mt-24">
-      <Script src="/vendor/x-frame-bypass.js" strategy="afterInteractive" />
       <div className="overflow-hidden rounded-lg border border-[#efc8d3] bg-gradient-to-br from-[#fff7c8] via-[#ffd2e1] to-[#cdefff] shadow-[0_18px_60px_rgba(134,103,124,0.18)]">
         <div className="border-b border-white/70 px-4 py-3 text-[#2f2730]">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
@@ -561,7 +556,6 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
             ref={iframeRef}
             title={`${activeDemo.title} browser game`}
             src={activeDemo.src}
-            is={activeDemo.id === 'easy' ? 'x-frame-bypass' : undefined}
             className="absolute inset-0 h-full w-full"
             loading="eager"
             allow="autoplay; fullscreen; gamepad; pointer-lock; encrypted-media; web-share"
