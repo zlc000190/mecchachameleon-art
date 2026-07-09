@@ -29,6 +29,7 @@ import { PaidDownloadButton } from '@/shared/blocks/meccha/paid-download-button'
 import { PortugueseSeoSection } from '@/shared/blocks/meccha/portuguese-seo-section';
 import { SpanishSeoSection } from '@/shared/blocks/meccha/spanish-seo-section';
 import { ToolsTeaser } from '@/shared/blocks/meccha/tools-teaser';
+import { RelatedGames } from '@/shared/blocks/meccha/related-games';
 import { UpdatesSection } from '@/shared/blocks/meccha/updates-section';
 import { BreadcrumbJsonLd } from '@/shared/components/seo/breadcrumb-json-ld';
 import { getPlayKitPriceLabel } from '@/shared/lib/play-kit';
@@ -125,13 +126,20 @@ export default async function LandingPage({
             </div>
           </div>
 
-          <div className="grid gap-5">
-            <div id="play">
+          <div className="grid gap-5 xl:grid-cols-[196px_minmax(0,1fr)_196px] xl:items-start">
+            <RelatedGames locale={locale} variant="side" start={0} limit={6} />
+            <div className="min-w-0">
               <DemoFrame locale={locale} />
+              <div className="mt-5">
+                <RelatedGames locale={locale} variant="rail" start={0} />
+              </div>
             </div>
+            <RelatedGames locale={locale} variant="side" start={6} limit={6} />
           </div>
         </div>
       </section>
+
+      <RelatedGames locale={locale} />
 
       <section className="border-b border-[#D8CFC6] bg-white">
         <div className="container py-6">

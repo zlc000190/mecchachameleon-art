@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import { ExternalLink, Gamepad2, Sparkles } from 'lucide-react';
 
 type Demo = {
-  id: 'easy' | 'hard' | 'social';
+  id: string;
   label: string;
   title: string;
   source: string;
@@ -21,7 +21,7 @@ const demos: Demo[] = [
     label: 'Easy',
     title: 'Meccha Chameleon Browser Game',
     source: 'Geometry Online',
-    ratio: 'aspect-[16/9] min-h-[520px] max-h-[86vh]',
+    ratio: 'aspect-[16/9] min-h-[650px] max-h-[90vh]',
     src: 'https://chameleon-game.com/',
     note: 'Easy mode opens the Meccha Chameleon game screen directly, with Quick play, room creation, and practice visible right away.',
     openInNewTab: 'https://chameleon-game.com/',
@@ -46,12 +46,111 @@ const demos: Demo[] = [
     note: 'Social mode uses the friend-focused hide-and-seek browser game. Best for users looking for a group-play flavor.',
     openInNewTab: 'https://html5.gamedistribution.com/8529938662c2447091414e2cc73983e3/',
   },
+  {
+    id: 'hide-n-seek-gd',
+    label: 'Hide N Seek',
+    title: 'Hide N Seek!',
+    source: 'GameDistribution',
+    ratio: 'aspect-[16/9] min-h-[560px] max-h-[86vh]',
+    src: 'https://html5.gamedistribution.com/7eda2be289604aa89f3b97df59661bfe/',
+    note: 'Classic maze-style hide-and-seek from GameDistribution. Pick this when users want a direct hide-or-seek match.',
+    openInNewTab: 'https://html5.gamedistribution.com/7eda2be289604aa89f3b97df59661bfe/',
+  },
+  {
+    id: 'stickman-hide-seek',
+    label: 'Stickman',
+    title: 'Hide and Seek Stickman',
+    source: 'GameDistribution',
+    ratio: 'aspect-[16/9] min-h-[560px] max-h-[86vh]',
+    src: 'https://html5.gamedistribution.com/239942ce1a1349f6bcc9d312b32c5c3b/',
+    note: 'Stickman hide-and-seek where players can hide or chase in short browser rounds.',
+    openInNewTab: 'https://html5.gamedistribution.com/239942ce1a1349f6bcc9d312b32c5c3b/',
+  },
+  {
+    id: 'horror-escape',
+    label: 'Horror',
+    title: 'Hide And Seek: Horror Escape',
+    source: 'GameDistribution',
+    ratio: 'aspect-[16/9] min-h-[560px] max-h-[86vh]',
+    src: 'https://html5.gamedistribution.com/169645f5ac814065968e3872875bbce1/',
+    note: 'Asymmetric horror hide-and-seek with hide and seek roles, school and hospital escape scenes.',
+    openInNewTab: 'https://html5.gamedistribution.com/169645f5ac814065968e3872875bbce1/',
+  },
+  {
+    id: 'kitten-hide-seek',
+    label: 'Kitten',
+    title: 'Kitten Hide And Seek',
+    source: 'GameDistribution',
+    ratio: 'aspect-[16/9] min-h-[560px] max-h-[86vh]',
+    src: 'https://html5.gamedistribution.com/b78553bf5db34812972452aab68f88c0/',
+    note: 'Cute puzzle hide-and-seek: help the little girl escape while avoiding the kitten.',
+    openInNewTab: 'https://html5.gamedistribution.com/b78553bf5db34812972452aab68f88c0/',
+  },
+  {
+    id: 'skibidi-hide-seek',
+    label: 'Skibidi',
+    title: 'Skibidi Titans Hide And Seek',
+    source: 'GameDistribution',
+    ratio: 'aspect-[16/9] min-h-[560px] max-h-[86vh]',
+    src: 'https://html5.gamedistribution.com/38d6fc63e63c4be69887a604699c864a/',
+    note: 'A chase-focused hide-and-seek battle with hunters and escape artists.',
+    openInNewTab: 'https://html5.gamedistribution.com/38d6fc63e63c4be69887a604699c864a/',
+  },
+  {
+    id: 'among-hide-seek',
+    label: 'Among',
+    title: 'Among Them Hide N Seek 2',
+    source: 'GameDistribution',
+    ratio: 'aspect-[16/9] min-h-[560px] max-h-[86vh]',
+    src: 'https://html5.gamedistribution.com/012df11266ed40909ce2b303c202fa93/',
+    note: 'Cartoon stealth hide-and-seek with quick browser rounds and simple controls.',
+    openInNewTab: 'https://html5.gamedistribution.com/012df11266ed40909ce2b303c202fa93/',
+  },
+  {
+    id: 'hunt-and-seek',
+    label: 'Hunt',
+    title: 'Hunt And Seek',
+    source: 'GameDistribution',
+    ratio: 'aspect-[16/9] min-h-[560px] max-h-[86vh]',
+    src: 'https://html5.gamedistribution.com/7fa16181fc5c4ce2a7d3b9a171d48f76/',
+    note: 'A puzzle-flavored seek-and-find game with hidden characters and short casual rounds.',
+    openInNewTab: 'https://html5.gamedistribution.com/7fa16181fc5c4ce2a7d3b9a171d48f76/',
+  },
+  {
+    id: 'blumgi-slime',
+    label: 'Blumgi',
+    title: 'Blumgi Slime',
+    source: 'BlumgiSlime2.io',
+    ratio: 'aspect-[16/9] min-h-[560px] max-h-[86vh]',
+    src: 'https://blumgislime2.io/',
+    note: 'A colorful precision-jump game from a separate source, useful as a funny casual recommendation.',
+    openInNewTab: 'https://blumgislime2.io/',
+  },
+  {
+    id: 'wacky-steps',
+    label: 'Wacky',
+    title: 'Wacky Steps',
+    source: 'WackySteps.io',
+    ratio: 'aspect-[16/9] min-h-[560px] max-h-[86vh]',
+    src: 'https://wackysteps.io/',
+    note: 'A ragdoll walking challenge from a separate source, matching the funny-game angle without using the reference site.',
+    openInNewTab: 'https://wackysteps.io/',
+  },
 ];
 
-const zhNotes: Record<Demo['id'], string> = {
+const zhNotes: Record<string, string> = {
   easy: 'Easy 直接打开 Meccha Chameleon 游戏屏，进入后就能看到 Quick play、创建房间和练习模式。',
   hard: 'Hard 使用 CrazyGames 的 Hide N Seek iframe。广告加载卡住时，用新标签打开。',
   social: 'Social 使用偏朋友组队体验的 hide-and-seek 浏览器游戏，适合社交玩法搜索。',
+  'hide-n-seek-gd': 'GameDistribution 的经典 Hide N Seek，点击周围卡片会在中间直接切换。',
+  'stickman-hide-seek': 'Stickman 躲猫猫浏览器版，适合补充更多同类游戏入口。',
+  'horror-escape': 'Horror Escape 是恐怖逃脱型躲猫猫，有 Hide / Seek 两种身份。',
+  'kitten-hide-seek': 'Kitten Hide And Seek 是轻量解谜躲藏玩法。',
+  'skibidi-hide-seek': 'Skibidi Titans Hide And Seek 是追逐和逃脱方向的同类游戏。',
+  'among-hide-seek': 'Among Them Hide N Seek 2 是卡通躲藏玩法。',
+  'hunt-and-seek': 'Hunt And Seek 偏寻找隐藏角色和轻解谜。',
+  'blumgi-slime': 'Blumgi Slime 是参考站同款方向，但来源是独立站点。',
+  'wacky-steps': 'Wacky Steps 是参考站同款方向，但来源是独立站点。',
 };
 
 const EASY_LOAD_TIMEOUT_MS = 8000;
@@ -103,17 +202,65 @@ function isEasyFrameReady(frame: HTMLIFrameElement | null) {
 export function DemoFrame({ locale = 'en' }: { locale?: string }) {
   const zh = locale === 'zh';
   const [activeId, setActiveId] = useState<Demo['id']>('easy');
+  const [customDemo, setCustomDemo] = useState<Demo | null>(null);
   const [showHint, setShowHint] = useState(true);
   const [easyFrameState, setEasyFrameState] = useState<'loading' | 'ready' | 'fallback'>('loading');
   const [isDesktopPlay, setIsDesktopPlay] = useState(false);
   const [isLandscape, setIsLandscape] = useState(false);
-  const activeDemo = demos.find((demo) => demo.id === activeId) ?? demos[0];
+  const activeDemo = customDemo ?? demos.find((demo) => demo.id === activeId) ?? demos[0];
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
     const t = setTimeout(() => setShowHint(false), 9000);
     return () => clearTimeout(t);
   }, [activeId]);
+
+  useEffect(() => {
+    const handleSelectDemo = (event: Event) => {
+      const detail = (event as CustomEvent<{
+        demoId?: string;
+        title?: string;
+        source?: string;
+        src?: string;
+        note?: string;
+        openInNewTab?: string;
+      }>).detail;
+      const demoId = detail?.demoId;
+
+      if (!demoId) return;
+
+      const knownDemo = demos.find((demo) => demo.id === demoId);
+      if (knownDemo) {
+        setCustomDemo(null);
+        setActiveId(demoId);
+      } else if (detail?.src && detail.title && detail.source) {
+        setCustomDemo({
+          id: demoId,
+          label: detail.title.split(' ')[0] || 'Game',
+          title: detail.title,
+          source: detail.source,
+          ratio: 'aspect-[16/9] min-h-[650px] max-h-[90vh]',
+          src: detail.src,
+          note: detail.note || `${detail.title} opens in the center play frame.`,
+          openInNewTab: detail.openInNewTab || detail.src,
+        });
+        setActiveId(demoId);
+      } else {
+        return;
+      }
+
+      setShowHint(true);
+      if (demoId === 'easy') {
+        setEasyFrameState('loading');
+      }
+    };
+
+    window.addEventListener('meccha:select-demo', handleSelectDemo);
+
+    return () => {
+      window.removeEventListener('meccha:select-demo', handleSelectDemo);
+    };
+  }, []);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(min-width: 768px) and (pointer: fine)');
@@ -230,6 +377,7 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                   role="tab"
                   aria-selected={activeDemo.id === demo.id}
                   onClick={() => {
+                    setCustomDemo(null);
                     setActiveId(demo.id);
                     setShowHint(true);
                   }}
@@ -381,6 +529,7 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                 role="tab"
                 aria-selected={activeDemo.id === demo.id}
                 onClick={() => {
+                  setCustomDemo(null);
                   setActiveId(demo.id);
                   if (demo.id === 'easy') {
                     setEasyFrameState('loading');
