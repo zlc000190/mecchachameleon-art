@@ -6,6 +6,7 @@ import NextTopLoader from 'nextjs-toploader';
 
 import { envConfigs } from '@/config';
 import { seoLocales } from '@/config/locale';
+import { CookieConsent } from '@/shared/blocks/common/cookie-consent';
 import { UtmCapture } from '@/shared/blocks/common/utm-capture';
 import { getAllConfigs } from '@/shared/models/config';
 import { getAdsService } from '@/shared/services/ads';
@@ -172,6 +173,8 @@ export default async function RootLayout({
         <UtmCapture />
 
         {children}
+
+        <CookieConsent />
 
         {/* inject ads body scripts */}
         {adsBodyScripts}
