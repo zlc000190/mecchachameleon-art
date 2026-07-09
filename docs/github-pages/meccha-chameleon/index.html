@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Meccha Chameleon | Fan Atlas and Browser-Play Companion</title>
+    <meta
+      name="description"
+      content="A compact GitHub Pages companion for Meccha Chameleon with map references, hiding spots, paint-match notes, and a direct link back to the main atlas."
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0d1117;
+        --panel: #141b24;
+        --line: #263244;
+        --text: #e8eef7;
+        --muted: #9fb0c7;
+        --accent: #7dd3fc;
+        --accent-2: #86efac;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(125, 211, 252, 0.12), transparent 28%),
+          radial-gradient(circle at top right, rgba(134, 239, 172, 0.12), transparent 24%),
+          var(--bg);
+        color: var(--text);
+      }
+      a { color: inherit; }
+      .wrap {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 32px 20px 48px;
+      }
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+        gap: 20px;
+        align-items: stretch;
+      }
+      .panel {
+        background: rgba(20, 27, 36, 0.92);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .hero-copy {
+        padding: 28px;
+      }
+      h1 {
+        margin: 0 0 12px;
+        font-size: clamp(38px, 5vw, 62px);
+        line-height: 0.95;
+        letter-spacing: 0;
+      }
+      .sub {
+        margin: 0 0 18px;
+        font-size: 18px;
+        color: var(--muted);
+        max-width: 58ch;
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 24px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0 16px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        text-decoration: none;
+        background: #0f1621;
+      }
+      .btn.primary {
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        color: #05111d;
+        font-weight: 700;
+      }
+      .hero-media {
+        display: grid;
+        grid-template-rows: 1fr auto;
+      }
+      .hero-shot {
+        min-height: 320px;
+        background:
+          linear-gradient(180deg, rgba(13,17,23,0.08), rgba(13,17,23,0.78)),
+          url("https://mecchachameleon.art/preview.png") center/cover no-repeat;
+      }
+      .shot-caption {
+        padding: 14px 16px;
+        font-size: 14px;
+        color: var(--muted);
+        border-top: 1px solid var(--line);
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 18px;
+      }
+      .card {
+        padding: 18px;
+        background: rgba(20, 27, 36, 0.84);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+      }
+      .card h2 {
+        margin: 0 0 10px;
+        font-size: 18px;
+      }
+      .card p, .card li {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+      ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+      .strip {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 18px;
+      }
+      .thumb {
+        aspect-ratio: 4 / 3;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        overflow: hidden;
+        background: #0b1017 center/cover no-repeat;
+      }
+      .thumb.one { background-image: url("https://mecchachameleon.art/imgs/meccha/play-kit-promo.png"); }
+      .thumb.two { background-image: url("https://mecchachameleon.art/imgs/related-games/meccha-chameleon.png"); }
+      .thumb.three { background-image: url("https://mecchachameleon.art/imgs/related-games/hide-n-seek-gd.jpeg"); }
+      .thumb.four { background-image: url("https://mecchachameleon.art/preview.png"); }
+      .footer {
+        margin-top: 18px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      @media (max-width: 920px) {
+        .hero, .grid, .strip { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <section class="hero">
+        <div class="panel hero-copy">
+          <h1>Meccha Chameleon</h1>
+          <p class="sub">
+            Fan atlas and browser-play companion for players who want hiding spots,
+            map references, paint-match notes, and a clean path back to the main site.
+          </p>
+          <p class="sub">
+            This page is meant to live like a normal GitHub Pages resource hub:
+            short, public, and useful enough to stand on its own.
+          </p>
+          <div class="actions">
+            <a class="btn primary" href="https://mecchachameleon.art/" target="_blank" rel="noopener noreferrer">
+              Play on Meccha Chameleon Art
+            </a>
+            <a class="btn" href="https://mecchachameleon.art/maps" target="_blank" rel="noopener noreferrer">
+              Open the map atlas
+            </a>
+          </div>
+        </div>
+        <div class="panel hero-media">
+          <div class="hero-shot" role="img" aria-label="Meccha Chameleon preview image"></div>
+          <div class="shot-caption">
+            Screenshot-friendly companion page built for GitHub Pages and linkable from repo docs.
+          </div>
+        </div>
+      </section>
+
+      <section class="strip" aria-label="Gallery">
+        <div class="thumb one"></div>
+        <div class="thumb two"></div>
+        <div class="thumb three"></div>
+        <div class="thumb four"></div>
+      </section>
+
+      <section class="grid" aria-label="Highlights">
+        <article class="card">
+          <h2>What it covers</h2>
+          <ul>
+            <li>hiding spots</li>
+            <li>map references</li>
+            <li>paint-match notes</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h2>Why it exists</h2>
+          <p>
+            To give players a fast reference page they can open before a round,
+            during a route check, or while sharing the game with friends.
+          </p>
+        </article>
+        <article class="card">
+          <h2>Best destination</h2>
+          <p>
+            Start at <a href="https://mecchachameleon.art/" target="_blank" rel="noopener noreferrer">mecchachameleon.art</a>
+            for the atlas and game context, then use the map page for deeper route notes.
+          </p>
+        </article>
+      </section>
+
+      <p class="footer">
+        GitHub Pages source page for Meccha Chameleon Art. Alias: Meccha Chameleon Art.
+      </p>
+    </main>
+  </body>
+</html>
