@@ -46,6 +46,9 @@ export const homeCopy = {
     secondTitle: 'Start faster, hide better, and keep friend rooms moving.',
     secondDesc: 'The tools page keeps the useful bits together: quick-start checklist, lobby fixes, FPS notes, camo practice, and route cards.',
     quickAnswers: 'Quick answers',
+    relatedGamesEyebrow: 'You may also like',
+    relatedGamesTitle: 'More hide-and-seek browser games and Meccha tools worth a click.',
+    relatedGamesEmpty: 'No related games available right now.',
   },
   zh: {
     title: '超级变色龙 Meccha Chameleon 在线玩', playNow: '立即开始', howToPlay: '玩法指南',
@@ -83,6 +86,9 @@ export const homeCopy = {
     secondTitle: '让你更快开局、更稳隐藏、更顺畅联机。',
     secondDesc: '专门页面整理开局清单、联机修复、FPS 建议、伪装练习和路线卡，让你少找资料、多进游戏。',
     quickAnswers: '快速解答',
+    relatedGamesEyebrow: '你可能也喜欢',
+    relatedGamesTitle: '更多躲猫猫浏览器游戏和超级变色龙辅助页面，值得点一下。',
+    relatedGamesEmpty: '暂无相关推荐。',
   },
 } as const;
 
@@ -108,6 +114,9 @@ type HomeCopy = {
   secondDesc: string;
   quickAnswers: string;
   openTools: string;
+  relatedGamesEyebrow: string;
+  relatedGamesTitle: string;
+  relatedGamesEmpty: string;
 };
 
 const homeCopyOverrides: Record<string, Partial<HomeCopy>> = {

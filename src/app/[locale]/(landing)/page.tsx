@@ -29,6 +29,7 @@ import { PaidDownloadButton } from '@/shared/blocks/meccha/paid-download-button'
 import { PortugueseSeoSection } from '@/shared/blocks/meccha/portuguese-seo-section';
 import { SpanishSeoSection } from '@/shared/blocks/meccha/spanish-seo-section';
 import { ToolsTeaser } from '@/shared/blocks/meccha/tools-teaser';
+import { RelatedGames } from '@/shared/blocks/meccha/related-games';
 import { UpdatesSection } from '@/shared/blocks/meccha/updates-section';
 import { BreadcrumbJsonLd } from '@/shared/components/seo/breadcrumb-json-ld';
 import { getPlayKitPriceLabel } from '@/shared/lib/play-kit';
@@ -132,6 +133,8 @@ export default async function LandingPage({
           </div>
         </div>
       </section>
+
+      <RelatedGames locale={locale} />
 
       <section className="border-b border-[#D8CFC6] bg-white">
         <div className="container py-6">
