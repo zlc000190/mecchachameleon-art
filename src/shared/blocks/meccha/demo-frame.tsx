@@ -335,11 +335,11 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
     requestAnimationFrame(() => iframeRef.current?.focus());
   };
 
-  const mobileAspect = isLandscape ? 'aspect-[16/9]' : 'aspect-[9/16]';
+  const mobileAspect = 'aspect-[16/9]';
   const mobileFrameSize = isLandscape
     ? 'max-h-[78vh] max-w-[78vw]'
-    : 'max-h-[62vh] max-w-[92vw]';
-  const mobileFrameRadius = isLandscape ? 'rounded-2xl' : 'rounded-3xl';
+    : 'min-h-[210px] max-h-[42vh] max-w-full';
+  const mobileFrameRadius = isLandscape ? 'rounded-2xl' : 'rounded-lg';
 
   if (!isDesktopPlay) {
     const showMobileFallback = activeDemo.id === 'easy' && easyFrameState === 'fallback';
@@ -369,7 +369,11 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
               </button>
             </div>
 
-            <div className="mt-4 flex flex-wrap gap-2" role="tablist" aria-label="Game mode">
+            <div
+              className="-mx-1 mt-4 flex gap-2 overflow-x-auto px-1 pb-1 [scrollbar-width:thin]"
+              role="tablist"
+              aria-label="Game mode"
+            >
               {demos.map((demo) => (
                 <button
                   key={demo.id}
@@ -381,7 +385,7 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                     setActiveId(demo.id);
                     setShowHint(true);
                   }}
-                  className={`min-h-9 rounded-md border px-4 text-sm font-semibold transition ${
+                  className={`min-h-9 shrink-0 rounded-md border px-4 text-sm font-semibold transition ${
                     activeDemo.id === demo.id
                       ? 'border-[#29211D] bg-[#29211D] text-white'
                       : 'border-[#efc8d3] bg-white text-[#29211D] hover:bg-[#fff7c8]'
@@ -393,7 +397,7 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
             </div>
           </div>
 
-          <div className="flex min-h-[58vh] items-center justify-center bg-[#1f1230] p-4 sm:p-6">
+          <div className="flex min-h-[280px] items-center justify-center bg-[#1f1230] p-3 sm:min-h-[58vh] sm:p-6">
             {showMobileReady ? (
               <div
                 className={`relative w-full ${mobileFrameSize} ${mobileAspect} ${mobileFrameRadius} overflow-hidden bg-black shadow-[0_18px_60px_rgba(0,0,0,0.35)]`}

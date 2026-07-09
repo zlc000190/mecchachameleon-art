@@ -152,7 +152,7 @@ export function RelatedGames({
         className={
           variant === 'side'
             ? 'grid gap-3'
-            : 'flex snap-x gap-4 overflow-x-auto pb-4 [scrollbar-width:thin]'
+            : 'flex max-w-full snap-x flex-nowrap gap-3 overflow-x-auto overscroll-x-contain pb-4 touch-pan-x [scrollbar-width:thin] sm:gap-4'
         }
       >
         {visibleItems.map((item) => {
@@ -199,8 +199,8 @@ export function RelatedGames({
                 variant === 'side'
                   ? 'h-full'
                   : variant === 'rail'
-                    ? 'min-w-[210px] snap-start'
-                    : 'min-w-[230px] max-w-[230px] snap-start'
+                    ? 'min-w-[168px] snap-start sm:min-w-[210px]'
+                    : 'min-w-[190px] max-w-[190px] snap-start sm:min-w-[230px] sm:max-w-[230px]'
               }
             >
               {variant === 'section' ? (
@@ -248,7 +248,7 @@ export function RelatedGames({
     return (
       <div
         id="related-games-rail"
-        className="rounded-lg border border-white/70 bg-white/70 p-4 shadow-[0_18px_60px_rgba(134,103,124,0.16)] backdrop-blur md:p-5"
+        className="max-w-full overflow-hidden rounded-lg border border-white/70 bg-white/70 p-3 shadow-[0_18px_60px_rgba(134,103,124,0.16)] backdrop-blur md:p-5"
       >
         {content}
       </div>
