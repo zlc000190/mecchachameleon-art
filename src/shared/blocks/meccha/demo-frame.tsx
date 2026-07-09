@@ -12,18 +12,20 @@ type Demo = {
   src: string;
   note: string;
   openInNewTab: string;
+  poster?: string;
 };
 
 const demos: Demo[] = [
   {
     id: 'easy',
-    label: 'Hide N Seek',
-    title: 'Meccha Chameleon Hide N Seek',
-    source: 'GameDistribution',
+    label: 'Meccha',
+    title: 'Meccha Chameleon Browser Game',
+    source: 'Official Meccha Chameleon',
     ratio: 'aspect-[16/9] min-h-[650px] max-h-[90vh]',
-    src: 'https://html5.gamedistribution.com/7eda2be289604aa89f3b97df59661bfe/',
-    note: 'The default Meccha Chameleon playframe loads a real HTML5 hide-and-seek game that embeds cleanly with no X-Frame block. Round timer, multiple AI opponents, and a maze map you can re-paint each round.',
-    openInNewTab: 'https://html5.gamedistribution.com/7eda2be289604aa89f3b97df59661bfe/',
+    src: 'https://chameleon-game.com/',
+    note: 'The default slot is the official Meccha Chameleon browser game. Use paint, disguise, and quick hide-and-seek rounds to blend into the room, then open the official game tab when the protected embed blocks inline play.',
+    openInNewTab: 'https://chameleon-game.com/',
+    poster: '/imgs/related-games/meccha-chameleon.png',
   },
   {
     id: 'hard',
@@ -138,7 +140,7 @@ const demos: Demo[] = [
 ];
 
 const zhNotes: Record<string, string> = {
-  easy: 'Easy 直接加载 GameDistribution 的 Hide N Seek 浏览器游戏，整局倒计时走迷宫，多人追躲立刻进入。',
+  easy: '默认入口展示 Meccha Chameleon 官方游戏截图；官方站点保护了内嵌加载，点击按钮可打开官方游戏。',
   hard: 'Hard 使用 CrazyGames 的 Hide N Seek iframe。广告加载卡住时，用新标签打开。',
   social: 'Social 使用偏朋友组队体验的 hide-and-seek 浏览器游戏，适合社交玩法搜索。',
   'hide-n-seek-gd': 'GameDistribution 的经典 Hide N Seek，点击周围卡片会在中间直接切换。',
@@ -444,29 +446,50 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                 onClick={openFallback}
                 className={`relative w-full ${mobileFrameSize} ${mobileAspect} ${mobileFrameRadius} overflow-hidden bg-black/70 shadow-[0_18px_60px_rgba(0,0,0,0.35)]`}
               >
-                <iframe
-                  key={`${activeDemo.id}-mobile-loading`}
-                  ref={iframeRef}
-                  title={`${activeDemo.title} browser game`}
-                  src={activeDemo.src}
-                  className="absolute inset-0 h-full w-full"
-                  loading="eager"
-                  allow="autoplay; fullscreen; gamepad; pointer-lock; encrypted-media; web-share"
-                  allowFullScreen
-                  scrolling="no"
-                  referrerPolicy="origin"
-                  sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-pointer-lock allow-top-navigation allow-presentation"
-                />
-                <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-gradient-to-b from-black/45 via-black/15 to-black/55">
-                  <div className="pointer-events-auto flex max-w-xs flex-col items-center gap-3 rounded-2xl border border-white/20 bg-white/95 px-6 py-5 text-center text-sm text-[#29211D] shadow-2xl">
+                {activeDemo.poster ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={activeDemo.poster}
+                    alt={`${activeDemo.title} official screenshot`}
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                ) : (
+                  <iframe
+                    key={`${activeDemo.id}-mobile-loading`}
+                    ref={iframeRef}
+                    title={`${activeDemo.title} browser game`}
+                    src={activeDemo.src}
+                    className="absolute inset-0 h-full w-full"
+                    loading="eager"
+                    allow="autoplay; fullscreen; gamepad; pointer-lock; encrypted-media; web-share"
+                    allowFullScreen
+                    scrolling="no"
+                    referrerPolicy="origin"
+                    sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-pointer-lock allow-top-navigation allow-presentation"
+                  />
+                )}
+                <div className="pointer-events-none absolute inset-0 flex items-end justify-center bg-gradient-to-b from-black/20 via-black/5 to-black/65 p-3 sm:items-center sm:bg-gradient-to-b sm:from-black/45 sm:via-black/15 sm:to-black/55">
+                  <div className="pointer-events-auto relative z-10 flex max-w-xs flex-col items-center gap-3 rounded-2xl border border-white/20 bg-white/95 px-6 py-5 text-center text-sm text-[#29211D] shadow-2xl">
                     <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#ff6f9a] text-white">
                       <span className="h-3 w-3 animate-pulse rounded-full bg-white" />
                     </div>
                     <div className="font-semibold">
-                      {zh ? '正在尝试轻量内嵌加载…' : 'Trying a lightweight embedded load…'}
+                      {activeDemo.poster
+                        ? zh
+                          ? 'Meccha Chameleon 官方游戏'
+                          : 'Official Meccha Chameleon game'
+                        : zh
+                          ? '正在尝试轻量内嵌加载…'
+                          : 'Trying a lightweight embedded load…'}
                     </div>
                     <div className="text-xs text-[#4C3B35]">
-                      {zh ? '卡住的话，直接点下方按钮。' : 'If it stalls, tap the button below.'}
+                      {activeDemo.poster
+                        ? zh
+                          ? '官方站点保护内嵌加载，点击进入官方游戏。'
+                          : 'The official site protects inline embeds. Tap to open the game.'
+                        : zh
+                          ? '卡住的话，直接点下方按钮。'
+                          : 'If it stalls, tap the button below.'}
                     </div>
                     <span className="mt-1 inline-flex min-h-9 items-center gap-1.5 rounded-md bg-[#ff6f9a] px-4 text-xs font-semibold text-white">
                       <ExternalLink className="h-3.5 w-3.5" />
@@ -565,8 +588,17 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
             sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-pointer-lock allow-top-navigation allow-presentation"
           />
           {activeDemo.id === 'easy' && easyFrameState !== 'ready' ? (
-            <div className="absolute inset-0 flex items-end justify-center bg-gradient-to-t from-black/55 via-black/20 to-transparent p-4">
-              <div className="pointer-events-auto flex max-w-md items-start gap-3 rounded-lg border border-white/20 bg-white/95 px-4 py-3 text-sm text-ink-900 shadow-xl">
+            <div className="absolute inset-0 flex items-end justify-center p-4">
+              {activeDemo.poster ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={activeDemo.poster}
+                  alt={`${activeDemo.title} official screenshot`}
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+              ) : null}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/20 to-transparent" />
+              <div className="pointer-events-auto relative z-10 flex max-w-md items-start gap-3 rounded-lg border border-white/20 bg-white/95 px-4 py-3 text-sm text-ink-900 shadow-xl">
                 <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brick-500 text-white">
                   <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-white" />
                 </div>
@@ -574,14 +606,14 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                   <div className="font-semibold">
                     {easyFrameState === 'fallback'
                       ? zh
-                        ? '这个内嵌被拦住了，直接新标签打开更稳。'
-                        : 'This embed is blocked or too slow. Open the game in a new tab.'
+                        ? '官方游戏内嵌被拦截，点击打开官方站点。'
+                        : 'The official embed is protected. Open the official game tab.'
                       : zh
-                        ? '正在尝试轻量内嵌加载，卡住就直接新标签。'
-                        : 'Trying a lightweight embedded load. If it stalls, open a new tab.'}
+                        ? '正在展示官方游戏截图，点击按钮进入游戏。'
+                        : 'Showing the official game screenshot. Open the game to play.'}
                   </div>
                   <div className="mt-1 text-xs text-ink-500">
-                    {zh ? '你也可以随时用下面的按钮直接跳转。' : 'You can always jump out with the button below.'}
+                    {zh ? '截图来自 Meccha Chameleon 官方游戏界面。' : 'Screenshot from the official Meccha Chameleon game screen.'}
                   </div>
                 </div>
                 <button

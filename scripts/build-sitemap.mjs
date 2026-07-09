@@ -115,6 +115,7 @@ const pageSpecs = [
   { path: '/tools', priority: '0.85', changefreq: 'monthly' },
   // Featured HTML5 game detail pages (each one is an internal detail page
   // wrapping an embed of the original hide-and-seek browser game).
+  { path: '/meccha-chameleon-browser-game', priority: '0.9', changefreq: 'weekly' },
   { path: '/hide-n-seek', priority: '0.85', changefreq: 'weekly' },
   { path: '/sneaky-friends', priority: '0.7', changefreq: 'weekly' },
   { path: '/stickman-hide-and-seek', priority: '0.7', changefreq: 'weekly' },
