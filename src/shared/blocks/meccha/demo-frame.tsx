@@ -23,7 +23,7 @@ const demos: Demo[] = [
     source: 'Official Meccha Chameleon',
     ratio: 'aspect-[16/9] min-h-[650px] max-h-[90vh]',
     src: 'https://chameleon-game.com/',
-    note: 'The default slot is the official Meccha Chameleon browser game. Use paint, disguise, and quick hide-and-seek rounds to blend into the room, then open the official game tab when the protected embed blocks inline play.',
+    note: 'The default slot uses official Meccha Chameleon Steam artwork. Use paint, disguise, and quick hide-and-seek rounds to blend into the room, then open the official game tab when the protected embed blocks inline play.',
     openInNewTab: 'https://chameleon-game.com/',
     poster: '/imgs/related-games/meccha-chameleon.png',
   },
@@ -140,7 +140,7 @@ const demos: Demo[] = [
 ];
 
 const zhNotes: Record<string, string> = {
-  easy: '默认入口展示 Meccha Chameleon 官方游戏截图；官方站点保护了内嵌加载，点击按钮可打开官方游戏。',
+  easy: '默认入口展示 Meccha Chameleon 官方 Steam 图片；官方站点保护了内嵌加载，点击按钮可打开官方游戏。',
   hard: 'Hard 使用 CrazyGames 的 Hide N Seek iframe。广告加载卡住时，用新标签打开。',
   social: 'Social 使用偏朋友组队体验的 hide-and-seek 浏览器游戏，适合社交玩法搜索。',
   'hide-n-seek-gd': 'GameDistribution 的经典 Hide N Seek，点击周围卡片会在中间直接切换。',
@@ -613,7 +613,7 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                         : 'Showing the official game screenshot. Open the game to play.'}
                   </div>
                   <div className="mt-1 text-xs text-ink-500">
-                    {zh ? '截图来自 Meccha Chameleon 官方游戏界面。' : 'Screenshot from the official Meccha Chameleon game screen.'}
+                    {zh ? '图片来自 Meccha Chameleon 官方 Steam 页面。' : 'Artwork from the official Meccha Chameleon Steam page.'}
                   </div>
                 </div>
                 <button
