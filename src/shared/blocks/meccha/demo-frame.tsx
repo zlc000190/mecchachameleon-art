@@ -327,6 +327,12 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
     window.open(activeDemo.openInNewTab, '_blank', 'noopener,noreferrer');
   };
 
+  const handleFrameLoad = () => {
+    if (activeDemo.id === 'easy') {
+      setEasyFrameState('ready');
+    }
+  };
+
   const handlePrimaryAction = () => {
     if (activeDemo.id === 'easy' && easyFrameState !== 'ready') {
       openFallback();
@@ -446,28 +452,28 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                 onClick={openFallback}
                 className={`relative w-full ${mobileFrameSize} ${mobileAspect} ${mobileFrameRadius} overflow-hidden bg-black/70 shadow-[0_18px_60px_rgba(0,0,0,0.35)]`}
               >
+                <iframe
+                  key={`${activeDemo.id}-mobile-loading`}
+                  ref={iframeRef}
+                  title={`${activeDemo.title} browser game`}
+                  src={activeDemo.src}
+                  className="absolute inset-0 h-full w-full"
+                  loading="eager"
+                  allow="autoplay; fullscreen; gamepad; pointer-lock; encrypted-media; web-share"
+                  allowFullScreen
+                  scrolling="no"
+                  referrerPolicy="origin"
+                  sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-pointer-lock allow-top-navigation allow-presentation"
+                  onLoad={handleFrameLoad}
+                />
                 {activeDemo.poster ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
                     src={activeDemo.poster}
-                    alt={`${activeDemo.title} official screenshot`}
+                    alt={`${activeDemo.title} official artwork`}
                     className="absolute inset-0 h-full w-full object-cover"
                   />
-                ) : (
-                  <iframe
-                    key={`${activeDemo.id}-mobile-loading`}
-                    ref={iframeRef}
-                    title={`${activeDemo.title} browser game`}
-                    src={activeDemo.src}
-                    className="absolute inset-0 h-full w-full"
-                    loading="eager"
-                    allow="autoplay; fullscreen; gamepad; pointer-lock; encrypted-media; web-share"
-                    allowFullScreen
-                    scrolling="no"
-                    referrerPolicy="origin"
-                    sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-pointer-lock allow-top-navigation allow-presentation"
-                  />
-                )}
+                ) : null}
                 <div className="pointer-events-none absolute inset-0 flex items-end justify-center bg-gradient-to-b from-black/20 via-black/5 to-black/65 p-3 sm:items-center sm:bg-gradient-to-b sm:from-black/45 sm:via-black/15 sm:to-black/55">
                   <div className="pointer-events-auto relative z-10 flex max-w-xs flex-col items-center gap-3 rounded-2xl border border-white/20 bg-white/95 px-6 py-5 text-center text-sm text-[#29211D] shadow-2xl">
                     <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#ff6f9a] text-white">
@@ -586,6 +592,7 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
             scrolling="no"
             referrerPolicy="origin"
             sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-pointer-lock allow-top-navigation allow-presentation"
+            onLoad={handleFrameLoad}
           />
           {activeDemo.id === 'easy' && easyFrameState !== 'ready' ? (
             <div className="absolute inset-0 flex items-end justify-center p-4">
