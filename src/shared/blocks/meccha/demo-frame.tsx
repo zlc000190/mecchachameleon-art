@@ -23,7 +23,7 @@ const demos: Demo[] = [
     source: 'Official Meccha Chameleon',
     ratio: 'aspect-[16/9] min-h-[650px] max-h-[90vh]',
     src: 'https://chameleon-game.com/',
-    note: 'The default slot uses official Meccha Chameleon Steam artwork. Use paint, disguise, and quick hide-and-seek rounds to blend into the room, then open the official game tab when the protected embed blocks inline play.',
+    note: 'The default slot keeps Meccha Chameleon front and center. Use paint, disguise, and quick hide-and-seek rounds to blend into the room, then jump into the game tab if the in-page load takes too long.',
     openInNewTab: 'https://chameleon-game.com/',
     poster: '/imgs/related-games/meccha-chameleon.png',
   },
@@ -140,7 +140,7 @@ const demos: Demo[] = [
 ];
 
 const zhNotes: Record<string, string> = {
-  easy: '默认入口展示 Meccha Chameleon 官方 Steam 图片；官方站点保护了内嵌加载，点击按钮可打开官方游戏。',
+  easy: '默认入口会先展示 Meccha Chameleon 的主视觉图；如果页内加载偏慢，点按钮就能直接开始游戏。',
   hard: 'Hard 使用 CrazyGames 的 Hide N Seek iframe。广告加载卡住时，用新标签打开。',
   social: 'Social 使用偏朋友组队体验的 hide-and-seek 浏览器游戏，适合社交玩法搜索。',
   'hide-n-seek-gd': 'GameDistribution 的经典 Hide N Seek，点击周围卡片会在中间直接切换。',
@@ -482,8 +482,8 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                     <div className="font-semibold">
                       {activeDemo.poster
                         ? zh
-                          ? 'Meccha Chameleon 官方游戏'
-                          : 'Official Meccha Chameleon game'
+                          ? 'Meccha Chameleon 正在准备中'
+                          : 'Meccha Chameleon is getting ready'
                         : zh
                           ? '正在尝试轻量内嵌加载…'
                           : 'Trying a lightweight embedded load…'}
@@ -491,15 +491,15 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                     <div className="text-xs text-[#4C3B35]">
                       {activeDemo.poster
                         ? zh
-                          ? '官方站点保护内嵌加载，点击进入官方游戏。'
-                          : 'The official site protects inline embeds. Tap to open the game.'
+                          ? '页内加载有点慢的话，点下面按钮就能直接开始。'
+                          : 'If the in-page load feels slow, use the button below to jump right in.'
                         : zh
                           ? '卡住的话，直接点下方按钮。'
                           : 'If it stalls, tap the button below.'}
                     </div>
                     <span className="mt-1 inline-flex min-h-9 items-center gap-1.5 rounded-md bg-[#ff6f9a] px-4 text-xs font-semibold text-white">
                       <ExternalLink className="h-3.5 w-3.5" />
-                      {zh ? '在新标签里玩' : 'Play in new tab'}
+                      {zh ? '快速开始' : 'Start faster'}
                     </span>
                   </div>
                 </div>
@@ -613,14 +613,14 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                   <div className="font-semibold">
                     {easyFrameState === 'fallback'
                       ? zh
-                        ? '官方游戏内嵌被拦截，点击打开官方站点。'
-                        : 'The official embed is protected. Open the official game tab.'
+                        ? '这个游戏页内加载有点慢，点按钮可以直接开始。'
+                        : 'This game is taking a little longer to load here. Use the button to start right away.'
                       : zh
-                        ? '正在展示官方游戏截图，点击按钮进入游戏。'
-                        : 'Showing the official game screenshot. Open the game to play.'}
+                        ? '游戏马上就绪，想更快开始也可以直接点按钮。'
+                        : 'The game is almost ready. You can also use the button if you want a faster start.'}
                   </div>
                   <div className="mt-1 text-xs text-ink-500">
-                    {zh ? '图片来自 Meccha Chameleon 官方 Steam 页面。' : 'Artwork from the official Meccha Chameleon Steam page.'}
+                    {zh ? '当前展示的是这款游戏的主视觉图。' : 'You are seeing the main artwork for this game while it finishes loading.'}
                   </div>
                 </div>
                 <button
@@ -628,7 +628,7 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                   onClick={openFallback}
                   className="shrink-0 rounded-md bg-brick-500 px-3 py-1.5 text-xs font-semibold text-white hover:bg-brick-700"
                 >
-                  {zh ? '打开新标签' : 'Open Tab'}
+                  {zh ? '快速开始' : 'Start faster'}
                 </button>
               </div>
             </div>
