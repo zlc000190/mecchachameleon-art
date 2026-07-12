@@ -1,5 +1,6 @@
 'use client';
 
+import Script from 'next/script';
 import { useEffect, useRef, useState } from 'react';
 import { ExternalLink, Gamepad2, Sparkles } from 'lucide-react';
 
@@ -354,6 +355,7 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
 
     return (
       <div id="play" className="scroll-mt-24">
+        <Script src="/vendor/x-frame-bypass.js" strategy="afterInteractive" />
         <div className="overflow-hidden rounded-lg border border-[#efc8d3] bg-gradient-to-br from-[#fff7c8] via-[#ffd2e1] to-[#cdefff] shadow-[0_18px_60px_rgba(134,103,124,0.18)]">
           <div className="border-b border-white/70 px-4 py-3 text-[#2f2730]">
             <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
@@ -413,6 +415,7 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                   ref={iframeRef}
                   title={`${activeDemo.title} browser game`}
                   src={activeDemo.src}
+                  is={activeDemo.id === 'easy' ? 'x-frame-bypass' : undefined}
                   className="absolute inset-0 h-full w-full"
                   loading="eager"
                   allow="autoplay; fullscreen; gamepad; pointer-lock; encrypted-media; web-share"
@@ -457,6 +460,7 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                   ref={iframeRef}
                   title={`${activeDemo.title} browser game`}
                   src={activeDemo.src}
+                  is={activeDemo.id === 'easy' ? 'x-frame-bypass' : undefined}
                   className="absolute inset-0 h-full w-full"
                   loading="eager"
                   allow="autoplay; fullscreen; gamepad; pointer-lock; encrypted-media; web-share"
@@ -522,6 +526,7 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
 
   return (
     <div id="play" className="scroll-mt-24">
+      <Script src="/vendor/x-frame-bypass.js" strategy="afterInteractive" />
       <div className="overflow-hidden rounded-lg border border-[#efc8d3] bg-gradient-to-br from-[#fff7c8] via-[#ffd2e1] to-[#cdefff] shadow-[0_18px_60px_rgba(134,103,124,0.18)]">
         <div className="border-b border-white/70 px-4 py-3 text-[#2f2730]">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
@@ -585,6 +590,7 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
             ref={iframeRef}
             title={`${activeDemo.title} browser game`}
             src={activeDemo.src}
+            is={activeDemo.id === 'easy' ? 'x-frame-bypass' : undefined}
             className="absolute inset-0 h-full w-full"
             loading="eager"
             allow="autoplay; fullscreen; gamepad; pointer-lock; encrypted-media; web-share"
