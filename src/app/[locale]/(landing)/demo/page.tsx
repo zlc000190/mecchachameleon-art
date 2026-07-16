@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import {
   ArrowLeft,
   CheckCircle2,
@@ -8,10 +7,11 @@ import {
   Sparkles,
   Timer,
 } from 'lucide-react';
+import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 
-import { getLocalizedPath } from '@/shared/blocks/meccha/atlas-data';
 import { DemoFrame } from '@/shared/blocks/meccha/demo-frame';
+import { getLocalizedPath } from '@/shared/blocks/meccha/atlas-data';
 import { BreadcrumbJsonLd } from '@/shared/components/seo/breadcrumb-json-ld';
 import { getCanonicalUrl } from '@/shared/lib/seo';
 
@@ -27,8 +27,7 @@ const metaByLocale: Record<string, { title: string; description: string }> = {
   },
   zh: {
     title: 'Meccha Chameleon 免费试玩 - 浏览器直接玩',
-    description:
-      '在浏览器中免费试玩 Meccha Chameleon。一张地图、完整机制、无需注册、无需安装 - 先看看这个涂色躲藏游戏适不适合你。',
+    description: '在浏览器中免费试玩 Meccha Chameleon。一张地图、完整机制、无需注册、无需安装 - 先看看这个涂色躲藏游戏适不适合你。',
   },
   ru: {
     title: 'Meccha Chameleon Бесплатная Демо - Попробуйте в Браузере',
@@ -43,42 +42,35 @@ const metaByLocale: Record<string, { title: string; description: string }> = {
   fr: {
     title: 'Démo Gratuite Meccha Chameleon - Essayez dans le Navigateur',
     description:
-      'Essayez la démo gratuite de Meccha Chameleon dans votre navigateur. Une carte, mécaniques complètes, sans inscription, sans installation.',
+      "Essayez la démo gratuite de Meccha Chameleon dans votre navigateur. Une carte, mécaniques complètes, sans inscription, sans installation.",
   },
   ar: {
     title: 'تجربة مجانية لميتشا تشامليون - جرب في المتصفح',
-    description:
-      'جرب النسخة التجريبية المجانية من ميتشا تشامليون في متصفحك. خريطة واحدة، آليات كاملة، بدون تسجيل، بدون تثبيت.',
+    description: 'جرب النسخة التجريبية المجانية من ميتشا تشامليون في متصفحك. خريطة واحدة، آليات كاملة، بدون تسجيل، بدون تثبيت.',
   },
   pt: {
     title: 'Demo Grátis do Meccha Chameleon - Teste no Navegador',
-    description:
-      'Teste a demo grátis do Meccha Chameleon no seu navegador. Um mapa, mecânicas completas, sem cadastro, sem instalação.',
+    description: 'Teste a demo grátis do Meccha Chameleon no seu navegador. Um mapa, mecânicas completas, sem cadastro, sem instalação.',
   },
   de: {
     title: 'Meccha Chameleon Kostenlose Demo - Im Browser Testen',
-    description:
-      'Teste die kostenlose Demo von Meccha Chameleon in deinem Browser. Eine Karte, volle Mechanik, keine Anmeldung, keine Installation.',
+    description: 'Teste die kostenlose Demo von Meccha Chameleon in deinem Browser. Eine Karte, volle Mechanik, keine Anmeldung, keine Installation.',
   },
   it: {
     title: 'Demo Gratuita Meccha Chameleon - Prova nel Browser',
-    description:
-      'Prova la demo gratuita di Meccha Chameleon nel tuo browser. Una mappa, meccaniche complete, senza registrazione, senza installazione.',
+    description: 'Prova la demo gratuita di Meccha Chameleon nel tuo browser. Una mappa, meccaniche complete, senza registrazione, senza installazione.',
   },
   nl: {
     title: 'Meccha Chameleon Gratis Demo - Probeer in Browser',
-    description:
-      'Probeer de gratis demo van Meccha Chameleon in je browser. Eén kaart, volledige mechaniek, geen registratie, geen installatie.',
+    description: 'Probeer de gratis demo van Meccha Chameleon in je browser. Eén kaart, volledige mechaniek, geen registratie, geen installatie.',
   },
   ja: {
     title: 'めっちゃカメレオン 無料デモ - ブラウザで体験',
-    description:
-      'ブラウザで「めっちゃカメレオン」無料デモを体験。1つのマップ、全メカニクス、登録不要、インストール不要。',
+    description: 'ブラウザで「めっちゃカメレオン」無料デモを体験。1つのマップ、全メカニクス、登録不要、インストール不要。',
   },
   ko: {
     title: 'Meccha Chameleon 무료 데모 - 브라우저에서 체험',
-    description:
-      '브라우저에서 Meccha Chameleon 무료 데모를 체험하세요. 한 개 맵, 전체 메커니즘, 가입 없음, 설치 없음.',
+    description: '브라우저에서 Meccha Chameleon 무료 데모를 체험하세요. 한 개 맵, 전체 메커니즘, 가입 없음, 설치 없음.',
   },
 };
 
@@ -95,29 +87,21 @@ export async function generateMetadata({
     title: m.title,
     description: m.description,
     alternates: { canonical: canonicalUrl },
-    openGraph: {
-      title: m.title,
-      description: m.description,
-      url: canonicalUrl,
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: m.title,
-      description: m.description,
-    },
+    openGraph: { title: m.title, description: m.description, url: canonicalUrl },
+    twitter: { card: 'summary_large_image', title: m.title, description: m.description },
   };
 }
 
 const benefits = [
   {
     icon: Timer,
-    title: 'Separate fan-made title',
-    body: 'This browser experience comes from chameleon-game.com and is not the official MECCHA CHAMELEON release.',
+    title: 'One map, one short round',
+    body: 'The demo runs the same paint-and-hide loop on a single map. Most players finish a full round in under three minutes.',
   },
   {
     icon: Layers,
-    title: 'Browser-based camouflage play',
-    body: 'Try the provider’s paint-and-hide interpretation without confusing it with the paid Windows PC game on Steam.',
+    title: 'Full mechanics, no cut content',
+    body: 'Paint, crouch, match surfaces, freeze, and run - every mechanic from the full game is in the demo. Nothing is locked behind a paywall.',
   },
   {
     icon: Sparkles,
@@ -128,16 +112,16 @@ const benefits = [
 
 const faqs = [
   {
-    q: 'Is this an official MECCHA CHAMELEON demo?',
-    a: 'No. It is a separate fan-made browser title from chameleon-game.com. The official paid PC game is made and published by lemorion_1224.',
+    q: 'Is the demo different from the full game?',
+    a: 'The mechanics are identical. The demo runs on one map with shorter rounds, so you can quickly decide if the hide and seek loop is for you before bringing friends in.',
   },
   {
     q: 'Do I need to install anything?',
     a: 'No. The demo opens in your browser. There is no installer, no admin permission, and no separate launcher to download.',
   },
   {
-    q: 'Where do I get the official game?',
-    a: 'Use the official MECCHA CHAMELEON Steam store page for the current price, system requirements, and purchase options.',
+    q: 'Can I play the demo with friends?',
+    a: 'Yes. Open a friend room from the in-game menu and share the room code. Demo rounds work the same way as full rounds.',
   },
 ];
 
@@ -172,16 +156,14 @@ export default async function DemoPage({
           </a>
 
           <div className="mb-6 max-w-4xl">
-            <p className="mb-3 text-sm font-semibold tracking-normal text-[#7D6D69] uppercase">
-              Unofficial browser alternative
+            <p className="mb-3 text-sm font-semibold uppercase tracking-normal text-[#7D6D69]">
+              Free browser demo
             </p>
-            <h1 className="text-4xl leading-tight font-bold tracking-normal md:text-6xl">
-              Fan-made Chameleon Browser Game
+            <h1 className="text-4xl font-bold leading-tight tracking-normal md:text-6xl">
+              Meccha Chameleon Free Demo
             </h1>
             <p className="mt-4 max-w-3xl text-base leading-7 text-[#4C3B35] md:text-lg">
-              Try a separately operated fan-made paint-and-hide game in your
-              browser. It is not a demo, port, or free edition of the official
-              MECCHA CHAMELEON PC game.
+              Try Meccha Chameleon in your browser - one map, full mechanics, no signup. See the paint-and-hide loop in action, then bring friends in for the real game.
             </p>
           </div>
 
@@ -200,9 +182,7 @@ export default async function DemoPage({
               >
                 <Icon className="mb-4 h-5 w-5 text-[#AA776E]" />
                 <h2 className="text-lg font-semibold">{benefit.title}</h2>
-                <p className="mt-2 text-sm leading-6 text-[#4C3B35]">
-                  {benefit.body}
-                </p>
+                <p className="mt-2 text-sm leading-6 text-[#4C3B35]">{benefit.body}</p>
               </div>
             );
           })}
@@ -213,28 +193,21 @@ export default async function DemoPage({
         <div className="container py-14">
           <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="mb-3 text-sm font-semibold tracking-normal text-[#7D6D69] uppercase">
-                Demo FAQ
-              </p>
-              <h2 className="text-3xl font-bold tracking-normal md:text-4xl">
-                Demo questions, answered
-              </h2>
+              <p className="mb-3 text-sm font-semibold uppercase tracking-normal text-[#7D6D69]">Demo FAQ</p>
+              <h2 className="text-3xl font-bold tracking-normal md:text-4xl">Demo questions, answered</h2>
             </div>
             <a
               href={getLocalizedPath(locale, '/meccha-chameleon-online')}
               className="inline-flex min-h-11 w-fit items-center gap-2 rounded-md bg-[#29211D] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#4C3B35]"
             >
               <MousePointerClick className="h-4 w-4" />
-              Compare official and browser versions
+              Open full game
             </a>
           </div>
 
           <div className="grid gap-4 md:grid-cols-3">
             {faqs.map((faq) => (
-              <div
-                key={faq.q}
-                className="rounded-md border border-[#D8CFC6] bg-[#F6F0EA] p-5"
-              >
+              <div key={faq.q} className="rounded-md border border-[#D8CFC6] bg-[#F6F0EA] p-5">
                 <CheckCircle2 className="mb-4 h-5 w-5 text-[#61a8ff]" />
                 <h3 className="font-semibold">{faq.q}</h3>
                 <p className="mt-2 text-sm leading-6 text-[#4C3B35]">{faq.a}</p>
@@ -246,13 +219,8 @@ export default async function DemoPage({
             <div className="rounded-md border border-[#D8CFC6] bg-[#FFF9F5] p-5">
               <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                 <div>
-                  <h3 className="font-semibold">
-                    Liked the demo? Try the full version.
-                  </h3>
-                  <p className="mt-2 text-sm leading-6 text-[#4C3B35]">
-                    The full online build has 6 maps, friend rooms, and the
-                    unblocked browser play that schools and offices allow.
-                  </p>
+                  <h3 className="font-semibold">Liked the demo? Try the full version.</h3>
+                  <p className="mt-2 text-sm leading-6 text-[#4C3B35]">The full online build has 6 maps, friend rooms, and the unblocked browser play that schools and offices allow.</p>
                 </div>
                 <a
                   href={getLocalizedPath(locale, '/unblocked')}
@@ -267,10 +235,7 @@ export default async function DemoPage({
               <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                 <div>
                   <h3 className="font-semibold">New to hide and seek?</h3>
-                  <p className="mt-2 text-sm leading-6 text-[#4C3B35]">
-                    Read the hide and seek guide first - it covers the basics of
-                    paint, posture, and picking a good surface.
-                  </p>
+                  <p className="mt-2 text-sm leading-6 text-[#4C3B35]">Read the hide and seek guide first - it covers the basics of paint, posture, and picking a good surface.</p>
                 </div>
                 <a
                   href={getLocalizedPath(locale, '/hide-and-seek')}

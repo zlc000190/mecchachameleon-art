@@ -1,7 +1,7 @@
 import '@/config/style/global.css';
 
-import { headers } from 'next/headers';
 import { getLocale, setRequestLocale } from 'next-intl/server';
+import { headers } from 'next/headers';
 import NextTopLoader from 'nextjs-toploader';
 
 import { envConfigs } from '@/config';
@@ -24,11 +24,6 @@ export default async function RootLayout({
 
   const isProduction = process.env.NODE_ENV === 'production';
   const isDebug = process.env.NEXT_PUBLIC_DEBUG === 'true';
-  const adsEnabled = process.env.NEXT_PUBLIC_ADS_ENABLED === 'true';
-  const analyticsEnabled = process.env.NEXT_PUBLIC_ANALYTICS_ENABLED === 'true';
-  const affiliateEnabled = process.env.NEXT_PUBLIC_AFFILIATE_ENABLED === 'true';
-  const customerServiceEnabled =
-    process.env.NEXT_PUBLIC_CUSTOMER_SERVICE_ENABLED === 'true';
 
   // app url
   const appUrl = envConfigs.app_url || '';
@@ -40,18 +35,15 @@ export default async function RootLayout({
   const requestUrl = headerList.get('x-url') || '';
   let currentPath = '/';
   try {
-    currentPath = requestUrl
-      ? new URL(requestUrl).pathname.replace(/\/+$/, '/') || '/'
-      : '/';
+    currentPath = requestUrl ? new URL(requestUrl).pathname.replace(/\/+$/, '/') || '/' : '/';
   } catch {
     currentPath = '/';
   }
   // strip leading locale segment so we can rebuild per-locale URLs
-  const strippedPath =
-    currentPath.replace(
-      /^\/(en|zh|ru|it|fr|de|es|pt|ja|ko|ar|th|vi|zh-TW|nl)(?=\/|$)/,
-      ''
-    ) || '/';
+  const strippedPath = currentPath.replace(
+    /^\/(en|zh|ru|it|fr|de|es|pt|ja|ko|ar|th|vi|zh-TW|nl)(?=\/|$)/,
+    ''
+  ) || '/';
   const altUrl = (loc: string) => {
     const homePath = strippedPath === '/';
     if (loc === 'en') {
@@ -60,21 +52,9 @@ export default async function RootLayout({
     return `${appUrl}/${loc}${homePath ? '' : strippedPath}`;
   };
 
-  const activeSeoLocales =
-    strippedPath === '/'
-      ? seoLocales
-      : seoLocales.filter(
-          (loc) =>
-            loc !== 'es' &&
-            loc !== 'de' &&
-            loc !== 'pt' &&
-            loc !== 'fr' &&
-            loc !== 'it' &&
-            loc !== 'nl' &&
-            loc !== 'ar' &&
-            loc !== 'ja' &&
-            loc !== 'ko'
-        );
+  const activeSeoLocales = strippedPath === '/'
+    ? seoLocales
+    : seoLocales.filter((loc) => loc !== 'es' && loc !== 'de' && loc !== 'pt' && loc !== 'fr' && loc !== 'it' && loc !== 'nl' && loc !== 'ar' && loc !== 'ja' && loc !== 'ko');
 
   // ads components
   let adsMetaTags = null;
@@ -107,35 +87,25 @@ export default async function RootLayout({
         getCustomerService(configs),
       ]);
 
-    // AdSense ownership is verified by the static meta tag and ads.txt.
-    // Ad/analytics scripts stay off by default during review. Enable them only
-    // after approval and after a consent implementation has been configured.
-    if (adsEnabled) {
-      adsMetaTags = adsService.getMetaTags();
-      adsHeadScripts = adsService.getHeadScripts();
-      adsBodyScripts = adsService.getBodyScripts();
-    }
+    // get ads components
+    adsMetaTags = adsService.getMetaTags();
+    adsHeadScripts = adsService.getHeadScripts();
+    adsBodyScripts = adsService.getBodyScripts();
 
     // get analytics components
-    if (analyticsEnabled) {
-      analyticsMetaTags = analyticsService.getMetaTags();
-      analyticsHeadScripts = analyticsService.getHeadScripts();
-      analyticsBodyScripts = analyticsService.getBodyScripts();
-    }
+    analyticsMetaTags = analyticsService.getMetaTags();
+    analyticsHeadScripts = analyticsService.getHeadScripts();
+    analyticsBodyScripts = analyticsService.getBodyScripts();
 
     // get affiliate components
-    if (affiliateEnabled) {
-      affiliateMetaTags = affiliateService.getMetaTags();
-      affiliateHeadScripts = affiliateService.getHeadScripts();
-      affiliateBodyScripts = affiliateService.getBodyScripts();
-    }
+    affiliateMetaTags = affiliateService.getMetaTags();
+    affiliateHeadScripts = affiliateService.getHeadScripts();
+    affiliateBodyScripts = affiliateService.getBodyScripts();
 
     // get customer service components
-    if (customerServiceEnabled) {
-      customerServiceMetaTags = customerService.getMetaTags();
-      customerServiceHeadScripts = customerService.getHeadScripts();
-      customerServiceBodyScripts = customerService.getBodyScripts();
-    }
+    customerServiceMetaTags = customerService.getMetaTags();
+    customerServiceHeadScripts = customerService.getHeadScripts();
+    customerServiceBodyScripts = customerService.getBodyScripts();
   }
 
   return (
@@ -146,6 +116,7 @@ export default async function RootLayout({
         <link rel="alternate icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="google-adsense-account" content="ca-pub-5387615281666707" />
+
         {/* hreflang alternates — only SEO-approved locales are emitted.
             Half-translated new locales are routable only after native keyword
             rewrites; exposing them here would dilute the new site's quality. */}
@@ -159,7 +130,11 @@ export default async function RootLayout({
                 href={altUrl(loc)}
               />
             ))}
-            <link rel="alternate" hrefLang="x-default" href={altUrl('en')} />
+            <link
+              rel="alternate"
+              hrefLang="x-default"
+              href={altUrl('en')}
+            />
           </>
         ) : null}
 

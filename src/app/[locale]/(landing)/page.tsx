@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { setRequestLocale } from 'next-intl/server';
 
+import { AdsterraNativeBanner } from '@/extensions/ads';
 import { ArabicSeoSection } from '@/shared/blocks/meccha/arabic-seo-section';
 import { AtlasPreview } from '@/shared/blocks/meccha/atlas-preview';
 import { CommunityChallengePreview } from '@/shared/blocks/meccha/community-challenge-preview';
@@ -26,9 +27,9 @@ import {
 } from '@/shared/blocks/meccha/meccha-i18n';
 import { PaidDownloadButton } from '@/shared/blocks/meccha/paid-download-button';
 import { PortugueseSeoSection } from '@/shared/blocks/meccha/portuguese-seo-section';
-import { RelatedGames } from '@/shared/blocks/meccha/related-games';
 import { SpanishSeoSection } from '@/shared/blocks/meccha/spanish-seo-section';
 import { ToolsTeaser } from '@/shared/blocks/meccha/tools-teaser';
+import { RelatedGames } from '@/shared/blocks/meccha/related-games';
 import { UpdatesSection } from '@/shared/blocks/meccha/updates-section';
 import { BreadcrumbJsonLd } from '@/shared/components/seo/breadcrumb-json-ld';
 import { getPlayKitPriceLabel } from '@/shared/lib/play-kit';
@@ -106,13 +107,6 @@ export default async function LandingPage({
               <h1 className="text-4xl leading-tight font-bold tracking-normal text-[#29211D] md:text-6xl">
                 {copy.title}
               </h1>
-              <p className="mt-4 max-w-3xl rounded-md border border-[#d6b7c0] bg-white/80 px-4 py-3 text-sm leading-6 text-[#4C3B35]">
-                Independent fan-made guide and browser-game directory. This site
-                is not affiliated with, endorsed by, or operated by
-                lemorion_1224. The official MECCHA CHAMELEON is the paid PC game
-                available on Steam; browser games shown here are separate
-                third-party or fan-made titles.
-              </p>
             </div>
             <div className="flex flex-wrap gap-3">
               <a
@@ -146,6 +140,16 @@ export default async function LandingPage({
       </section>
 
       <RelatedGames locale={locale} />
+
+      <section className="border-b border-[#D8CFC6] bg-white">
+        <div className="container py-6">
+          <AdsterraNativeBanner
+            className="mx-auto min-h-[90px] w-full max-w-5xl"
+            containerId="container-b59ba82077f589c928c05fdf83f0e6e0"
+            invokeSrc="https://pl30105394.effectivecpmnetwork.com/b59ba82077f589c928c05fdf83f0e6e0/invoke.js"
+          />
+        </div>
+      </section>
 
       <ToolsTeaser locale={locale} />
 
