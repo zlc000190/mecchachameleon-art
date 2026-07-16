@@ -1,6 +1,5 @@
 'use client';
 
-import Script from 'next/script';
 import { useEffect, useRef, useState } from 'react';
 import { ExternalLink, Gamepad2, Sparkles } from 'lucide-react';
 
@@ -19,12 +18,12 @@ type Demo = {
 const demos: Demo[] = [
   {
     id: 'easy',
-    label: 'Meccha',
-    title: 'Meccha Chameleon Browser Game',
-    source: 'Official Meccha Chameleon',
+    label: 'Fan game',
+    title: 'Fan-made Chameleon Hide-and-Seek',
+    source: 'chameleon-game.com (unofficial)',
     ratio: 'aspect-[16/9] min-h-[650px] max-h-[90vh]',
     src: 'https://chameleon-game.com/',
-    note: 'The default slot keeps Meccha Chameleon front and center. Use paint, disguise, and quick hide-and-seek rounds to blend into the room, then jump into the game tab if the in-page load takes too long.',
+    note: 'This is a separate, fan-made browser game inspired by paint-and-hide gameplay. It is not the official MECCHA CHAMELEON PC game and is not operated by lemorion_1224.',
     openInNewTab: 'https://chameleon-game.com/',
     poster: '/imgs/related-games/meccha-chameleon.png',
   },
@@ -43,10 +42,12 @@ const demos: Demo[] = [
     label: 'Social',
     title: 'Sneaky Friends',
     source: 'GameDistribution',
-    ratio: 'aspect-[480/800] sm:aspect-[16/10] lg:aspect-[480/800] min-h-[640px] max-h-[86vh]',
+    ratio:
+      'aspect-[480/800] sm:aspect-[16/10] lg:aspect-[480/800] min-h-[640px] max-h-[86vh]',
     src: 'https://embed.gamedistribution.com/?url=https://html5.gamedistribution.com/8529938662c2447091414e2cc73983e3/&width=480&height=800&language=en&gdpr-tracking=1&gdpr-targeting=1&gd_sdk_referrer_url=https://mechachameleon.games/',
     note: 'Social mode uses the friend-focused hide-and-seek browser game. Best for users looking for a group-play flavor.',
-    openInNewTab: 'https://html5.gamedistribution.com/8529938662c2447091414e2cc73983e3/',
+    openInNewTab:
+      'https://html5.gamedistribution.com/8529938662c2447091414e2cc73983e3/',
   },
   {
     id: 'hide-n-seek-gd',
@@ -56,7 +57,8 @@ const demos: Demo[] = [
     ratio: 'aspect-[16/9] min-h-[560px] max-h-[86vh]',
     src: 'https://html5.gamedistribution.com/7eda2be289604aa89f3b97df59661bfe/',
     note: 'Classic maze-style hide-and-seek from GameDistribution. Pick this when users want a direct hide-or-seek match.',
-    openInNewTab: 'https://html5.gamedistribution.com/7eda2be289604aa89f3b97df59661bfe/',
+    openInNewTab:
+      'https://html5.gamedistribution.com/7eda2be289604aa89f3b97df59661bfe/',
   },
   {
     id: 'stickman-hide-seek',
@@ -66,7 +68,8 @@ const demos: Demo[] = [
     ratio: 'aspect-[16/9] min-h-[560px] max-h-[86vh]',
     src: 'https://html5.gamedistribution.com/239942ce1a1349f6bcc9d312b32c5c3b/',
     note: 'Stickman hide-and-seek where players can hide or chase in short browser rounds.',
-    openInNewTab: 'https://html5.gamedistribution.com/239942ce1a1349f6bcc9d312b32c5c3b/',
+    openInNewTab:
+      'https://html5.gamedistribution.com/239942ce1a1349f6bcc9d312b32c5c3b/',
   },
   {
     id: 'horror-escape',
@@ -76,7 +79,8 @@ const demos: Demo[] = [
     ratio: 'aspect-[16/9] min-h-[560px] max-h-[86vh]',
     src: 'https://html5.gamedistribution.com/169645f5ac814065968e3872875bbce1/',
     note: 'Asymmetric horror hide-and-seek with hide and seek roles, school and hospital escape scenes.',
-    openInNewTab: 'https://html5.gamedistribution.com/169645f5ac814065968e3872875bbce1/',
+    openInNewTab:
+      'https://html5.gamedistribution.com/169645f5ac814065968e3872875bbce1/',
   },
   {
     id: 'kitten-hide-seek',
@@ -86,7 +90,8 @@ const demos: Demo[] = [
     ratio: 'aspect-[16/9] min-h-[560px] max-h-[86vh]',
     src: 'https://html5.gamedistribution.com/b78553bf5db34812972452aab68f88c0/',
     note: 'Cute puzzle hide-and-seek: help the little girl escape while avoiding the kitten.',
-    openInNewTab: 'https://html5.gamedistribution.com/b78553bf5db34812972452aab68f88c0/',
+    openInNewTab:
+      'https://html5.gamedistribution.com/b78553bf5db34812972452aab68f88c0/',
   },
   {
     id: 'skibidi-hide-seek',
@@ -96,7 +101,8 @@ const demos: Demo[] = [
     ratio: 'aspect-[16/9] min-h-[560px] max-h-[86vh]',
     src: 'https://html5.gamedistribution.com/38d6fc63e63c4be69887a604699c864a/',
     note: 'A chase-focused hide-and-seek battle with hunters and escape artists.',
-    openInNewTab: 'https://html5.gamedistribution.com/38d6fc63e63c4be69887a604699c864a/',
+    openInNewTab:
+      'https://html5.gamedistribution.com/38d6fc63e63c4be69887a604699c864a/',
   },
   {
     id: 'among-hide-seek',
@@ -106,7 +112,8 @@ const demos: Demo[] = [
     ratio: 'aspect-[16/9] min-h-[560px] max-h-[86vh]',
     src: 'https://html5.gamedistribution.com/012df11266ed40909ce2b303c202fa93/',
     note: 'Cartoon stealth hide-and-seek with quick browser rounds and simple controls.',
-    openInNewTab: 'https://html5.gamedistribution.com/012df11266ed40909ce2b303c202fa93/',
+    openInNewTab:
+      'https://html5.gamedistribution.com/012df11266ed40909ce2b303c202fa93/',
   },
   {
     id: 'hunt-and-seek',
@@ -116,7 +123,8 @@ const demos: Demo[] = [
     ratio: 'aspect-[16/9] min-h-[560px] max-h-[86vh]',
     src: 'https://html5.gamedistribution.com/7fa16181fc5c4ce2a7d3b9a171d48f76/',
     note: 'A puzzle-flavored seek-and-find game with hidden characters and short casual rounds.',
-    openInNewTab: 'https://html5.gamedistribution.com/7fa16181fc5c4ce2a7d3b9a171d48f76/',
+    openInNewTab:
+      'https://html5.gamedistribution.com/7fa16181fc5c4ce2a7d3b9a171d48f76/',
   },
   {
     id: 'blumgi-slime',
@@ -143,12 +151,16 @@ const demos: Demo[] = [
 const zhNotes: Record<string, string> = {
   easy: '默认入口会先展示 Meccha Chameleon 的主视觉图；如果页内加载偏慢，点按钮就能直接开始游戏。',
   hard: 'Hard 使用 CrazyGames 的 Hide N Seek iframe。广告加载卡住时，用新标签打开。',
-  social: 'Social 使用偏朋友组队体验的 hide-and-seek 浏览器游戏，适合社交玩法搜索。',
-  'hide-n-seek-gd': 'GameDistribution 的经典 Hide N Seek，点击周围卡片会在中间直接切换。',
+  social:
+    'Social 使用偏朋友组队体验的 hide-and-seek 浏览器游戏，适合社交玩法搜索。',
+  'hide-n-seek-gd':
+    'GameDistribution 的经典 Hide N Seek，点击周围卡片会在中间直接切换。',
   'stickman-hide-seek': 'Stickman 躲猫猫浏览器版，适合补充更多同类游戏入口。',
-  'horror-escape': 'Horror Escape 是恐怖逃脱型躲猫猫，有 Hide / Seek 两种身份。',
+  'horror-escape':
+    'Horror Escape 是恐怖逃脱型躲猫猫，有 Hide / Seek 两种身份。',
   'kitten-hide-seek': 'Kitten Hide And Seek 是轻量解谜躲藏玩法。',
-  'skibidi-hide-seek': 'Skibidi Titans Hide And Seek 是追逐和逃脱方向的同类游戏。',
+  'skibidi-hide-seek':
+    'Skibidi Titans Hide And Seek 是追逐和逃脱方向的同类游戏。',
   'among-hide-seek': 'Among Them Hide N Seek 2 是卡通躲藏玩法。',
   'hunt-and-seek': 'Hunt And Seek 偏寻找隐藏角色和轻解谜。',
   'blumgi-slime': 'Blumgi Slime 是参考站同款方向，但来源是独立站点。',
@@ -206,10 +218,13 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
   const [activeId, setActiveId] = useState<Demo['id']>('easy');
   const [customDemo, setCustomDemo] = useState<Demo | null>(null);
   const [showHint, setShowHint] = useState(true);
-  const [easyFrameState, setEasyFrameState] = useState<'loading' | 'ready' | 'fallback'>('loading');
+  const [easyFrameState, setEasyFrameState] = useState<
+    'loading' | 'ready' | 'fallback'
+  >('loading');
   const [isDesktopPlay, setIsDesktopPlay] = useState(false);
   const [isLandscape, setIsLandscape] = useState(false);
-  const activeDemo = customDemo ?? demos.find((demo) => demo.id === activeId) ?? demos[0];
+  const activeDemo =
+    customDemo ?? demos.find((demo) => demo.id === activeId) ?? demos[0];
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
@@ -219,14 +234,16 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
 
   useEffect(() => {
     const handleSelectDemo = (event: Event) => {
-      const detail = (event as CustomEvent<{
-        demoId?: string;
-        title?: string;
-        source?: string;
-        src?: string;
-        note?: string;
-        openInNewTab?: string;
-      }>).detail;
+      const detail = (
+        event as CustomEvent<{
+          demoId?: string;
+          title?: string;
+          source?: string;
+          src?: string;
+          note?: string;
+          openInNewTab?: string;
+        }>
+      ).detail;
       const demoId = detail?.demoId;
 
       if (!demoId) return;
@@ -243,7 +260,8 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
           source: detail.source,
           ratio: 'aspect-[16/9] min-h-[650px] max-h-[90vh]',
           src: detail.src,
-          note: detail.note || `${detail.title} opens in the center play frame.`,
+          note:
+            detail.note || `${detail.title} opens in the center play frame.`,
           openInNewTab: detail.openInNewTab || detail.src,
         });
         setActiveId(demoId);
@@ -265,7 +283,9 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
   }, []);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(min-width: 768px) and (pointer: fine)');
+    const mediaQuery = window.matchMedia(
+      '(min-width: 768px) and (pointer: fine)'
+    );
     const update = () => setIsDesktopPlay(mediaQuery.matches);
     const raf = window.requestAnimationFrame(update);
 
@@ -310,7 +330,9 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
 
     const timeoutId = window.setTimeout(() => {
       if (!finished) {
-        setEasyFrameState((current) => (current === 'ready' ? current : 'fallback'));
+        setEasyFrameState((current) =>
+          current === 'ready' ? current : 'fallback'
+        );
       }
     }, EASY_LOAD_TIMEOUT_MS);
     const pollId = window.setInterval(poll, EASY_POLL_INTERVAL_MS);
@@ -350,18 +372,20 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
   const mobileFrameRadius = isLandscape ? 'rounded-2xl' : 'rounded-lg';
 
   if (!isDesktopPlay) {
-    const showMobileFallback = activeDemo.id === 'easy' && easyFrameState === 'fallback';
-    const showMobileReady = activeDemo.id === 'easy' && easyFrameState === 'ready';
+    const showMobileFallback =
+      activeDemo.id === 'easy' && easyFrameState === 'fallback';
+    const showMobileReady =
+      activeDemo.id === 'easy' && easyFrameState === 'ready';
 
     return (
       <div id="play" className="scroll-mt-24">
-        <Script src="/vendor/x-frame-bypass.js" strategy="afterInteractive" />
         <div className="overflow-hidden rounded-lg border border-[#efc8d3] bg-gradient-to-br from-[#fff7c8] via-[#ffd2e1] to-[#cdefff] shadow-[0_18px_60px_rgba(134,103,124,0.18)]">
           <div className="border-b border-white/70 px-4 py-3 text-[#2f2730]">
             <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
               <div>
                 <div className="text-sm font-semibold">
-                  {zh ? 'Mecha Chameleon 在线游戏' : 'Mecha Chameleon Game'} · {activeDemo.label}
+                  {zh ? 'Mecha Chameleon 在线游戏' : 'Mecha Chameleon Game'} ·{' '}
+                  {activeDemo.label}
                 </div>
                 <div className="mt-1 text-xs text-[#4C3B35]">
                   {activeDemo.title} via {activeDemo.source}
@@ -415,7 +439,6 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                   ref={iframeRef}
                   title={`${activeDemo.title} browser game`}
                   src={activeDemo.src}
-                  is={activeDemo.id === 'easy' ? 'x-frame-bypass' : undefined}
                   className="absolute inset-0 h-full w-full"
                   loading="eager"
                   allow="autoplay; fullscreen; gamepad; pointer-lock; encrypted-media; web-share"
@@ -442,7 +465,7 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                 className="flex h-64 w-64 flex-col items-center justify-center gap-4 rounded-full bg-[#ff6f9a] text-white shadow-[0_18px_60px_rgba(0,0,0,0.35)] transition hover:bg-[#e95a88] sm:h-72 sm:w-72"
               >
                 <Gamepad2 className="h-16 w-16" />
-                <span className="px-6 text-center text-2xl font-bold leading-tight sm:text-3xl">
+                <span className="px-6 text-center text-2xl leading-tight font-bold sm:text-3xl">
                   {zh ? '在新标签里玩' : 'Click to Play in New Tab'}
                 </span>
                 <span className="text-sm font-medium opacity-90">
@@ -460,7 +483,6 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                   ref={iframeRef}
                   title={`${activeDemo.title} browser game`}
                   src={activeDemo.src}
-                  is={activeDemo.id === 'easy' ? 'x-frame-bypass' : undefined}
                   className="absolute inset-0 h-full w-full"
                   loading="eager"
                   allow="autoplay; fullscreen; gamepad; pointer-lock; encrypted-media; web-share"
@@ -526,13 +548,13 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
 
   return (
     <div id="play" className="scroll-mt-24">
-      <Script src="/vendor/x-frame-bypass.js" strategy="afterInteractive" />
       <div className="overflow-hidden rounded-lg border border-[#efc8d3] bg-gradient-to-br from-[#fff7c8] via-[#ffd2e1] to-[#cdefff] shadow-[0_18px_60px_rgba(134,103,124,0.18)]">
         <div className="border-b border-white/70 px-4 py-3 text-[#2f2730]">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
             <div>
               <div className="text-sm font-semibold">
-                {zh ? 'Mecha Chameleon 在线游戏' : 'Mecha Chameleon Game'} · {activeDemo.label}
+                {zh ? 'Mecha Chameleon 在线游戏' : 'Mecha Chameleon Game'} ·{' '}
+                {activeDemo.label}
               </div>
               <div className="mt-1 text-xs text-[#4C3B35]">
                 {activeDemo.title} via {activeDemo.source}
@@ -554,7 +576,11 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
             </button>
           </div>
 
-          <div className="mt-4 flex flex-wrap gap-2" role="tablist" aria-label="Game mode">
+          <div
+            className="mt-4 flex flex-wrap gap-2"
+            role="tablist"
+            aria-label="Game mode"
+          >
             {demos.map((demo) => (
               <button
                 key={demo.id}
@@ -572,25 +598,26 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                 className={`min-h-9 rounded-md border px-4 text-sm font-semibold transition ${
                   activeDemo.id === demo.id
                     ? 'border-ink-900 bg-ink-900 text-white'
-                    : 'border-mortar bg-white text-ink-900 hover:bg-brick-50'
+                    : 'border-mortar text-ink-900 hover:bg-brick-50 bg-white'
                 }`}
               >
                 {demo.label}
               </button>
             ))}
           </div>
-          <p className="mt-3 text-xs leading-5 text-ink-500">
+          <p className="text-ink-500 mt-3 text-xs leading-5">
             {zh ? zhNotes[activeDemo.id] : activeDemo.note}
           </p>
         </div>
 
-        <div className={`relative w-full overflow-hidden bg-brick-900 ${activeDemo.ratio}`}>
+        <div
+          className={`bg-brick-900 relative w-full overflow-hidden ${activeDemo.ratio}`}
+        >
           <iframe
             key={activeDemo.id}
             ref={iframeRef}
             title={`${activeDemo.title} browser game`}
             src={activeDemo.src}
-            is={activeDemo.id === 'easy' ? 'x-frame-bypass' : undefined}
             className="absolute inset-0 h-full w-full"
             loading="eager"
             allow="autoplay; fullscreen; gamepad; pointer-lock; encrypted-media; web-share"
@@ -611,8 +638,8 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                 />
               ) : null}
               <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/20 to-transparent" />
-              <div className="pointer-events-auto relative z-10 flex max-w-md items-start gap-3 rounded-lg border border-white/20 bg-white/95 px-4 py-3 text-sm text-ink-900 shadow-xl">
-                <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brick-500 text-white">
+              <div className="text-ink-900 pointer-events-auto relative z-10 flex max-w-md items-start gap-3 rounded-lg border border-white/20 bg-white/95 px-4 py-3 text-sm shadow-xl">
+                <div className="bg-brick-500 mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-white">
                   <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-white" />
                 </div>
                 <div className="min-w-0">
@@ -625,14 +652,16 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                         ? '游戏马上就绪，想更快开始也可以直接点按钮。'
                         : 'The game is almost ready. You can also use the button if you want a faster start.'}
                   </div>
-                  <div className="mt-1 text-xs text-ink-500">
-                    {zh ? '当前展示的是这款游戏的主视觉图。' : 'You are seeing the main artwork for this game while it finishes loading.'}
+                  <div className="text-ink-500 mt-1 text-xs">
+                    {zh
+                      ? '当前展示的是这款游戏的主视觉图。'
+                      : 'You are seeing the main artwork for this game while it finishes loading.'}
                   </div>
                 </div>
                 <button
                   type="button"
                   onClick={openFallback}
-                  className="shrink-0 rounded-md bg-brick-500 px-3 py-1.5 text-xs font-semibold text-white hover:bg-brick-700"
+                  className="bg-brick-500 hover:bg-brick-700 shrink-0 rounded-md px-3 py-1.5 text-xs font-semibold text-white"
                 >
                   {zh ? '快速开始' : 'Start faster'}
                 </button>
@@ -645,16 +674,20 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                 <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" />
                 <div>
                   <div className="font-semibold">
-                    {zh ? '如果 iframe 加载卡住，点击下方新标签打开。' : 'If the iframe splash sticks, open the game in a new tab.'}
+                    {zh
+                      ? '如果 iframe 加载卡住，点击下方新标签打开。'
+                      : 'If the iframe splash sticks, open the game in a new tab.'}
                   </div>
                   <div className="mt-1 text-xs text-amber-900/80">
-                    {zh ? '第三方游戏源，非官方 Meccha Chameleon。' : 'Third-party game source, not the official Meccha Chameleon.'}
+                    {zh
+                      ? '第三方游戏源，非官方 Meccha Chameleon。'
+                      : 'Third-party game source, not the official Meccha Chameleon.'}
                   </div>
                 </div>
                 <button
                   type="button"
                   onClick={() => setShowHint(false)}
-                  className="-mr-1 -mt-1 rounded p-1 text-amber-700 hover:bg-amber-200/60"
+                  className="-mt-1 -mr-1 rounded p-1 text-amber-700 hover:bg-amber-200/60"
                   aria-label="Dismiss hint"
                 >
                   ×
@@ -664,8 +697,12 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
           ) : null}
         </div>
 
-        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-white/70 bg-white/80 px-4 py-3 text-xs text-ink-500">
-          <span>{zh ? '游戏已经在上方显示；卡住时可新标签打开。' : 'The game is visible above; use a new tab if loading gets stuck.'}</span>
+        <div className="text-ink-500 flex flex-wrap items-center justify-between gap-3 border-t border-white/70 bg-white/80 px-4 py-3 text-xs">
+          <span>
+            {zh
+              ? '游戏已经在上方显示；卡住时可新标签打开。'
+              : 'The game is visible above; use a new tab if loading gets stuck.'}
+          </span>
           <a
             href={activeDemo.openInNewTab}
             target="_blank"

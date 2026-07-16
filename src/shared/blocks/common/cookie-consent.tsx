@@ -1,20 +1,28 @@
 'use client';
 
+import { useSyncExternalStore } from 'react';
+import Link from 'next/link';
 import { Cookie, X } from 'lucide-react';
-import { useEffect, useState } from 'react';
 
 const STORAGE_KEY = 'meccha_cookie_consent';
 
 export function CookieConsent() {
-  const [isVisible, setIsVisible] = useState(false);
+  const isVisible = useSyncExternalStore(
+    (onStoreChange) => {
+      window.addEventListener('storage', onStoreChange);
+      window.addEventListener('meccha-consent-change', onStoreChange);
+      return () => {
+        window.removeEventListener('storage', onStoreChange);
+        window.removeEventListener('meccha-consent-change', onStoreChange);
+      };
+    },
+    () => window.localStorage.getItem(STORAGE_KEY) === null,
+    () => false
+  );
 
-  useEffect(() => {
-    setIsVisible(window.localStorage.getItem(STORAGE_KEY) !== 'accepted');
-  }, []);
-
-  const accept = () => {
-    window.localStorage.setItem(STORAGE_KEY, 'accepted');
-    setIsVisible(false);
+  const saveChoice = (choice: 'accepted' | 'rejected') => {
+    window.localStorage.setItem(STORAGE_KEY, choice);
+    window.dispatchEvent(new Event('meccha-consent-change'));
   };
 
   if (!isVisible) return null;
@@ -26,20 +34,32 @@ export function CookieConsent() {
           <Cookie className="size-5" aria-hidden="true" />
         </div>
         <p className="min-w-0 flex-1 text-xs leading-5 text-white/82 sm:text-sm md:text-base">
-          We use cookies to improve your browsing experience and analyze site traffic.
+          This site uses local storage for convenience features. Advertising and
+          analytics are disabled by default during review. See our{' '}
+          <Link href="/privacy-policy" className="underline">
+            Privacy Policy
+          </Link>
+          .
         </p>
         <button
           type="button"
-          onClick={accept}
-          className="shrink-0 rounded-full bg-[#a6ff7a] px-3 py-2 text-xs font-black uppercase tracking-wide text-[#1d241d] transition hover:bg-[#b9ff93] focus:outline-none focus:ring-2 focus:ring-[#a6ff7a] focus:ring-offset-2 focus:ring-offset-[#1f2d28] sm:px-5"
+          onClick={() => saveChoice('accepted')}
+          className="shrink-0 rounded-full bg-[#a6ff7a] px-3 py-2 text-xs font-black tracking-wide text-[#1d241d] uppercase transition hover:bg-[#b9ff93] focus:ring-2 focus:ring-[#a6ff7a] focus:ring-offset-2 focus:ring-offset-[#1f2d28] focus:outline-none sm:px-5"
         >
-          Got it
+          Allow storage
         </button>
         <button
           type="button"
-          onClick={accept}
+          onClick={() => saveChoice('rejected')}
+          className="shrink-0 rounded-full border border-white/30 px-3 py-2 text-xs font-bold text-white transition hover:bg-white/10 sm:px-4"
+        >
+          Essential only
+        </button>
+        <button
+          type="button"
+          onClick={() => saveChoice('rejected')}
           aria-label="Close cookie notice"
-          className="flex size-8 shrink-0 items-center justify-center rounded-full border border-white/20 text-white/75 transition hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/60 sm:size-9"
+          className="flex size-8 shrink-0 items-center justify-center rounded-full border border-white/20 text-white/75 transition hover:bg-white/10 hover:text-white focus:ring-2 focus:ring-white/60 focus:outline-none sm:size-9"
         >
           <X className="size-4" aria-hidden="true" />
         </button>

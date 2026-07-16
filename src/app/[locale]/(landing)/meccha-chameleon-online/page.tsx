@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import {
   ArrowLeft,
   CheckCircle2,
@@ -7,11 +8,10 @@ import {
   MousePointerClick,
   Users,
 } from 'lucide-react';
-import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 
-import { DemoFrame } from '@/shared/blocks/meccha/demo-frame';
 import { getLocalizedPath } from '@/shared/blocks/meccha/atlas-data';
+import { DemoFrame } from '@/shared/blocks/meccha/demo-frame';
 import { BreadcrumbJsonLd } from '@/shared/components/seo/breadcrumb-json-ld';
 import { getCanonicalUrl } from '@/shared/lib/seo';
 
@@ -28,7 +28,8 @@ const metaByLocale: Record<string, { title: string; description: string }> = {
   },
   zh: {
     title: 'Meccha Chameleon 在线玩 - 免费浏览器游戏',
-    description: '在浏览器中免费玩 Meccha Chameleon。无需下载、无需安装、快速开始捉迷藏游戏，包含地图、技巧和好友房间。',
+    description:
+      '在浏览器中免费玩 Meccha Chameleon。无需下载、无需安装、快速开始捉迷藏游戏，包含地图、技巧和好友房间。',
   },
   ru: {
     title: 'Meccha Chameleon Онлайн - Бесплатная Браузерная Игра',
@@ -43,11 +44,12 @@ const metaByLocale: Record<string, { title: string; description: string }> = {
   fr: {
     title: 'Meccha Chameleon en Ligne - Gratuit Sans Téléchargement',
     description:
-      "Jouez à Meccha Chameleon en ligne gratuitement dans votre navigateur. Sans téléchargement, sans installation, démarrage rapide du cache-cache avec cartes, astuces et salles entre amis.",
+      'Jouez à Meccha Chameleon en ligne gratuitement dans votre navigateur. Sans téléchargement, sans installation, démarrage rapide du cache-cache avec cartes, astuces et salles entre amis.',
   },
   ar: {
     title: 'ميتشا تشامليون أونلاين - العب مجاناً بدون تنزيل',
-    description: 'العب ميتشا تشامليون أونلاين مجاناً في متصفحك. بدون تنزيل، بدون تثبيت، بداية سريعة للعبة الغميضة مع الخرائط والنصائح وغرف الأصدقاء.',
+    description:
+      'العب ميتشا تشامليون أونلاين مجاناً في متصفحك. بدون تنزيل، بدون تثبيت، بداية سريعة للعبة الغميضة مع الخرائط والنصائح وغرف الأصدقاء.',
   },
   pt: {
     title: 'Meccha Chameleon Online - Jogue Grátis Sem Download',
@@ -71,11 +73,13 @@ const metaByLocale: Record<string, { title: string; description: string }> = {
   },
   ja: {
     title: 'めっちゃカメレオン オンライン - 無料ダウンロード不要',
-    description: 'ブラウザで「めっちゃカメレオン」を無料でオンラインプレイ。ダウンロード不要、インストール不要、マップ・コツ・フレンドルーム付きのかくれんぼ。',
+    description:
+      'ブラウザで「めっちゃカメレオン」を無料でオンラインプレイ。ダウンロード不要、インストール不要、マップ・コツ・フレンドルーム付きのかくれんぼ。',
   },
   ko: {
     title: 'Meccha Chameleon 온라인 - 무료 다운로드 불필요',
-    description: '브라우저에서 Meccha Chameleon을 무료로 온라인 플레이하세요. 다운로드, 설치 필요 없음, 지도, 팁, 친구 방이 있는 숨바꼭질 게임 빠른 시작.',
+    description:
+      '브라우저에서 Meccha Chameleon을 무료로 온라인 플레이하세요. 다운로드, 설치 필요 없음, 지도, 팁, 친구 방이 있는 숨바꼭질 게임 빠른 시작.',
   },
 };
 
@@ -110,13 +114,13 @@ export async function generateMetadata({
 const benefits = [
   {
     icon: Gamepad2,
-    title: 'Play instantly',
-    body: 'The Easy game source loads on the page so players can start the Mecha Chameleon style hide-and-seek loop without hunting for a separate download.',
+    title: 'Clearly labeled browser option',
+    body: 'The browser title is a separate fan-made game. Its provider and unofficial status are displayed before you play.',
   },
   {
     icon: Download,
-    title: 'Free, no download',
-    body: 'Use the browser version first. No installer, no signup wall, and no extra app is needed for a quick Meccha Chameleon online session.',
+    title: 'Official PC game stays separate',
+    body: 'The official MECCHA CHAMELEON by lemorion_1224 is a paid Windows PC game distributed through Steam.',
   },
   {
     icon: MapPinned,
@@ -134,16 +138,16 @@ const steps = [
 
 const faqs = [
   {
-    q: 'Can I play Meccha Chameleon online for free?',
-    a: 'Yes. This page gives you a browser play window for a quick free Meccha Chameleon online session, with no download required.',
+    q: 'Can I play the official MECCHA CHAMELEON online for free?',
+    a: 'No official free browser edition is currently listed by the developer. The official game is the paid Windows PC release on Steam. The browser title on this page is separate and fan-made.',
   },
   {
     q: 'Do I need to download Meccha Chameleon?',
-    a: 'No download is needed to try the online browser version here. If you later want the full PC experience, use this page as a quick test before installing anything.',
+    a: 'The official game is installed through Steam. A separate fan-made browser title can be tried without downloading, but it is not the official game.',
   },
   {
     q: 'Is this the official Meccha Chameleon game?',
-    a: 'This is a fan-made play hub with a browser game source, map help, and player notes. It is built for people searching Meccha Chameleon online or Mecha Chameleon game online.',
+    a: 'No. This is an independent fan guide. The browser title comes from chameleon-game.com and is not affiliated with lemorion_1224.',
   },
 ];
 
@@ -178,17 +182,17 @@ export default async function MecchaChameleonOnlinePage({
           </a>
 
           <div className="mb-6 max-w-4xl">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-normal text-[#7D6D69]">
-              Free browser game
+            <p className="mb-3 text-sm font-semibold tracking-normal text-[#7D6D69] uppercase">
+              Official-versus-fan-made guide
             </p>
-            <h1 className="text-4xl font-bold leading-tight tracking-normal md:text-6xl">
-              Meccha Chameleon Online
+            <h1 className="text-4xl leading-tight font-bold tracking-normal md:text-6xl">
+              MECCHA CHAMELEON: official PC game and browser alternatives
             </h1>
             <p className="mt-4 max-w-3xl text-base leading-7 text-[#4C3B35] md:text-lg">
-              Play Meccha Chameleon online for free in your browser. No
-              download, no install, and no slow setup - just open the game,
-              test the hide-and-seek loop, then use the map guide when you want
-              better hiding spots.
+              The official MECCHA CHAMELEON is a paid Windows PC game by
+              lemorion_1224 on Steam. The play frame below is a separate,
+              fan-made browser title from chameleon-game.com. It is provided as
+              an attributed alternative, not as the official game.
             </p>
           </div>
 
@@ -219,7 +223,7 @@ export default async function MecchaChameleonOnlinePage({
       <section className="border-b border-[#D8CFC6] bg-[#F6F0EA]">
         <div className="container grid gap-8 py-14 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
-            <p className="mb-3 text-sm font-semibold uppercase tracking-normal text-[#7D6D69]">
+            <p className="mb-3 text-sm font-semibold tracking-normal text-[#7D6D69] uppercase">
               Quick start
             </p>
             <h2 className="text-3xl font-bold tracking-normal md:text-4xl">
@@ -252,7 +256,7 @@ export default async function MecchaChameleonOnlinePage({
         <div className="container py-14">
           <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="mb-3 text-sm font-semibold uppercase tracking-normal text-[#7D6D69]">
+              <p className="mb-3 text-sm font-semibold tracking-normal text-[#7D6D69] uppercase">
                 Player answers
               </p>
               <h2 className="text-3xl font-bold tracking-normal md:text-4xl">
@@ -276,9 +280,7 @@ export default async function MecchaChameleonOnlinePage({
               >
                 <CheckCircle2 className="mb-4 h-5 w-5 text-[#61a8ff]" />
                 <h3 className="font-semibold">{faq.q}</h3>
-                <p className="mt-2 text-sm leading-6 text-[#4C3B35]">
-                  {faq.a}
-                </p>
+                <p className="mt-2 text-sm leading-6 text-[#4C3B35]">{faq.a}</p>
               </div>
             ))}
           </div>
@@ -311,8 +313,12 @@ export default async function MecchaChameleonOnlinePage({
       <section className="border-t border-[#D8CFC6] bg-[#FFF9F5]">
         <div className="container py-12">
           <div className="mb-6 max-w-3xl">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-normal text-[#7D6D69]">More ways to play</p>
-            <h2 className="text-2xl font-bold tracking-normal md:text-3xl">Related play pages</h2>
+            <p className="mb-3 text-sm font-semibold tracking-normal text-[#7D6D69] uppercase">
+              More ways to play
+            </p>
+            <h2 className="text-2xl font-bold tracking-normal md:text-3xl">
+              Related play pages
+            </h2>
           </div>
           <div className="grid gap-4 md:grid-cols-3">
             <a
@@ -321,7 +327,8 @@ export default async function MecchaChameleonOnlinePage({
             >
               <h3 className="font-semibold">Play Meccha Chameleon Unblocked</h3>
               <p className="mt-2 text-sm leading-6 text-[#4C3B35]">
-                The same game, opened in a normal browser tab without a VPN. Works on school, work, and library networks.
+                The same game, opened in a normal browser tab without a VPN.
+                Works on school, work, and library networks.
               </p>
             </a>
             <a
@@ -330,7 +337,8 @@ export default async function MecchaChameleonOnlinePage({
             >
               <h3 className="font-semibold">Meccha Chameleon Hide and Seek</h3>
               <p className="mt-2 text-sm leading-6 text-[#4C3B35]">
-                Paint, hide, and survive the seeker across 6 official maps. Pro tips, map guides, and 8 hider strategies.
+                Paint, hide, and survive the seeker across 6 official maps. Pro
+                tips, map guides, and 8 hider strategies.
               </p>
             </a>
             <a
@@ -339,7 +347,8 @@ export default async function MecchaChameleonOnlinePage({
             >
               <h3 className="font-semibold">Meccha Chameleon Free Demo</h3>
               <p className="mt-2 text-sm leading-6 text-[#4C3B35]">
-                Try the paint-and-hide loop in your browser before bringing friends in. One map, full mechanics, no signup.
+                Try the paint-and-hide loop in your browser before bringing
+                friends in. One map, full mechanics, no signup.
               </p>
             </a>
           </div>

@@ -90,6 +90,24 @@ export function Footer({ footer }: { footer: FooterType }) {
                   {item.title || ''}
                 </Link>
               ))}
+              <Link
+                href="/about"
+                className="text-muted-foreground hover:text-primary block text-xs break-words underline duration-150"
+              >
+                About
+              </Link>
+              <Link
+                href="/contact"
+                className="text-muted-foreground hover:text-primary block text-xs break-words underline duration-150"
+              >
+                Contact
+              </Link>
+              <Link
+                href="/editorial-policy"
+                className="text-muted-foreground hover:text-primary block text-xs break-words underline duration-150"
+              >
+                Editorial Policy
+              </Link>
             </div>
           ) : null}
 
