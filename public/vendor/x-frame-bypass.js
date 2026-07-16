@@ -67,13 +67,19 @@ customElements.define('x-frame-bypass', class extends HTMLIFrameElement {
 	}
 	fetchProxy (url, options, i) {
 		const proxies = (options || {}).proxies || [
+			'/api/proxy/file?url=',
 			'https://api.allorigins.win/raw?url=',
 			'https://api.codetabs.com/v1/proxy/?quest=',
 			'https://cors-anywhere.herokuapp.com/'
 		]
-		return fetch(proxies[i] + encodeURIComponent(url), options).then(res => {
+		const controller = new AbortController()
+		const timeoutId = setTimeout(() => controller.abort(), 15000)
+		const requestOptions = Object.assign({}, options, {signal: controller.signal})
+		return fetch(proxies[i] + encodeURIComponent(url), requestOptions).then(res => {
 			if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
 			return res
+		}).finally(() => {
+			clearTimeout(timeoutId)
 		}).catch(error => {
 			if (i === proxies.length - 1) throw error
 			return this.fetchProxy(url, options, i + 1)
