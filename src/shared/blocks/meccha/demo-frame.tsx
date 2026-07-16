@@ -26,7 +26,7 @@ const demos: Demo[] = [
     src: 'https://chameleon-game.com/',
     note: 'The default slot keeps Meccha Chameleon front and center. Use paint, disguise, and quick hide-and-seek rounds to blend into the room, then jump into the game tab if the in-page load takes too long.',
     openInNewTab: 'https://chameleon-game.com/',
-    poster: '/imgs/related-games/meccha-chameleon.png',
+    poster: '/imgs/related-games/meccha-header.jpg',
   },
   {
     id: 'hard',
@@ -606,7 +606,7 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={activeDemo.poster}
-                  alt={`${activeDemo.title} official screenshot`}
+                  alt="Meccha Chameleon cover artwork"
                   className="absolute inset-0 h-full w-full object-cover"
                 />
               ) : null}
