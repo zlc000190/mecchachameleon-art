@@ -1958,6 +1958,7 @@ export function localizeMap(map: AtlasMap, locale: string): AtlasMap {
   if (isIt(locale)) return { ...map, ...(mapIt[map.id] ?? {}) };
   if (isNl(locale)) return { ...map, ...(mapNl[map.id] ?? {}) };
   if (locale === 'ar') return { ...map, ...(mapAr[map.id] ?? {}) };
+  if (isKo(locale)) return { ...map, ...(mapKo[map.id] ?? {}) };
   if (locale === 'ja') return { ...map, ...(mapJa[map.id] ?? {}) };
   return map;
 }

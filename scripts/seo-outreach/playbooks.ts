@@ -53,6 +53,22 @@ export const DOMAIN_PLAYBOOKS: Record<string, DomainPlaybook> = {
     notes: "The contribution itself must stand on its own. External link is supporting context only.",
     draftTemplate: genericDraft,
   },
+  "github.com": {
+    action: "Publish or update a GitHub Pages companion page, release note, or wiki page",
+    contributionType: "pages_or_repo_resource",
+    notes:
+      "Use a clean static page or repo resource that points to the homepage naturally. Keep the page public, self-contained, and topic-fit first.",
+    draftTemplate: (row) =>
+      `A small GitHub Pages companion page for ${row.anchor_text} can point players to ${row.target_url} with a short gameplay summary, screenshots, and a clean call to play or explore the atlas.`,
+  },
+  "zlc000190.github.io": {
+    action: "Publish the GitHub Pages companion page",
+    contributionType: "static_site_resource",
+    notes:
+      "Keep the page short, public, and clearly game-related. The homepage link should be visible on the first screen and the page should not read like a backlink dump.",
+    draftTemplate: (row) =>
+      `Publish the companion page for ${row.anchor_text} with a visible homepage CTA to ${row.target_url}, plus a small gallery and a short description of the atlas.`,
+  },
 };
 
 export function getDomainPlaybook(siteRoot: string): DomainPlaybook {

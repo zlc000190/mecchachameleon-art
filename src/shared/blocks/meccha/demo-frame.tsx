@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import Script from 'next/script';
 import { Gamepad2, Sparkles } from 'lucide-react';
 
 type Demo = {
@@ -12,21 +11,35 @@ type Demo = {
   ratio: string;
   src: string;
   note: string;
-  openInNewTab: string;
+  openInNewTab?: string;
   poster?: string;
+  comingSoon?: boolean;
 };
+
+// Until we ship our own Unity WebGL build under /game, the Meccha Chameleon
+// slot is intentionally offline — embedding the third-party site was leaking
+// PageRank and sending users away. This keeps the slot visible in the UI but
+// drops the iframe, the dofollow outbound link, and the host probe.
+const MECCHA_COMING_SOON_NOTE_EN =
+  'Our native Meccha Chameleon build is in active development. The previous iframe pointed at a third-party site and is now offline while we finish the in-house version.';
+
+const MECCHA_COMING_SOON_NOTE_ZH =
+  '我们正在开发 Meccha Chameleon 的官方版本。原先嵌入第三方站点的 iframe 已临时下线，不再外链到外部网站。';
+
+const MECCHA_COMING_SOON_CTA_EN = 'Notify me when it launches';
+const MECCHA_COMING_SOON_CTA_ZH = '上线通知';
 
 const demos: Demo[] = [
   {
     id: 'easy',
     label: 'Meccha',
     title: 'Meccha Chameleon Browser Game',
-    source: 'Official Meccha Chameleon',
+    source: 'Meccha Chameleon Art Studio',
     ratio: 'aspect-[16/9] min-h-[650px] max-h-[90vh]',
-    src: '/embeds/chameleon-game.html',
-    note: 'The default slot keeps Meccha Chameleon front and center. The game stays in this page while the embedded frame finishes loading.',
-    openInNewTab: 'https://chameleon-game.com/',
+    src: '',
+    note: MECCHA_COMING_SOON_NOTE_EN,
     poster: '/imgs/related-games/meccha-header.jpg',
+    comingSoon: true,
   },
   {
     id: 'hard',
@@ -134,7 +147,7 @@ const demos: Demo[] = [
     source: 'BlumgiSlime2.io',
     ratio: 'aspect-[16/9] min-h-[560px] max-h-[86vh]',
     src: 'https://blumgislime2.io/',
-    note: 'A colorful precision-jump game from a separate source, useful as a funny casual recommendation.',
+    note: 'A bright precision-jump game for the funny-games strip.',
     openInNewTab: 'https://blumgislime2.io/',
   },
   {
@@ -144,13 +157,13 @@ const demos: Demo[] = [
     source: 'WackySteps.io',
     ratio: 'aspect-[16/9] min-h-[560px] max-h-[86vh]',
     src: 'https://wackysteps.io/',
-    note: 'A ragdoll walking challenge from a separate source, matching the funny-game angle without using the reference site.',
+    note: 'A ragdoll walking challenge with funny fail-heavy movement.',
     openInNewTab: 'https://wackysteps.io/',
   },
 ];
 
 const zhNotes: Record<string, string> = {
-  easy: '默认入口会先展示 Meccha Chameleon 的主视觉图；游戏会留在当前页面继续加载。',
+  easy: MECCHA_COMING_SOON_NOTE_ZH,
   hard: 'Hard 使用 CrazyGames 的 Hide N Seek iframe，请在当前页面等待加载完成。',
   social:
     'Social 使用偏朋友组队体验的 hide-and-seek 浏览器游戏，适合社交玩法搜索。',
@@ -168,49 +181,37 @@ const zhNotes: Record<string, string> = {
   'wacky-steps': 'Wacky Steps 是参考站同款方向，但来源是独立站点。',
 };
 
-const EASY_SLOW_NOTICE_MS = 8000;
-const EASY_POLL_INTERVAL_MS = 250;
-
-function isEasyFrameReady(frame: HTMLIFrameElement | null) {
-  if (!frame) return false;
-
-  try {
-    const doc = frame.contentDocument;
-    const body = doc?.body;
-
-    if (!doc || !body) return false;
-    if (body.querySelector('.loader')) return false;
-
-    const title = (doc.title || '').toLowerCase();
-    const text = (body.textContent || '').toLowerCase();
-    const html = (body.innerHTML || '').toLowerCase();
-
-    // Match by host (any chameleon-game.com variant) or by recognisable game
-    // surfaces. Don't require "meccha chameleon" exactly — some embeds
-    // translate the title or skip it.
-    let host = '';
-    try {
-      host = (frame.contentWindow?.location?.hostname || '').toLowerCase();
-    } catch {
-      host = '';
-    }
-    if (host.includes('chameleon-game.com') || host.includes('meccha')) {
-      return true;
-    }
-
-    if (title.includes('hide') || title.includes('seek')) return true;
-    if (text.includes('quick play')) return true;
-    if (text.includes('play now')) return true;
-    if (text.includes('start game')) return true;
-    if (text.includes('find players')) return true;
-    if (text.includes('round')) return true;
-    if (text.includes('hide')) return true;
-    if (text.includes('seek')) return true;
-
-    return html.length > 1000;
-  } catch {
-    return false;
-  }
+function ComingSoonCard({ demo, locale }: { demo: Demo; locale: string }) {
+  const zh = locale === 'zh';
+  return (
+    <div className="relative flex h-full w-full flex-col items-center justify-center gap-4 overflow-hidden bg-gradient-to-br from-[#1f1230] via-[#2a1845] to-[#3a2358] p-6 text-center text-white">
+      {demo.poster ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={demo.poster}
+          alt=""
+          aria-hidden
+          className="absolute inset-0 h-full w-full object-cover opacity-30"
+        />
+      ) : null}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#1f1230]/95 via-[#1f1230]/70 to-transparent" />
+      <div className="relative z-10 flex max-w-md flex-col items-center gap-3">
+        <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white/90">
+          <Sparkles className="h-3.5 w-3.5" />
+          {zh ? '即将上线' : 'Coming soon'}
+        </span>
+        <h3 className="text-2xl font-bold tracking-tight md:text-3xl">
+          {zh ? 'Meccha Chameleon 原生版本' : 'Native Meccha Chameleon build'}
+        </h3>
+        <p className="text-sm leading-6 text-white/80 md:text-base">
+          {zh ? MECCHA_COMING_SOON_NOTE_ZH : MECCHA_COMING_SOON_NOTE_EN}
+        </p>
+        <span className="mt-1 inline-flex items-center gap-2 rounded-md border border-white/40 bg-white/10 px-4 py-2 text-sm font-semibold text-white/90">
+          {zh ? MECCHA_COMING_SOON_CTA_ZH : MECCHA_COMING_SOON_CTA_EN}
+        </span>
+      </div>
+    </div>
+  );
 }
 
 export function DemoFrame({ locale = 'en' }: { locale?: string }) {
@@ -218,14 +219,12 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
   const [activeId, setActiveId] = useState<Demo['id']>('easy');
   const [customDemo, setCustomDemo] = useState<Demo | null>(null);
   const [showHint, setShowHint] = useState(true);
-  const [easyFrameState, setEasyFrameState] = useState<
-    'loading' | 'slow' | 'ready'
-  >('loading');
   const [isDesktopPlay, setIsDesktopPlay] = useState(false);
   const [isLandscape, setIsLandscape] = useState(false);
   const activeDemo =
     customDemo ?? demos.find((demo) => demo.id === activeId) ?? demos[0];
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const isComingSoon = !!activeDemo.comingSoon;
 
   useEffect(() => {
     const t = setTimeout(() => setShowHint(false), 9000);
@@ -253,6 +252,9 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
         setCustomDemo(null);
         setActiveId(demoId);
       } else if (detail?.src && detail.title && detail.source) {
+        // Custom demo injected from a related-games click. We accept the
+        // payload as-is; never seed `openInNewTab` with anything that is not
+        // already on the demo entry, to keep outbound links auditable.
         setCustomDemo({
           id: demoId,
           label: detail.title.split(' ')[0] || 'Game',
@@ -262,7 +264,7 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
           src: detail.src,
           note:
             detail.note || `${detail.title} opens in the center play frame.`,
-          openInNewTab: detail.openInNewTab || detail.src,
+          openInNewTab: detail.openInNewTab,
         });
         setActiveId(demoId);
       } else {
@@ -270,9 +272,6 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
       }
 
       setShowHint(true);
-      if (demoId === 'easy') {
-        setEasyFrameState('loading');
-      }
     };
 
     window.addEventListener('meccha:select-demo', handleSelectDemo);
@@ -310,49 +309,8 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
     };
   }, []);
 
-  useEffect(() => {
-    if (activeDemo.id !== 'easy') return;
-
-    let finished = false;
-    const finish = () => {
-      if (finished) return;
-      finished = true;
-      clearTimeout(slowNoticeId);
-      clearInterval(pollId);
-      setEasyFrameState('ready');
-    };
-
-    const poll = () => {
-      if (isEasyFrameReady(iframeRef.current)) {
-        finish();
-      }
-    };
-
-    const slowNoticeId = window.setTimeout(() => {
-      if (!finished) {
-        setEasyFrameState((current) =>
-          current === 'ready' ? current : 'slow'
-        );
-      }
-    }, EASY_SLOW_NOTICE_MS);
-    const pollId = window.setInterval(poll, EASY_POLL_INTERVAL_MS);
-
-    poll();
-
-    return () => {
-      finished = true;
-      clearTimeout(slowNoticeId);
-      clearInterval(pollId);
-    };
-  }, [activeDemo.id]);
-
-  const handleFrameLoad = () => {
-    if (activeDemo.id === 'easy' && isEasyFrameReady(iframeRef.current)) {
-      setEasyFrameState('ready');
-    }
-  };
-
   const handlePrimaryAction = () => {
+    if (isComingSoon) return;
     requestAnimationFrame(() => iframeRef.current?.focus());
   };
 
@@ -363,12 +321,8 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
   const mobileFrameRadius = isLandscape ? 'rounded-2xl' : 'rounded-lg';
 
   if (!isDesktopPlay) {
-    const showMobileReady =
-      activeDemo.id === 'easy' && easyFrameState === 'ready';
-
     return (
       <div id="play" className="scroll-mt-24">
-        <Script src="/vendor/x-frame-bypass.js" strategy="afterInteractive" />
         <div className="overflow-hidden rounded-lg border border-[#efc8d3] bg-gradient-to-br from-[#fff7c8] via-[#ffd2e1] to-[#cdefff] shadow-[0_18px_60px_rgba(134,103,124,0.18)]">
           <div className="border-b border-white/70 px-4 py-3 text-[#2f2730]">
             <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
@@ -412,30 +366,18 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
           </div>
 
           <div className="flex min-h-[280px] items-center justify-center bg-[#1f1230] p-3 sm:min-h-[58vh] sm:p-6">
-            {showMobileReady ? (
+            {isComingSoon ? (
               <div
-                className={`relative w-full ${mobileFrameSize} ${mobileAspect} ${mobileFrameRadius} overflow-hidden bg-black shadow-[0_18px_60px_rgba(0,0,0,0.35)]`}
+                className={`relative w-full ${mobileFrameSize} ${mobileAspect} ${mobileFrameRadius} overflow-hidden bg-black/70 shadow-[0_18px_60px_rgba(0,0,0,0.35)]`}
               >
-                <iframe
-                  key={`${activeDemo.id}-mobile-ready`}
-                  ref={iframeRef}
-                  title={`${activeDemo.title} browser game`}
-                  src={activeDemo.src}
-                  className="absolute inset-0 h-full w-full"
-                  loading="eager"
-                  allow="autoplay; fullscreen; gamepad; pointer-lock; encrypted-media; web-share"
-                  allowFullScreen
-                  scrolling="no"
-                  referrerPolicy="origin"
-                  sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-pointer-lock allow-top-navigation allow-presentation"
-                />
+                <ComingSoonCard demo={activeDemo} locale={locale} />
               </div>
             ) : (
               <div
                 className={`relative w-full ${mobileFrameSize} ${mobileAspect} ${mobileFrameRadius} overflow-hidden bg-black/70 shadow-[0_18px_60px_rgba(0,0,0,0.35)]`}
               >
                 <iframe
-                  key={`${activeDemo.id}-mobile-loading`}
+                  key={`${activeDemo.id}-mobile`}
                   ref={iframeRef}
                   title={`${activeDemo.title} browser game`}
                   src={activeDemo.src}
@@ -446,7 +388,6 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                   scrolling="no"
                   referrerPolicy="origin"
                   sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-pointer-lock allow-top-navigation allow-presentation"
-                  onLoad={handleFrameLoad}
                 />
                 {activeDemo.poster ? (
                   // eslint-disable-next-line @next/next/no-img-element
@@ -462,17 +403,9 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                       <span className="h-3 w-3 animate-pulse rounded-full bg-white" />
                     </div>
                     <div className="font-semibold">
-                      {easyFrameState === 'slow'
-                        ? zh
-                          ? '加载时间较长，仍在继续加载…'
-                          : 'Loading is taking longer. Still working…'
-                        : activeDemo.poster
-                          ? zh
-                            ? 'Meccha Chameleon 正在准备中'
-                            : 'Meccha Chameleon is getting ready'
-                          : zh
-                            ? '正在尝试轻量内嵌加载…'
-                            : 'Trying a lightweight embedded load…'}
+                      {zh
+                        ? '游戏正在加载，请稍候。'
+                        : 'The game is loading. Please wait.'}
                     </div>
                     <div className="text-xs text-[#4C3B35]">
                       {zh
@@ -500,7 +433,6 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
 
   return (
     <div id="play" className="scroll-mt-24">
-      <Script src="/vendor/x-frame-bypass.js" strategy="afterInteractive" />
       <div className="overflow-hidden rounded-lg border border-[#efc8d3] bg-gradient-to-br from-[#fff7c8] via-[#ffd2e1] to-[#cdefff] shadow-[0_18px_60px_rgba(134,103,124,0.18)]">
         <div className="border-b border-white/70 px-4 py-3 text-[#2f2730]">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
@@ -513,14 +445,16 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                 {activeDemo.title} via {activeDemo.source}
               </div>
             </div>
-            <button
-              type="button"
-              onClick={handlePrimaryAction}
-              className="inline-flex min-h-9 w-fit items-center gap-2 rounded-md bg-[#ff6f9a] px-4 text-sm font-semibold text-white transition hover:bg-[#e95a88]"
-            >
-              <Gamepad2 className="h-4 w-4" />
-              {zh ? '点击开始' : 'Click to Play'}
-            </button>
+            {!isComingSoon ? (
+              <button
+                type="button"
+                onClick={handlePrimaryAction}
+                className="inline-flex min-h-9 w-fit items-center gap-2 rounded-md bg-[#ff6f9a] px-4 text-sm font-semibold text-white transition hover:bg-[#e95a88]"
+              >
+                <Gamepad2 className="h-4 w-4" />
+                {zh ? '点击开始' : 'Click to Play'}
+              </button>
+            ) : null}
           </div>
 
           <div
@@ -537,9 +471,6 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                 onClick={() => {
                   setCustomDemo(null);
                   setActiveId(demo.id);
-                  if (demo.id === 'easy') {
-                    setEasyFrameState('loading');
-                  }
                   setShowHint(true);
                 }}
                 className={`min-h-9 rounded-md border px-4 text-sm font-semibold transition ${
@@ -560,88 +491,63 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
         <div
           className={`bg-brick-900 relative w-full overflow-hidden ${activeDemo.ratio}`}
         >
-          <iframe
-            key={activeDemo.id}
-            ref={iframeRef}
-            title={`${activeDemo.title} browser game`}
-            src={activeDemo.src}
-            className="absolute inset-0 h-full w-full"
-            loading="eager"
-            allow="autoplay; fullscreen; gamepad; pointer-lock; encrypted-media; web-share"
-            allowFullScreen
-            scrolling="no"
-            referrerPolicy="origin"
-            sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-pointer-lock allow-top-navigation allow-presentation"
-            onLoad={handleFrameLoad}
-          />
-          {activeDemo.id === 'easy' && easyFrameState !== 'ready' ? (
-            <div className="absolute inset-0 flex items-end justify-center p-4">
-              {activeDemo.poster ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={activeDemo.poster}
-                  alt="Meccha Chameleon cover artwork"
-                  className="absolute inset-0 h-full w-full object-cover"
-                />
+          {isComingSoon ? (
+            <ComingSoonCard demo={activeDemo} locale={locale} />
+          ) : (
+            <>
+              <iframe
+                key={activeDemo.id}
+                ref={iframeRef}
+                title={`${activeDemo.title} browser game`}
+                src={activeDemo.src}
+                className="absolute inset-0 h-full w-full"
+                loading="eager"
+                allow="autoplay; fullscreen; gamepad; pointer-lock; encrypted-media; web-share"
+                allowFullScreen
+                scrolling="no"
+                referrerPolicy="origin"
+                sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-pointer-lock allow-top-navigation allow-presentation"
+              />
+              {showHint ? (
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center bg-gradient-to-t from-black/80 to-transparent p-4">
+                  <div className="pointer-events-auto flex max-w-md items-start gap-3 rounded-lg border border-amber-300/40 bg-amber-50/95 px-4 py-3 text-sm text-amber-950 shadow-lg">
+                    <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" />
+                    <div>
+                      <div className="font-semibold">
+                        {zh
+                          ? '游戏正在当前页面加载，请稍候。'
+                          : 'The game is loading on this page. Please wait.'}
+                      </div>
+                      <div className="mt-1 text-xs text-amber-900/80">
+                        {zh
+                          ? '第三方游戏源，非官方 Meccha Chameleon。'
+                          : 'Third-party game source, not the official Meccha Chameleon.'}
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setShowHint(false)}
+                      className="-mt-1 -mr-1 rounded p-1 text-amber-700 hover:bg-amber-200/60"
+                      aria-label="Dismiss hint"
+                    >
+                      ×
+                    </button>
+                  </div>
+                </div>
               ) : null}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/20 to-transparent" />
-              <div className="text-ink-900 pointer-events-auto relative z-10 flex max-w-md items-start gap-3 rounded-lg border border-white/20 bg-white/95 px-4 py-3 text-sm shadow-xl">
-                <div className="bg-brick-500 mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-white">
-                  <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-white" />
-                </div>
-                <div className="min-w-0">
-                  <div className="font-semibold">
-                    {easyFrameState === 'slow'
-                      ? zh
-                        ? '加载时间较长，游戏仍在当前页面继续加载。'
-                        : 'Loading is taking longer. The game is still loading on this page.'
-                      : zh
-                        ? '游戏正在加载，请稍候。'
-                        : 'The game is loading. Please wait.'}
-                  </div>
-                  <div className="text-ink-500 mt-1 text-xs">
-                    {zh
-                      ? '加载完成后会自动在当前页面显示。'
-                      : 'It will appear automatically on this page when ready.'}
-                  </div>
-                </div>
-              </div>
-            </div>
-          ) : null}
-          {showHint && activeDemo.id !== 'easy' ? (
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center bg-gradient-to-t from-black/80 to-transparent p-4">
-              <div className="pointer-events-auto flex max-w-md items-start gap-3 rounded-lg border border-amber-300/40 bg-amber-50/95 px-4 py-3 text-sm text-amber-950 shadow-lg">
-                <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" />
-                <div>
-                  <div className="font-semibold">
-                    {zh
-                      ? '游戏正在当前页面加载，请稍候。'
-                      : 'The game is loading on this page. Please wait.'}
-                  </div>
-                  <div className="mt-1 text-xs text-amber-900/80">
-                    {zh
-                      ? '第三方游戏源，非官方 Meccha Chameleon。'
-                      : 'Third-party game source, not the official Meccha Chameleon.'}
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setShowHint(false)}
-                  className="-mt-1 -mr-1 rounded p-1 text-amber-700 hover:bg-amber-200/60"
-                  aria-label="Dismiss hint"
-                >
-                  ×
-                </button>
-              </div>
-            </div>
-          ) : null}
+            </>
+          )}
         </div>
 
         <div className="text-ink-500 flex flex-wrap items-center justify-between gap-3 border-t border-white/70 bg-white/80 px-4 py-3 text-xs">
           <span>
-            {zh
-              ? '游戏会始终留在当前页面，加载完成后即可游玩。'
-              : 'The game stays on this page and is playable as soon as loading finishes.'}
+            {isComingSoon
+              ? zh
+                ? '原生版本正在开发中，上线后会回到这里直接玩。'
+                : 'The native build is in development. It will appear here when it ships.'
+              : zh
+                ? '游戏会始终留在当前页面，加载完成后即可游玩。'
+                : 'The game stays on this page and is playable as soon as loading finishes.'}
           </span>
         </div>
       </div>
