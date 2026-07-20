@@ -2,8 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getSessionCookie } from 'better-auth/cookies';
 import createIntlMiddleware from 'next-intl/middleware';
 
-import { isKeySeoPath, locales } from '@/config/locale';
 import { routing } from '@/core/i18n/config';
+import { isKeySeoPath, locales, localizedGuidePages } from '@/config/locale';
+import { getRelatedGameBySlug } from '@/shared/blocks/meccha/related-game-data';
 
 const intlMiddleware = createIntlMiddleware(routing);
 
@@ -50,6 +51,42 @@ export async function proxy(request: NextRequest) {
   const pathWithoutLocale = isValidLocale
     ? pathname.slice(locale.length + 1)
     : pathname;
+  const normalizedPublicPath =
+    pathWithoutLocale === ''
+      ? '/'
+      : pathWithoutLocale.replace(/\/+$/, '') || '/';
+  const relatedGameSlug = normalizedPublicPath.split('/').filter(Boolean);
+  const isRelatedGamePage =
+    relatedGameSlug.length === 1 &&
+    Boolean(getRelatedGameBySlug(relatedGameSlug[0]));
+  const isLocalizedGuidePage = (
+    localizedGuidePages as readonly string[]
+  ).includes(normalizedPublicPath);
+
+  // Game detail copy is currently complete in English only. Consolidate
+  // locale-prefixed duplicates to the equivalent English detail URL instead
+  // of sending visitors (and Google) back to an unrelated homepage.
+  if (isValidLocale && locale !== 'en' && isRelatedGamePage) {
+    return NextResponse.redirect(
+      new URL(`${normalizedPublicPath}${request.nextUrl.search}`, request.url),
+      301
+    );
+  }
+
+  // The first independent guide batch is written in English and Spanish.
+  // Keep every other locale on the equivalent English guide until a native
+  // rewrite is ready.
+  if (
+    isValidLocale &&
+    locale !== 'en' &&
+    locale !== 'es' &&
+    isLocalizedGuidePage
+  ) {
+    return NextResponse.redirect(
+      new URL(`${normalizedPublicPath}${request.nextUrl.search}`, request.url),
+      301
+    );
+  }
 
   // For every locale that has a translated landing page, only key SEO
   // pages (/, /tools, /new-player, /maps, /community) are promoted at
@@ -100,8 +137,7 @@ export async function proxy(request: NextRequest) {
   intlResponse.headers.set('x-pathname', request.nextUrl.pathname);
   intlResponse.headers.set('x-url', request.url);
 
-  const normalizedPathForSeo = pathWithoutLocale === '' ? '/' : pathWithoutLocale;
-  if (!isKeySeoPath(normalizedPathForSeo)) {
+  if (!isKeySeoPath(normalizedPublicPath) && !isRelatedGamePage) {
     intlResponse.headers.set('X-Robots-Tag', 'noindex, nofollow');
   }
 

@@ -27,9 +27,9 @@ import {
 } from '@/shared/blocks/meccha/meccha-i18n';
 import { PaidDownloadButton } from '@/shared/blocks/meccha/paid-download-button';
 import { PortugueseSeoSection } from '@/shared/blocks/meccha/portuguese-seo-section';
+import { RelatedGames } from '@/shared/blocks/meccha/related-games';
 import { SpanishSeoSection } from '@/shared/blocks/meccha/spanish-seo-section';
 import { ToolsTeaser } from '@/shared/blocks/meccha/tools-teaser';
-import { RelatedGames } from '@/shared/blocks/meccha/related-games';
 import { UpdatesSection } from '@/shared/blocks/meccha/updates-section';
 import { BreadcrumbJsonLd } from '@/shared/components/seo/breadcrumb-json-ld';
 import { getPlayKitPriceLabel } from '@/shared/lib/play-kit';
@@ -94,6 +94,13 @@ export default async function LandingPage({
   const showTranslatedAtlasPreview = coreLocalizedLocales.includes(locale);
   const showCommunityPreview = coreLocalizedLocales.includes(locale);
   const salePriceLabel = getPlayKitPriceLabel();
+  const supportsIntentGuides = locale === 'en' || locale === 'es';
+  const intentIntro =
+    locale === 'en'
+      ? 'Start Meccha Chameleon free play online with no download, use the unblocked browser option when your network permits it, then open the focused guides for controls, camouflage, and hiding spots.'
+      : locale === 'es'
+        ? 'Juega a Meccha Chameleon gratis online y sin descargar. Después de la primera ronda, consulta las guías de controles, camuflaje y mejores escondites.'
+        : null;
 
   return (
     <main className="min-h-screen bg-[#fff7f1] text-[#29211D]">
@@ -107,6 +114,11 @@ export default async function LandingPage({
               <h1 className="text-4xl leading-tight font-bold tracking-normal text-[#29211D] md:text-6xl">
                 {copy.title}
               </h1>
+              {intentIntro ? (
+                <p className="mt-4 max-w-3xl text-base leading-7 text-[#4C3B35] md:text-lg">
+                  {intentIntro}
+                </p>
+              ) : null}
             </div>
             <div className="flex flex-wrap gap-3">
               <a
@@ -117,7 +129,11 @@ export default async function LandingPage({
                 {copy.playNow}
               </a>
               <a
-                href="#how-to-play"
+                href={
+                  supportsIntentGuides
+                    ? getLocalizedPath(locale, '/how-to-play')
+                    : '#how-to-play'
+                }
                 className="inline-flex min-h-11 items-center gap-2 rounded-md border border-[#efc8d3] bg-white px-5 py-3 font-semibold text-[#29211D] transition hover:bg-[#fff7c8]"
               >
                 <BookOpen className="h-5 w-5" />
@@ -194,13 +210,32 @@ export default async function LandingPage({
                 {copy.camoTitle}
               </h2>
             </div>
-            <a
-              href="#atlas"
-              className="inline-flex min-h-11 w-fit items-center gap-2 rounded-md bg-[#ff6f9a] px-4 py-3 text-sm font-semibold text-white hover:bg-[#e95a88]"
-            >
-              <MapPinned className="h-4 w-4" />
-              {copy.previewAtlas}
-            </a>
+            <div className="flex flex-wrap gap-3">
+              {supportsIntentGuides ? (
+                <a
+                  href={getLocalizedPath(locale, '/camo-guide')}
+                  className="inline-flex min-h-11 w-fit items-center gap-2 rounded-md border border-[#efc8d3] bg-white px-4 py-3 text-sm font-semibold text-[#29211D] hover:bg-[#fff7c8]"
+                >
+                  <Sparkles className="h-4 w-4" />
+                  {locale === 'es' ? 'Guía de camuflaje' : 'Open camo guide'}
+                </a>
+              ) : null}
+              <a
+                href={
+                  supportsIntentGuides
+                    ? getLocalizedPath(locale, '/hiding-spots')
+                    : '#atlas'
+                }
+                className="inline-flex min-h-11 w-fit items-center gap-2 rounded-md bg-[#ff6f9a] px-4 py-3 text-sm font-semibold text-white hover:bg-[#e95a88]"
+              >
+                <MapPinned className="h-4 w-4" />
+                {supportsIntentGuides
+                  ? locale === 'es'
+                    ? 'Ver mejores escondites'
+                    : 'Best hiding spots'
+                  : copy.previewAtlas}
+              </a>
+            </div>
           </div>
           {showTranslatedDetailCards ? (
             <div className="grid gap-4 md:grid-cols-3">
@@ -249,6 +284,16 @@ export default async function LandingPage({
             <p className="mt-4 max-w-2xl text-sm leading-6 text-[#4C3B35]">
               {copy.atlasDesc}
             </p>
+            {supportsIntentGuides ? (
+              <a
+                href={getLocalizedPath(locale, '/hiding-spots')}
+                className="mt-5 inline-flex min-h-10 items-center rounded-md border border-[#efc8d3] bg-white px-4 text-sm font-semibold text-[#29211D] transition hover:bg-[#fff7c8]"
+              >
+                {locale === 'es'
+                  ? 'Aprender a elegir escondites'
+                  : 'Learn how to choose a hiding spot'}
+              </a>
+            ) : null}
           </div>
           {showTranslatedAtlasPreview ? <AtlasPreview locale={locale} /> : null}
         </div>

@@ -1,13 +1,14 @@
 import '@/config/style/global.css';
 
-import { getLocale, setRequestLocale } from 'next-intl/server';
 import { headers } from 'next/headers';
+import { getLocale, setRequestLocale } from 'next-intl/server';
 import NextTopLoader from 'nextjs-toploader';
 
 import { envConfigs } from '@/config';
-import { seoLocales } from '@/config/locale';
+import { localizedGuidePages, seoLocales } from '@/config/locale';
 import { CookieConsent } from '@/shared/blocks/common/cookie-consent';
 import { UtmCapture } from '@/shared/blocks/common/utm-capture';
+import { getRelatedGameBySlug } from '@/shared/blocks/meccha/related-game-data';
 import { getAllConfigs } from '@/shared/models/config';
 import { getAdsService } from '@/shared/services/ads';
 import { getAffiliateService } from '@/shared/services/affiliate';
@@ -35,15 +36,18 @@ export default async function RootLayout({
   const requestUrl = headerList.get('x-url') || '';
   let currentPath = '/';
   try {
-    currentPath = requestUrl ? new URL(requestUrl).pathname.replace(/\/+$/, '/') || '/' : '/';
+    currentPath = requestUrl
+      ? new URL(requestUrl).pathname.replace(/\/+$/, '/') || '/'
+      : '/';
   } catch {
     currentPath = '/';
   }
   // strip leading locale segment so we can rebuild per-locale URLs
-  const strippedPath = currentPath.replace(
-    /^\/(en|zh|ru|it|fr|de|es|pt|ja|ko|ar|th|vi|zh-TW|nl)(?=\/|$)/,
-    ''
-  ) || '/';
+  const strippedPath =
+    currentPath.replace(
+      /^\/(en|zh|ru|it|fr|de|es|pt|ja|ko|ar|th|vi|zh-TW|nl)(?=\/|$)/,
+      ''
+    ) || '/';
   const altUrl = (loc: string) => {
     const homePath = strippedPath === '/';
     if (loc === 'en') {
@@ -52,9 +56,31 @@ export default async function RootLayout({
     return `${appUrl}/${loc}${homePath ? '' : strippedPath}`;
   };
 
-  const activeSeoLocales = strippedPath === '/'
-    ? seoLocales
-    : seoLocales.filter((loc) => loc !== 'es' && loc !== 'de' && loc !== 'pt' && loc !== 'fr' && loc !== 'it' && loc !== 'nl' && loc !== 'ar' && loc !== 'ja' && loc !== 'ko');
+  const normalizedSeoPath = strippedPath.replace(/\/+$/, '') || '/';
+  const pathSegments = normalizedSeoPath.split('/').filter(Boolean);
+  const isRelatedGamePage =
+    pathSegments.length === 1 && Boolean(getRelatedGameBySlug(pathSegments[0]));
+  const isLocalizedGuidePage = (
+    localizedGuidePages as readonly string[]
+  ).includes(normalizedSeoPath);
+  const activeSeoLocales = isRelatedGamePage
+    ? ['en']
+    : isLocalizedGuidePage
+      ? ['en', 'es']
+      : strippedPath === '/'
+        ? seoLocales
+        : seoLocales.filter(
+            (loc) =>
+              loc !== 'es' &&
+              loc !== 'de' &&
+              loc !== 'pt' &&
+              loc !== 'fr' &&
+              loc !== 'it' &&
+              loc !== 'nl' &&
+              loc !== 'ar' &&
+              loc !== 'ja' &&
+              loc !== 'ko'
+          );
 
   // ads components
   let adsMetaTags = null;
@@ -130,11 +156,7 @@ export default async function RootLayout({
                 href={altUrl(loc)}
               />
             ))}
-            <link
-              rel="alternate"
-              hrefLang="x-default"
-              href={altUrl('en')}
-            />
+            <link rel="alternate" hrefLang="x-default" href={altUrl('en')} />
           </>
         ) : null}
 

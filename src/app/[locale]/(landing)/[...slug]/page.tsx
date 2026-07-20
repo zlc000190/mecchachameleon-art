@@ -7,18 +7,19 @@ import {
   getRelatedGameBySlug,
   relatedGames,
 } from '@/shared/blocks/meccha/related-game-data';
-import { getLocalPage } from '@/shared/models/post';
 import { getCanonicalUrl } from '@/shared/lib/seo';
+import { getLocalPage } from '@/shared/models/post';
 
 export const revalidate = 3600;
 
 // Pre-render every related-game slug for faster Google indexing.
 export async function generateStaticParams() {
-  // Locale-aware: emit a static entry per supported locale + per game slug.
-  const locales = ['en', 'zh'];
-  return locales.flatMap((locale) =>
-    relatedGames.map((game) => ({ locale, slug: [game.slug] }))
-  );
+  // Game copy is complete in English. Locale-prefixed duplicates are
+  // consolidated by the proxy until they receive native rewrites.
+  return relatedGames.map((game) => ({
+    locale: 'en',
+    slug: [game.slug],
+  }));
 }
 
 // dynamic page metadata
@@ -51,8 +52,8 @@ export async function generateMetadata({
 
   const relatedGame = getRelatedGameBySlug(staticPageSlug);
   if (relatedGame) {
-    title = `${relatedGame.title} - Play Online`;
-    description = relatedGame.note;
+    title = `${relatedGame.title} — Play Free Online, No Download`;
+    description = `Play ${relatedGame.title} free online with no download or signup. ${relatedGame.note}`;
 
     return {
       title,
@@ -154,23 +155,25 @@ export default async function DynamicPage({
       relatedGame.description ??
       `${relatedGame.title} is a free browser-playable hide-and-seek game available right here on mecchachameleon.art. ${relatedGame.note} The embedded iframe loads the full game from ${relatedGame.source}, no install or login required. Click play inside the frame to start a round, and use the controls table below as a quick reference while you learn the mechanics.`;
 
-    const highlightItems = relatedGame.highlights && relatedGame.highlights.length > 0
-      ? relatedGame.highlights
-      : [
-          `${relatedGame.source} embedded, instant browser play`,
-          'No install or signup — click play and start a round',
-          'Full screen and controller support inside the iframe',
-          'Works on desktop and mobile browsers',
-        ];
+    const highlightItems =
+      relatedGame.highlights && relatedGame.highlights.length > 0
+        ? relatedGame.highlights
+        : [
+            `${relatedGame.source} embedded, instant browser play`,
+            'No install or signup — click play and start a round',
+            'Full screen and controller support inside the iframe',
+            'Works on desktop and mobile browsers',
+          ];
 
-    const controlItems = relatedGame.controls && relatedGame.controls.length > 0
-      ? relatedGame.controls
-      : [
-          { keys: 'Click play', action: `Start ${relatedGame.title}` },
-          { keys: 'WASD / Arrows', action: 'Move around the map' },
-          { keys: 'Shift', action: 'Sprint / move quietly (game-specific)' },
-          { keys: 'F', action: 'Fullscreen inside the iframe' },
-        ];
+    const controlItems =
+      relatedGame.controls && relatedGame.controls.length > 0
+        ? relatedGame.controls
+        : [
+            { keys: 'Click play', action: `Start ${relatedGame.title}` },
+            { keys: 'WASD / Arrows', action: 'Move around the map' },
+            { keys: 'Shift', action: 'Sprint / move quietly (game-specific)' },
+            { keys: 'F', action: 'Fullscreen inside the iframe' },
+          ];
 
     const gamepixCdn = (() => {
       const m = relatedGame.iframeSrc.match(/([a-f0-9]{32})/i);
@@ -184,8 +187,9 @@ export default async function DynamicPage({
           <div className="container pt-32 pb-12 lg:pt-40">
             <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
               <div>
-                <p className="mb-2 text-sm font-semibold uppercase tracking-normal text-[#7D6D69]">
-                  {relatedGame.source} · {locale === 'zh' ? '浏览器小游戏' : 'Browser mini-game'}
+                <p className="mb-2 text-sm font-semibold tracking-normal text-[#7D6D69] uppercase">
+                  {relatedGame.source} ·{' '}
+                  {locale === 'zh' ? '浏览器小游戏' : 'Browser mini-game'}
                 </p>
                 <h1 className="max-w-4xl text-4xl leading-tight font-bold tracking-normal md:text-6xl">
                   {relatedGame.title}
@@ -229,7 +233,9 @@ export default async function DynamicPage({
               <article className="space-y-6">
                 <header>
                   <h2 className="text-2xl font-bold tracking-normal md:text-3xl">
-                    {locale === 'zh' ? '怎么玩 / 有什么特色' : 'How to play & what makes it fun'}
+                    {locale === 'zh'
+                      ? '怎么玩 / 有什么特色'
+                      : 'How to play & what makes it fun'}
                   </h2>
                 </header>
                 <p className="text-base leading-7 text-[#29211D] md:text-lg">
@@ -256,7 +262,7 @@ export default async function DynamicPage({
                     <div className="relative aspect-[4/3] bg-[#1f1230]">
                       <div className="absolute inset-0 flex items-center justify-center text-center text-xs font-semibold text-white/80">
                         <div className="px-3">
-                          <div className="mb-1 text-[10px] uppercase tracking-normal text-[#ff6f9a]">
+                          <div className="mb-1 text-[10px] tracking-normal text-[#ff6f9a] uppercase">
                             {locale === 'zh' ? '实时画面' : 'Live gameplay'}
                           </div>
                           <div>
@@ -268,7 +274,9 @@ export default async function DynamicPage({
                       </div>
                     </div>
                     <figcaption className="bg-white px-3 py-2 text-xs font-semibold text-[#4C3B35]">
-                      {locale === 'zh' ? '实机画面（iframe 上方）' : 'Live frame (above)'}
+                      {locale === 'zh'
+                        ? '实机画面（iframe 上方）'
+                        : 'Live frame (above)'}
                     </figcaption>
                   </figure>
                   <figure className="overflow-hidden rounded-lg border border-[#D8CFC6] bg-white shadow-sm">
@@ -283,7 +291,9 @@ export default async function DynamicPage({
                       />
                     </div>
                     <figcaption className="bg-white px-3 py-2 text-xs font-semibold text-[#4C3B35]">
-                      {locale === 'zh' ? '源站预览' : `${relatedGame.source} preview`}
+                      {locale === 'zh'
+                        ? '源站预览'
+                        : `${relatedGame.source} preview`}
                     </figcaption>
                   </figure>
                 </div>
@@ -322,10 +332,12 @@ export default async function DynamicPage({
                     <a
                       href={relatedGame.href}
                       target="_blank"
-                      rel="noopener noreferrer"
+                      rel="nofollow noopener noreferrer"
                       className="inline-flex min-h-9 items-center rounded-md bg-[#ff6f9a] px-4 text-sm font-semibold text-white transition hover:bg-[#e95a88]"
                     >
-                      {locale === 'zh' ? '在源站全屏' : `Open on ${relatedGame.source}`}
+                      {locale === 'zh'
+                        ? '在源站全屏'
+                        : `Open on ${relatedGame.source}`}
                     </a>
                   </div>
                 </div>
@@ -338,7 +350,7 @@ export default async function DynamicPage({
           <div className="container py-12">
             <div className="mb-6 flex items-center justify-between gap-4">
               <div>
-                <p className="mb-1 text-sm font-semibold uppercase tracking-normal text-[#7D6D69]">
+                <p className="mb-1 text-sm font-semibold tracking-normal text-[#7D6D69] uppercase">
                   {locale === 'zh' ? '更多浏览器游戏' : 'More browser games'}
                 </p>
                 <h2 className="text-3xl font-bold tracking-normal">
@@ -357,7 +369,7 @@ export default async function DynamicPage({
                 <a
                   key={game.id}
                   href={getLocalizedPath(locale, `/${game.slug}`)}
-                  className="group min-w-[230px] max-w-[230px] snap-start overflow-hidden rounded-lg bg-white shadow-sm ring-1 ring-[#e0d8c8] transition hover:-translate-y-0.5 hover:shadow-lg hover:ring-[#ff6f9a]"
+                  className="group max-w-[230px] min-w-[230px] snap-start overflow-hidden rounded-lg bg-white shadow-sm ring-1 ring-[#e0d8c8] transition hover:-translate-y-0.5 hover:shadow-lg hover:ring-[#ff6f9a]"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden bg-[#f5e6e0]">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -368,8 +380,8 @@ export default async function DynamicPage({
                       decoding="async"
                       className="absolute inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-[1.04]"
                     />
-                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent px-3 pb-3 pt-10">
-                      <h3 className="line-clamp-2 text-sm font-black leading-tight text-white drop-shadow">
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent px-3 pt-10 pb-3">
+                      <h3 className="line-clamp-2 text-sm leading-tight font-black text-white drop-shadow">
                         {game.title}
                       </h3>
                     </div>

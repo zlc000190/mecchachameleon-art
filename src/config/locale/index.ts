@@ -94,7 +94,20 @@ export const fullyTranslatedLocales: Locale[] = ['en', 'zh', 'ru'];
 // Only locales with acceptable page-body completeness stay in SEO alternates.
 // New-site rule: do not expose half-translated locales to Google. Promote a
 // locale here only after target-country keyword research and native rewrite.
-export const seoLocales: Locale[] = ['en', 'zh', 'ru', 'es', 'de', 'pt', 'fr', 'it', 'nl', 'ar', 'ja', 'ko'];
+export const seoLocales: Locale[] = [
+  'en',
+  'zh',
+  'ru',
+  'es',
+  'de',
+  'pt',
+  'fr',
+  'it',
+  'nl',
+  'ar',
+  'ja',
+  'ko',
+];
 
 // Key SEO pages that stay indexable for currently approved SEO locales.
 export const keySeoPages = [
@@ -103,6 +116,18 @@ export const keySeoPages = [
   '/new-player',
   '/maps',
   '/community',
+  '/how-to-play',
+  '/hiding-spots',
+  '/camo-guide',
+] as const;
+
+// These guide pages have substantial, independently written English and
+// Spanish bodies. Other locale variants stay consolidated until their copy is
+// ready, so hreflang never advertises a translated URL that redirects.
+export const localizedGuidePages = [
+  '/how-to-play',
+  '/hiding-spots',
+  '/camo-guide',
 ] as const;
 
 // Locales that read right-to-left.
@@ -114,6 +139,11 @@ export function isRtl(locale: string): boolean {
 
 export function isKeySeoPath(pathname: string): boolean {
   // Strip locale prefix (e.g. "/fr/maps/vintage-room" -> "/maps/vintage-room")
-  const stripped = pathname.replace(/^\/(en|zh|ru|it|fr|de|es|pt|ja|ko|ar|th|vi|zh-TW|nl)(?=\/|$)/, '');
-  return keySeoPages.some((p) => stripped === p || stripped.startsWith(`${p}/`));
+  const stripped = pathname.replace(
+    /^\/(en|zh|ru|it|fr|de|es|pt|ja|ko|ar|th|vi|zh-TW|nl)(?=\/|$)/,
+    ''
+  );
+  return keySeoPages.some(
+    (p) => stripped === p || stripped.startsWith(`${p}/`)
+  );
 }

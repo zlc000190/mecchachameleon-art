@@ -30,7 +30,20 @@ const maps = [
 // Only SEO-approved locales appear in sitemap/hreflang. Half-translated
 // locales are stopped until target-country keyword research + native rewrites
 // justify promoting them.
-const allLocales = ['en', 'zh', 'ru', 'es', 'de', 'pt', 'fr', 'it', 'nl', 'ar', 'ja', 'ko'];
+const allLocales = [
+  'en',
+  'zh',
+  'ru',
+  'es',
+  'de',
+  'pt',
+  'fr',
+  'it',
+  'nl',
+  'ar',
+  'ja',
+  'ko',
+];
 
 // ONLY these locales get their own <url> entry. Each must have a full i18n
 // JSON bundle under src/config/locale/messages/<locale>/.
@@ -53,12 +66,25 @@ const homepageOnlyLocales = [
 const defaultLocale = 'en';
 const now = new Date().toISOString();
 
+// Keep the sitemap in sync with the game library without maintaining a
+// second hand-written slug list. Game detail pages are English-only until
+// each locale receives a native body, metadata, and FAQ.
+const relatedGameSource = fs.readFileSync(
+  path.join(root, 'src/shared/blocks/meccha/related-game-data.ts'),
+  'utf8'
+);
+const relatedGameSlugs = [
+  ...relatedGameSource.matchAll(/\bslug:\s*'([^']+)'/g),
+].map((match) => match[1]);
+
 const locUrl = (locale, p) => {
   const normalizedPath = p === '/' ? '/' : p.replace(/\/$/, '');
   if (locale === defaultLocale) {
     return normalizedPath === '/' ? `${base}/` : `${base}${normalizedPath}`;
   }
-  return normalizedPath === '/' ? `${base}/${locale}` : `${base}/${locale}${normalizedPath}`;
+  return normalizedPath === '/'
+    ? `${base}/${locale}`
+    : `${base}/${locale}${normalizedPath}`;
 };
 
 const entries = [];
@@ -79,54 +105,197 @@ const entries = [];
 //   - alternateLocales = the single locale only (no hreflang loop)
 const pageSpecs = [
   { path: '/', priority: '1.0', changefreq: 'weekly' },
-  { path: '/meccha-chameleon-online', priority: '0.9', changefreq: 'weekly',
-    locales: allLocales },  // expanded to all 12 locales (Batch 1 reinforcement)
-  { path: '/unblocked', priority: '0.9', changefreq: 'weekly',
-    locales: allLocales },  // Batch 1 - 12 locale play page
-  { path: '/hide-and-seek', priority: '0.9', changefreq: 'weekly',
-    locales: allLocales },  // Batch 1 - 12 locale play page
-  { path: '/demo', priority: '0.8', changefreq: 'weekly',
-    locales: allLocales },  // Batch 1 - 12 locale play page
+  {
+    path: '/meccha-chameleon-online',
+    priority: '0.9',
+    changefreq: 'weekly',
+    locales: allLocales,
+  }, // expanded to all 12 locales (Batch 1 reinforcement)
+  {
+    path: '/unblocked',
+    priority: '0.9',
+    changefreq: 'weekly',
+    locales: allLocales,
+  }, // Batch 1 - 12 locale play page
+  {
+    path: '/hide-and-seek',
+    priority: '0.9',
+    changefreq: 'weekly',
+    locales: allLocales,
+  }, // Batch 1 - 12 locale play page
+  { path: '/demo', priority: '0.8', changefreq: 'weekly', locales: allLocales }, // Batch 1 - 12 locale play page
   // Batch 2 - locale depth pages (single-locale each)
-  { path: '/ru/igrat', priority: '0.9', changefreq: 'weekly', locales: ['ru'], singleLocale: true },
-  { path: '/es/donde-jugar', priority: '0.8', changefreq: 'weekly', locales: ['es'], singleLocale: true },
-  { path: '/ar/download', priority: '0.8', changefreq: 'weekly', locales: ['ar'], singleLocale: true },
-  { path: '/pt/jogar-gratis', priority: '0.8', changefreq: 'weekly', locales: ['pt'], singleLocale: true },
-  { path: '/ja/online', priority: '0.8', changefreq: 'weekly', locales: ['ja'], singleLocale: true },
+  {
+    path: '/ru/igrat',
+    priority: '0.9',
+    changefreq: 'weekly',
+    locales: ['ru'],
+    singleLocale: true,
+  },
+  {
+    path: '/es/donde-jugar',
+    priority: '0.8',
+    changefreq: 'weekly',
+    locales: ['es'],
+    singleLocale: true,
+  },
+  {
+    path: '/ar/download',
+    priority: '0.8',
+    changefreq: 'weekly',
+    locales: ['ar'],
+    singleLocale: true,
+  },
+  {
+    path: '/pt/jogar-gratis',
+    priority: '0.8',
+    changefreq: 'weekly',
+    locales: ['pt'],
+    singleLocale: true,
+  },
+  {
+    path: '/ja/online',
+    priority: '0.8',
+    changefreq: 'weekly',
+    locales: ['ja'],
+    singleLocale: true,
+  },
   // Batch 3 - 11 English longtail MDX (12 locales each)
-  { path: '/chameleon-hide-and-seek-game', priority: '0.7', changefreq: 'monthly', locales: allLocales },
-  { path: '/hide-and-seek-paint-game', priority: '0.7', changefreq: 'monthly', locales: allLocales },
-  { path: '/hide-and-seek-paint-game-online', priority: '0.7', changefreq: 'monthly', locales: allLocales },
-  { path: '/paint-hide-and-seek-online', priority: '0.7', changefreq: 'monthly', locales: allLocales },
-  { path: '/camouflage-game-online', priority: '0.7', changefreq: 'monthly', locales: allLocales },
-  { path: '/chameleon-game', priority: '0.7', changefreq: 'monthly', locales: allLocales },
-  { path: '/chameleon-paint-game', priority: '0.7', changefreq: 'monthly', locales: allLocales },
-  { path: '/meccha-chameleon-poki', priority: '0.7', changefreq: 'monthly', locales: allLocales },
-  { path: '/meccha-chameleon-official', priority: '0.7', changefreq: 'monthly', locales: allLocales },
-  { path: '/chameleon', priority: '0.7', changefreq: 'monthly', locales: allLocales },
-  { path: '/chameleon-game-online', priority: '0.7', changefreq: 'monthly', locales: allLocales },
+  {
+    path: '/chameleon-hide-and-seek-game',
+    priority: '0.7',
+    changefreq: 'monthly',
+    locales: allLocales,
+  },
+  {
+    path: '/hide-and-seek-paint-game',
+    priority: '0.7',
+    changefreq: 'monthly',
+    locales: allLocales,
+  },
+  {
+    path: '/hide-and-seek-paint-game-online',
+    priority: '0.7',
+    changefreq: 'monthly',
+    locales: allLocales,
+  },
+  {
+    path: '/paint-hide-and-seek-online',
+    priority: '0.7',
+    changefreq: 'monthly',
+    locales: allLocales,
+  },
+  {
+    path: '/camouflage-game-online',
+    priority: '0.7',
+    changefreq: 'monthly',
+    locales: allLocales,
+  },
+  {
+    path: '/chameleon-game',
+    priority: '0.7',
+    changefreq: 'monthly',
+    locales: allLocales,
+  },
+  {
+    path: '/chameleon-paint-game',
+    priority: '0.7',
+    changefreq: 'monthly',
+    locales: allLocales,
+  },
+  {
+    path: '/meccha-chameleon-poki',
+    priority: '0.7',
+    changefreq: 'monthly',
+    locales: allLocales,
+  },
+  {
+    path: '/meccha-chameleon-official',
+    priority: '0.7',
+    changefreq: 'monthly',
+    locales: allLocales,
+  },
+  {
+    path: '/chameleon',
+    priority: '0.7',
+    changefreq: 'monthly',
+    locales: allLocales,
+  },
+  {
+    path: '/chameleon-game-online',
+    priority: '0.7',
+    changefreq: 'monthly',
+    locales: allLocales,
+  },
   // Batch 3 - 5 locale longtail MDX (single-locale each, en + zh handled by MDX i18n)
-  { path: '/es/juego-camaleon', priority: '0.7', changefreq: 'monthly', locales: ['es'], singleLocale: true },
-  { path: '/pt/jogo-camuflagem', priority: '0.7', changefreq: 'monthly', locales: ['pt'], singleLocale: true },
-  { path: '/it/nascondino-online', priority: '0.7', changefreq: 'monthly', locales: ['it'], singleLocale: true },
-  { path: '/fr/jeu-cache-cache', priority: '0.7', changefreq: 'monthly', locales: ['fr'], singleLocale: true },
-  { path: '/de/chameleon-spiel', priority: '0.7', changefreq: 'monthly', locales: ['de'], singleLocale: true },
+  {
+    path: '/es/juego-camaleon',
+    priority: '0.7',
+    changefreq: 'monthly',
+    locales: ['es'],
+    singleLocale: true,
+  },
+  {
+    path: '/pt/jogo-camuflagem',
+    priority: '0.7',
+    changefreq: 'monthly',
+    locales: ['pt'],
+    singleLocale: true,
+  },
+  {
+    path: '/it/nascondino-online',
+    priority: '0.7',
+    changefreq: 'monthly',
+    locales: ['it'],
+    singleLocale: true,
+  },
+  {
+    path: '/fr/jeu-cache-cache',
+    priority: '0.7',
+    changefreq: 'monthly',
+    locales: ['fr'],
+    singleLocale: true,
+  },
+  {
+    path: '/de/chameleon-spiel',
+    priority: '0.7',
+    changefreq: 'monthly',
+    locales: ['de'],
+    singleLocale: true,
+  },
   { path: '/new-player', priority: '0.7', changefreq: 'monthly' },
   { path: '/tools', priority: '0.85', changefreq: 'monthly' },
-  // Featured HTML5 game detail pages (each one is an internal detail page
-  // wrapping an embed of the original hide-and-seek browser game).
-  { path: '/meccha-chameleon-browser-game', priority: '0.9', changefreq: 'weekly' },
-  { path: '/hide-n-seek', priority: '0.85', changefreq: 'weekly' },
-  { path: '/sneaky-friends', priority: '0.7', changefreq: 'weekly' },
-  { path: '/stickman-hide-and-seek', priority: '0.7', changefreq: 'weekly' },
-  { path: '/skibidi-titans-hide-and-seek', priority: '0.7', changefreq: 'weekly' },
-  { path: '/hide-and-seek-horror-escape', priority: '0.7', changefreq: 'weekly' },
-  { path: '/kitten-hide-and-seek', priority: '0.7', changefreq: 'weekly' },
-  { path: '/among-them-hide-n-seek-2', priority: '0.7', changefreq: 'weekly' },
-  { path: '/hunt-and-seek', priority: '0.7', changefreq: 'weekly' },
-  { path: '/blumgi-slime', priority: '0.7', changefreq: 'weekly' },
-  { path: '/wacky-steps', priority: '0.7', changefreq: 'weekly' },
+  // Independent information-intent guides. Spanish is the first localized
+  // batch because GSC/keyword data already proves high-converting demand.
+  {
+    path: '/how-to-play',
+    priority: '0.85',
+    changefreq: 'monthly',
+    locales: ['en', 'es'],
+  },
+  {
+    path: '/hiding-spots',
+    priority: '0.85',
+    changefreq: 'monthly',
+    locales: ['en', 'es'],
+  },
+  {
+    path: '/camo-guide',
+    priority: '0.85',
+    changefreq: 'monthly',
+    locales: ['en', 'es'],
+  },
 ];
+
+// Every homepage game card now has one canonical, indexable detail URL.
+for (const slug of relatedGameSlugs) {
+  pageSpecs.push({
+    path: `/${slug}`,
+    priority: slug === 'meccha-chameleon-browser-game' ? '0.9' : '0.7',
+    changefreq: 'weekly',
+    locales: ['en'],
+  });
+}
 
 for (const spec of pageSpecs) {
   // singleLocale: only emit one <loc> entry with the path as-is (no locale prefix)
@@ -142,10 +311,16 @@ for (const spec of pageSpecs) {
     });
     continue;
   }
-  const localesForPage = spec.locales || (spec.path === '/'
-    ? [...fullyTranslatedLocales, ...homepageOnlyLocales]
-    : fullyTranslatedLocales);
-  const alternateLocales = spec.locales || allLocales.filter((l) => spec.path === '/' || !homepageOnlyLocales.includes(l));
+  const localesForPage =
+    spec.locales ||
+    (spec.path === '/'
+      ? [...fullyTranslatedLocales, ...homepageOnlyLocales]
+      : fullyTranslatedLocales);
+  const alternateLocales =
+    spec.locales ||
+    allLocales.filter(
+      (l) => spec.path === '/' || !homepageOnlyLocales.includes(l)
+    );
   for (const loc of localesForPage) {
     entries.push({
       loc: locUrl(loc, spec.path),
@@ -201,6 +376,12 @@ ${entries.map(buildUrl).join('')}
 
 const outPath = path.join(root, 'public', 'sitemap.xml');
 fs.writeFileSync(outPath, xml);
-console.log(`Wrote ${outPath} (${entries.length} entries, ${xml.length} bytes)`);
-console.log(`Locales with <url> entries: ${[...fullyTranslatedLocales, ...homepageOnlyLocales].join(', ')}`);
-console.log(`Locales with hreflang coverage only: ${allLocales.filter((l) => !fullyTranslatedLocales.includes(l)).join(', ')}`);
+console.log(
+  `Wrote ${outPath} (${entries.length} entries, ${xml.length} bytes)`
+);
+console.log(
+  `Locales with <url> entries: ${[...fullyTranslatedLocales, ...homepageOnlyLocales].join(', ')}`
+);
+console.log(
+  `Locales with hreflang coverage only: ${allLocales.filter((l) => !fullyTranslatedLocales.includes(l)).join(', ')}`
+);

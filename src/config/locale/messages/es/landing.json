@@ -25,12 +25,12 @@
         },
         {
           "title": "Camo Lab",
-          "url": "/#camo-lab",
+          "url": "/camo-guide",
           "icon": "Brush"
         },
         {
           "title": "Atlas de mapas",
-          "url": "/#atlas",
+          "url": "/hiding-spots",
           "icon": "MapPinned"
         },
         {
@@ -99,12 +99,12 @@
             },
             {
               "title": "Camo Lab",
-              "url": "/#camo-lab",
+              "url": "/camo-guide",
               "target": "_self"
             },
             {
               "title": "Atlas de mapas",
-              "url": "/#atlas",
+              "url": "/hiding-spots",
               "target": "_self"
             }
           ]
