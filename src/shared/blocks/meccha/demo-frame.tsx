@@ -20,6 +20,18 @@ type Demo = {
 // slot is intentionally offline — embedding the third-party site was leaking
 // PageRank and sending users away. This keeps the slot visible in the UI but
 // drops the iframe, the dofollow outbound link, and the host probe.
+// While we work toward an in-house Meccha Chameleon browser build, the
+// "easy" slot runs a same-genre hide-and-seek embed from GameDistribution —
+// Maze Hide N Seek is the closest mechanics match (maze cover + timer +
+// seeker tag). This keeps the play area alive, stays inside the GD embed
+// SDK (which is designed for re-embedding), and never sends traffic to
+// chameleon-game.com.
+const EASY_STANDBY_NOTE_EN =
+  'Playing Hide N Seek! while our native Meccha Chameleon build is in development. Same hide-and-seek genre — maze cover, round timer, seeker tag — embedded directly from GameDistribution.';
+
+const EASY_STANDBY_NOTE_ZH =
+  '原生 Meccha Chameleon 版本开发中，这里先接入 GameDistribution 的 Hide N Seek! 替代（迷宫躲猫猫 + 倒计时 + Seeker 抓人，核心玩法一致）。';
+
 const MECCHA_COMING_SOON_NOTE_EN =
   'Our native Meccha Chameleon build is in active development. The previous iframe pointed at a third-party site and is now offline while we finish the in-house version.';
 
@@ -34,12 +46,13 @@ const demos: Demo[] = [
     id: 'easy',
     label: 'Meccha',
     title: 'Meccha Chameleon Browser Game',
-    source: 'Meccha Chameleon Art Studio',
+    source: 'GameDistribution',
     ratio: 'aspect-[16/9] min-h-[650px] max-h-[90vh]',
-    src: '',
-    note: MECCHA_COMING_SOON_NOTE_EN,
+    src: 'https://html5.gamedistribution.com/7eda2be289604aa89f3b97df59661bfe/',
+    note: EASY_STANDBY_NOTE_EN,
+    openInNewTab:
+      'https://html5.gamedistribution.com/7eda2be289604aa89f3b97df59661bfe/',
     poster: '/imgs/related-games/meccha-header.jpg',
-    comingSoon: true,
   },
   {
     id: 'hard',
@@ -163,7 +176,7 @@ const demos: Demo[] = [
 ];
 
 const zhNotes: Record<string, string> = {
-  easy: MECCHA_COMING_SOON_NOTE_ZH,
+  easy: EASY_STANDBY_NOTE_ZH,
   hard: 'Hard 使用 CrazyGames 的 Hide N Seek iframe，请在当前页面等待加载完成。',
   social:
     'Social 使用偏朋友组队体验的 hide-and-seek 浏览器游戏，适合社交玩法搜索。',

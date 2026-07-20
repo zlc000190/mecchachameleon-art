@@ -33,21 +33,22 @@ export const relatedGames: RelatedGame[] = [
     slug: 'meccha-chameleon-browser-game',
     title: 'Meccha Chameleon',
     note:
-      'Official Meccha Chameleon Steam artwork with paint, disguise, quick play, room creation, and practice context. The native browser build is in active development — this card links to the in-house play page while we ship it.',
-    source: 'Meccha Chameleon Art Studio',
+      'Official Meccha Chameleon Steam artwork with paint, disguise, quick play, room creation, and practice context. While the native browser build is in development, this page embeds Hide N Seek! from GameDistribution (same hide-and-seek genre) so you can play right now.',
+    source: 'GameDistribution',
     href: '/meccha-chameleon-browser-game',
-    iframeSrc: '',
+    iframeSrc:
+      'https://html5.gamedistribution.com/7eda2be289604aa89f3b97df59661bfe/',
     image: '/imgs/related-games/meccha-chameleon.png',
     external: false,
     tag: 'paint',
     featured: true,
     demoId: 'easy',
     description:
-      'Meccha Chameleon is a paint-and-hide browser game built around one simple idea: blend into the room before the seeker finds you. Start with quick play, create a private room, or practice in the official browser build, then use color, wall texture, shadow, and props to break your silhouette. The best hiding spots are not always the darkest corners; they are places where your body shape disappears into busy furniture, patterned walls, or stacked objects. This card uses official Meccha Chameleon Steam artwork rather than a recycled site screenshot or a different hide-and-seek game thumbnail. The previous third-party embed has been retired while we finish the in-house Meccha Chameleon browser build.',
+      'Meccha Chameleon is a paint-and-hide browser game built around one simple idea: blend into the room before the seeker finds you. Start with quick play, create a private room, or practice in the official browser build, then use color, wall texture, shadow, and props to break your silhouette. The best hiding spots are not always the darkest corners; they are places where your body shape disappears into busy furniture, patterned walls, or stacked objects. While the in-house Meccha Chameleon browser build ships, this page embeds Hide N Seek! from GameDistribution — a same-genre maze-style hide-and-seek with round timer and seeker tag, so you can keep playing today. The previous third-party iframe (chameleon-game.com) has been retired.',
     highlights: [
       'Official Meccha Chameleon Steam artwork',
       'Paint-and-hide gameplay with quick play and practice',
-      'In-house browser build coming soon — no third-party iframe',
+      'Hide N Seek! embedded from GameDistribution while native build ships',
       'Image matches the actual game brand shown to users',
     ],
     controls: [

@@ -147,8 +147,6 @@ export default async function DynamicPage({
 
   const relatedGame = getRelatedGameBySlug(staticPageSlug);
   if (relatedGame) {
-    const isMecchaNativeBuild =
-      relatedGame.slug === 'meccha-chameleon-browser-game';
     const alsoLike = relatedGames
       .filter((game) => game.slug !== relatedGame.slug)
       .slice(0, 12);
@@ -213,47 +211,17 @@ export default async function DynamicPage({
                 {relatedGame.title} · {relatedGame.source}
               </div>
               <div className="relative aspect-[16/9] min-h-[650px] w-full bg-black">
-                {isMecchaNativeBuild ? (
-                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-gradient-to-br from-[#1f1230] via-[#2a1845] to-[#3a2358] p-6 text-center text-white">
-                    {relatedGame.image ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        src={relatedGame.image}
-                        alt=""
-                        aria-hidden
-                        className="absolute inset-0 h-full w-full object-cover opacity-30"
-                      />
-                    ) : null}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#1f1230]/95 via-[#1f1230]/70 to-transparent" />
-                    <div className="relative z-10 flex max-w-lg flex-col items-center gap-3">
-                      <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white/90">
-                        {locale === 'zh' ? '即将上线' : 'Coming soon'}
-                      </span>
-                      <h2 className="text-2xl font-bold tracking-tight md:text-3xl">
-                        {locale === 'zh'
-                          ? 'Meccha Chameleon 原生版本开发中'
-                          : 'Native Meccha Chameleon build in development'}
-                      </h2>
-                      <p className="text-sm leading-6 text-white/80 md:text-base">
-                        {locale === 'zh'
-                          ? '我们正在开发 Meccha Chameleon 的官方版本。原先嵌入第三方站点的 iframe 已临时下线，不再外链到外部网站。'
-                          : 'Our native Meccha Chameleon build is in active development. The previous iframe pointed at a third-party site and is now offline while we finish the in-house version.'}
-                      </p>
-                    </div>
-                  </div>
-                ) : (
-                  <iframe
-                    title={`${relatedGame.title} browser game`}
-                    src={relatedGame.iframeSrc}
-                    className="absolute inset-0 h-full w-full"
-                    loading="eager"
-                    allow="autoplay; fullscreen; gamepad; pointer-lock; encrypted-media; web-share"
-                    allowFullScreen
-                    scrolling="no"
-                    referrerPolicy="origin"
-                    sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-pointer-lock allow-top-navigation allow-presentation"
-                  />
-                )}
+                <iframe
+                  title={`${relatedGame.title} browser game`}
+                  src={relatedGame.iframeSrc}
+                  className="absolute inset-0 h-full w-full"
+                  loading="eager"
+                  allow="autoplay; fullscreen; gamepad; pointer-lock; encrypted-media; web-share"
+                  allowFullScreen
+                  scrolling="no"
+                  referrerPolicy="origin"
+                  sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-pointer-lock allow-top-navigation allow-presentation"
+                />
               </div>
             </div>
           </div>
@@ -361,7 +329,7 @@ export default async function DynamicPage({
                     ))}
                   </ul>
                   <div className="mt-4 flex flex-wrap gap-3">
-                    {!isMecchaNativeBuild && relatedGame.href ? (
+                    {relatedGame.href ? (
                       <a
                         href={relatedGame.href}
                         target="_blank"
@@ -372,13 +340,7 @@ export default async function DynamicPage({
                           ? '在源站全屏'
                           : `Open on ${relatedGame.source}`}
                       </a>
-                    ) : (
-                      <span className="inline-flex min-h-9 items-center rounded-md border border-[#D8CFC6] bg-white px-4 text-sm font-semibold text-[#29211D]">
-                        {locale === 'zh'
-                          ? '原生版本上线后会回到这里'
-                          : 'Native version will return here when it ships'}
-                      </span>
-                    )}
+                    ) : null}
                   </div>
                 </div>
               </aside>
