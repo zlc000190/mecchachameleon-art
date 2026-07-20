@@ -23,7 +23,7 @@ const demos: Demo[] = [
     title: 'Meccha Chameleon Browser Game',
     source: 'Official Meccha Chameleon',
     ratio: 'aspect-[16/9] min-h-[650px] max-h-[90vh]',
-    src: 'https://chameleon-game.com/',
+    src: '/embeds/chameleon-game.html',
     note: 'The default slot keeps Meccha Chameleon front and center. The game stays in this page while the embedded frame finishes loading.',
     openInNewTab: 'https://chameleon-game.com/',
     poster: '/imgs/related-games/meccha-header.jpg',
@@ -421,7 +421,6 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                   ref={iframeRef}
                   title={`${activeDemo.title} browser game`}
                   src={activeDemo.src}
-                  is={activeDemo.id === 'easy' ? 'x-frame-bypass' : undefined}
                   className="absolute inset-0 h-full w-full"
                   loading="eager"
                   allow="autoplay; fullscreen; gamepad; pointer-lock; encrypted-media; web-share"
@@ -440,7 +439,6 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
                   ref={iframeRef}
                   title={`${activeDemo.title} browser game`}
                   src={activeDemo.src}
-                  is={activeDemo.id === 'easy' ? 'x-frame-bypass' : undefined}
                   className="absolute inset-0 h-full w-full"
                   loading="eager"
                   allow="autoplay; fullscreen; gamepad; pointer-lock; encrypted-media; web-share"
@@ -567,7 +565,6 @@ export function DemoFrame({ locale = 'en' }: { locale?: string }) {
             ref={iframeRef}
             title={`${activeDemo.title} browser game`}
             src={activeDemo.src}
-            is={activeDemo.id === 'easy' ? 'x-frame-bypass' : undefined}
             className="absolute inset-0 h-full w-full"
             loading="eager"
             allow="autoplay; fullscreen; gamepad; pointer-lock; encrypted-media; web-share"

@@ -206,6 +206,12 @@ export function RelatedGames({
               {variant === 'section' ? (
                 <a
                   href={item.href}
+                  rel={
+                    /^https?:\/\//i.test(item.href) ||
+                    item.href.startsWith('//')
+                      ? 'nofollow noopener noreferrer'
+                      : undefined
+                  }
                   className="group block h-full overflow-hidden rounded-lg bg-white text-left shadow-sm ring-1 ring-[#e0d8c8] transition hover:-translate-y-0.5 hover:shadow-lg hover:ring-[#ff6f9a]"
                 >
                   {cardFace}
