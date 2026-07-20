@@ -9,7 +9,6 @@ import {
 } from 'lucide-react';
 import { setRequestLocale } from 'next-intl/server';
 
-import { AdsterraNativeBanner } from '@/extensions/ads';
 import { ArabicSeoSection } from '@/shared/blocks/meccha/arabic-seo-section';
 import { AtlasPreview } from '@/shared/blocks/meccha/atlas-preview';
 import { CommunityChallengePreview } from '@/shared/blocks/meccha/community-challenge-preview';
@@ -156,16 +155,6 @@ export default async function LandingPage({
       </section>
 
       <RelatedGames locale={locale} />
-
-      <section className="border-b border-[#D8CFC6] bg-white">
-        <div className="container py-6">
-          <AdsterraNativeBanner
-            className="mx-auto min-h-[90px] w-full max-w-5xl"
-            containerId="container-b59ba82077f589c928c05fdf83f0e6e0"
-            invokeSrc="https://pl30105394.effectivecpmnetwork.com/b59ba82077f589c928c05fdf83f0e6e0/invoke.js"
-          />
-        </div>
-      </section>
 
       <ToolsTeaser locale={locale} />
 
