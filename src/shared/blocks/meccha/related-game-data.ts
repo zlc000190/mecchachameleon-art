@@ -32,8 +32,7 @@ export const relatedGames: RelatedGame[] = [
     id: 'meccha-browser',
     slug: 'meccha-chameleon-browser-game',
     title: 'Meccha Chameleon',
-    note:
-      'Official Meccha Chameleon Steam artwork with paint, disguise, quick play, room creation, and practice context. While the native browser build is in development, this page embeds Hide N Seek! from GameDistribution (same hide-and-seek genre) so you can play right now.',
+    note: 'Official Meccha Chameleon Steam artwork with paint, disguise, quick play, room creation, and practice context. While the native browser build is in development, this page embeds Hide N Seek! from GameDistribution (same hide-and-seek genre) so you can play right now.',
     source: 'GameDistribution',
     href: '/meccha-chameleon-browser-game',
     iframeSrc:
