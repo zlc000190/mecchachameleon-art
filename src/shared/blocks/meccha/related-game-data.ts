@@ -44,7 +44,7 @@ export const relatedGames: RelatedGame[] = [
     featured: true,
     demoId: 'easy',
     description:
-      'Meccha Chameleon is a paint-and-hide browser game built around one simple idea: blend into the room before the seeker finds you. Start with quick play, create a private room, or practice in the official browser build, then use color, wall texture, shadow, and props to break your silhouette. The best hiding spots are not always the darkest corners; they are places where your body shape disappears into busy furniture, patterned walls, or stacked objects. While the in-house Meccha Chameleon browser build ships, this page embeds Hide N Seek! from GameDistribution — a same-genre maze-style hide-and-seek with round timer and seeker tag, so you can keep playing today. The previous third-party iframe (chameleon-game.com) has been retired.',
+      'Meccha Chameleon is a paint-and-hide browser game built around one simple idea: blend into the room before the seeker finds you. Start with quick play, create a private room, or practice in the official browser build, then use color, wall texture, shadow, and props to break your silhouette. The best hiding spots are not always the darkest corners; they are places where your body shape disappears into busy furniture, patterned walls, or stacked objects. While the in-house Meccha Chameleon browser build ships, this page embeds Hide N Seek! from GameDistribution — a same-genre maze-style hide-and-seek with round timer and seeker tag, so you can keep playing today. The previous third-party embed has been retired.',
     highlights: [
       'Official Meccha Chameleon Steam artwork',
       'Paint-and-hide gameplay with quick play and practice',
