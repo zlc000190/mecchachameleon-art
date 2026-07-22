@@ -27,7 +27,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} dir={isRtl(locale) ? 'rtl' : 'ltr'} suppressHydrationWarning>
-      <body>
+      <body className="overflow-x-hidden">
         <NextIntlClientProvider>
           <ThemeProvider>
             <AppContextProvider>

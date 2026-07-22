@@ -46,12 +46,10 @@ const demos: Demo[] = [
     id: 'easy',
     label: 'Meccha',
     title: 'Meccha Chameleon Browser Game',
-    source: 'GameDistribution',
+    source: 'Native Build',
     ratio: 'aspect-[16/9] min-h-[650px] max-h-[90vh]',
-    src: 'https://html5.gamedistribution.com/7eda2be289604aa89f3b97df59661bfe/',
-    note: EASY_STANDBY_NOTE_EN,
-    openInNewTab:
-      'https://html5.gamedistribution.com/7eda2be289604aa89f3b97df59661bfe/',
+    src: '/en/game/play',
+    note: 'Native browser Hide & Paint game — blend in by sampling wall colors, avoid the AI seeker!',
     poster: '/imgs/related-games/meccha-header.jpg',
   },
   {
