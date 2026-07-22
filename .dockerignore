@@ -8,3 +8,18 @@ node_modules
 .git
 vercel.json
 wrangler.toml
+
+# build logs & debug scripts from local iterations
+build_err.txt
+build_out.txt
+build_output.txt
+build_check.ps1
+do_build.ps1
+deploy.bat
+srv.log
+
+# old PlayCanvas prototype (superseded by BabylonJS gameplay)
+/game
+
+# Colyseus server build output (rebuilt inside the image)
+/server/dist

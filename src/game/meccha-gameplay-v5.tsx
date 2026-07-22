@@ -8,10 +8,18 @@ import {
   Animation, ParticleSystem, Scalar
 } from '@babylonjs/core';
 import { ArrowLeft, Palette, Clock, MessageCircle, Users, Zap, Star, Sparkles } from 'lucide-react';
+import { joinGameRoom } from './network';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 type GamePhase = 'prep' | 'seek' | 'result';
 type RoleType = 'hider' | 'seeker';
+
+type RemotePlayer = {
+  mesh: Mesh;
+  target: { x: number; y: number; z: number; rotY: number };
+  color: string;
+};
+const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 type RoomType = 'lobby' | 'classroom';
 
 interface GameProps {
@@ -90,6 +98,13 @@ export default function MecchaGameplayV5({ mode, role, onExit }: GameProps) {
   const phaseRef = useRef<GamePhase>('prep');
   const projectilesRef = useRef<Mesh[]>([]);
   const targetsRef = useRef<Mesh[]>([]);
+
+  // ─── Networking (Colyseus) ──────────────────────────────────────────────────
+  const roomRef = useRef<any>(null);
+  const remotePlayersRef = useRef<Map<string, RemotePlayer>>(new Map());
+  const playerColorRef = useRef(playerColor);
+  const [netStatus, setNetStatus] = useState<'connecting' | 'online' | 'offline'>('connecting');
+  useEffect(() => { playerColorRef.current = playerColor; }, [playerColor]);
 
   // ─── Create Hotel Lobby (Room 1) ─────────────────────────────────────────────
   const createHotelLobby = useCallback((scene: Scene, shadowGen: ShadowGenerator) => {
@@ -581,6 +596,7 @@ export default function MecchaGameplayV5({ mode, role, onExit }: GameProps) {
   // ─── Initialize Game ─────────────────────────────────────────────────────────
   useEffect(() => {
     if (!canvasRef.current) return;
+    let networkDisposed = false;
 
     targetsRef.current = [];
     projectilesRef.current = [];
@@ -625,6 +641,59 @@ export default function MecchaGameplayV5({ mode, role, onExit }: GameProps) {
     // Create player
     const player = createPlayer(scene, shadowGen, role);
     playerRef.current = player;
+
+    // ─── Networking: connect to Colyseus (Phase A — see other players) ─────────
+    let sendAccum = 0;
+    (async () => {
+      try {
+        const room = await joinGameRoom({ name: 'You', role, color: playerColorRef.current });
+        if (networkDisposed) { room.leave(); return; }
+        roomRef.current = room;
+        setNetStatus('online');
+
+        const addRemote = (p: any, key: string) => {
+          if (key === room.sessionId || remotePlayersRef.current.has(key)) return;
+          const mesh = createPlayer(scene, shadowGen, p.role === 'seeker' ? 'seeker' : 'hider');
+          const c = Color3.FromHexString(p.color || '#ffffff');
+          (mesh as any).colorableMeshes?.forEach((m: Mesh) => {
+            const mat = (m.material as StandardMaterial) || new StandardMaterial(`rm_${m.name}`, m.getScene());
+            mat.diffuseColor = c;
+            m.material = mat;
+          });
+          mesh.position.set(p.x, p.y, p.z);
+          mesh.rotation.y = p.rotY || 0;
+          remotePlayersRef.current.set(key, {
+            mesh,
+            target: { x: p.x, y: p.y, z: p.z, rotY: p.rotY || 0 },
+            color: p.color || '#ffffff',
+          });
+          p.onChange = () => {
+            const rp = remotePlayersRef.current.get(key);
+            if (!rp) return;
+            rp.target.x = p.x; rp.target.y = p.y; rp.target.z = p.z; rp.target.rotY = p.rotY || 0;
+            if (p.color !== rp.color) {
+              rp.color = p.color;
+              const nc = Color3.FromHexString(p.color || '#ffffff');
+              (mesh as any).colorableMeshes?.forEach((m: Mesh) => {
+                const mat = (m.material as StandardMaterial) || new StandardMaterial(`rm_${m.name}`, m.getScene());
+                mat.diffuseColor = nc;
+                m.material = mat;
+              });
+            }
+          };
+        };
+
+        room.state.players.onAdd = addRemote;
+        room.state.players.forEach(addRemote);
+        room.state.players.onRemove = (_p: any, key: string) => {
+          const rp = remotePlayersRef.current.get(key);
+          if (rp) { rp.mesh.dispose(); remotePlayersRef.current.delete(key); }
+        };
+      } catch (err) {
+        console.warn('[network] Colyseus unreachable — single-player mode', err);
+        setNetStatus('offline');
+      }
+    })();
 
     // Follow Camera
     const camera = new FollowCamera('followCam', new Vector3(0, 5, 15), scene);
@@ -674,6 +743,25 @@ export default function MecchaGameplayV5({ mode, role, onExit }: GameProps) {
       const now = performance.now();
       const delta = (now - lastTime) / 1000;
       lastTime = now;
+
+      // Network: smoothly interpolate remote players + send our transform
+      remotePlayersRef.current.forEach((rp) => {
+        rp.mesh.position.x = lerp(rp.mesh.position.x, rp.target.x, 0.2);
+        rp.mesh.position.y = lerp(rp.mesh.position.y, rp.target.y, 0.2);
+        rp.mesh.position.z = lerp(rp.mesh.position.z, rp.target.z, 0.2);
+        rp.mesh.rotation.y = lerp(rp.mesh.rotation.y, rp.target.rotY, 0.2);
+      });
+      if (playerRef.current && roomRef.current) {
+        sendAccum += delta;
+        if (sendAccum > 0.05) {
+          sendAccum = 0;
+          const lp = playerRef.current;
+          roomRef.current.send('move', {
+            x: lp.position.x, y: lp.position.y, z: lp.position.z,
+            rotY: lp.rotation.y, color: playerColorRef.current,
+          });
+        }
+      }
 
       if (player && phase === 'seek') {
         const forward = player.forward;
@@ -733,6 +821,10 @@ export default function MecchaGameplayV5({ mode, role, onExit }: GameProps) {
     window.addEventListener('resize', () => engine.resize());
 
     return () => {
+      networkDisposed = true;
+      if (roomRef.current) { roomRef.current.leave(); roomRef.current = null; }
+      remotePlayersRef.current.forEach((rp) => rp.mesh.dispose());
+      remotePlayersRef.current.clear();
       window.removeEventListener('keydown', onKeyDown);
       window.removeEventListener('keyup', onKeyUp);
       scene.onBeforeRenderObservable.remove(observer);
@@ -796,12 +888,17 @@ export default function MecchaGameplayV5({ mode, role, onExit }: GameProps) {
 
       {/* Top HUD */}
       <div className="absolute top-0 left-0 right-0 p-4 flex justify-between items-start pointer-events-none">
-        <div className="bg-black/60 backdrop-blur-sm rounded-full px-4 py-2 flex items-center gap-2">
-          <span className="text-white font-bold text-sm">LIVES</span>
-          <div className="flex gap-1">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <span key={i} className={i < lives ? 'text-red-500' : 'text-gray-600'}>♥</span>
-            ))}
+        <div className="flex flex-col gap-2">
+          <div className="bg-black/60 backdrop-blur-sm rounded-full px-4 py-2 flex items-center gap-2">
+            <span className="text-white font-bold text-sm">LIVES</span>
+            <div className="flex gap-1">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <span key={i} className={i < lives ? 'text-red-500' : 'text-gray-600'}>♥</span>
+              ))}
+            </div>
+          </div>
+          <div className={`rounded-full px-3 py-1 text-xs font-bold text-white text-center ${netStatus === 'online' ? 'bg-green-600/80' : netStatus === 'offline' ? 'bg-red-600/80' : 'bg-yellow-600/80'}`}>
+            {netStatus === 'online' ? '● 联机' : netStatus === 'offline' ? '● 离线' : '● 连接中'}
           </div>
         </div>
 

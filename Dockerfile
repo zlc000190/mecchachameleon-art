@@ -1,45 +1,42 @@
 FROM node:22-alpine AS base
+RUN apk add --no-cache libc6-compat && corepack enable
 
-# Install dependencies only when needed
+# ── install dependencies ────────────────────────────────────────────────
 FROM base AS deps
-RUN apk add --no-cache libc6-compat && yarn global add pnpm@11.7.0
-
 WORKDIR /app
-
-# Install dependencies based on the preferred package manager
-COPY package.json pnpm-lock.yaml* pnpm-workspace.yaml source.config.ts next.config.mjs ./
+COPY package.json pnpm-lock.yaml* ./
 RUN pnpm i --frozen-lockfile
 
-# Rebuild the source code only when needed
-FROM deps AS builder
-
+# ── build (Next.js app + Colyseus server) ───────────────────────────────
+FROM base AS builder
 WORKDIR /app
-
-# Install dependencies based on the preferred package manager
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-RUN pnpm build
+# Next.js production build AND compile the Colyseus server (tsc -> server/dist)
+RUN pnpm build && pnpm server:build
 
-# Production image, copy all the files and run next
+# ── production runner ────────────────────────────────────────────────────
 FROM base AS runner
 WORKDIR /app
+RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs
 
-RUN addgroup --system --gid 1001 nodejs && \
-    adduser --system --uid 1001 nextjs && \
-    mkdir .next && \
-    chown nextjs:nodejs .next
-
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder /app/server/dist ./server/dist
+COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/next.config.mjs ./next.config.mjs
 
+RUN chown -R nextjs:nodejs /app
 USER nextjs
 
-EXPOSE 3000
-
-# set environment variables
+# Next.js (web) + Colyseus (real-time multiplayer) both run in this container.
+EXPOSE 3000 2567
 ENV NODE_ENV=production
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
 
-# server.js is created by next build from the standalone output
-CMD ["node", "server.js"]
+# Colyseus is backgrounded; Next.js is the foreground process.
+# The client derives the Colyseus URL from the page origin (wss://host:2567),
+# so both ports must be reachable in production.
+CMD ["sh", "-c", "node server/dist/index.js & exec pnpm start"]
