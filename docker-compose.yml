@@ -1,0 +1,14 @@
+services:
+  meccha:
+    build: .
+    image: meccha-chameleon
+    container_name: meccha-chameleon
+    restart: unless-stopped
+    ports:
+      - "3000:3000"   # Next.js web
+      - "2567:2567"   # Colyseus realtime multiplayer
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+      # Optional: override the Colyseus endpoint (e.g. behind a reverse proxy).
+      # NEXT_PUBLIC_COLYSEUS_URL: wss://your-domain.com/colyseus

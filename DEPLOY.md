@@ -59,3 +59,48 @@ Colyseus accepts a path-based endpoint.
   with `tsc` (not tsx) because tsx mis-applies the decorators under Node 24.
 - `experimentalDecorators: true` + `target: ES2017` in `server/tsconfig.json`
   are required for the decorators to wire up `$childType`/change-tracking.
+
+## VPS / Docker runbook (recommended)
+On your Linux VPS (Docker + compose installed):
+```bash
+# 1. get the code
+git clone https://github.com/zlc000190/mecchameleon-art.git
+cd mecchameleon-art
+
+# 2. build + run (exposes 3000 and 2567)
+docker compose up -d --build
+#   or without compose:
+#   docker build -t meccha-chameleon .
+#   docker run -d --name meccha --restart unless-stopped -p 3000:3000 -p 2567:2567 meccha-chameleon
+```
+- Open `http://<vps-ip>:3000`. The client auto-connects to
+  `ws://<vps-ip>:2567` (or `wss://` if served over HTTPS).
+- **Firewall:** open both `3000/tcp` and `2567/tcp` (and `22` for SSH).
+
+### With a domain + HTTPS (nginx example)
+If you front `:3000` with nginx (SSL on 443) but keep Colyseus on `:2567`:
+- Client still derives `wss://your-domain.com:2567` automatically — just make
+  sure `2567/tcp` is reachable from the internet (open firewall).
+
+If you prefer a single port (proxy Colyseus behind the same host):
+```nginx
+# /etc/nginx/conf.d/meccha.conf
+server {
+  listen 443 ssl;  # ... ssl certs ...
+  server_name your-domain.com;
+  location / { proxy_pass http://127.0.0.1:3000; }
+  location /colyseus {
+    proxy_pass http://127.0.0.1:2567;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+    proxy_set_header Host $host;
+  }
+}
+```
+Then rebuild the image with the override (build-time inlined):
+```bash
+NEXT_PUBLIC_COLYSEUS_URL=wss://your-domain.com/colyseus docker compose up -d --build
+```
+(or set it in the `environment:` block of `docker-compose.yml` and note that
+`NEXT_PUBLIC_*` must be present at build time).
