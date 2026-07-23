@@ -4,10 +4,7 @@ RUN apk add --no-cache libc6-compat git && corepack enable
 # ── install dependencies ────────────────────────────────────────────────
 FROM base AS deps
 WORKDIR /app
-# Copy every file needed by pnpm's install/postinstall hooks. In particular,
-# fumadocs-mdx resolves source.config.ts from the workspace root.
 COPY package.json pnpm-lock.yaml* pnpm-workspace.yaml* source.config.ts next.config.mjs ./
-# --ignore-scripts: postinstall (fumadocs-mdx) needs full source; run it in builder stage instead
 RUN pnpm install --frozen-lockfile --ignore-scripts
 
 # ── build (Next.js app + Colyseus server) ───────────────────────────────
@@ -15,32 +12,33 @@ FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-# Run postinstall (e.g. fumadocs-mdx) now that full source is available
 RUN pnpm postinstall
 RUN pnpm build && pnpm server:build
 
-# ── production runner ────────────────────────────────────────────────────
+# ── production runner ───────────────────────────────────────────────────
 FROM base AS runner
 WORKDIR /app
 RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs
 
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/.next ./.next
+# Next.js standalone output (self-contained, no pnpm install needed at runtime)
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
+
+# Colyseus server (compiled)
 COPY --from=builder /app/server/dist ./server/dist
-COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/next.config.mjs ./next.config.mjs
-COPY --from=builder /app/source.config.ts ./source.config.ts
+COPY --from=builder /app/node_modules/colyseus ./node_modules/colyseus
+COPY --from=builder /app/node_modules/@colyseus ./node_modules/@colyseus
+COPY --from=builder /app/node_modules/uWebSockets.js ./node_modules/uWebSockets.js
 
 RUN chown -R nextjs:nodejs /app
 USER nextjs
 
 EXPOSE 3000 2567
 ENV NODE_ENV=production
-ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
+ENV PORT=3000
 ENV CI=true
 
-# Use --ignore-scripts so postinstall (fumadocs-mdx) doesn't run in the runner
-# The standalone .next/standalone/node_modules is self-contained; no runtime install needed
-CMD ["sh", "-c", "node server/dist/index.js & exec pnpm start --ignore-scripts"]
+# Start Next.js standalone server + Colyseus server
+CMD ["sh", "-c", "node server/dist/index.js & node server.js"]
