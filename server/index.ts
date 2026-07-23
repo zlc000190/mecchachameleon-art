@@ -1,7 +1,8 @@
 import { Server } from 'colyseus';
 import { HideSeekRoom } from './room';
 
-const port = Number(process.env.PORT || 2567);
+// Fixed port for Colyseus; Next.js uses PORT env var (3000)
+const port = Number(process.env.COLYSEUS_PORT || 2567);
 
 const gameServer = new Server();
 gameServer.define('hide_seek', HideSeekRoom);

@@ -38,5 +38,6 @@ EXPOSE 3000 2567
 ENV NODE_ENV=production
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
+ENV CI=true
 
 CMD ["sh", "-c", "node server/dist/index.js & exec pnpm start"]
