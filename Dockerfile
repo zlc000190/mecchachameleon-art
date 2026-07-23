@@ -1,5 +1,5 @@
 FROM node:22-alpine AS base
-RUN apk add --no-cache libc6-compat && corepack enable
+RUN apk add --no-cache libc6-compat git && corepack enable
 
 # ── install dependencies ────────────────────────────────────────────────
 FROM base AS deps
@@ -30,6 +30,7 @@ COPY --from=builder /app/public ./public
 COPY --from=builder /app/server/dist ./server/dist
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/next.config.mjs ./next.config.mjs
+COPY --from=builder /app/source.config.ts ./source.config.ts
 
 RUN chown -R nextjs:nodejs /app
 USER nextjs
@@ -40,4 +41,6 @@ ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
 ENV CI=true
 
-CMD ["sh", "-c", "node server/dist/index.js & exec pnpm start"]
+# Use --ignore-scripts so postinstall (fumadocs-mdx) doesn't run in the runner
+# The standalone .next/standalone/node_modules is self-contained; no runtime install needed
+CMD ["sh", "-c", "node server/dist/index.js & exec pnpm start --ignore-scripts"]
