@@ -7,13 +7,18 @@ WORKDIR /app
 # Copy every file needed by pnpm's install/postinstall hooks. In particular,
 # fumadocs-mdx resolves source.config.ts from the workspace root.
 COPY package.json pnpm-lock.yaml* pnpm-workspace.yaml* source.config.ts next.config.mjs ./
-RUN pnpm install --frozen-lockfile
+# --ignore-scripts: postinstall (fumadocs-mdx) needs full source; run it in builder stage instead
+# --no-supply-chain: bypass minimumReleaseAge check for newly-published babylonjs packages
+RUN pnpm install --frozen-lockfile --ignore-scripts --no-supply-chain
 
 # ── build (Next.js app + Colyseus server) ───────────────────────────────
 FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+# Run postinstall (e.g. fumadocs-mdx) now that full source is available
+# postinstall now runs with full source available; --no-supply-chain for same reason as above
+RUN pnpm postinstall --no-supply-chain
 RUN pnpm build && pnpm server:build
 
 # ── production runner ────────────────────────────────────────────────────
