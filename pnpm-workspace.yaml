@@ -4,3 +4,5 @@ allowBuilds:
   sharp: true
   unrs-resolver: true
   workerd: true
+# Allow git dependencies in subdependencies (needed for @colyseus/uwebsockets-transport -> uWebSockets.js)
+blockExoticSubdeps: false
