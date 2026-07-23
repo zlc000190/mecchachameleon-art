@@ -20,16 +20,12 @@ FROM base AS runner
 WORKDIR /app
 RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs
 
-# Next.js standalone output (self-contained, no pnpm install needed at runtime)
-COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
+# Copy full node_modules (pnpm symlink structure intact) — no package.json so Dokploy won't run install
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
-
-# Colyseus server (compiled)
 COPY --from=builder /app/server/dist ./server/dist
-COPY --from=builder /app/node_modules/colyseus ./node_modules/colyseus
-COPY --from=builder /app/node_modules/@colyseus ./node_modules/@colyseus
-COPY --from=builder /app/node_modules/uWebSockets.js ./node_modules/uWebSockets.js
+COPY --from=builder /app/next.config.mjs ./next.config.mjs
 
 RUN chown -R nextjs:nodejs /app
 USER nextjs
@@ -40,5 +36,5 @@ ENV HOSTNAME=0.0.0.0
 ENV PORT=3000
 ENV CI=true
 
-# Start Next.js standalone server + Colyseus server
-CMD ["sh", "-c", "node server/dist/index.js & node server.js"]
+# Start Colyseus + Next.js directly with node (no pnpm needed)
+CMD ["sh", "-c", "node server/dist/index.js & node node_modules/next/dist/bin/next start"]
