@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 
 import { BreadcrumbJsonLd } from '@/shared/components/seo/breadcrumb-json-ld';
-import { getCanonicalUrl } from '@/shared/lib/seo';
+import { getCanonicalUrl, getLocalizedSeoText } from '@/shared/lib/seo';
 
 export const revalidate = 3600;
 
@@ -17,21 +17,27 @@ export async function generateMetadata({
   const description =
     'Meccha Chameleon beginner walkthrough in 10 minutes: controls, paint tool, role guide, first-match checklist, and 8 rookie mistakes to avoid in round one.';
   const canonicalUrl = await getCanonicalUrl('/new-player', locale);
-  return {
+  const seo = getLocalizedSeoText({
+    locale,
     title,
     description,
+    titleContext: 'Guide',
+  });
+  return {
+    title: seo.title,
+    description: seo.description,
     alternates: {
       canonical: canonicalUrl,
     },
     openGraph: {
-      title,
-      description,
+      title: seo.title,
+      description: seo.description,
       url: canonicalUrl,
     },
     twitter: {
       card: 'summary_large_image',
-      title,
-      description,
+      title: seo.title,
+      description: seo.description,
     },
   };
 }

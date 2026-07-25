@@ -161,3 +161,76 @@ export async function getCanonicalUrl(canonicalUrl: string, locale: string) {
 
   return `${appUrl}${localizedPrefix}${pathPart}`;
 }
+
+const localeSeoLabels: Record<string, string> = {
+  ar: 'Arabic',
+  de: 'German',
+  es: 'Spanish',
+  fr: 'French',
+  it: 'Italian',
+  ja: 'Japanese',
+  ko: 'Korean',
+  nl: 'Dutch',
+  pt: 'Portuguese',
+  ru: 'Russian',
+  th: 'Thai',
+  vi: 'Vietnamese',
+  zh: 'Chinese',
+  'zh-TW': 'Traditional Chinese',
+};
+
+export function getLocaleSeoLabel(locale: string) {
+  return localeSeoLabels[locale] || locale.toUpperCase();
+}
+
+export function getLocalizedSeoText({
+  locale,
+  title,
+  description,
+  titleContext,
+}: {
+  locale: string;
+  title: string;
+  description: string;
+  titleContext?: string;
+}) {
+  const expandedDescription = getExpandedSeoDescription({
+    title,
+    description,
+    titleContext,
+  });
+
+  if (!locale || locale === defaultLocale) {
+    return { title, description: expandedDescription };
+  }
+
+  const localeLabel = getLocaleSeoLabel(locale);
+  const suffix = ` - ${localeLabel}${titleContext ? ` ${titleContext}` : ''}`;
+  const maxBaseLength = Math.max(24, 70 - suffix.length);
+  const baseTitle =
+    title.length > maxBaseLength
+      ? title.replace(/\s+[—-]\s+.*$/, '').slice(0, maxBaseLength).trim()
+      : title;
+
+  return {
+    title: `${baseTitle}${suffix}`,
+    description: `${expandedDescription} ${localeLabel} page with locale-specific navigation and search context for Meccha Chameleon players.`,
+  };
+}
+
+function getExpandedSeoDescription({
+  title,
+  description,
+  titleContext,
+}: {
+  title: string;
+  description: string;
+  titleContext?: string;
+}) {
+  if (description.length >= 140) {
+    return description;
+  }
+
+  const pageType = titleContext ? titleContext.toLowerCase() : 'page';
+  return `${description} ${title} is a ${pageType} for Meccha Chameleon players, with browser play context, controls, quick notes, and practical hide-and-seek tips.`;
+}

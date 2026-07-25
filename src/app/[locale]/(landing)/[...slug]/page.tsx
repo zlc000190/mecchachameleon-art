@@ -7,7 +7,7 @@ import {
   getRelatedGameBySlug,
   relatedGames,
 } from '@/shared/blocks/meccha/related-game-data';
-import { getCanonicalUrl } from '@/shared/lib/seo';
+import { getCanonicalUrl, getLocalizedSeoText } from '@/shared/lib/seo';
 import { getLocalPage } from '@/shared/models/post';
 
 export const revalidate = 3600;
@@ -54,16 +54,22 @@ export async function generateMetadata({
   if (relatedGame) {
     title = `${relatedGame.title} — Play Free Online, No Download`;
     description = `Play ${relatedGame.title} free online with no download or signup. ${relatedGame.note}`;
-
-    return {
+    const seo = getLocalizedSeoText({
+      locale,
       title,
       description,
+      titleContext: 'Game',
+    });
+
+    return {
+      title: seo.title,
+      description: seo.description,
       alternates: {
         canonical: canonicalUrl,
       },
       openGraph: {
-        title,
-        description,
+        title: seo.title,
+        description: seo.description,
         images: [relatedGame.image],
       },
     };
@@ -76,10 +82,16 @@ export async function generateMetadata({
   if (staticPage) {
     title = staticPage.title || '';
     description = staticPage.description || '';
-
-    return {
+    const seo = getLocalizedSeoText({
+      locale,
       title,
       description,
+      titleContext: 'Page',
+    });
+
+    return {
+      title: seo.title,
+      description: seo.description,
       alternates: {
         canonical: canonicalUrl,
       },

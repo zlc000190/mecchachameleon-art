@@ -3,7 +3,6 @@ import {
   AlertTriangle,
   CheckCircle2,
   CreditCard,
-  Download,
   Gamepad2,
   Keyboard,
   LockKeyhole,
@@ -24,7 +23,7 @@ import {
   getPlayKitOfferNote,
   getPlayKitPriceLabel,
 } from '@/shared/lib/play-kit';
-import { getCanonicalUrl } from '@/shared/lib/seo';
+import { getCanonicalUrl, getLocalizedSeoText } from '@/shared/lib/seo';
 
 export const revalidate = 3600;
 
@@ -32,7 +31,7 @@ const price = getPlayKitPriceLabel();
 
 const copy = {
   en: {
-    title: 'Meccha Chameleon Play Kit - Better starts, steadier camo, smoother friend rooms',
+    title: 'Meccha Chameleon Play Kit - Player Tools',
     description:
       'A player-first pack for quicker starts, better hiding, and smoother friend rooms: quick-start checklist, lobby fixes, FPS notes, camo practice, and route cards.',
     eyebrow: 'Play Kit',
@@ -136,7 +135,7 @@ const copy = {
     tabs: ['开局', '好友', 'FPS', '伪装', '路线'],
   },
   ru: {
-    title: 'Meccha Chameleon Play Kit - faster starts, steadier camo, smoother friend rooms',
+    title: 'Meccha Chameleon Play Kit - Player Tools',
     description:
       'A practical pack for quicker starts, better hiding, and smoother friend rooms: fast-start checklist, lobby fixes, FPS notes, camo practice, and route cards.',
     eyebrow: 'Play Kit',
@@ -205,20 +204,26 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = localeCopy(locale);
   const canonicalUrl = await getCanonicalUrl('/tools', locale);
-
-  return {
+  const seo = getLocalizedSeoText({
+    locale,
     title: t.title,
     description: t.description,
+    titleContext: 'Tools',
+  });
+
+  return {
+    title: seo.title,
+    description: seo.description,
     alternates: { canonical: canonicalUrl },
     openGraph: {
-      title: t.title,
-      description: t.description,
+      title: seo.title,
+      description: seo.description,
       url: canonicalUrl,
     },
     twitter: {
       card: 'summary_large_image',
-      title: t.title,
-      description: t.description,
+      title: seo.title,
+      description: seo.description,
     },
   };
 }

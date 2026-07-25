@@ -12,7 +12,7 @@ import {
   getSpotsByMapId,
 } from '@/shared/blocks/meccha/atlas-data';
 import { MapSpotsExplorer } from '@/shared/blocks/meccha/map-spots-explorer';
-import { getCanonicalUrl } from '@/shared/lib/seo';
+import { getCanonicalUrl, getLocalizedSeoText } from '@/shared/lib/seo';
 
 const steamUrl = 'https://store.steampowered.com/app/4704690/MECCHA_CHAMELEON/';
 
@@ -43,23 +43,29 @@ export async function generateMetadata({
   const title = `${map.name} Hiding Spots — Meccha Chameleon Atlas`;
   const description = `${map.name} community atlas: ${spots.length} charted spots with paint RGB and hider tips. Fan-made, not the official lemorion build.`;
   const canonicalUrl = await getCanonicalUrl(`/maps/${mapSlug}`, locale);
-
-  return {
+  const seo = getLocalizedSeoText({
+    locale,
     title,
     description,
+    titleContext: 'Atlas',
+  });
+
+  return {
+    title: seo.title,
+    description: seo.description,
     alternates: {
       canonical: canonicalUrl,
     },
     openGraph: {
-      title,
-      description,
+      title: seo.title,
+      description: seo.description,
       url: canonicalUrl,
       images: [getAtlasImagePath(map.thumb)],
     },
     twitter: {
       card: 'summary_large_image',
-      title,
-      description,
+      title: seo.title,
+      description: seo.description,
       images: [getAtlasImagePath(map.thumb)],
     },
   };

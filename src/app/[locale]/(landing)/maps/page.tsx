@@ -9,7 +9,7 @@ import {
   getAtlasMapsWithSpots,
   getLocalizedPath,
 } from '@/shared/blocks/meccha/atlas-data';
-import { getCanonicalUrl } from '@/shared/lib/seo';
+import { getCanonicalUrl, getLocalizedSeoText } from '@/shared/lib/seo';
 
 export const revalidate = 3600;
 
@@ -23,21 +23,27 @@ export async function generateMetadata({
   const description =
     'Browse every Meccha Chameleon map in one index: hiding spots, paint colors, difficulty labels, and direct links to each detailed map page.';
   const canonicalUrl = await getCanonicalUrl('/maps', locale);
-  return {
+  const seo = getLocalizedSeoText({
+    locale,
     title,
     description,
+    titleContext: 'Maps',
+  });
+  return {
+    title: seo.title,
+    description: seo.description,
     alternates: {
       canonical: canonicalUrl,
     },
     openGraph: {
-      title,
-      description,
+      title: seo.title,
+      description: seo.description,
       url: canonicalUrl,
     },
     twitter: {
       card: 'summary_large_image',
-      title,
-      description,
+      title: seo.title,
+      description: seo.description,
     },
   };
 }

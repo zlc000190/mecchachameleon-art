@@ -7,6 +7,7 @@ import {
   Sparkles,
   type LucideIcon,
 } from 'lucide-react';
+import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 
 import { ArabicSeoSection } from '@/shared/blocks/meccha/arabic-seo-section';
@@ -32,7 +33,7 @@ import { ToolsTeaser } from '@/shared/blocks/meccha/tools-teaser';
 import { UpdatesSection } from '@/shared/blocks/meccha/updates-section';
 import { BreadcrumbJsonLd } from '@/shared/components/seo/breadcrumb-json-ld';
 import { getPlayKitPriceLabel } from '@/shared/lib/play-kit';
-import { getCanonicalUrl } from '@/shared/lib/seo';
+import { getCanonicalUrl, getLocalizedSeoText } from '@/shared/lib/seo';
 
 const secondScreenIcons: LucideIcon[] = [Smartphone, Gamepad2, ShieldCheck];
 const coreLocalizedLocales = [
@@ -55,6 +56,41 @@ const coreLocalizedLocales = [
 const longFormLocales = ['en', 'zh', 'nl', 'th', 'vi', 'zh-TW'];
 
 export const revalidate = 3600;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const copy = getHomeCopy(locale);
+  const canonicalUrl = await getCanonicalUrl('/', locale);
+  const description =
+    copy.secondDesc ||
+    'Play Meccha Chameleon style hide-and-seek in your browser with map tips, camo help, quick start notes, and related browser games.';
+  const seo = getLocalizedSeoText({
+    locale,
+    title: copy.title,
+    description,
+    titleContext: 'Home',
+  });
+
+  return {
+    title: seo.title,
+    description: seo.description,
+    alternates: { canonical: canonicalUrl },
+    openGraph: {
+      title: seo.title,
+      description: seo.description,
+      url: canonicalUrl,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: seo.title,
+      description: seo.description,
+    },
+  };
+}
 
 export default async function LandingPage({
   params,
