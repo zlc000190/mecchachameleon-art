@@ -1,0 +1,8 @@
+{
+  "host": "mecchachameleon.art",
+  "key": "2fe0572572f48289ec97184d1c7c3dd9",
+  "keyLocation": "https://mecchachameleon.art/2fe0572572f48289ec97184d1c7c3dd9.txt",
+  "endpoint": "https://api.indexnow.org/indexnow",
+  "sitemap": "public/sitemap.xml",
+  "liveSitemap": "https://mecchachameleon.art/sitemap.xml"
+}

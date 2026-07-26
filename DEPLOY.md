@@ -60,6 +60,33 @@ Colyseus accepts a path-based endpoint.
 - `experimentalDecorators: true` + `target: ES2017` in `server/tsconfig.json`
   are required for the decorators to wire up `$childType`/change-tracking.
 
+## IndexNow after SEO deploys
+The site uses IndexNow to notify Bing and other participating search engines
+when sitemap URLs are added or changed.
+
+```bash
+pnpm sitemap
+pnpm indexnow:changed:dry  # preview URLs added since the previous git sitemap
+pnpm indexnow:changed      # submit added URLs to https://api.indexnow.org/indexnow
+```
+
+Useful variants:
+```bash
+pnpm indexnow:all:dry      # preview every URL in public/sitemap.xml
+pnpm indexnow:all          # submit the full sitemap URL list
+node scripts/indexnow-submit.mjs --urls https://mecchachameleon.art/tools
+node scripts/indexnow-submit.mjs --changed --baseline live
+```
+
+IndexNow config lives in `indexnow.config.json`. The public verification file is
+`public/2fe0572572f48289ec97184d1c7c3dd9.txt`, which must be reachable at
+`https://mecchachameleon.art/2fe0572572f48289ec97184d1c7c3dd9.txt` after deploy.
+
+If the domain is on Cloudflare, also enable **Caching -> Configuration ->
+Crawler Hints** for the zone. Cloudflare can send IndexNow hints when cached
+content changes; the script above remains useful for explicit sitemap-driven
+submissions after large page batches.
+
 ## VPS / Docker runbook (recommended)
 On your Linux VPS (Docker + compose installed):
 ```bash

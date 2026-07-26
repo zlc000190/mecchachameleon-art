@@ -40,6 +40,10 @@
     "cf:upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
     "cf:typegen": "wrangler types --env-interface CloudflareEnv src/shared/types/cloudflare.d.ts",
     "sitemap": "node scripts/build-sitemap.mjs",
+    "indexnow:changed": "node scripts/indexnow-submit.mjs --changed",
+    "indexnow:changed:dry": "node scripts/indexnow-submit.mjs --changed --dry-run",
+    "indexnow:all": "node scripts/indexnow-submit.mjs --all",
+    "indexnow:all:dry": "node scripts/indexnow-submit.mjs --all --dry-run",
     "prebuild": "node scripts/build-sitemap.mjs"
   },
   "dependencies": {
