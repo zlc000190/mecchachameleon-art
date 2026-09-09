@@ -10,6 +10,8 @@ import {
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 
+import { AdsterraNativeBanner } from '@/extensions/ads';
+import { ADSTERRA } from '@/extensions/ads/adsterra-config';
 import { ArabicSeoSection } from '@/shared/blocks/meccha/arabic-seo-section';
 import { AtlasPreview } from '@/shared/blocks/meccha/atlas-preview';
 import { CommunityChallengePreview } from '@/shared/blocks/meccha/community-challenge-preview';
@@ -191,6 +193,19 @@ export default async function LandingPage({
       </section>
 
       <RelatedGames locale={locale} />
+
+      {/* Adsterra 原生位（2026-09-09 恢复；7 月为了“不扰民”拆过，现在流量起来了要钱） */}
+      {!ADSTERRA.native.disabled && (
+        <section className="border-b border-[#D8CFC6] bg-white">
+          <div className="container py-6">
+            <AdsterraNativeBanner
+              className="mx-auto min-h-[90px] w-full max-w-5xl"
+              containerId={ADSTERRA.native.containerId}
+              invokeSrc={ADSTERRA.native.invokeSrc}
+            />
+          </div>
+        </section>
+      )}
 
       <ToolsTeaser locale={locale} />
 

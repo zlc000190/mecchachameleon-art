@@ -1,4 +1,9 @@
-import { AdsenseProvider, AdsManager } from '@/extensions/ads';
+import {
+  AdsenseProvider,
+  AdsManager,
+  AdsterraProvider,
+} from '@/extensions/ads';
+import { ADSTERRA } from '@/extensions/ads/adsterra-config';
 import { Configs, getAllConfigs } from '@/shared/models/config';
 
 /**
@@ -10,6 +15,13 @@ export function getAdsManagerWithConfigs(configs: Configs) {
   // adsense
   if (configs.adsense_code) {
     ads.addProvider(new AdsenseProvider({ adId: configs.adsense_code }));
+  }
+
+  // adsterra popunder（2026-09-09 恢复；env 设 off 就回去）
+  if (ADSTERRA.popunderSrc) {
+    ads.addProvider(
+      new AdsterraProvider({ popunderSrc: ADSTERRA.popunderSrc })
+    );
   }
 
   return ads;

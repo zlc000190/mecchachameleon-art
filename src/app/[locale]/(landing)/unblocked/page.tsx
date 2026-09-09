@@ -11,6 +11,8 @@ import {
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 
+import { AdsterraNativeBanner } from '@/extensions/ads';
+import { ADSTERRA } from '@/extensions/ads/adsterra-config';
 import { DemoFrame } from '@/shared/blocks/meccha/demo-frame';
 import { getLocalizedPath } from '@/shared/blocks/meccha/atlas-data';
 import { BreadcrumbJsonLd } from '@/shared/components/seo/breadcrumb-json-ld';
@@ -185,6 +187,19 @@ export default async function UnblockedPage({
           <DemoFrame locale={locale} />
         </div>
       </section>
+
+      {/* 游戏页下面的原生位：会话长、停留久，是这簇页里唯一值钱的展示位（不打断操作） */}
+      {!ADSTERRA.native.disabled && (
+        <section className="border-b border-[#D8CFC6] bg-white">
+          <div className="container py-6">
+            <AdsterraNativeBanner
+              className="mx-auto min-h-[90px] w-full max-w-4xl"
+              containerId={ADSTERRA.native.containerId}
+              invokeSrc={ADSTERRA.native.invokeSrc}
+            />
+          </div>
+        </section>
+      )}
 
       <section className="border-b border-[#D8CFC6] bg-white">
         <div className="container grid gap-4 py-12 md:grid-cols-3">
