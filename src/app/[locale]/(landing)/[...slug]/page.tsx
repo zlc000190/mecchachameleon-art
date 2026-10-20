@@ -254,6 +254,34 @@ export default async function DynamicPage({
                   {fallbackDescription}
                 </p>
 
+                {relatedGame.slug === 'zombie-hunter-survival' && locale === 'en' ? (
+                  <section className="rounded-lg border border-[#D8CFC6] bg-white p-6">
+                    <p className="mb-2 text-sm font-semibold text-[#7D6D69]">
+                      A creative tool from the same site owner
+                    </p>
+                    <h2 className="mb-3 text-2xl font-bold">
+                      Make your own zombie reunion video
+                    </h2>
+                    <p className="mb-4 leading-7 text-[#4C3B35]">
+                      If you also enjoy making zombie-themed clips, Zombie Trend Video
+                      turns two adult portraits into a 15-second reunion scene with music.
+                      One person stays human and the other returns as a zombie, ending
+                      with an embrace. Use only photos you have permission to use.
+                    </p>
+                    <p className="mb-4 text-sm leading-6 text-[#4C3B35]">
+                      This is a separate paid AI video tool. It does not record gameplay
+                      and is not connected to Zombie Hunter Survival or its developer.
+                      You can watch a generated example before choosing to buy.
+                    </p>
+                    <a
+                      href="https://zombietrendvideo.com/?utm_source=mecchachameleon.art&utm_medium=referral&utm_campaign=owned_sites&utm_content=zombie_hunter_survival"
+                      className="font-semibold underline underline-offset-4 hover:text-[#AA776E]"
+                    >
+                      Watch the Zombie Trend Video example
+                    </a>
+                  </section>
+                ) : null}
+
                 <div className="grid gap-6 sm:grid-cols-3">
                   <figure className="overflow-hidden rounded-lg border border-[#D8CFC6] bg-white shadow-sm">
                     <div className="relative aspect-[4/3] bg-[#f5e6e0]">
