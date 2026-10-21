@@ -274,11 +274,17 @@ export default async function DynamicPage({
                       You can watch a generated example before choosing to buy.
                     </p>
                     <a
-                      href="https://zombietrendvideo.com/?utm_source=mecchachameleon.art&utm_medium=referral&utm_campaign=owned_sites&utm_content=zombie_hunter_survival"
+                      href="https://zombietrendvideo.com/examples?utm_source=mecchachameleon.art&utm_medium=referral&utm_campaign=zombie_hug&utm_content=zombie_hunter_scene_examples"
                       className="font-semibold underline underline-offset-4 hover:text-[#AA776E]"
                     >
-                      Watch the Zombie Trend Video example
+                      Watch a zombie hug scene made with AI
                     </a>
+                    <p className="mt-4 text-sm leading-6 text-[#4C3B35]">
+                      To create a personal reunion rather than a gameplay clip, use the{' '}
+                      <a href="https://zombietrendvideo.com/ai-zombie-hug?utm_source=mecchachameleon.art&utm_medium=referral&utm_campaign=zombie_hug&utm_content=two_photo_reunion"
+                        className="font-semibold underline underline-offset-4 hover:text-[#AA776E]">two-photo zombie hug creator</a>.
+                      {' '}The samples are original studio productions; faces and motion vary between generations.
+                    </p>
                   </section>
                 ) : null}
 
